@@ -1,5 +1,6 @@
-# template_project_escape 
-[![SWP391](https://gitlab.in2p3.fr/escape2020/wp3/template_project_escape/badges/master/pipeline.svg)]
+# Group 5
+
+# Fashion Shop Online
 
 # Welcome to Fashion Shop Online project
 
@@ -8,5 +9,11 @@
 * .gitignore file for NetBeans project
 * Đang cập nhật...
 
+#### Teams
+- Nguyễn Trí Trường Sơn - Leader
+- Bùi Văn Hải
+- Nghiêm Đức Độ
+- Đỗ Trung Khang
+- Nguyễn Hữu Minh Đức
 
 #### © 2022 Bản quyền thuộc group 5 - SE1605 | fb/ 
