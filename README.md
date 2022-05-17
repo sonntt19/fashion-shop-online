@@ -1,4 +1,5 @@
-﻿# Welcome to Fashion Shop Online project
+﻿[![LinkedIn][linkedin-shield]][linkedin-url]
+# Welcome to Fashion Shop Online project
 
 ## You will find in this repo:
 * NetBeans
