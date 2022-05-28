@@ -1,0 +1,417 @@
+/* Reset css */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.clear {
+    clear: both;
+}
+
+.text-white {
+    color: #fff;
+}
+
+.col {
+    float: left;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.col-full {
+    width: 100%;
+}
+.col-half {
+    width: 50%;
+}
+
+.row {
+    margin-left: -8px;
+    margin-right: -8px;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+.mt-16 {
+    margin-top: 16px;
+}
+/* main */
+#main {
+
+}
+
+#header {
+    height: 46px; 
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+/* begin logo-shop */
+#header .logo-shop {
+    float: left;
+    padding: 0px 21px;
+    
+}
+
+#header .logo-shop:hover {
+    background-color: #f44336;
+    cursor: pointer;
+}
+
+#header .logo-icon {
+    color: #fff;
+    font-size: 20px;
+    line-height: 46px;
+}
+
+/* begin nav */
+#nav {
+    margin-left: 0;
+    display: inline-block;
+}
+
+#nav, .subnav {
+    list-style-type: none;
+}
+
+#nav > li {
+    display: inline-block;
+}
+
+#nav li {
+    
+    position: relative;
+
+}
+
+#nav li:hover .subnav {
+    display: block;
+}
+
+#nav > li > a {
+    color: #fff;
+    text-transform: uppercase;
+}
+
+#nav li a{
+    
+    text-decoration: none;
+    line-height: 46px;
+    padding: 0px 24px;
+    display: inline-block;
+}
+
+#nav > li:hover > a,
+#nav .subnav li:hover a {
+    color: #000;
+    background-color: #ccc;
+}
+
+
+#nav .subnav {
+    display: none; 
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    min-width: 160px;
+    top: 100%;
+    left: 0;
+}
+
+#nav .subnav a {
+    color:  #333;
+    padding: 0px 12px;
+    line-height: 38px;
+
+}
+
+#nav .nav-arround-down {
+    font-size: 14px;
+}
+
+/* begin icon header */
+#header .btn-icon {
+    float: right;
+    padding: 0px 21px;
+    
+}
+
+#header .btn-icon a {
+    text-decoration: none;
+}
+
+#header .btn-icon:hover {
+    background-color: #f44336;
+    cursor: pointer;
+}
+
+#header .header-icon {
+    color: #fff;
+    font-size: 20px;
+    line-height: 46px;
+}
+
+/* Start slider */
+#slider {
+    margin-top: 46px;
+    padding-top: 30%;
+    position: relative;
+}
+
+#slider .text-content {
+    position: absolute;
+    bottom: 48px;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+
+
+#slider .text-description {
+    border: 2px solid black;
+    float: left;
+    width: 20%;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: yellow;
+    color: #000;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin: 0 100px;
+}
+
+#slider .text-description:hover {
+    color: #000;
+    background-color: #fff;
+}
+
+/* content */
+#content {
+    min-height: 1000px;
+}
+
+#content .content-section {
+
+    width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 48px 0 112px;
+}
+
+#content .background-product {
+        background-color: #fff;
+}
+
+#content .section-heading {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 1px; /*khoang cach cac chu cai*/
+    text-align: center;
+}
+
+#content .section-sub-heading {
+    font-style: italic; /*chu nghieng*/
+    text-align: center;
+    font-size: 15px;
+    opacity: 0.6; /*lam mo chu*/
+    margin-top: 25px;
+}
+/* Product basic */
+
+#content .product-list {
+    margin-top: 48px;
+}
+
+#content .product-item {
+    float: left;
+    width: 25%;
+    text-align: center;
+}
+
+#content .product-name {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 400;
+    
+}
+
+#content .product-img {
+    width: 154px;
+    margin-top: 15px;
+    border-radius: 4px;
+}
+
+/* Category */
+#content .content-Category-section {
+    width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 48px 0 112px;
+}
+
+#content .category-list {
+    margin-top: 48px;
+}
+#content .category-img {
+    height: 400px; 
+    margin-top: 15px;
+    margin-left: 10px;
+    border-radius: 4px;
+}
+
+#content .category-item {
+    float: left;
+    width: 24%;
+    text-align: center;
+
+}
+
+#content .category-item:hover {
+    opacity: 0.7;
+}
+
+
+
+#content .category-content {
+    color: #000;
+    font-weight: 650;
+    margin-top: 190px;
+    border: 1px solid #fff;
+    background-color: #fff;
+    border-radius: 20px;
+    margin: 190px 30px 190px 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+/* Blog */
+.tour-section {
+    background-color: #000;
+}
+
+
+
+/* places */
+.places-list {
+    margin: 32px -8px 0;
+}
+
+.place-item {
+    padding: 0 8px;
+    float: left;
+    width: 50%;
+}
+
+.place-img {
+    width: 100%;
+    display: block;
+}
+
+.place-img:hover {
+    opacity: 0.8;
+}
+
+.place-body {
+    background-color: #fff;
+    padding: 16px;
+    font-size: 15px;
+}
+
+.place-heading {
+    font-size: 50px;
+    font-weight: 600;
+}
+
+.place-desc {
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+.place-buy-btn {
+    color: #fff;
+    background-color: #000;
+    text-decoration: none;
+    padding: 11px 16px;
+    display: inline-block;
+    margin-top: 15px;
+
+}
+
+.place-buy-btn:hover {
+    color: #000;
+    background-color: #ccc;
+}
+
+/* Contact */
+.contact-content {
+    margin-top: 48px;
+}
+
+.contact-info {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.contact-info > p > i {
+    width: 30px;
+    display: inline-block;
+}
+
+.contact-form {
+    font-size: 15px;
+}
+
+.contact-form .form-control {
+    padding: 10px;
+    border: 1px solid #ccc;
+    width: 100%;
+    outline: 1px solid blue;
+}
+
+.contact-form .form-submit-btn {
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    padding: 10px 16px;
+    float: right;
+}
+
+/* Map-section */
+.map-section img {
+    width: 100%;
+}
+/* footer */
+#footer {
+    padding: 24px 16px;
+    text-align: center;
+}
+
+#footer .social-list {
+    font-size: 24px;
+}
+
+#footer .social-list a:hover,
+#footer .copyright a:hover {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+#footer .social-list a {
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+}
+
+#footer .copyright {
+    margin-top: 15px;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+#footer .copyright a {
+    color: rgba(0, 0, 0, 0.6);
+} 
