@@ -38,7 +38,7 @@ public class HomeController extends HttpServlet {
             out.println("<title>Servlet HomeController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Demo Dondsss</h1>");
+            out.println("<h1>Demo Khang Agan</h1>");
             out.println("</body>");
             out.println("</html>");
         }
