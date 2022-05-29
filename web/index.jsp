@@ -40,7 +40,7 @@
             </ul>
 
              <!-- begin icon header -->
-                <div class="btn-icon">
+                 <div class="btn-icon">
                     <a><i class="header-icon ti-shopping-cart"></i></a>
                 </div>
 
@@ -51,6 +51,7 @@
                 <div class="btn-icon">
                     <a href="#"><i class="header-icon ti-search"></i></a>
                 </div>
+                
 
                 
 
@@ -138,26 +139,26 @@
                 </div> 
             </div>
             <!-- Blog -->
-            <div class="tour-section">
+            <div class="blog-section">
                 <div class="content-section">
                     <h2 class="section-heading text-white">Chúng tôi luôn mang đến những công nghệ hiện đại nhất</h2>
                     <p class="section-sub-heading text-white">Công nghệ Việt cho người Việt</p>
                 
                     <!-- Places -->
-                    <div class="places-list">
-                        <div class="place-item">
-                            <img src="./assets/img/blog/blogImage3.png" alt="New York" class="place-img">
-                            <div class="place-body">
-                                <h3 class="place-heading">Dòng sản phẩm công nghệ EXCOOL</h3>
-                                <p class="place-desc">Excool là dòng sản phẩm công nghệ mới với mục tiêu đem tới các sản phẩm đa tính năng như nhẹ, bền, dễ chăm sóc, không nhăn cùng nhiều tính năng vượt trội khác. </p>
+                    <div class="blog-list">
+                        <div class="blog-item">
+                            <img src="./assets/img/blog/blogImage3.png" alt="" class="blog-img">
+                            <div class="blog-body">
+                                <h3 class="blog-heading">Dòng sản phẩm công nghệ EXCOOL</h3>
+                                <p class="blog-desc">Excool là dòng sản phẩm công nghệ mới với mục tiêu đem tới các sản phẩm đa tính năng như nhẹ, bền, dễ chăm sóc, không nhăn cùng nhiều tính năng vượt trội khác. </p>
                                 <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
                         </div>
                         </div>
-                        <div class="place-item">
-                            <img src="./assets/img/blog/blogImage2.png" alt="New York" class="place-img">
-                            <div class="place-body">
-                                <h3 class="place-heading">Coolmate’s CLEAN DENIM</h3>
-                                <p class="place-desc">Chiếc quần Jeans này chính là sản phẩm đầu tiên Coolmate theo hướng Thời trang bền vững, từ nguồn gốc sợi Regenarative Cotton</p>
+                        <div class="blog-item">
+                            <img src="./assets/img/blog/blogImage2.png" alt="" class="blog-img">
+                            <div class="blog-body">
+                                <h3 class="blog-heading">Coolmate’s CLEAN DENIM</h3>
+                                <p class="blog-desc">Chiếc quần Jeans này chính là sản phẩm đầu tiên Coolmate theo hướng Thời trang bền vững, từ nguồn gốc sợi Regenarative Cotton</p>
                                 <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
                         </div>
                     </div>

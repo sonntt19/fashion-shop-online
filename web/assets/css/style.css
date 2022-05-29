@@ -73,7 +73,7 @@
 
 /* begin nav */
 #nav {
-    margin-left: 0;
+    margin-left: 160px;
     display: inline-block;
 }
 
@@ -292,44 +292,41 @@
 }
 
 /* Blog */
-.tour-section {
+.blog-section {
     background-color: #000;
 }
 
-
-
-/* places */
-.places-list {
+.blog-list {
     margin: 32px -8px 0;
 }
 
-.place-item {
+.blog-item {
     padding: 0 8px;
     float: left;
     width: 50%;
 }
 
-.place-img {
+.blog-img {
     width: 100%;
     display: block;
 }
 
-.place-img:hover {
+.blog-img:hover {
     opacity: 0.8;
 }
 
-.place-body {
+.blog-body {
     background-color: #fff;
     padding: 16px;
     font-size: 15px;
 }
 
-.place-heading {
+.blog-heading {
     font-size: 50px;
     font-weight: 600;
 }
 
-.place-desc {
+.blog-desc {
     margin-top: 15px;
     line-height: 1.4;
 }
