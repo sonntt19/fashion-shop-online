@@ -38,6 +38,10 @@
 .mt-16 {
     margin-top: 16px;
 }
+
+.mt-40 {
+    margin-top: 40px;
+}
 /* main */
 #main {
 
@@ -81,7 +85,7 @@
     list-style-type: none;
 }
 
-#nav > li {
+#nav > li, #nav .form-search >li {
     display: inline-block;
 }
 
@@ -135,7 +139,9 @@
 #nav .nav-arround-down {
     font-size: 14px;
 }
-
+#nav .header-search-btn {
+    padding:5px;
+}
 /* begin icon header */
 #header .btn-icon {
     float: right;
@@ -366,6 +372,7 @@
 }
 
 .contact-form .form-control {
+    margin-top: 12px;
     padding: 10px;
     border: 1px solid #ccc;
     width: 100%;
@@ -380,35 +387,49 @@
     float: right;
 }
 
-/* Map-section */
-.map-section img {
-    width: 100%;
-}
-/* footer */
 #footer {
-    padding: 24px 16px;
-    text-align: center;
+    background-color: #000;
 }
 
-#footer .social-list {
-    font-size: 24px;
+#footer .map {
+    width: 60%;
+    float: left;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 100px;
 }
 
-#footer .social-list a:hover,
-#footer .copyright a:hover {
-    color: rgba(0, 0, 0, 0.4);
+#footer .info-footer {
+    width: 40%;
+    float: left;
+    min-height: 400px;
 }
 
-#footer .social-list a {
-    color: rgba(0, 0, 0, 0.6);
-    text-decoration: none;
+#footer .content-footer {
+    float:left;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    width: 40%;
+    color: #fff;
 }
 
-#footer .copyright {
-    margin-top: 15px;
-    color: rgba(0, 0, 0, 0.6);
+#footer .feedback-footer {
+    color: #fff;
+    float: left;   
+    width: 40%;
+    margin-left: 100px;
 }
 
-#footer .copyright a {
-    color: rgba(0, 0, 0, 0.6);
-} 
+#footer .form-feedback-btn {
+    background-color: red;
+    color: #fff;
+    border: 1px solid #000;
+    padding: 10px 16px;
+    float: left;
+    border-radius: 20px;
+}
+
+#footer .contact-info {
+    font-size: 18px;
+    line-height: 1.5;
+}
