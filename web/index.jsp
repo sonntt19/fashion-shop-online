@@ -198,7 +198,59 @@
 
 
             </div>
+<<<<<<< HEAD
             <div id="footer">
+=======
+
+
+
+        
+        </div>
+
+        <!-- Contact-section -->
+            <div class="content-section">
+                <h2 class="section-heading">Liên lạc với chúng tôi</h2>
+                <p class="section-sub-heading">Nếu bạn muốn trở thành một người đàn ông thực thụ</p>
+
+                <div class="row contact-content">
+                    <div class="col col-half contact-info">
+                        <p><i class="ti-location-pin"></i>Tran Duy Hung, Ha Noi</p>
+                        <p><i class="ti-mobile"></i>Phone:+0879 112 113</p>
+                        <p><i class="ti-email"></i>Email:Sondbrr123@gmail.com</p>
+                    </div>
+                    <div class="col col-half contact-form">
+                        <form action="">
+                            <div class="row">
+                                <div class="col col-half">
+                                    <input type="text" name="" placeholder="Name" id="" required class="form-control">
+                                </div>
+                                <div class="col col-half">
+                                    <input type="email" name="" placeholder="Email" id="" required class="form-control">
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="row mt-8">
+                                <div class="col col-full">
+                                    <input  type="text" name="" placeholder="Message" id="" required class="form-control">
+                                </div>
+                            </div>
+                            <input class="form-submit-btn mt-16" type="submit" value="Send">
+                            
+                        </form>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <!-- End Contact -->
+
+            <div class="map-section">
+                <img src="./assets/img/map.jpg" alt="Map">
+            </div>
+
+        </div>
+        
+        <%@include file="components/footer.jsp" %>
+>>>>>>> 4a7c81bb240c266eb73996d1f29bdf0ce3651e69
 
                 <div class="map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7448.27256631781!2d105.53745830000003!3d21.027232300000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1653919437201!5m2!1svi!2s" 
