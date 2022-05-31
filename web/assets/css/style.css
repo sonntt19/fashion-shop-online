@@ -287,7 +287,7 @@
 
 #content .category-content {
     color: #000;
-    font-weight: 650;
+    font-weight: 600;
     margin-top: 190px;
     border: 1px solid #fff;
     background-color: #fff;
@@ -420,7 +420,6 @@
     margin-left: 100px;
 }
 
-<<<<<<< HEAD
 #footer .form-feedback-btn {
     background-color: red;
     color: #fff;
@@ -433,7 +432,7 @@
 #footer .contact-info {
     font-size: 18px;
     line-height: 1.5;
-=======
+}
 #footer .copyright a {
     color: rgba(0, 0, 0, 0.6);
 } 
@@ -443,13 +442,13 @@
     margin: 0 auto;
 }
 h3{
-    padding: 10px 20px;
+    padding: 5px 10px;
     color: black;
-    font-size: 18px;
+    font-size: 5px;
     text-transform: uppercase;
     border: 1px solid gainsboro;
     display: inline-block;
-    font-weight: 600;
+    font-weight: 900;
 }
 .headline{
     text-align: center;
@@ -574,5 +573,4 @@ del{
 .pagination{
     justify-content: center;
     margin: 20px 0px;
->>>>>>> 4a7c81bb240c266eb73996d1f29bdf0ce3651e69
 }

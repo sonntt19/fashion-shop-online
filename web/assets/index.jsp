@@ -1,8 +1,9 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>JSP Page</title>
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
@@ -201,8 +202,59 @@
             </div>
 
             <div id="footer">
+<<<<<<< HEAD:web/index.jsp
 
 
+=======
+
+
+
+
+        
+        </div>
+
+        <!-- Contact-section -->
+            <div class="content-section">
+                <h2 class="section-heading">Liên lạc với chúng tôi</h2>
+                <p class="section-sub-heading">Nếu bạn muốn trở thành một người đàn ông thực thụ</p>
+
+                <div class="row contact-content">
+                    <div class="col col-half contact-info">
+                        <p><i class="ti-location-pin"></i>Tran Duy Hung, Ha Noi</p>
+                        <p><i class="ti-mobile"></i>Phone:+0879 112 113</p>
+                        <p><i class="ti-email"></i>Email:Sondbrr123@gmail.com</p>
+                    </div>
+                    <div class="col col-half contact-form">
+                        <form action="">
+                            <div class="row">
+                                <div class="col col-half">
+                                    <input type="text" name="" placeholder="Name" id="" required class="form-control">
+                                </div>
+                                <div class="col col-half">
+                                    <input type="email" name="" placeholder="Email" id="" required class="form-control">
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="row mt-8">
+                                <div class="col col-full">
+                                    <input  type="text" name="" placeholder="Message" id="" required class="form-control">
+                                </div>
+                            </div>
+                            <input class="form-submit-btn mt-16" type="submit" value="Send">
+                            
+                        </form>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <!-- End Contact -->
+
+          
+
+       
+            <div>
+
+>>>>>>> 04bb11ff38c68cec2d0125e4328478aa056c67dc:web/assets/index.jsp
                 <div class="map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7448.27256631781!2d105.53745830000003!3d21.027232300000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1653919437201!5m2!1svi!2s" 
                             width=90% height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
