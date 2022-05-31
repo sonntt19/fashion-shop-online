@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package context;
 
 import java.sql.Connection;
@@ -13,6 +8,11 @@ import java.sql.SQLException;
  *
  * @author son22
  */
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+
 public class DBContext {
     protected Connection connection;
     public DBContext()
@@ -26,6 +26,17 @@ public class DBContext {
             connection = DriverManager.getConnection(url, username, password);
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println(ex);
+        }
+    }
+    public static void main(String[] args) {
+        try {
+            DBContext db = new DBContext();
+            if(db.connection != null){
+                System.out.println("success");
+            }else{
+                System.out.println("fail");
+            }
+        } catch (Exception e) {
         }
     }
 }
