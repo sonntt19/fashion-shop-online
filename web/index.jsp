@@ -8,6 +8,10 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <style>
 
@@ -19,6 +23,88 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
     <body>
         <div id="main">
             <%@include file="components/header.jsp" %>
+            <!-- Login -->
+
+            <div class="modal fade" role="dialog" id="loginModal">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="border-radius: 10px; margin-top: 258px;">
+                        <div class="modal-header">
+                            <h2 class="" id="loginModal" style="text-align:center; font-family: Arial"><b style="padding-left: 150px;">Đăng Nhập</b></h2><br>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" placeholder="Email/SĐT của bạn" name="email" style="border-radius: 100px;">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd" style="border-radius: 100px;">
+                            </div>
+                            <input type="checkbox" style="height:15px;width:15px; ">&nbsp;Remember Me
+                            <br><br>
+                            <center><button type="submit" class="btn btn-dark" style="padding-right: 193px;padding-left: 193px; border-radius: 100px;">Đăng nhập</button></center>
+                            <br><br>
+                            <a href="#" style="float:right; text-decoration: none; border-radius: 100px;">Quên Mật Khẩu</a>
+                            <a type="button" data-toggle="modal" data-target="#registerModal" style="float:left; text-decoration: none; border-radius: 100px;">Đăng ký tài khoản mới</a>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+            <!-- Register -->
+
+            <div class="modal fade" role="dialog" id="registerModal" style="padding-right: 18px" >
+                <div class="modal-dialog">
+                    <div class="modal-content" style="border-radius: 10px; margin-top: 258px;">
+                        <div class="modal-header">
+                            <h2 class="" id="registerModal" style="text-align:center; font-family: Arial"><b style="padding-left: 100px;">Đăng ký tài khoản</b></h2><br>
+                        </div>
+
+                        <div class="modal-body">
+                            <section>
+                                <div class="container">
+                                    <form action="#">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="name" placeholder="Họ và tên" name="name" style="border-radius: 100px;" required>
+                                                </div></div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="email" class="form-control" id="email" placeholder="Email" name="email" style="border-radius: 100px;" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="name" placeholder="Số điện thoại" name="mobile" style="border-radius: 100px;" required>
+                                                </div></div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" id="name" placeholder="Tên tài khoản" name="user" style="border-radius: 100px;" required>
+                                                </div></div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd" style="border-radius: 100px;" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="password" class="form-control" id="pwd" placeholder="Nhập lại mật khẩu" name="rpswd" style="border-radius: 100px;" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    Giới tính                                                      
+                                                    <input class="" name="gender" type="radio" value="Nam" /> Nam
+                                                    <input class="" name="gender" type="radio" value="Nữ" /> Nữ
+                                                </div>
+                                            </div>
+                                            <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 187px;padding-left: 187px; margin-left:16px; border-radius: 100px;">Đăng ký</button></center><br><br>
+                                        </div>
+                                    </form> 
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div> 
 
             <!--         Slider 
                     <div id="slider">
@@ -162,7 +248,7 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
                 </div>
 
                 <!-- Contact-section -->
-          
+
                 <div class="content-section">
                     <h2 class="section-heading">Liên lạc với chúng tôi</h2>
                     <p class="section-sub-heading">Nếu bạn muốn trở thành một người đàn ông thực thụ</p>
@@ -202,18 +288,18 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
             </div>
 
             <div id="footer">
-<<<<<<< HEAD:web/index.jsp
+                <<<<<<< HEAD:web/index.jsp
 
 
-=======
+                =======
 
 
 
 
-        
-        </div>
 
-        <!-- Contact-section -->
+            </div>
+
+            <!-- Contact-section -->
             <div class="content-section">
                 <h2 class="section-heading">Liên lạc với chúng tôi</h2>
                 <p class="section-sub-heading">Nếu bạn muốn trở thành một người đàn ông thực thụ</p>
@@ -241,7 +327,7 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
                                 </div>
                             </div>
                             <input class="form-submit-btn mt-16" type="submit" value="Send">
-                            
+
                         </form>
                     </div>
                     <div class="clear"></div>
@@ -249,12 +335,12 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
             </div>
             <!-- End Contact -->
 
-          
 
-       
+
+
             <div>
 
->>>>>>> 04bb11ff38c68cec2d0125e4328478aa056c67dc:web/assets/index.jsp
+                >>>>>>> 04bb11ff38c68cec2d0125e4328478aa056c67dc:web/assets/index.jsp
                 <div class="map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7448.27256631781!2d105.53745830000003!3d21.027232300000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1653919437201!5m2!1svi!2s" 
                             width=90% height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -291,6 +377,6 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
         </div>
 
 
-    
-</body>
+
+    </body>
 </html>
