@@ -25,25 +25,28 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
             <%@include file="components/header.jsp" %>
             <!-- Login -->
 
-            <div class="modal fade" role="dialog" id="loginModal">
+            <div class="modal fade col-md-12" role="dialog" id="loginModal">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border-radius: 10px; margin-top: 258px;">
                         <div class="modal-header">
                             <h2 class="" id="loginModal" style="text-align:center; font-family: Arial"><b style="padding-left: 150px;">Đăng Nhập</b></h2><br>
                         </div>
                         <div class="modal-body">
-                            <div class="form-group">
-                                <input type="email" class="form-control" id="email" placeholder="Email/SĐT của bạn" name="email" style="border-radius: 100px;">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd" style="border-radius: 100px;">
-                            </div>
-                            <input type="checkbox" style="height:15px;width:15px; ">&nbsp;Remember Me
-                            <br><br>
-                            <center><button type="submit" class="btn btn-dark" style="padding-right: 193px;padding-left: 193px; border-radius: 100px;">Đăng nhập</button></center>
+                            <form action="login" method="post">
+                                ${mess}
+                                <div class="form-group">
+                                    <input name="email" type="email" class="form-control" id="email" placeholder="Email của bạn"style="border-radius: 100px;" required="">
+                                </div>
+                                <div class="form-group">
+                                    <input name="pass" type="password" class="form-control" id="pwd" placeholder="Mật khẩu"style="border-radius: 100px;" required>
+                                </div>
+                                <input type="checkbox" style="height:15px;width:15px; ">&nbsp;Nhớ mật khẩu
+                                <br><br>
+                                <center><button type="submit" class="btn btn-dark" style="padding-right: 193px;padding-left: 193px; border-radius: 100px;">Đăng nhập</button></center>
+                            </form>
                             <br><br>
                             <a href="#" style="float:right; text-decoration: none; border-radius: 100px;">Quên Mật Khẩu</a>
-                            <a type="button" data-toggle="modal" data-target="#registerModal" style="float:left; text-decoration: none; border-radius: 100px;">Đăng ký tài khoản mới</a>
+                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#registerModal" style="float:left; text-decoration: none; border-radius: 100px;">Đăng ký tài khoản mới</a>
                         </div>
                     </div>
                 </div>
@@ -51,9 +54,9 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
             <!-- Register -->
 
-            <div class="modal fade" role="dialog" id="registerModal" style="padding-right: 18px" >
+            <div class="modal fade col-md-12" role="dialog" id="registerModal" style="padding-right: 18px" >
                 <div class="modal-dialog">
-                    <div class="modal-content" style="border-radius: 10px; margin-top: 258px;">
+                    <div class="modal-content" style="border-radius: 10px; margin-top: 180px;">
                         <div class="modal-header">
                             <h2 class="" id="registerModal" style="text-align:center; font-family: Arial"><b style="padding-left: 100px;">Đăng ký tài khoản</b></h2><br>
                         </div>
@@ -78,10 +81,6 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
                                                 </div></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id="name" placeholder="Tên tài khoản" name="user" style="border-radius: 100px;" required>
-                                                </div></div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
                                                     <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd" style="border-radius: 100px;" required>
                                                 </div>
                                             </div>
@@ -92,21 +91,23 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    Giới tính                                                      
-                                                    <input class="" name="gender" type="radio" value="Nam" /> Nam
-                                                    <input class="" name="gender" type="radio" value="Nữ" /> Nữ
+                                                    Giới tính&nbsp;&nbsp;&nbsp;
+                                                    <input class="" name="gender" type="radio" value="Nam" />&nbsp; Nam
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <input class="" name="gender" type="radio" value="Nữ" />&nbsp; Nữ
                                                 </div>
                                             </div>
-                                            <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 187px;padding-left: 187px; margin-left:16px; border-radius: 100px;">Đăng ký</button></center><br><br>
+                                            <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 190px;padding-left: 190px; border-radius: 100px;">Đăng ký</button></center><br><br>
                                         </div>
-                                    </form> 
+                                    </form>
+                                    <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 150px; text-decoration: none; border-radius: 100px;">Quay lại đăng nhập</a> 
                             </section>
                         </div>
                     </div>
                 </div>
             </div> 
 
-            <!--         Slider 
+            <!-- Slider 
                     <div id="slider">
                         <div class="text-content">
                             <div class="text-description">
