@@ -44,9 +44,9 @@
     <div class="btn-icon">
         <a><i class="header-icon ti-shopping-cart"></i></a>
     </div>
-
+    <!-- Button Login -->
     <div class="btn-icon">
-        <a><i class="header-icon ti-user"></i></a>
+        <a><i type="button" class="header-icon ti-user" data-toggle="modal" data-target="#loginModal"></i></a>
     </div>
 
     <div class="btn-icon">
