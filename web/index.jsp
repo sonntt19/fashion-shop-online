@@ -20,20 +20,7 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
         <div id="main">
             <%@include file="components/header.jsp" %>
 
-            <!--         Slider 
-                    <div id="slider">
-                        <div class="text-content">
-                            <div class="text-description">
-                                Miễn phí vận chuyển cho đơn hàng từ 99k
-                            </div>
-                            <div class="text-description">
-                                60 ngày đổi trả vì bất kỳ lý do gì
-                            </div>
-                            <div class="text-description">
-                                Đến tận nơi nhận hàng trả trong 24 giờ
-                            </div>
-                        </div>
-                    </div>-->
+            
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -162,7 +149,7 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
                 </div>
 
                 <!-- Contact-section -->
-          
+
                 <div class="content-section">
                     <h2 class="section-heading">Liên lạc với chúng tôi</h2>
                     <p class="section-sub-heading">Nếu bạn muốn trở thành một người đàn ông thực thụ</p>
@@ -201,96 +188,54 @@ sta<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
             </div>
 
-            <div id="footer">
-<<<<<<< HEAD:web/index.jsp
-
-
-=======
-
-
-
 
         
-        </div>
 
-        <!-- Contact-section -->
-            <div class="content-section">
-                <h2 class="section-heading">Liên lạc với chúng tôi</h2>
-                <p class="section-sub-heading">Nếu bạn muốn trở thành một người đàn ông thực thụ</p>
+        <div id="footer">
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7448.27256631781!2d105.53745830000003!3d21.027232300000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1653919437201!5m2!1svi!2s" 
+                        width=90% height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
 
-                <div class="row contact-content">
-                    <div class="col col-half contact-info">
+            <div class="info-footer">
+                <div class="content-footer">
+                    <h2>Địa chỉ liên hệ</h2>
+                    <p class="mt-40">HUB Hà Nội: Số 103, Đường Vạn Phúc, Phường Vạn Phúc, Quận Hà Đông, TP. Hà Nội</p>
+                    <p class="mt-40">HUB Tp HCM: Lầu 1, Số 163 Trần Trọng Cung, Phường Tân Thuận Đông, Quận 7, Tp. Hồ Chí Minh</p>
+                </div>
+
+                <div class="feedback-footer">
+                    <h2 class="mt-40">COOLMATE lắng nghe bạn!</h2>
+                    <p>Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể nâng cấp trải nghiệm dịch vụ và sản phẩm tốt hơn nữa</p>
+                    <input class="formFeedbackButton mt-16" type="submit" value="gửi ý kiến">
+                    <br>
+                    <br>
+                    <br>
+                    <div class="contact-info">
                         <p><i class="ti-location-pin"></i>Tran Duy Hung, Ha Noi</p>
                         <p><i class="ti-mobile"></i>Phone:+0879 112 113</p>
                         <p><i class="ti-email"></i>Email:Sondbrr123@gmail.com</p>
                     </div>
-                    <div class="col col-half contact-form">
-                        <form action="">
-                            <div class="row">
-                                <div class="col col-half">
-                                    <input type="text" name="" placeholder="Name" id="" required class="form-control">
-                                </div>
-                                <div class="col col-half">
-                                    <input type="email" name="" placeholder="Email" id="" required class="form-control">
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                            <div class="row mt-8">
-                                <div class="col col-full">
-                                    <input  type="text" name="" placeholder="Message" id="" required class="form-control">
-                                </div>
-                            </div>
-                            <input class="form-submit-btn mt-16" type="submit" value="Send">
-                            
-                        </form>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-            </div>
-            <!-- End Contact -->
-
-          
-
-       
-            <div>
-
->>>>>>> 04bb11ff38c68cec2d0125e4328478aa056c67dc:web/assets/index.jsp
-                <div class="map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7448.27256631781!2d105.53745830000003!3d21.027232300000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1653919437201!5m2!1svi!2s" 
-                            width=90% height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-
-                <div class="info-footer">
-                    <div class="content-footer">
-                        <h2>Địa chỉ liên hệ</h2>
-                        <p class="mt-40">HUB Hà Nội: Số 103, Đường Vạn Phúc, Phường Vạn Phúc, Quận Hà Đông, TP. Hà Nội</p>
-                        <p class="mt-40">HUB Tp HCM: Lầu 1, Số 163 Trần Trọng Cung, Phường Tân Thuận Đông, Quận 7, Tp. Hồ Chí Minh</p>
-                    </div>
-
-                    <div class="feedback-footer">
-                        <h2 class="mt-40">COOLMATE lắng nghe bạn!</h2>
-                        <p>Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể nâng cấp trải nghiệm dịch vụ và sản phẩm tốt hơn nữa</p>
-                        <input class="form-feedback-btn mt-16" type="submit" value="gửi ý kiến">
-                        <br>
-                        <br>
-                        <br>
-                        <div class="contact-info">
-                            <p><i class="ti-location-pin"></i>Tran Duy Hung, Ha Noi</p>
-                            <p><i class="ti-mobile"></i>Phone:+0879 112 113</p>
-                            <p><i class="ti-email"></i>Email:Sondbrr123@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
                 </div>
                 <div class="clear"></div>
-
-
             </div>
+            <div class="clear"></div>
+
+
 
 
         </div>
 
 
-    
+
+
+
+    </div>
+
+
+
+
+
+
 </body>
 </html>

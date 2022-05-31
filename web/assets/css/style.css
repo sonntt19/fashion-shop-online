@@ -420,7 +420,7 @@
     margin-left: 100px;
 }
 
-#footer .form-feedback-btn {
+#footer .formFeedbackButtonButton {
     background-color: red;
     color: #fff;
     border: 1px solid #000;
@@ -433,9 +433,7 @@
     font-size: 18px;
     line-height: 1.5;
 }
-#footer .copyright a {
-    color: rgba(0, 0, 0, 0.6);
-} 
+
 
 /* css by son - product list */
 #wrapper{
