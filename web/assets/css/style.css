@@ -38,6 +38,10 @@
 .mt-16 {
     margin-top: 16px;
 }
+
+.mt-40 {
+    margin-top: 40px;
+}
 /* main */
 #main {
 
@@ -57,7 +61,7 @@
 #header .logo-shop {
     float: left;
     padding: 0px 21px;
-    
+
 }
 
 #header .logo-shop:hover {
@@ -73,7 +77,7 @@
 
 /* begin nav */
 #nav {
-    margin-left: 0;
+    margin-left: 160px;
     display: inline-block;
 }
 
@@ -81,12 +85,12 @@
     list-style-type: none;
 }
 
-#nav > li {
+#nav > li, #nav .form-search >li {
     display: inline-block;
 }
 
 #nav li {
-    
+
     position: relative;
 
 }
@@ -101,7 +105,7 @@
 }
 
 #nav li a{
-    
+
     text-decoration: none;
     line-height: 46px;
     padding: 0px 24px;
@@ -135,12 +139,14 @@
 #nav .nav-arround-down {
     font-size: 14px;
 }
-
+#nav .header-search-btn {
+    padding:5px;
+}
 /* begin icon header */
 #header .btn-icon {
     float: right;
     padding: 0px 21px;
-    
+
 }
 
 #header .btn-icon a {
@@ -206,7 +212,7 @@
 }
 
 #content .background-product {
-        background-color: #fff;
+    background-color: #fff;
 }
 
 #content .section-heading {
@@ -239,7 +245,7 @@
     text-transform: uppercase;
     font-size: 20px;
     font-weight: 400;
-    
+
 }
 
 #content .product-img {
@@ -281,7 +287,7 @@
 
 #content .category-content {
     color: #000;
-    font-weight: 650;
+    font-weight: 600;
     margin-top: 190px;
     border: 1px solid #fff;
     background-color: #fff;
@@ -292,44 +298,41 @@
 }
 
 /* Blog */
-.tour-section {
+.blog-section {
     background-color: #000;
 }
 
-
-
-/* places */
-.places-list {
+.blog-list {
     margin: 32px -8px 0;
 }
 
-.place-item {
+.blog-item {
     padding: 0 8px;
     float: left;
     width: 50%;
 }
 
-.place-img {
+.blog-img {
     width: 100%;
     display: block;
 }
 
-.place-img:hover {
+.blog-img:hover {
     opacity: 0.8;
 }
 
-.place-body {
+.blog-body {
     background-color: #fff;
     padding: 16px;
     font-size: 15px;
 }
 
-.place-heading {
+.blog-heading {
     font-size: 50px;
     font-weight: 600;
 }
 
-.place-desc {
+.blog-desc {
     margin-top: 15px;
     line-height: 1.4;
 }
@@ -369,6 +372,7 @@
 }
 
 .contact-form .form-control {
+    margin-top: 12px;
     padding: 10px;
     border: 1px solid #ccc;
     width: 100%;
@@ -383,35 +387,190 @@
     float: right;
 }
 
-/* Map-section */
-.map-section img {
-    width: 100%;
-}
-/* footer */
 #footer {
-    padding: 24px 16px;
-    text-align: center;
+    background-color: #000;
 }
 
-#footer .social-list {
-    font-size: 24px;
+#footer .map {
+    width: 60%;
+    float: left;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 100px;
 }
 
-#footer .social-list a:hover,
-#footer .copyright a:hover {
-    color: rgba(0, 0, 0, 0.4);
+#footer .info-footer {
+    width: 40%;
+    float: left;
+    min-height: 400px;
 }
 
-#footer .social-list a {
-    color: rgba(0, 0, 0, 0.6);
-    text-decoration: none;
+#footer .content-footer {
+    float:left;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    width: 40%;
+    color: #fff;
 }
 
-#footer .copyright {
-    margin-top: 15px;
-    color: rgba(0, 0, 0, 0.6);
+#footer .feedback-footer {
+    color: #fff;
+    float: left;   
+    width: 40%;
+    margin-left: 100px;
 }
 
+#footer .form-feedback-btn {
+    background-color: red;
+    color: #fff;
+    border: 1px solid #000;
+    padding: 10px 16px;
+    float: left;
+    border-radius: 20px;
+}
+
+#footer .contact-info {
+    font-size: 18px;
+    line-height: 1.5;
+}
 #footer .copyright a {
     color: rgba(0, 0, 0, 0.6);
 } 
+
+/* css by son - product list */
+#wrapper{
+    margin: 0 auto;
+}
+h3{
+    padding: 5px 10px;
+    color: black;
+    font-size: 5px;
+    text-transform: uppercase;
+    border: 1px solid gainsboro;
+    display: inline-block;
+    font-weight: 900;
+}
+.headline{
+    text-align: center;
+}
+.product-infor a{
+    text-decoration: none;
+}
+.product-name{
+    color: black;
+    padding: 3px 0px;
+    font-weight: bold;
+}
+.product-price{
+    color: #ff3102;
+    padding: 2px 0px;
+    margin-right: 14px;
+}
+.product-top a{
+    display: block;
+}
+.product-top{
+    position: relative;
+    overflow: hidden;
+    border-radius: 5%;
+}
+.product-top:hover a.buy-now{
+    bottom: 0px;
+
+}
+.product-top:hover a.feedback{
+    bottom: 0px;
+
+}
+.product-top:hover a img{
+    filter: opacity(80%);
+}
+.product-top .buy-now{
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    background-color: #446084;
+    color: white;
+    padding: 10px 0px;
+    position: absolute;
+    width: 50%;
+    bottom: -44px;
+    transition: 0.25s ease-in-out;
+    opacity: 0.85;
+}
+.product-top .feedback{
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    background-color: #ed3520;
+    color: white;
+    padding: 10px 0px;
+    position: absolute;
+    width: 50%;
+    bottom: -44px;
+    margin-left: 115px;
+    transition: 0.25s ease-in-out;
+    opacity: 0.85;
+}
+del{
+    color: #c4c4c4;
+    float: right;
+}
+.reviews-rating {
+    position: absolute;
+    top: 0;
+    padding: 0px 10px;
+}
+.reviews-rating__star{
+    width: 8px;
+    height: 8px;
+    margin: 0 2px;
+    background-image: url(../..//images/star-none.svg);
+    display: inline-block;
+}
+.is-active{
+    background-image: url(../..//images/star.svg);
+}
+.is-half{
+    background-image: url(../..//images/star-half.svg);
+}
+.filter-search__control{
+    height: 40px;
+    padding: 0 40px 0 15px;
+    border: 1px solid #d9d9d9;
+    border-radius: 16px
+}
+.input-search{
+    position: relative;
+    overflow: hidden;
+    margin: 0px 10px;
+}
+.button-search{
+    position: absolute;
+    bottom: 10px;
+    width: 24px;
+    height: 24px;
+    margin: 0 -40px;
+    border: none;
+    color: white;
+    background-color: white;
+    background-image: url(../..//images/icon-search.svg);
+}
+.dropdown-font{
+    background-color: white;
+    height: 40px;
+    padding: 0 15px 0 15px;
+    border: 1px solid #d9d9d9;
+    border-radius: 16px;
+    float: left;
+}
+.sort{
+    margin: 0 10px;
+}
+.product-down{
+    margin: 30px 100px;
+}
+.pagination{
+    justify-content: center;
+    margin: 20px 0px;
+}
