@@ -5,6 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -71,15 +73,17 @@
                                     <div class="reviews-rating__star "></div> 
                                 </div>
                                 <a href="" class="product-thumb">
-                                    <img src="https://media.coolmate.me/cdn-cgi/image/width=450,height=663,quality=100/uploads/April2022/polo-anti-trang_76.jpg" height="365px" alt="">
+                                    <img src="${sessionScope.pNew.image}" height="365px" width="230px" alt="">
 
                                 </a>
                                 <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
 
                             </div>
                             <div class="product-infor">
-                                <a href="" class="product-name">Áo polo nam công nghệ khử mùi Anti-Smell</a>
-                                <div class="product-price">100.000đ  <del>200.000đ</del></div>
+                                <a href="" class="product-name">${sessionScope.pNew.name}</a>
+                                <div class="product-price">
+                                    ${sessionScope.pNew.sale_price != null ? sessionScope.pNew.sale_price  : sessionScope.pNew.original_price}đ
+                                    <del>${sessionScope.pNew.original_price}đ </del></div>
                             </div>
                         </div>
                     </div>
@@ -102,9 +106,9 @@
                         Danh Mục
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <c:forEach items="${sessionScope.listCategories}" var="c">
+                            <li><a class="dropdown-item" href="#">${c.name}</a></li>
+                            </c:forEach>
                     </ul>
                 </div>
             </div>
@@ -127,220 +131,34 @@
         <hr>
         <div  class="container-fluid">
             <div class="row">
-                <div class="col-md-2 product-down">
-                    <div class="row">
-                        <div class="product-item">
-                            <div class="product-top">
+                <c:forEach items="${listProduct}" var="p">
+                    <div class="col-md-2 product-down">
+                        <div class="row">
+                            <div class="product-item">
+                                <div class="product-top">
 
-                                <div class="reviews-rating">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-active"></div>
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-half"></div> 
-                                    <div class="reviews-rating__star "></div> 
+                                    <div class="reviews-rating">
+                                        <div class="reviews-rating__star is-active"></div> 
+                                        <div class="reviews-rating__star is-active"></div>
+                                        <div class="reviews-rating__star is-active"></div> 
+                                        <div class="reviews-rating__star is-half"></div> 
+                                        <div class="reviews-rating__star "></div> 
+                                    </div>
+                                    <a href="" class="product-thumb">
+                                        <img src="https://media.coolmate.me/cdn-cgi/image/width=450,height=663,quality=100/uploads/April2022/polo-anti-trang_76.jpg" height="365px" alt="">
+
+                                    </a>
+                                    <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
+
                                 </div>
-                                <a href="" class="product-thumb">
-                                    <img src="https://media.coolmate.me/cdn-cgi/image/width=450,height=663,quality=100/uploads/April2022/polo-anti-trang_76.jpg" height="365px" alt="">
-
-                                </a>
-                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
-
-                            </div>
-                            <div class="product-infor">
-                                <a href="" class="product-name">Áo polo nam công nghệ khử mùi Anti-Smell</a>
-                                <div class="product-price">100.000đ  <del>200.000đ</del></div>
+                                <div class="product-infor">
+                                    <a href="" class="product-name">Áo polo nam công nghệ khử mùi Anti-Smell</a>
+                                    <div class="product-price">100.000đ  <del>200.000đ</del></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="row">
-                        <div class="product-item">
-                            <div class="product-top">
-
-                                <div class="reviews-rating">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-active"></div>
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-half"></div> 
-                                    <div class="reviews-rating__star "></div> 
-                                </div>
-                                <a href="" class="product-thumb">
-                                    <img src="https://media.coolmate.me/cdn-cgi/image/width=450,height=663,quality=100/uploads/April2022/polo-anti-trang_76.jpg" height="365px" alt="">
-
-                                </a>
-                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
-
-                            </div>
-                            <div class="product-infor">
-                                <a href="" class="product-name">Áo polo nam công nghệ khử mùi Anti-Smell</a>
-                                <div class="product-price">100.000đ  <del>200.000đ</del></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-2 product-down">
-                    <div class="row">
-                        <div class="product-item">
-                            <div class="product-top">
-
-                                <div class="reviews-rating">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-active"></div>
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-half"></div> 
-                                    <div class="reviews-rating__star "></div> 
-                                </div>
-                                <a href="" class="product-thumb">
-                                    <img src="https://media.coolmate.me/cdn-cgi/image/width=450,height=663,quality=100/uploads/April2022/polo-anti-trang_76.jpg" height="365px" alt="">
-
-                                </a>
-                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
-
-                            </div>
-                            <div class="product-infor">
-                                <a href="" class="product-name">Áo polo nam công nghệ khử mùi Anti-Smell</a>
-                                <div class="product-price">100.000đ  <del>200.000đ</del></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="row">
-                        <div class="product-item">
-                            <div class="product-top">
-
-                                <div class="reviews-rating">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-active"></div>
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-half"></div> 
-                                    <div class="reviews-rating__star "></div> 
-                                </div>
-                                <a href="" class="product-thumb">
-                                    <img src="https://media.coolmate.me/cdn-cgi/image/width=450,height=663,quality=100/uploads/April2022/polo-anti-trang_76.jpg" height="365px" alt="">
-
-                                </a>
-                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
-
-                            </div>
-                            <div class="product-infor">
-                                <a href="" class="product-name">Áo polo nam công nghệ khử mùi Anti-Smell</a>
-                                <div class="product-price">100.000đ  <del>200.000đ</del></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="col-md-2 product-down">
-                    <div class="row">
-                        <div class="product-item">
-                            <div class="product-top">
-
-                                <div class="reviews-rating">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-active"></div>
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-half"></div> 
-                                    <div class="reviews-rating__star "></div> 
-                                </div>
-                                <a href="" class="product-thumb">
-                                    <img src="https://media.coolmate.me/cdn-cgi/image/width=450,height=663,quality=100/uploads/April2022/polo-anti-trang_76.jpg" height="365px" alt="">
-
-                                </a>
-                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
-
-                            </div>
-                            <div class="product-infor">
-                                <a href="" class="product-name">Áo polo nam công nghệ khử mùi Anti-Smell</a>
-                                <div class="product-price">100.000đ  <del>200.000đ</del></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="row">
-                        <div class="product-item">
-                            <div class="product-top">
-
-                                <div class="reviews-rating">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-active"></div>
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-half"></div> 
-                                    <div class="reviews-rating__star "></div> 
-                                </div>
-                                <a href="" class="product-thumb">
-                                    <img src="https://media.coolmate.me/cdn-cgi/image/width=450,height=663,quality=100/uploads/April2022/polo-anti-trang_76.jpg" height="365px" alt="">
-
-                                </a>
-                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
-
-                            </div>
-                            <div class="product-infor">
-                                <a href="" class="product-name">Áo polo nam công nghệ khử mùi Anti-Smell</a>
-                                <div class="product-price">100.000đ  <del>200.000đ</del></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-2 product-down">
-                    <div class="row">
-                        <div class="product-item">
-                            <div class="product-top">
-
-                                <div class="reviews-rating">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-active"></div>
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-half"></div> 
-                                    <div class="reviews-rating__star "></div> 
-                                </div>
-                                <a href="" class="product-thumb">
-                                    <img src="https://media.coolmate.me/cdn-cgi/image/width=450,height=663,quality=100/uploads/April2022/polo-anti-trang_76.jpg" height="365px" alt="">
-
-                                </a>
-                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
-
-                            </div>
-                            <div class="product-infor">
-                                <a href="" class="product-name">Áo polo nam công nghệ khử mùi Anti-Smell</a>
-                                <div class="product-price">100.000đ  <del>200.000đ</del></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="row">
-                        <div class="product-item">
-                            <div class="product-top">
-
-                                <div class="reviews-rating">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-active"></div>
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-half"></div> 
-                                    <div class="reviews-rating__star "></div> 
-                                </div>
-                                <a href="" class="product-thumb">
-                                    <img src="https://media.coolmate.me/cdn-cgi/image/width=450,height=663,quality=100/uploads/April2022/polo-anti-trang_76.jpg" height="365px" alt="">
-
-                                </a>
-                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
-
-                            </div>
-                            <div class="product-infor">
-                                <a href="" class="product-name">Áo polo nam công nghệ khử mùi Anti-Smell</a>
-                                <div class="product-price">100.000đ  <del>200.000đ</del></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                </c:forEach>
             </div>
         </div>
         <nav aria-label="..." class="pagination">

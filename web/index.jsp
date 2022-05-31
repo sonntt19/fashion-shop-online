@@ -243,12 +243,10 @@
             </div>
             <!-- End Contact -->
 
-            <div class="map-section">
-                <img src="./assets/img/map.jpg" alt="Map">
-            </div>
+          
 
-        </div>
-        
+       
+            <div>
 
                 <div class="map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d7448.27256631781!2d105.53745830000003!3d21.027232300000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1653919437201!5m2!1svi!2s" 
