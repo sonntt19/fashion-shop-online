@@ -4,6 +4,7 @@
     Author     : son22
 --%>
 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div id="header">
@@ -46,17 +47,21 @@
         <a><i class="header-icon ti-shopping-cart"></i></a>
     </div>
     <!-- Button Login -->
-    <c:if test="${requestScope.users != null}">
-        <div class="btn-icon">
-            <a>Hello, ${sessionScope.users.fullName}</a>
-        </div>
-        <div class="btn-icon">
-            <a>Logout</a>
+    <c:if test="${sessionScope.us != null}">
+        <div class="btn-group">
+            <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Hello ${sessionScope.us.full_Name}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="userProfile?uid=${u.user_Id}">Thông tin cá nhân</a></li>
+                <li><a class="dropdown-item" href="#">Danh sách đơn hàng</a></li>
+                <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
+            </ul>
         </div>
     </c:if>
-    <c:if test="${requestScope.users == null}">
+    <c:if test="${sessionScope.us == null}">
         <div class="btn-icon">
-            <a><i type="button" class="header-icon ti-user" data-toggle="modal" data-target="#loginModal"></i></a>
+            <a><i type="button" class="header-icon ti-user" data-toggle="modal"  data-target="#loginModal"></i></a>
         </div>
     </c:if>
 
@@ -64,8 +69,4 @@
     <div class="btn-icon">
         <a href="#"><i class="header-icon ti-search"></i></a>
     </div>
-    <div class="btn-icon">
-        <a><i type="button" class="header-icon ti-user" data-toggle="modal" data-target="#loginModal"></i></a>
-    </div>
-
 </div>

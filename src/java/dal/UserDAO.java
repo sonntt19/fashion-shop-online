@@ -18,7 +18,7 @@ public class UserDAO extends DBContext {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 User u = User.builder()
-                        .role_Id(rs.getInt(1))
+                        .user_Id(rs.getInt(1))
                         .full_Name(rs.getString(2))
                         .password(rs.getString(3))
                         .avatar(rs.getString(4))
@@ -46,7 +46,7 @@ public class UserDAO extends DBContext {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 User u = User.builder()
-                        .role_Id(rs.getInt(1))
+                        .user_Id(rs.getInt(1))
                         .full_Name(rs.getString(2))
                         .password(rs.getString(3))
                         .avatar(rs.getString(4))
