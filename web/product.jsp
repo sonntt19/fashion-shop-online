@@ -82,8 +82,14 @@
                             <div class="product-infor">
                                 <a href="" class="product-name">${sessionScope.pNew.name}</a>
                                 <div class="product-price">
-                                    ${sessionScope.pNew.sale_price != null ? sessionScope.pNew.sale_price  : sessionScope.pNew.original_price}đ
-                                    <del>${sessionScope.pNew.original_price}đ </del></div>
+                                    <c:if test="${sessionScope.pNew.sale_price != null}">
+                                        ${sessionScope.pNew.sale_price}đ
+                                        <del>${sessionScope.pNew.original_price}đ</del>
+                                    </c:if>
+                                    <c:if test="${sessionScope.pNew.sale_price != null}">
+                                        ${sessionScope.pNew.original_price}đ
+                                    </c:if>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -145,15 +151,17 @@
                                         <div class="reviews-rating__star "></div> 
                                     </div>
                                     <a href="" class="product-thumb">
-                                        <img src="https://media.coolmate.me/cdn-cgi/image/width=450,height=663,quality=100/uploads/April2022/polo-anti-trang_76.jpg" height="365px" alt="">
+                                        <img src="${p.image}" height="365px" width="230px" alt="">
 
                                     </a>
                                     <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
 
                                 </div>
                                 <div class="product-infor">
-                                    <a href="" class="product-name">Áo polo nam công nghệ khử mùi Anti-Smell</a>
-                                    <div class="product-price">100.000đ  <del>200.000đ</del></div>
+                                    <a href="" class="product-name">${p.name}</a>
+                                    <div class="product-price">${p.sale_price != null ? p.sale_price  : p.original_price}đ  
+                                        <del>200.000đ</del>
+                                    </div>
                                 </div>
                             </div>
                         </div>
