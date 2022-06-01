@@ -20,7 +20,8 @@
     <body style="height: 1000px">
 
         <%@include file="components/header.jsp" %>
-        <div  class="container-fluid" style="margin-top: 65px">
+        <div style="margin-top: 65px"></div>
+        <div  class="container-fluid" >
             <div class="row">
                 <div class="col-md-10">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
