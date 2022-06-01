@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,22 +37,22 @@
                             <form action="login" method="post">
                                 ${mess}
                                 <div class="form-group">
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="Email của bạn"style="border-radius: 100px;" required="">
+                                    <input name="email" type="email" class="form-control" placeholder="Email của bạn"style="border-radius: 100px;" required="">
                                 </div>
                                 <div class="form-group">
-                                    <input name="pass" type="password" class="form-control" id="pwd" placeholder="Mật khẩu"style="border-radius: 100px;" required>
+                                    <input name="password" type="password" class="form-control" placeholder="Mật khẩu"style="border-radius: 100px;" required>
                                 </div>
                                 <input type="checkbox" style="height:15px;width:15px; ">&nbsp;Nhớ mật khẩu
                                 <br><br>
                                 <center><button type="submit" class="btn btn-dark" style="padding-right: 193px;padding-left: 193px; border-radius: 100px;">Đăng nhập</button></center>
                             </form>
                             <br><br>
-                            <a href="#" style="float:right; text-decoration: none; border-radius: 100px;">Quên Mật Khẩu</a>
+                            <a type="button" data-toggle="modal" data-dismiss="modal" onclick="Changepass_openForm()" style="float:right; text-decoration: none; border-radius: 100px;">Quên Mật Khẩu</a>
                             <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#registerModal" style="float:left; text-decoration: none; border-radius: 100px;">Đăng ký tài khoản mới</a>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
 
             <!-- Register -->
 
@@ -65,11 +66,11 @@
                         <div class="modal-body">
                             <section>
                                 <div class="container">
-                                    <form action="#">
+                                    <form action="register" method="POST">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id="name" placeholder="Họ và tên" name="name" style="border-radius: 100px;" required>
+                                                    <input type="text" class="form-control" id="name" placeholder="Họ và tên" name="fullName" style="border-radius: 100px;" required>
                                                 </div></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -82,20 +83,20 @@
                                                 </div></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd" style="border-radius: 100px;" required>
+                                                    <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="password" style="border-radius: 100px;" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" id="pwd" placeholder="Nhập lại mật khẩu" name="rpswd" style="border-radius: 100px;" required>
+                                                    <input type="password" class="form-control" id="pwd" placeholder="Nhập lại mật khẩu" name="repassword" style="border-radius: 100px;" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     Giới tính&nbsp;&nbsp;&nbsp;
-                                                    <input class="" name="gender" type="radio" value="Nam" />&nbsp; Nam
+                                                    <input class="" name="gender" type="radio" value="True" />&nbsp; Nam
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <input class="" name="gender" type="radio" value="Nữ" />&nbsp; Nữ
+                                                    <input class="" name="gender" type="radio" value="False" />&nbsp; Nữ
                                                 </div>
                                             </div>
                                             <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 190px;padding-left: 190px; border-radius: 100px;">Đăng ký</button></center><br><br>
@@ -107,6 +108,34 @@
                     </div>
                 </div>
             </div> 
+
+
+            <!-- Change Password -->
+            <div  class=  "changepassword_form-popup" id="changepassword_Form" >
+                <form action="ChangePassword" method="POST" class="changepassword_form-container"style ="box-shadow: 5px 10px 5px gray">
+                    <i style="margin-left:560px;margin-top: 10px;font-size:20px;color: gray" class="fa fa-close" onclick="Changepass_closeForm()"></i>
+                    <h1 style="text-align: center">Thay đổi mật khẩu</h1>
+                    <h4 style="color: red">${new_pass2}</h4>
+                    <input type="hidden" name="userId" value="${user.id}"/>
+                    <label for="psw">
+                        <b>Nhập mật khẩu cũ</b>&nbsp;&nbsp;
+                        <i onclick="changeTypeOll_Pass()" class="fa fa-eye icon"></i>
+                    </label>
+                    <h4 style="color: red">${old_pass2}</h4>
+                    <input class="changepassword_bd_rd" id="changepassword_Input1" type="password" placeholder="Mật khẩu cũ" name="old_pass" required>
+                    <label for="psw">
+                        <b>Nhập mật khẩu mới</b>&nbsp;&nbsp;
+                        <i onclick="changeTypeNew_Pass1()" class="fa fa-eye icon"></i>
+                    </label>
+                    <input class="changepassword_bd_rd" id="changepassword_Input2" type="password" placeholder="Mật khẩu mới" class="fa fa-eye" name="new_pass1" required>
+                    <label for="psw">
+                        <b>Nhập lại mật khẩu mới</b>&nbsp;&nbsp;
+                        <i onclick="changeTypeNew_Pass2()" class="fa fa-eye icon"></i>
+                    </label>
+                    <input class="changepassword_bd_rd" id="changepassword_Input3" type="password" placeholder="Nhập lại mật khẩu mới" name="new_pass2" required>
+                    <button type="submit" class="changepassword_btn">Cập nhật mật khẩu</button>
+                </form>
+            </div>
 
             <!-- Slider 
                     <div id="slider">
@@ -292,11 +321,6 @@
 
             </div>
 
-
-
-
-
-            
             <div id="footer">
 
 
@@ -333,10 +357,41 @@
             </div>
         </div>
 
+        <!--JS Change Password -->       
+        <script>
+            function Changepass_openForm() {
+                document.getElementById("changepassword_Form").style.display = "block";
+            }
 
-
-
-
+            function Changepass_closeForm() {
+                document.getElementById("changepassword_Form").style.display = "none";
+                document.body.style.backgroundColor = "rgba(0,0,0,0)";
+            }
+            function changeTypeOll_Pass() {
+                var x = document.getElementById("changepassword_Input1");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+            function changeTypeNew_Pass1() {
+                var x = document.getElementById("changepassword_Input2");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+            function changeTypeNew_Pass2() {
+                var x = document.getElementById("changepassword_Input3");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+        </script>
     </body>
 
 </html>
