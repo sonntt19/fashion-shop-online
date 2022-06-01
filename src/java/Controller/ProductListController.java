@@ -44,8 +44,8 @@ public class ProductListController extends HttpServlet {
             CategoryDAO c = new CategoryDAO();
             ProductDAO p = new ProductDAO();
 
+            // Set page
             int page = 1;
-
             String strPage = request.getParameter("page");
             if (strPage != null) {
                 page = Integer.parseInt(strPage);
@@ -56,13 +56,40 @@ public class ProductListController extends HttpServlet {
                 totalPage += 1;
             }
 
-            List<Product> listProduct = p.getProductWithPaging(page, PAGE_SIZE);
+            // Set key for search 
+            String searchKey = "";
+            String strSearchKey = request.getParameter("key");
+            if (strSearchKey != null) {
+                searchKey = strSearchKey;
+            }
+
+            // Set category
+            String categoryId = "!= -1";
+            String strCategoryId = request.getParameter("categoryId");
+            if (strCategoryId != null) {
+                categoryId = "= "+strCategoryId;
+            }
+
+            // Set sort 
+            String value = "update_date";
+            String type = "";
+            String strType = request.getParameter("type");
+            String strValue = request.getParameter("value");
+            if (strType != null) {
+                type = strType;
+            }
+            if (strValue != null) {
+                value = strValue;
+            }
+
+            List<Product> listProduct = p.getProductWithPaging(page, PAGE_SIZE, searchKey, categoryId, type, value);
             List<Category> l = c.getAllCategory();
             Product pNew = p.getProductNew();
             session.setAttribute("pNew", pNew);
             session.setAttribute("listCategories", l);
             session.setAttribute("listProduct", listProduct);
             session.setAttribute("historyUrl", "list");
+            session.setAttribute("history", value);
             request.getRequestDispatcher("product.jsp").forward(request, response);
         }
     }

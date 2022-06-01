@@ -54,7 +54,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 10;
 }
 
 /* begin logo-shop */
@@ -437,7 +437,7 @@
 
 /* css by son - product list */
 #wrapper{
-    margin: 0 auto;
+    margin-top: 52px;
 }
 h3{
     padding: 5px 10px;
@@ -571,4 +571,17 @@ del{
 .pagination{
     justify-content: center;
     margin: 20px 0px;
+}
+#carouselExampleDark{
+    z-index: 1;
+    margin-top: 46px;
+}
+.product-thumb img{
+    height:339px;
+    width:230px;
+}
+.list h2{
+    font-weight: 900;
+    float: right;
+    margin-right: 5%;
 }
