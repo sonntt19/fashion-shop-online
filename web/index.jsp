@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -35,10 +36,10 @@
                             <form action="login" method="post">
                                 ${mess}
                                 <div class="form-group">
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="Email của bạn"style="border-radius: 100px;" required="">
+                                    <input name="email" type="email" class="form-control" placeholder="Email của bạn"style="border-radius: 100px;" required="">
                                 </div>
                                 <div class="form-group">
-                                    <input name="pass" type="password" class="form-control" id="pwd" placeholder="Mật khẩu"style="border-radius: 100px;" required>
+                                    <input name="password" type="password" class="form-control" placeholder="Mật khẩu"style="border-radius: 100px;" required>
                                 </div>
                                 <input type="checkbox" style="height:15px;width:15px; ">&nbsp;Nhớ mật khẩu
                                 <br><br>
@@ -50,7 +51,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
 
             <!-- Register -->
 
@@ -64,11 +65,11 @@
                         <div class="modal-body">
                             <section>
                                 <div class="container">
-                                    <form action="#">
+                                    <form action="register" method="POST">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id="name" placeholder="Họ và tên" name="name" style="border-radius: 100px;" required>
+                                                    <input type="text" class="form-control" id="name" placeholder="Họ và tên" name="fullName" style="border-radius: 100px;" required>
                                                 </div></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -81,20 +82,20 @@
                                                 </div></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd" style="border-radius: 100px;" required>
+                                                    <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="password" style="border-radius: 100px;" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" id="pwd" placeholder="Nhập lại mật khẩu" name="rpswd" style="border-radius: 100px;" required>
+                                                    <input type="password" class="form-control" id="pwd" placeholder="Nhập lại mật khẩu" name="repassword" style="border-radius: 100px;" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     Giới tính&nbsp;&nbsp;&nbsp;
-                                                    <input class="" name="gender" type="radio" value="Nam" />&nbsp; Nam
+                                                    <input class="" name="gender" type="radio" value="True" />&nbsp; Nam
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <input class="" name="gender" type="radio" value="Nữ" />&nbsp; Nữ
+                                                    <input class="" name="gender" type="radio" value="False" />&nbsp; Nữ
                                                 </div>
                                             </div>
                                             <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 190px;padding-left: 190px; border-radius: 100px;">Đăng ký</button></center><br><br>
@@ -107,7 +108,6 @@
                 </div>
             </div> 
 
-<<<<<<< HEAD
             <!-- Slider 
                     <div id="slider">
                         <div class="text-content">
@@ -122,9 +122,6 @@
                             </div>
                         </div>
                     </div>-->
-=======
-
->>>>>>> b080c952ef5c586fb528dcf27b76c413d9e92d30
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -296,7 +293,7 @@
 
 
 
-            
+
             <div id="footer">
 
 

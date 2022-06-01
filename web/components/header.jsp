@@ -4,6 +4,7 @@
     Author     : son22
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div id="header">
     <!-- Begin logo -->
@@ -45,17 +46,23 @@
         <a><i class="header-icon ti-shopping-cart"></i></a>
     </div>
     <!-- Button Login -->
-    <div class="btn-icon">
-        <a><i type="button" class="header-icon ti-user" data-toggle="modal" data-target="#loginModal"></i></a>
-    </div>
-<<<<<<< HEAD
-    
+    <c:if test="${requestScope.users != null}">
+        <div class="btn-icon">
+            <a>Hello, ${sessionScope.users.fullName}</a>
+        </div>
+        <div class="btn-icon">
+            <a>Logout</a>
+        </div>
+    </c:if>
+    <c:if test="${requestScope.users == null}">
+        <div class="btn-icon">
+            <a><i type="button" class="header-icon ti-user" data-toggle="modal" data-target="#loginModal"></i></a>
+        </div>
+    </c:if>
+
+
     <div class="btn-icon">
         <a href="#"><i class="header-icon ti-search"></i></a>
     </div>
-=======
-
-    
->>>>>>> b080c952ef5c586fb528dcf27b76c413d9e92d30
 
 </div>
