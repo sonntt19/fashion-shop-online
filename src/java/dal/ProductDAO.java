@@ -40,7 +40,7 @@ public class ProductDAO extends DBContext {
             st.setInt(1, id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                return rs.getInt(1);
+                return rs.getDouble(1);
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -63,10 +63,11 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
-    public List<Product> getProductWithPaging(int page, int PAGE_SIZE) {
+    public List<Product> getProductWithPaging(int page, int PAGE_SIZE, String searchKey, String categoryId, String type, String value) {
         List<Product> list = new ArrayList<>();
-        String sql = "select * from Product order by product_id  \n"
-                + "offset (?-1)*? row fetch next ? row only";
+        String sql = "select * from Product\n"
+                + "where category_id "+categoryId+" and product_name like '%"+searchKey+"%'\n"
+                + "order by "+value+" "+type+" offset (?-1)*? row fetch next ? row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, page);

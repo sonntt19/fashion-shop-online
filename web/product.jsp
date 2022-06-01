@@ -20,7 +20,6 @@
     <body style="height: 1000px">
 
         <%@include file="components/header.jsp" %>
-        <div style="margin-top: 65px"></div>
         <div  class="container-fluid" >
             <div class="row">
                 <div class="col-md-10">
@@ -67,14 +66,21 @@
                             <div class="product-top">
 
                                 <div class="reviews-rating">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-active"></div>
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-half"></div> 
-                                    <div class="reviews-rating__star "></div> 
+                                    <c:forEach var="i" begin="0" end="4">
+                                            <c:if test="${(sessionScope.pNew.rated_star - i) >= 1}">
+                                                <div class="reviews-rating__star is-active"></div> 
+                                            </c:if>
+                                            <c:if test="${(sessionScope.pNew.rated_star - i) < 1 && (sessionScope.pNew.rated_star - i) > 0}">
+                                                <div class="reviews-rating__star is-active is-half"></div> 
+                                            </c:if>
+                                            <c:if test="${(sessionScope.pNew.rated_star - i) <= 0}">
+                                                <div class="reviews-rating__star"></div> 
+                                            </c:if>
+                                               
+                                        </c:forEach>
                                 </div>
                                 <a href="" class="product-thumb">
-                                    <img src="${sessionScope.pNew.image}" height="365px" width="230px" alt="">
+                                    <img src="${sessionScope.pNew.image}" alt="">
 
                                 </a>
                                 <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
@@ -83,11 +89,11 @@
                             <div class="product-infor">
                                 <a href="" class="product-name">${sessionScope.pNew.name}</a>
                                 <div class="product-price">
-                                    <c:if test="${sessionScope.pNew.sale_price != null}">
+                                    <c:if test="${sessionScope.pNew.sale_price != 0}">
                                         ${sessionScope.pNew.sale_price}đ
                                         <del>${sessionScope.pNew.original_price}đ</del>
                                     </c:if>
-                                    <c:if test="${sessionScope.pNew.sale_price != null}">
+                                    <c:if test="${sessionScope.pNew.sale_price == 0}">
                                         ${sessionScope.pNew.original_price}đ
                                     </c:if>
                                 </div>
@@ -131,8 +137,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md-5">
-
+            <div class="col-md-5 list">
+                <h2>Danh Sách Sản Phẩm</h2>
             </div>
         </div>
         <hr>
@@ -145,11 +151,20 @@
                                 <div class="product-top">
 
                                     <div class="reviews-rating">
-                                        <div class="reviews-rating__star is-active"></div> 
-                                        <div class="reviews-rating__star is-active"></div>
-                                        <div class="reviews-rating__star is-active"></div> 
-                                        <div class="reviews-rating__star is-half"></div> 
-                                        <div class="reviews-rating__star "></div> 
+                                        
+                                        <c:forEach var="i" begin="0" end="4">
+                                            <c:if test="${(p.rated_star - i) >= 1}">
+                                                <div class="reviews-rating__star is-active"></div> 
+                                            </c:if>
+                                            <c:if test="${(p.rated_star - i) < 1 && (p.rated_star - i) > 0}">
+                                                <div class="reviews-rating__star is-active is-half"></div> 
+                                            </c:if>
+                                            <c:if test="${(p.rated_star - i) <= 0}">
+                                                <div class="reviews-rating__star"></div> 
+                                            </c:if>
+                                               
+                                        </c:forEach>
+                                        
                                     </div>
                                     <a href="" class="product-thumb">
                                         <img src="${p.image}" height="365px" width="230px" alt="">
@@ -160,8 +175,14 @@
                                 </div>
                                 <div class="product-infor">
                                     <a href="" class="product-name">${p.name}</a>
-                                    <div class="product-price">${p.sale_price != null ? p.sale_price  : p.original_price}đ  
-                                        <del>200.000đ</del>
+                                    <div class="product-price">
+                                        <c:if test="${p.sale_price != 0}">
+                                            ${p.sale_price}đ
+                                            <del>${p.original_price}đ</del>
+                                        </c:if>
+                                        <c:if test="${p.sale_price == 0}">
+                                            ${p.original_price}đ
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
