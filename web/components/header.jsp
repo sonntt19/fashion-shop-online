@@ -49,8 +49,13 @@
         <a><i type="button" class="header-icon ti-user" data-toggle="modal" data-target="#loginModal"></i></a>
     </div>
     
+<<<<<<< HEAD
     <div class="btn-icon">
         <a href="#"><i class="header-icon ti-search"></i></a>
     </div>
+=======
+
+
+>>>>>>> 422f5421b77bee8c79f612a2efa6911e396bd526
 
 </div>

@@ -22,6 +22,7 @@
     </head>
     <body>
         <div id="main">
+            <div style="margin-top: 22px"></div>
             <%@include file="components/header.jsp" %>
             <!-- Login -->
 

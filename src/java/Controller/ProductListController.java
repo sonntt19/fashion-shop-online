@@ -61,6 +61,7 @@ public class ProductListController extends HttpServlet {
             Product pNew = p.getProductNew();
             session.setAttribute("pNew", pNew);
             session.setAttribute("listCategories", l);
+            session.setAttribute("listProduct", listProduct);
             session.setAttribute("historyUrl", "list");
             request.getRequestDispatcher("product.jsp").forward(request, response);
         }
