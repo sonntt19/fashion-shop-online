@@ -1,9 +1,6 @@
 /* Reset css */
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
 
 .clear {
     clear: both;
@@ -167,7 +164,6 @@
 /* Start slider */
 #slider {
     margin-top: 46px;
-    padding-top: 30%;
     position: relative;
 }
 
@@ -566,9 +562,99 @@ del{
     margin: 0 10px;
 }
 .product-down{
-    margin: 30px 100px;
+    margin: 30px 60px;
 }
 .pagination{
     justify-content: center;
     margin: 20px 0px;
+}
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.changepassword_open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
+}
+
+/* The popup form - hidden by default */
+.changepassword_form-popup {
+    display: none;
+    bottom: 0;
+    z-index: 9;
+    position: fixed;
+    width: 300px;
+    height: 200px;
+    top: 30%;
+    left: 38%;
+    margin-top: -100px; /* Negative half of height. */
+    margin-left: -100px; /* Negative half of width. */
+}
+
+/* Add styles to the form container */
+.changepassword_form-container {
+    width: 600px;
+    Xpadding: 10px;
+    border-radius:20px;
+    background-color: white;
+}
+
+/* Full-width input fields */
+.changepassword_form-container input[type=text], .changepassword_form-container input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    margin-left: 25px;
+}
+
+/* When the inputs get focus, do something */
+.changepassword_form-container input[type=text]:focus, .changepassword_form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for the submit/login button */
+.changepassword_form-container .changepassword_btn {
+    background-color: #2f5acf;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+    margin-bottom:10px;
+    opacity: 0.8;
+    border-radius: 20px;
+    margin-left: 25px; 
+    margin-bottom: 25px;
+}
+/* Add some hover effects to buttons */
+.changepassword_form-container .changepassword_btn:hover {
+    background: black;
+    opacity: 1;
+}
+.changepassword_bd_rd{
+    border-radius: 20px;
+}
+.changepassword_form-container label b {
+    margin-left: 25px;
 }
