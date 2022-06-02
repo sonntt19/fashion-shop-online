@@ -32,9 +32,9 @@
             </ul>
         </li> 
         <li>
-            <form class="form-search">
-                <li><input type="text" name="" placeholder="new fashion" id="" required class="form-control"> </li>
-                <li><input class="header-search-btn" type="submit" value="Tìm kiếm"></li>
+            <form class="form-search" action="list">
+                <li><input type="text" name="key" placeholder="Tìm kiếm sản phẩm..." value="${key}" id="" required class="form-control"> </li>
+                <button type="submit" class="button-search"></button>
             </form>
         </li>
 
@@ -66,7 +66,4 @@
     </c:if>
 
 
-    <div class="btn-icon">
-        <a href="#"><i class="header-icon ti-search"></i></a>
-    </div>
 </div>
