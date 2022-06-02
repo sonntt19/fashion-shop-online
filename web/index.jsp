@@ -143,7 +143,7 @@
                                                             Nữ
                                                         </div>
                                                     </div>
-                                                    <div class="row mt-4 col-md-3"><label class="labels">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
+                                                    <div class="row mt-4 col-md-3"><label class="labels">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
                                                 </div>
                                                 <div class="row mt-5 col-md-6 text-center"><button class="btn btn-dark" type="button">Lưu</button></div>
                                                 <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
@@ -156,31 +156,45 @@
                     </div>
                 </div>
             </div> 
+                                                    
             <!-- Change Password -->
-            <div  class=  "changepassword_form-popup" id="changepassword_Form" >
-                <form action="ChangePassword" method="POST" class="changepassword_form-container"style ="box-shadow: 5px 10px 5px gray">
-                    <i style="margin-left:560px;margin-top: 10px;font-size:20px;color: gray" class="fa fa-close" onclick="Changepass_closeForm()"></i>
-                    <h1 style="text-align: center">Thay đổi mật khẩu</h1>
-                    <h4 style="color: red">${new_pass2}</h4>
-                    <input type="hidden" name="userId" value="${user.id}"/>
-                    <label for="psw">
-                        <b>Nhập mật khẩu cũ</b>&nbsp;&nbsp;
-                        <i onclick="changeTypeOll_Pass()" class="fa fa-eye icon"></i>
-                    </label>
-                    <h4 style="color: red">${old_pass2}</h4>
-                    <input class="changepassword_bd_rd" id="changepassword_Input1" type="password" placeholder="Mật khẩu cũ" name="old_pass" required>
-                    <label for="psw">
-                        <b>Nhập mật khẩu mới</b>&nbsp;&nbsp;
-                        <i onclick="changeTypeNew_Pass1()" class="fa fa-eye icon"></i>
-                    </label>
-                    <input class="changepassword_bd_rd" id="changepassword_Input2" type="password" placeholder="Mật khẩu mới" class="fa fa-eye" name="new_pass1" required>
-                    <label for="psw">
-                        <b>Nhập lại mật khẩu mới</b>&nbsp;&nbsp;
-                        <i onclick="changeTypeNew_Pass2()" class="fa fa-eye icon"></i>
-                    </label>
-                    <input class="changepassword_bd_rd" id="changepassword_Input3" type="password" placeholder="Nhập lại mật khẩu mới" name="new_pass2" required>
-                    <button type="submit" class="changepassword_btn">Cập nhật mật khẩu</button>
-                </form>
+            <div class="modal fade col-md-12" role="dialog" id="ChangePasswordModal">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="border-radius: 10px; margin-top: 150px;">
+                        <div class="modal-header">
+                            <h1 style="text-align: center ; margin-left: 50px;">Thay đổi mật khẩu</h1>
+                        </div>
+                        <div class="modal-body">
+                            <form action="changepassword" method="post">
+                                <input type="hidden" name="user_Id" value="${sessionScope.us.user_Id}"/>
+                                <div>
+                                    ${old_pass}
+                                    ${new_pass2}
+                                    ${notification}
+                                </div>
+                                <b>Nhập mật khẩu cũ</b>&nbsp;&nbsp;
+                                <!--                                <i onclick="changeTypeOll_Pass()" class="fa fa-eye icon"></i>-->
+                                <div class="form-group">
+                                    <input name="old_pass" type="password" class="form-control" placeholder="Mật khẩu cũ"style="border-radius: 100px;" required="">
+                                </div>
+                                <b>Nhập mật khẩu mới</b>&nbsp;&nbsp;
+                                <!--<i onclick="changeTypeNew_Pass1()" class="fa fa-eye icon"></i>-->
+                                <div class="form-group">
+                                    <input name="new_pass1" type="password" class="form-control" placeholder="Mật khẩu mới"style="border-radius: 100px;" required>
+                                </div>
+                                <b>Nhập lại mật khẩu mới</b>&nbsp;&nbsp;
+                                <!--<i onclick="changeTypeNew_Pass2()" class="fa fa-eye icon"></i>-->
+                                <div class="form-group">
+                                    <input name="new_pass2" type="password" class="form-control" placeholder="Nhập lại mật khẩu mới"style="border-radius: 100px;" required>
+                                </div>
+                                <br>
+                                <center><button type="submit" class="btn btn-dark" style="padding-right: 160px;padding-left: 160px; border-radius: 100px;">Cập nhập mật khẩu</button></center>
+                            </form>
+                            <br><br>
+                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 190px; text-decoration: none; border-radius: 100px;">Quay lại Profile</a> 
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Slider 
