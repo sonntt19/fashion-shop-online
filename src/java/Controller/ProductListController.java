@@ -36,6 +36,8 @@ public class ProductListController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             final int PAGE_SIZE = 8;
@@ -44,25 +46,71 @@ public class ProductListController extends HttpServlet {
             CategoryDAO c = new CategoryDAO();
             ProductDAO p = new ProductDAO();
 
+            // Set page
             int page = 1;
-
             String strPage = request.getParameter("page");
             if (strPage != null) {
                 page = Integer.parseInt(strPage);
             }
-            int totalProduct = p.getTotalProduct();
+            
+
+            // Set key for search 
+            String searchKey = "";
+            String strSearchKey = request.getParameter("key");
+            if (strSearchKey != null) {
+                searchKey = strSearchKey;
+            }
+
+            // Set category
+            String categoryId = "!= -1";
+            String strCategoryId = request.getParameter("categoryId");
+            if (strCategoryId != null) {
+                categoryId = "= " + strCategoryId;
+            }
+
+            // Set sort 
+            String value = "update_date";
+            String type = "";
+            String strType = request.getParameter("type");
+            String strValue = request.getParameter("value");
+            if (strType != null) {
+                type = strType;
+            }
+            if (strValue != null) {
+                value = strValue;
+            }
+            int totalProduct = p.getTotalProduct(searchKey, categoryId);
             int totalPage = totalProduct / PAGE_SIZE;
             if (totalProduct % PAGE_SIZE != 0) {
                 totalPage += 1;
             }
 
-            List<Product> listProduct = p.getProductWithPaging(page, PAGE_SIZE);
+            List<Product> listProduct = p.getProductWithPaging(page, PAGE_SIZE, searchKey, categoryId, type, value);
             List<Category> l = c.getAllCategory();
             Product pNew = p.getProductNew();
             session.setAttribute("pNew", pNew);
             session.setAttribute("listCategories", l);
             session.setAttribute("listProduct", listProduct);
             session.setAttribute("historyUrl", "list");
+            if (strSearchKey != null) {
+                request.setAttribute("historyKey", "&key=" + strSearchKey);
+                request.setAttribute("key", strSearchKey);
+            }
+            if (strCategoryId != null) {
+                request.setAttribute("historyCategoryId", "&categoryId=" + strCategoryId);
+                request.setAttribute("categoryId", strCategoryId);
+            }
+            if (strValue != null) {
+                request.setAttribute("historyValue", "&value=" + strValue);
+                request.setAttribute("value", strValue);
+            }
+            if (strType != null) {
+                request.setAttribute("historyType", "&type=" + strType);
+                request.setAttribute("type", strType);
+            }
+
+            request.setAttribute("page", page);
+            request.setAttribute("totalPage", totalPage);
             request.getRequestDispatcher("product.jsp").forward(request, response);
         }
     }

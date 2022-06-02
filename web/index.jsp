@@ -17,7 +17,7 @@
     </head>
     <body>
         <div id="main">
-            <div style="margin-top: 22px"></div>
+
             <%@include file="components/header.jsp" %>
             <!-- Login -->
 
@@ -31,10 +31,10 @@
                             <form action="login" method="post">
                                 ${mess}
                                 <div class="form-group">
-                                    <input name="email" type="email" class="form-control" id="email" placeholder="Email của bạn"style="border-radius: 100px;" required="">
+                                    <input name="email" type="email" class="form-control" placeholder="Email của bạn"style="border-radius: 100px;" required="">
                                 </div>
                                 <div class="form-group">
-                                    <input name="pass" type="password" class="form-control" id="pwd" placeholder="Mật khẩu"style="border-radius: 100px;" required>
+                                    <input name="password" type="password" class="form-control" placeholder="Mật khẩu"style="border-radius: 100px;" required>
                                 </div>
                                 <input type="checkbox" style="height:15px;width:15px; ">&nbsp;Nhớ mật khẩu
                                 <br><br>
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
 
             <!-- Register -->
 
@@ -60,11 +60,11 @@
                         <div class="modal-body">
                             <section>
                                 <div class="container">
-                                    <form action="#">
+                                    <form action="register" method="POST">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" id="name" placeholder="Họ và tên" name="name" style="border-radius: 100px;" required>
+                                                    <input type="text" class="form-control" id="name" placeholder="Họ và tên" name="fullName" style="border-radius: 100px;" required>
                                                 </div></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -77,57 +77,118 @@
                                                 </div></div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="pswd" style="border-radius: 100px;" required>
+                                                    <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="password" style="border-radius: 100px;" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <input type="password" class="form-control" id="pwd" placeholder="Nhập lại mật khẩu" name="rpswd" style="border-radius: 100px;" required>
+                                                    <input type="password" class="form-control" id="pwd" placeholder="Nhập lại mật khẩu" name="repassword" style="border-radius: 100px;" required>
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     Giới tính&nbsp;&nbsp;&nbsp;
-                                                    <input class="" name="gender" type="radio" value="Nam" />&nbsp; Nam
+                                                    <input class="" name="gender" type="radio" value="True" />&nbsp; Nam
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <input class="" name="gender" type="radio" value="Nữ" />&nbsp; Nữ
+                                                    <input class="" name="gender" type="radio" value="False" />&nbsp; Nữ
                                                 </div>
                                             </div>
                                             <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 190px;padding-left: 190px; border-radius: 100px;">Đăng ký</button></center><br><br>
                                         </div>
                                     </form>
                                     <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 150px; text-decoration: none; border-radius: 100px;">Quay lại đăng nhập</a> 
+                                </div>    
                             </section>
                         </div>
                     </div>
                 </div>
             </div> 
 
+
+            <!-- User Profile -->   
+            <div class="modal fade col-md-12" role="dialog" id="userProfileModal" style="padding-right: 18px" >
+                <div class="modal-dialog">
+                    <div class="modal-content" style="border-radius: 10px; margin-top: 180px;">
+                        <div class="modal-header">
+                            <h2 class="" id="registerModal" style="text-align:center; font-family: Arial"><b style="padding-left: 100px;">Đăng ký tài khoản</b></h2><br>
+                        </div>
+
+                        <div class="modal-body">
+                            <section>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="p-3 py-5">
+                                                <h4 class="text-left">Hồ sơ người dùng</h4>
+                                                <div class="row mt-4">
+                                                    <div class="row mt-4 col-md-6"><label class="labels">Họ và tên</label><input type="text" class="form-control" placeholder="${sessionScope.u.full_Name}" value="">${sessionScope.u.full_Name}</div>&nbsp;
+                                                    <div class="row mt-4 col-md-6"><label class="labels">Số điện thoại</label><input type="text" class="form-control" placeholder="Mobile" value=""></div>&nbsp;
+                                                    <div class="row mt-4 col-md-6"><label class="labels">Địa chỉ</label><input type="text" class="form-control" placeholder="Địa chỉ" value=""></div>&nbsp;
+                                                    <div class="row mt-4 col-md-6"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Email" value=""></div>&nbsp;
+                                                    <div class="row mt-4 col-md-6"><label class="labels">Ảnh đại diện</label><input type="text" class="form-control" placeholder="Ảnh đại diện" value=""></div>&nbsp;
+                                                    <div class="row mt-4 col-md-3"><label class="labels">Giới tính</label>
+                                                        <div><input name="gender" type="radio" value="True" />
+                                                            Nam
+                                                        </div>
+                                                        <div><input name="gender" type="radio" value="False" />
+                                                            Nữ
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-4 col-md-3"><label class="labels">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
+                                                </div>
+                                                <div class="row mt-5 col-md-6 text-center"><button class="btn btn-dark" type="button">Lưu</button></div>
+                                                <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+                                                    
             <!-- Change Password -->
-            <div  class=  "changepassword_form-popup" id="changepassword_Form" >
-                <form action="ChangePassword" method="POST" class="changepassword_form-container"style ="box-shadow: 5px 10px 5px gray">
-                    <i style="margin-left:560px;margin-top: 10px;font-size:20px;color: gray" class="fa fa-close" onclick="Changepass_closeForm()"></i>
-                    <h1 style="text-align: center">Thay đổi mật khẩu</h1>
-                    <h4 style="color: red">${new_pass2}</h4>
-                    <input type="hidden" name="userId" value="${user.id}"/>
-                    <label for="psw">
-                        <b>Nhập mật khẩu cũ</b>&nbsp;&nbsp;
-                        <i onclick="changeTypeOll_Pass()" class="fa fa-eye icon"></i>
-                    </label>
-                    <h4 style="color: red">${old_pass2}</h4>
-                    <input class="changepassword_bd_rd" id="changepassword_Input1" type="password" placeholder="Mật khẩu cũ" name="old_pass" required>
-                    <label for="psw">
-                        <b>Nhập mật khẩu mới</b>&nbsp;&nbsp;
-                        <i onclick="changeTypeNew_Pass1()" class="fa fa-eye icon"></i>
-                    </label>
-                    <input class="changepassword_bd_rd" id="changepassword_Input2" type="password" placeholder="Mật khẩu mới" class="fa fa-eye" name="new_pass1" required>
-                    <label for="psw">
-                        <b>Nhập lại mật khẩu mới</b>&nbsp;&nbsp;
-                        <i onclick="changeTypeNew_Pass2()" class="fa fa-eye icon"></i>
-                    </label>
-                    <input class="changepassword_bd_rd" id="changepassword_Input3" type="password" placeholder="Nhập lại mật khẩu mới" name="new_pass2" required>
-                    <button type="submit" class="changepassword_btn">Cập nhật mật khẩu</button>
-                </form>
+            <div class="modal fade col-md-12" role="dialog" id="ChangePasswordModal">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="border-radius: 10px; margin-top: 150px;">
+                        <div class="modal-header">
+                            <h1 style="text-align: center ; margin-left: 50px;">Thay đổi mật khẩu</h1>
+                        </div>
+                        <div class="modal-body">
+                            <form action="changepassword" method="post">
+                                <input type="hidden" name="user_Id" value="${sessionScope.us.user_Id}"/>
+                                <div>
+                                    ${old_pass}
+                                    ${new_pass2}
+                                    ${notification}
+                                </div>
+                                <b>Nhập mật khẩu cũ</b>&nbsp;&nbsp;
+                                <!--                                <i onclick="changeTypeOll_Pass()" class="fa fa-eye icon"></i>-->
+                                <div class="form-group">
+                                    <input name="old_pass" type="password" class="form-control" placeholder="Mật khẩu cũ"style="border-radius: 100px;" required="">
+                                </div>
+                                <b>Nhập mật khẩu mới</b>&nbsp;&nbsp;
+                                <!--<i onclick="changeTypeNew_Pass1()" class="fa fa-eye icon"></i>-->
+                                <div class="form-group">
+                                    <input name="new_pass1" type="password" class="form-control" placeholder="Mật khẩu mới"style="border-radius: 100px;" required>
+                                </div>
+                                <b>Nhập lại mật khẩu mới</b>&nbsp;&nbsp;
+                                <!--<i onclick="changeTypeNew_Pass2()" class="fa fa-eye icon"></i>-->
+                                <div class="form-group">
+                                    <input name="new_pass2" type="password" class="form-control" placeholder="Nhập lại mật khẩu mới"style="border-radius: 100px;" required>
+                                </div>
+                                <br>
+                                <center><button type="submit" class="btn btn-dark" style="padding-right: 160px;padding-left: 160px; border-radius: 100px;">Cập nhập mật khẩu</button></center>
+                            </form>
+                            <br><br>
+                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 190px; text-decoration: none; border-radius: 100px;">Quay lại Profile</a> 
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!--Slider-->
@@ -141,6 +202,7 @@
                                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${s.id -1}" class="${s.id == sliderFirst.id ? "active" : ""}" aria-current="${s.id == sliderFirst.id ? "true" : ""}" aria-label="Slide ${s.id}"></button>
                             </c:forEach>
                         </div>
+
                         <div class="carousel-inner">
 
                             <c:forEach items="${listSlider_HomePageAll}" var="s" >
@@ -160,6 +222,7 @@
                         </button>
                     </div>
                 </div>
+
             </div>
 
             <!-- Content -->

@@ -51,7 +51,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 10;
 }
 
 /* begin logo-shop */
@@ -433,7 +433,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* css by son - product list */
 #wrapper{
-    margin: 0 auto;
+    margin-top: 52px;
 }
 h3{
     padding: 5px 10px;
@@ -550,13 +550,26 @@ del{
     background-color: white;
     background-image: url(../..//images/icon-search.svg);
 }
-.dropdown-font{
-    background-color: white;
-    height: 40px;
-    padding: 0 15px 0 15px;
-    border: 1px solid #d9d9d9;
-    border-radius: 16px;
-    float: left;
+.dropdown-font-new{
+    display: block;
+    width: 65%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-image: url(../..//images/icon-v.svg);
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 5.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 .sort{
     margin: 0 10px;
@@ -568,6 +581,21 @@ del{
     justify-content: center;
     margin: 20px 0px;
 }
+
+#carouselExampleDark{
+    z-index: 1;
+    margin-top: 46px;
+}
+.product-thumb img{
+    height:339px;
+    width:230px;
+}
+.list h2{
+    font-weight: 900;
+    float: right;
+    margin-right: 5%;
+}
+
 .open-button {
     background-color: #555;
     color: white;
@@ -658,3 +686,4 @@ del{
 .changepassword_form-container label b {
     margin-left: 25px;
 }
+
