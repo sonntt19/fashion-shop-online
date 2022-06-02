@@ -4,6 +4,7 @@
     Author     : Veetu
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -63,7 +64,7 @@
                     <div class="p-3 py-5">
                         <h4 class="text-left">Hồ sơ người dùng</h4>
                         <div class="row mt-4">
-                            <div class="row mt-4 col-md-6"><label class="labels">Họ và tên</label><input type="text" class="form-control" placeholder="Họ và tên" value=""></div>&nbsp;
+                            <div class="row mt-4 col-md-6"><label class="labels">Họ và tên</label><input type="text" class="form-control" placeholder="${sessionScope.u.full_Name}" value="">${sessionScope.u.full_Name}</div>&nbsp;
                             <div class="row mt-4 col-md-6"><label class="labels">Số điện thoại</label><input type="text" class="form-control" placeholder="Mobile" value=""></div>&nbsp;
                             <div class="row mt-4 col-md-6"><label class="labels">Địa chỉ</label><input type="text" class="form-control" placeholder="Địa chỉ" value=""></div>&nbsp;
                             <div class="row mt-4 col-md-6"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Email" value=""></div>&nbsp;

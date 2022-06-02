@@ -23,7 +23,7 @@
     </head>
     <body>
         <div id="main">
-            
+
             <%@include file="components/header.jsp" %>
             <!-- Login -->
 
@@ -103,6 +103,7 @@
                                         </div>
                                     </form>
                                     <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 150px; text-decoration: none; border-radius: 100px;">Quay lại đăng nhập</a> 
+                                </div>    
                             </section>
                         </div>
                     </div>
@@ -110,6 +111,51 @@
             </div> 
 
 
+            <!-- User Profile -->   
+            <div class="modal fade col-md-12" role="dialog" id="userProfileModal" style="padding-right: 18px" >
+                <div class="modal-dialog">
+                    <div class="modal-content" style="border-radius: 10px; margin-top: 180px;">
+                        <div class="modal-header">
+                            <h2 class="" id="registerModal" style="text-align:center; font-family: Arial"><b style="padding-left: 100px;">Đăng ký tài khoản</b></h2><br>
+                        </div>
+
+                        <div class="modal-body">
+                            <section>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="p-3 py-5">
+                                                <h4 class="text-left">Hồ sơ người dùng</h4>
+                                                <div class="row mt-4">
+                                                    <div class="row mt-4 col-md-6"><label class="labels">Họ và tên</label><input type="text" class="form-control" placeholder="${sessionScope.u.full_Name}" value="">${sessionScope.u.full_Name}</div>&nbsp;
+                                                    <div class="row mt-4 col-md-6"><label class="labels">Số điện thoại</label><input type="text" class="form-control" placeholder="Mobile" value=""></div>&nbsp;
+                                                    <div class="row mt-4 col-md-6"><label class="labels">Địa chỉ</label><input type="text" class="form-control" placeholder="Địa chỉ" value=""></div>&nbsp;
+                                                    <div class="row mt-4 col-md-6"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Email" value=""></div>&nbsp;
+                                                    <div class="row mt-4 col-md-6"><label class="labels">Ảnh đại diện</label><input type="text" class="form-control" placeholder="Ảnh đại diện" value=""></div>&nbsp;
+                                                    <div class="row mt-4 col-md-3"><label class="labels">Giới tính</label>
+                                                        <div><input name="gender" type="radio" value="True" />
+                                                            Nam
+                                                        </div>
+                                                        <div><input name="gender" type="radio" value="False" />
+                                                            Nữ
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mt-4 col-md-3"><label class="labels">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
+                                                </div>
+                                                <div class="row mt-5 col-md-6 text-center"><button class="btn btn-dark" type="button">Lưu</button></div>
+                                                <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div> 
             <!-- Change Password -->
             <div  class=  "changepassword_form-popup" id="changepassword_Form" >
                 <form action="ChangePassword" method="POST" class="changepassword_form-container"style ="box-shadow: 5px 10px 5px gray">
@@ -153,34 +199,34 @@
                     </div>-->
 
             <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="10000">
-                                <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/34KIDSDAY---Website.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/34KIDSDAY---Website.jpg" class="d-block w-100" alt="...">
 
-                            </div>
-                            <div class="carousel-item" data-bs-interval="2000">
-                                <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/Hero-banner-CleanVN_42.png" class="d-block w-100" alt="...">
-
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/Hero-Excool-Website.jpg" class="d-block w-100" alt="...">
-
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
+                    <div class="carousel-item" data-bs-interval="2000">
+                        <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/Hero-banner-CleanVN_42.png" class="d-block w-100" alt="...">
+
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/Hero-Excool-Website.jpg" class="d-block w-100" alt="...">
+
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
 
             <!-- Content -->
             <div id="content">
