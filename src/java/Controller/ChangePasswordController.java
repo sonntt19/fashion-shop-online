@@ -5,23 +5,21 @@
  */
 package Controller;
 
-import dal.BlogDAO;
-import dal.SliderDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Blog;
-import model.Slider;
+import javax.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
- * @author son22
+ * @author GanKPoet
  */
-public class HomeController extends HttpServlet {
+public class ChangePasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,16 +33,18 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        List<Blog> listBlog_HomePage = new BlogDAO().getAllInfo();
-        request.setAttribute("listBlog_HomePage", listBlog_HomePage);
-        
-        Slider listSlider_HomePageFirst = new SliderDAO().getFirst();
-        request.setAttribute("sliderFirst", listSlider_HomePageFirst);
-        
-        List<Slider> listSlider_HomePageAll = new SliderDAO().getALL();
-        request.setAttribute("listSlider_HomePageAll", listSlider_HomePageAll);
-        
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ChangePasswordController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ChangePasswordController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -73,7 +73,24 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int userId = Integer.parseInt(request.getParameter("user_Id"));
+        String old_pass = request.getParameter("old_pass");
+        String new_pass1 = request.getParameter("new_pass1");
+        String new_pass2 = request.getParameter("new_pass2");
+
+        User user = new UserDAO().getUser(userId, old_pass);
+        
+        if (user == null) {
+            request.setAttribute("notification", "Old Password Wrong");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else if (!new_pass1.equals(new_pass2)) {
+            request.setAttribute("notification", "Your New Password Does Not Match");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else {
+            new UserDAO().changePassword(userId, new_pass1);
+            request.setAttribute("notification", "Successful Change Password");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     /**

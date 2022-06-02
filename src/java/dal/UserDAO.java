@@ -79,6 +79,7 @@ public class UserDAO extends DBContext {
         }
     }
 
+<<<<<<< HEAD
     public void editUserProfile(String uname, String uavatar, String ugender, String umobile, String uaddress, String uid) {
         String sql = "update dbo.[User]\n"
                 + "set [fullName] = ?,\n"
@@ -99,4 +100,48 @@ public class UserDAO extends DBContext {
         } catch (Exception e) {
         }
     }
+=======
+    public void changePassword(int userId, String new_pass1) {
+        try {
+            String sql = "UPDATE [dbo].[User]\n"
+                    + "   SET \n"
+                    + "      [password] = ?\n"
+                    + " WHERE userId = ?\n";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, new_pass1);
+            ps.setInt(2, userId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public User getUser(int userId, String old_pass) {
+        try {
+            String sql = "select * from [User] where userId = ? and password = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ps.setString(2, old_pass);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                User user = User.builder()
+                        .user_Id(rs.getInt(1))
+                        .full_Name(rs.getString(2))
+                        .password(rs.getString(3))
+                        .avatar(rs.getString(4))
+                        .gender(rs.getBoolean(5))
+                        .email(rs.getString(6))
+                        .mobile(rs.getString(7))
+                        .address(rs.getString(8))
+                        .status(rs.getString(9))
+                        .role_Id(rs.getInt(10))
+                        .build();
+                return user;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+>>>>>>> 7345bd5b0fc1d1e1216cdd49ad719533cc51b2c0
 }
