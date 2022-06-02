@@ -19,14 +19,14 @@
         <div id="main">
 
             <%@include file="components/header.jsp" %>
-            <!-- Login -->
+            
             <c:if test="${notification !=null}">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15">
                     <strong>${notification}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </c:if>
-
+            <!-- Login -->
             <div class="modal fade col-md-12" role="dialog" id="loginModal">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border-radius: 10px; margin-top: 258px;">
@@ -67,6 +67,8 @@
                             <section>
                                 <div class="container">
                                     <form action="register" method="POST">
+                                        ${mess}
+                                        ${mess}
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -114,42 +116,47 @@
             <!-- User Profile -->   
             <div class="modal fade col-md-12" role="dialog" id="userProfileModal" style="padding-right: 18px" >
                 <div class="modal-dialog">
-                    <div class="modal-content" style="border-radius: 10px; margin-top: 180px;">
+                    <div class="modal-content" style="border-radius: 10px; margin-top: 150px; min-width: 1148px; margin-left: -300px;">
                         <div class="modal-header">
-                            <h2 class="" id="registerModal" style="text-align:center; font-family: Arial"><b style="padding-left: 100px;">Đăng ký tài khoản</b></h2><br>
+                            <h2 class="" id="userProfileModal" style="text-align:center; font-family: Arial"><b style="padding-left: 100px;">Thông tin cá nhân</b></h2><br>
                         </div>
 
                         <div class="modal-body">
                             <section>
                                 <div class="container">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="p-3 py-5">
-                                                <h4 class="text-left">Hồ sơ người dùng</h4>
-                                                <div class="row mt-4">
-                                                    <div class="row mt-4 col-md-6"><label class="labels">Họ và tên</label><input type="text" class="form-control" placeholder="${sessionScope.u.full_Name}" value="">${sessionScope.u.full_Name}</div>&nbsp;
-                                                    <div class="row mt-4 col-md-6"><label class="labels">Số điện thoại</label><input type="text" class="form-control" placeholder="Mobile" value=""></div>&nbsp;
-                                                    <div class="row mt-4 col-md-6"><label class="labels">Địa chỉ</label><input type="text" class="form-control" placeholder="Địa chỉ" value=""></div>&nbsp;
-                                                    <div class="row mt-4 col-md-6"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Email" value=""></div>&nbsp;
-                                                    <div class="row mt-4 col-md-6"><label class="labels">Ảnh đại diện</label><input type="text" class="form-control" placeholder="Ảnh đại diện" value=""></div>&nbsp;
-                                                    <div class="row mt-4 col-md-3"><label class="labels">Giới tính</label>
-                                                        <div><input name="gender" type="radio" value="True" />
-                                                            Nam
+                                    
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="${sessionScope.us.avatar}"><span class="font-weight-bold">${sessionScope.us.full_Name}</span><span class="text-black-50">${sessionScope.us.email}</span><span> </span></div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="p-3 py-5">
+                                                    <form action="edit" method="POST">
+                                                    <div class="row mt-4">
+                                                        <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Họ và tên</label><input type="text" class="form-control" name="fullName" placeholder="Họ và tên" value="${sessionScope.us.full_Name}"></div>&nbsp;
+                                                        <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Số điện thoại</label><input type="text" class="form-control" name="mobile" placeholder="Mobile" value="${sessionScope.us.mobile}"></div>&nbsp;
+                                                        <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Địa chỉ</label><input type="text" class="form-control" name="address" placeholder="Địa chỉ" value="${sessionScope.us.address}"></div>&nbsp;
+                                                        <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Email</label><input type="text" class="form-control" name="email" placeholder="Email" value="${sessionScope.us.email}" readonly></div>&nbsp;
+                                                        <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Ảnh đại diện</label><input type="text" class="form-control" name="avatar" placeholder="Ảnh đại diện" value="${sessionScope.us.avatar}"></div>&nbsp;
+                                                        <div class="row mt-4 col-md-3"><label class="labels" style="font-size: 10px;" name="gender" value="${sessionScope.us.gender}">Giới tính</label>
+                                                            <div><input name="gender" type="radio" value="True" />
+                                                                Nam
+                                                            </div>
+                                                            <div><input name="gender" type="radio" value="False" />
+                                                                Nữ
+                                                            </div>
                                                         </div>
-                                                        <div><input name="gender" type="radio" value="False" />
-                                                            Nữ
-                                                        </div>
+                                                        <div class="row mt-4 col-md-6" hidden><label class="labels" style="font-size: 10px;">ID</label><input type="text" class="form-control" name="userId" placeholder="ID" value="${sessionScope.us.user_Id}"></div>&nbsp;
+                                                        <div class="row mt-4 col-md-3"><label class="labels" style="font-size: 10px;">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
                                                     </div>
+                                                    <div class="row mt-5 col-md-6 text-center"><button class="btn btn-dark" type="submit">Lưu</button></div>
+                                                    </form>
+                                                    <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
                                                     <div class="row mt-4 col-md-3"><label class="labels">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
                                                 </div>
-                                                <div class="row mt-5 col-md-6 text-center"><button class="btn btn-dark" type="button">Lưu</button></div>
-                                                <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
                                             </div>
                                         </div>
-                                    </div>
+                                    
                                 </div>
                             </section>
                         </div>
