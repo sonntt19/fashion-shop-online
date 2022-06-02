@@ -30,15 +30,15 @@
                             <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
                         </div>
                         <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="10000">
+                            <div class="carousel-item active" data-bs-interval="3000">
                                 <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/34KIDSDAY---Website.jpg" class="d-block w-100" alt="...">
 
                             </div>
-                            <div class="carousel-item" data-bs-interval="2000">
+                            <div class="carousel-item" data-bs-interval="3000">
                                 <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/Hero-banner-CleanVN_42.png" class="d-block w-100" alt="...">
 
                             </div>
-                            <div class="carousel-item">
+                            <div class="carousel-item" data-bs-interval="3000">
                                 <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/Hero-Excool-Website.jpg" class="d-block w-100" alt="...">
 
                             </div>
@@ -67,17 +67,17 @@
 
                                 <div class="reviews-rating">
                                     <c:forEach var="i" begin="0" end="4">
-                                            <c:if test="${(sessionScope.pNew.rated_star - i) >= 1}">
-                                                <div class="reviews-rating__star is-active"></div> 
-                                            </c:if>
-                                            <c:if test="${(sessionScope.pNew.rated_star - i) < 1 && (sessionScope.pNew.rated_star - i) > 0}">
-                                                <div class="reviews-rating__star is-active is-half"></div> 
-                                            </c:if>
-                                            <c:if test="${(sessionScope.pNew.rated_star - i) <= 0}">
-                                                <div class="reviews-rating__star"></div> 
-                                            </c:if>
-                                               
-                                        </c:forEach>
+                                        <c:if test="${(sessionScope.pNew.rated_star - i) >= 1}">
+                                            <div class="reviews-rating__star is-active"></div> 
+                                        </c:if>
+                                        <c:if test="${(sessionScope.pNew.rated_star - i) < 1 && (sessionScope.pNew.rated_star - i) > 0}">
+                                            <div class="reviews-rating__star is-active is-half"></div> 
+                                        </c:if>
+                                        <c:if test="${(sessionScope.pNew.rated_star - i) <= 0}">
+                                            <div class="reviews-rating__star"></div> 
+                                        </c:if>
+
+                                    </c:forEach>
                                 </div>
                                 <a href="" class="product-thumb">
                                     <img src="${sessionScope.pNew.image}" alt="">
@@ -107,35 +107,39 @@
         <hr>
         <div class="row">
             <div class="col-md-3">
-                <form class="input-search">
-                    <input type="text" name="keyword" value="" placeholder="Tìm kiếm sản phẩm..." class="filter-search__control">
+                <form class="input-search" action="list">
+                    <input type="text" name="key" value="${key}" placeholder="Tìm kiếm sản phẩm..." class="filter-search__control" >
                     <button type="submit" class="button-search"></button>
                 </form>
             </div>
 
             <div class="col-md-2">
-                <div class="dropdown">
-                    <button class="dropdown-font dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Danh Mục
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <c:forEach items="${sessionScope.listCategories}" var="c">
-                            <li><a class="dropdown-item" href="#">${c.name}</a></li>
-                            </c:forEach>
-                    </ul>
-                </div>
+                <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;">
+                    <option value="list?${historyKey}${historyValue}${historyType}" ${categoryId == 0 ? "Selected" : ""}>
+                        Tất Cả
+                    </option>
+                    <c:forEach items="${sessionScope.listCategories}" var="c">
+                        <option value="list?${historyKey}&categoryId=${c.id}${historyValue}${historyType}" ${categoryId == c.id ? "Selected" : ""}>
+                            ${c.name}
+                        </option>
+                    </c:forEach>
+                </select>
             </div>
             <div class="col-md-2">
-                <div class="dropdown sort">
-                    <button class="dropdown-font dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Sắp Xếp
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
+                <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;">
+                    <option value="list?${historyKey}${historyCategoryId}&type=desc" ${type eq "desc" ? "Selected" : ""}>
+                        Mới Nhất
+                    </option>
+                    <option value="list?${historyKey}${historyCategoryId}" ${type == null ? "Selected" : ""}>
+                        Cũ Nhất
+                    </option> 
+                    <option value="list?${historyKey}${historyCategoryId}&value=original_prices" ${value eq "original_prices" ? "Selected" : ""}>
+                        Giá tăng dần
+                    </option>
+                    <option value="list?${historyKey}${historyCategoryId}&value=original_prices&type=desc" ${value eq "original_prices" && type eq "desc" ? "Selected" : ""}>
+                        Giá giảm dần
+                    </option> 
+                </select>
             </div>
             <div class="col-md-5 list">
                 <h2>Danh Sách Sản Phẩm</h2>
@@ -151,7 +155,7 @@
                                 <div class="product-top">
 
                                     <div class="reviews-rating">
-                                        
+
                                         <c:forEach var="i" begin="0" end="4">
                                             <c:if test="${(p.rated_star - i) >= 1}">
                                                 <div class="reviews-rating__star is-active"></div> 
@@ -162,9 +166,9 @@
                                             <c:if test="${(p.rated_star - i) <= 0}">
                                                 <div class="reviews-rating__star"></div> 
                                             </c:if>
-                                               
+
                                         </c:forEach>
-                                        
+
                                     </div>
                                     <a href="" class="product-thumb">
                                         <img src="${p.image}" height="365px" width="230px" alt="">
@@ -193,16 +197,24 @@
         </div>
         <nav aria-label="..." class="pagination">
             <ul class="pagination">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
+                    <a <c:if test="${page!=1}">                         
+                            href="list?page=${page-1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
+                        </c:if> class="page-link" aria-label="Previous">
+                        <span  aria-hidden="true">«</span>
+                    </a>
+                </li>
+
+                <c:forEach begin="1" end="${totalPage}" var="i">
+                    <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="list?page=${i}${historyKey}${historyCategoryId}${historyValue}${historyType}">${i}</a></li>
+                    </c:forEach>
+
+                <li class="page-item">
+                    <a <c:if test="${page!=totalPage}">
+                            href="list?page=${page+1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
+                        </c:if> class="page-link" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
                 </li>
             </ul>
         </nav>
