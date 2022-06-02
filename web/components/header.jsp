@@ -13,7 +13,7 @@
 
     <!-- Begin nav -->
     <ul id="nav">
-        <li><a href="">Trang chủ</a></li>
+        <li><a href="index.jsp">Trang chủ</a></li>
         <li><a href="">Blog</a></li>
         <li><a href="">Sản phẩm</a></li>
         <li><a href="">Liên hệ</a></li>
