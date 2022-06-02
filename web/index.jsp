@@ -19,14 +19,14 @@
         <div id="main">
 
             <%@include file="components/header.jsp" %>
-            <!-- Login -->
+            
             <c:if test="${notification !=null}">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15">
                     <strong>${notification}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </c:if>
-
+            <!-- Login -->
             <div class="modal fade col-md-12" role="dialog" id="loginModal">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border-radius: 10px; margin-top: 258px;">
@@ -149,13 +149,10 @@
                                                         <div class="row mt-4 col-md-6" hidden><label class="labels" style="font-size: 10px;">ID</label><input type="text" class="form-control" name="userId" placeholder="ID" value="${sessionScope.us.user_Id}"></div>&nbsp;
                                                         <div class="row mt-4 col-md-3"><label class="labels" style="font-size: 10px;">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
                                                     </div>
-<<<<<<< HEAD
                                                     <div class="row mt-5 col-md-6 text-center"><button class="btn btn-dark" type="submit">Lưu</button></div>
                                                     </form>
                                                     <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
-=======
                                                     <div class="row mt-4 col-md-3"><label class="labels">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
->>>>>>> 7345bd5b0fc1d1e1216cdd49ad719533cc51b2c0
                                                 </div>
                                             </div>
                                         </div>

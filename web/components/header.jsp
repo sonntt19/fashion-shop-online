@@ -42,14 +42,11 @@
 
     </ul>
 
-    <!-- begin icon header -->
-    <div class="btn-icon">
-        <a><i class="header-icon ti-shopping-cart"></i></a>
-    </div>
+    
     <!-- Button Login -->
     <c:if test="${sessionScope.us != null}">
         <div class="btn-group">
-            <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="margin-top: -4px;">
                 Hello ${sessionScope.us.full_Name}
             </button>
             <ul class="dropdown-menu">
@@ -64,6 +61,9 @@
             <a><i type="button" class="header-icon ti-user" data-toggle="modal"  data-target="#loginModal"></i></a>
         </div>
     </c:if>
-
+    <!-- begin icon header -->
+    <div class="btn-icon">
+        <a><i class="header-icon ti-shopping-cart"></i></a>
+    </div>
 
 </div>
