@@ -42,9 +42,8 @@ public class ProductListController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            final int PAGE_SIZE = 8;
+            final int PAGE_SIZE = 8;  // Set total product each page
             HttpSession session = request.getSession();
-
             CategoryDAO c = new CategoryDAO();
             ProductDAO p = new ProductDAO();
 
@@ -80,15 +79,22 @@ public class ProductListController extends HttpServlet {
             if (strValue != null) {
                 value = strValue;
             }
+            
+            // Set total page 
             int totalProduct = p.getTotalProduct(searchKey, categoryId);
             int totalPage = totalProduct / PAGE_SIZE;
             if (totalProduct % PAGE_SIZE != 0) {
                 totalPage += 1;
             }
 
+            // Get list product, new, category, slider
             List<Product> listProduct = p.getProductWithPaging(page, PAGE_SIZE, searchKey, categoryId, type, value);
             List<Category> l = c.getAllCategory();
             Product pNew = p.getProductNew();
+            Slider listSlider_HomePageFirst = new SliderDAO().getFirst();
+            List<Slider> listSlider_HomePageAll = new SliderDAO().getALL();
+            
+            // Set param request to jsp page
             session.setAttribute("pNew", pNew);
             session.setAttribute("listCategories", l);
             session.setAttribute("listProduct", listProduct);
@@ -108,16 +114,13 @@ public class ProductListController extends HttpServlet {
             if (strType != null) {
                 request.setAttribute("historyType", "&type=" + strType);
                 request.setAttribute("type", strType);
-            }
-            
-            Slider listSlider_HomePageFirst = new SliderDAO().getFirst();
-            request.setAttribute("sliderFirst", listSlider_HomePageFirst);
-
-            List<Slider> listSlider_HomePageAll = new SliderDAO().getALL();
+            }                    
+            request.setAttribute("sliderFirst", listSlider_HomePageFirst);           
             request.setAttribute("listSlider_HomePageAll", listSlider_HomePageAll);
-
             request.setAttribute("page", page);
             request.setAttribute("totalPage", totalPage);
+            
+            // Request
             request.getRequestDispatcher("product.jsp").forward(request, response);
         }
     }
