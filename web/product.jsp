@@ -24,33 +24,32 @@
             <div class="row">
                 <div class="col-md-10">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" >
+                            <div class="carousel-indicators">
+
+                                <c:forEach items="${listSlider_HomePageAll}" var="s" >
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${s.id -1}" class="${s.id == sliderFirst.id ? "active" : ""}" aria-current="${s.id == sliderFirst.id ? "true" : ""}" aria-label="Slide ${s.id}"></button>
+                                </c:forEach>
+                            </div>
+
+                            <div class="carousel-inner">
+
+                                <c:forEach items="${listSlider_HomePageAll}" var="s" >
+                                    <div class="carousel-item ${s.id == sliderFirst.id ? "active" : ""}">
+                                        <img src="${s.slider_image}" class="d-block w-100" alt="...">
+                                    </div> 
+
+                                </c:forEach>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="3000">
-                                <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/34KIDSDAY---Website.jpg" class="d-block w-100" alt="...">
-
-                            </div>
-                            <div class="carousel-item" data-bs-interval="3000">
-                                <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/Hero-banner-CleanVN_42.png" class="d-block w-100" alt="...">
-
-                            </div>
-                            <div class="carousel-item" data-bs-interval="3000">
-                                <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/Hero-Excool-Website.jpg" class="d-block w-100" alt="...">
-
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
                 </div>
                 <div class="col-md-2">
@@ -83,7 +82,7 @@
                                     <img src="${sessionScope.pNew.image}" alt="">
 
                                 </a>
-                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
+                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Phản hồi</a>
 
                             </div>
                             <div class="product-infor">
@@ -174,7 +173,7 @@
                                         <img src="${p.image}" height="365px" width="230px" alt="">
 
                                     </a>
-                                    <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
+                                    <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Phản hồi</a>
 
                                 </div>
                                 <div class="product-infor">
@@ -219,5 +218,6 @@
             </ul>
         </nav>
         <%@include file="components/footer.jsp" %>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </body>
 </html>

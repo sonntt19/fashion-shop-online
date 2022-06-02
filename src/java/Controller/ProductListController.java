@@ -7,6 +7,7 @@ package Controller;
 
 import dal.CategoryDAO;
 import dal.ProductDAO;
+import dal.SliderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Category;
 import model.Product;
+import model.Slider;
 
 /**
  *
@@ -52,7 +54,6 @@ public class ProductListController extends HttpServlet {
             if (strPage != null) {
                 page = Integer.parseInt(strPage);
             }
-            
 
             // Set key for search 
             String searchKey = "";
@@ -108,6 +109,12 @@ public class ProductListController extends HttpServlet {
                 request.setAttribute("historyType", "&type=" + strType);
                 request.setAttribute("type", strType);
             }
+            
+            Slider listSlider_HomePageFirst = new SliderDAO().getFirst();
+            request.setAttribute("sliderFirst", listSlider_HomePageFirst);
+
+            List<Slider> listSlider_HomePageAll = new SliderDAO().getALL();
+            request.setAttribute("listSlider_HomePageAll", listSlider_HomePageAll);
 
             request.setAttribute("page", page);
             request.setAttribute("totalPage", totalPage);
