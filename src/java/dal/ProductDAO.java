@@ -19,8 +19,9 @@ import model.Product;
  */
 public class ProductDAO extends DBContext {
 
-    public int getTotalProduct() {
-        String sql = "Select count(product_id) from Product";
+    public int getTotalProduct(String searchKey, String categoryId) {
+        String sql = "Select count(product_id) from Product "
+                + "where category_id "+categoryId+" and product_name like N'%"+searchKey+"%'\n";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -66,8 +67,8 @@ public class ProductDAO extends DBContext {
     public List<Product> getProductWithPaging(int page, int PAGE_SIZE, String searchKey, String categoryId, String type, String value) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
-                + "where category_id "+categoryId+" and product_name like '%"+searchKey+"%'\n"
-                + "order by "+value+" "+type+" offset (?-1)*? row fetch next ? row only";
+                + "where category_id "+categoryId+" and product_name like N'%"+searchKey+"%'\n"
+                + " order by "+value+" "+type+" offset (?-1)*? row fetch next ? row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, page);
