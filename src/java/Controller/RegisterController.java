@@ -40,17 +40,23 @@ public class RegisterController extends HttpServlet {
         String password = request.getParameter("password");
         String repassword = request.getParameter("repassword");
         String gender = request.getParameter("gender");
-        
-        if(!password.equals(repassword)) {
+
+        if (!password.equals(repassword)) {
+            request.setAttribute("mess", "<div style=\"border-radius: 100px;\" class=\"alert alert-danger\" role=\"alert\">\n"
+                    + "  Nhập lại mật khẩu không giống nhau\n"
+                    + "</div>");
             response.sendRedirect("index.jsp");
         } else {
             UserDAO dao = new UserDAO();
             User u = dao.checkUserExist(email);
-            if(u == null){
+            if (u == null) {
                 //dang ky thanh cong
                 dao.register(fullName, password, gender, email, mobile);
                 response.sendRedirect("index.jsp");
             } else {
+                request.setAttribute("mess", "<div style=\"border-radius: 100px;\" class=\"alert alert-danger\" role=\"alert\">\n"
+                    + "  Tài khoản đã tồn tại\n"
+                    + "</div>");
                 response.sendRedirect("index.jsp");
             }
         }

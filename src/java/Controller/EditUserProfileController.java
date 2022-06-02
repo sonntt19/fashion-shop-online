@@ -20,8 +20,8 @@ import model.User;
  *
  * @author Veetu
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "EditUserProfileController", urlPatterns = {"/edit"})
+public class EditUserProfileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,8 +34,18 @@ public class LoginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        String uid = request.getParameter("userId");
+        String uname = request.getParameter("fullName");
+        String umobile = request.getParameter("mobile");
+        String uaddress = request.getParameter("address");
+        String uavatar = request.getParameter("avatar");
+        String ugender = request.getParameter("gender");
+
+         UserDAO dao = new UserDAO();
+         dao.editUserProfile(uname, uavatar, ugender, umobile, uaddress, uid);
+         response.sendRedirect("index.jsp");
     }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -63,21 +73,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-
-        UserDAO dao = new UserDAO();
-        User u = dao.login(email, password);
-        if (u == null) {
-            request.setAttribute("mess", "<div style=\"border-radius: 100px;\" class=\"alert alert-danger\" role=\"alert\">\n"
-                    + "  Sai email hoặc mật khẩu\n"
-                    + "</div>");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("us", u);
-            response.sendRedirect("index.jsp");
-        }
+        processRequest(request, response);
     }
 
     /**

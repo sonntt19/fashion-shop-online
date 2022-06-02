@@ -64,7 +64,7 @@ public class UserDAO extends DBContext {
         return null;
     }
 
-    public void register(String fullName, String password,String gender, String email, String mobile) {
+    public void register(String fullName, String password, String gender, String email, String mobile) {
         String sql = "insert into [User]\n"
                 + "values (?,?,0,?,?,?,0,0,'1')";
         try {
@@ -74,6 +74,27 @@ public class UserDAO extends DBContext {
             st.setString(3, gender);
             st.setString(4, email);
             st.setString(5, mobile);
+            st.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public void editUserProfile(String uname, String uavatar, String ugender, String umobile, String uaddress, String uid) {
+        String sql = "update dbo.[User]\n"
+                + "set [fullName] = ?,\n"
+                + "avatar = ?,\n"
+                + "gender = ?,\n"
+                + "mobile = ?,\n"
+                + "[address] = ?\n"
+                + "where userId = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, uname);
+            st.setString(2, uavatar);
+            st.setString(3, ugender);
+            st.setString(4, umobile);
+            st.setString(5, uaddress);
+            st.setString(6, uid);
             st.executeUpdate();
         } catch (Exception e) {
         }

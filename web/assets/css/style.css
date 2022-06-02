@@ -673,4 +673,30 @@ del{
 .changepassword_form-container label b {
     margin-left: 25px;
 }
+/* style user profile */
+.back:hover {
+                color: #000;
+                cursor: pointer
+            }
 
+            .labels {
+                font-size: 5px
+            }
+
+            .add-experience:hover {
+                background: #000;
+                color: #fff;
+                cursor: pointer;
+                border: solid 1px #000
+            }
+            [type="radio"]:checked + span:after,
+            [type="radio"].with-gap:checked + span:after {
+                border: 2px solid #000;
+            }
+            
+            
+            [type="radio"]:checked + span:after,
+            [type="radio"].with-gap:checked + span:before,
+            [type="radio"].with-gap:checked + span:after {
+                background-color: #000;
+            }
