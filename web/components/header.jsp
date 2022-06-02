@@ -66,7 +66,5 @@
     </c:if>
 
 
-    <div class="btn-icon">
-        <a href="#"><i class="header-icon ti-search"></i></a>
-    </div>
+    
 </div>
