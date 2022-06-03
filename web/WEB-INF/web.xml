@@ -12,6 +12,10 @@
         <servlet-name>ChangePasswordController</servlet-name>
         <servlet-class>Controller.ChangePasswordController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ResetPasswordController</servlet-name>
+        <servlet-class>Controller.ResetPasswordController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>ChangePasswordController</servlet-name>
         <url-pattern>/changepassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ResetPasswordController</servlet-name>
+        <url-pattern>/resetpassword</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

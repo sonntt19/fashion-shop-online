@@ -21,7 +21,7 @@
             <%@include file="components/header.jsp" %>
             <!-- Login -->
             <c:if test="${notification !=null}">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15 ; margin-left: 40%">
                     <strong>${notification}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -47,7 +47,7 @@
                                 <center><button type="submit" class="btn btn-dark" style="padding-right: 193px;padding-left: 193px; border-radius: 100px;">Đăng nhập</button></center>
                             </form>
                             <br><br>
-                            <a type="button" data-toggle="modal" data-dismiss="modal" onclick="Changepass_openForm()" style="float:right; text-decoration: none; border-radius: 100px;">Quên Mật Khẩu</a>
+                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#ResetPasswordModal" style="float:right; text-decoration: none; border-radius: 100px;">Quên Mật Khẩu</a>
                             <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#registerModal" style="float:left; text-decoration: none; border-radius: 100px;">Đăng ký tài khoản mới</a>
                         </div>
                     </div>
@@ -124,14 +124,14 @@
                         <div class="modal-body">
                             <section>
                                 <div class="container">
-                                    
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="${sessionScope.us.avatar}"><span class="font-weight-bold">${sessionScope.us.full_Name}</span><span class="text-black-50">${sessionScope.us.email}</span><span> </span></div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="p-3 py-5">
-                                                    <form action="edit" method="POST">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="${sessionScope.us.avatar}"><span class="font-weight-bold">${sessionScope.us.full_Name}</span><span class="text-black-50">${sessionScope.us.email}</span><span> </span></div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="p-3 py-5">
+                                                <form action="edit" method="POST">
                                                     <div class="row mt-4">
                                                         <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Họ và tên</label><input type="text" class="form-control" name="fullName" placeholder="Họ và tên" value="${sessionScope.us.full_Name}"></div>&nbsp;
                                                         <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Số điện thoại</label><input type="text" class="form-control" name="mobile" placeholder="Mobile" value="${sessionScope.us.mobile}"></div>&nbsp;
@@ -147,19 +147,15 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mt-4 col-md-6" hidden><label class="labels" style="font-size: 10px;">ID</label><input type="text" class="form-control" name="userId" placeholder="ID" value="${sessionScope.us.user_Id}"></div>&nbsp;
-                                                        <div class="row mt-4 col-md-3"><label class="labels" style="font-size: 10px;">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
+                                                        <div class="row mt-4 col-md-3"><label class="labels" style="font-size: 10px;">Mật khẩu</label><a href="#" style="text-decoration: none;"><button data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal"  type="button" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
                                                     </div>
-<<<<<<< HEAD
                                                     <div class="row mt-5 col-md-6 text-center"><button class="btn btn-dark" type="submit">Lưu</button></div>
-                                                    </form>
-                                                    <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
-=======
-                                                    <div class="row mt-4 col-md-3"><label class="labels">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
->>>>>>> 7345bd5b0fc1d1e1216cdd49ad719533cc51b2c0
-                                                </div>
+                                                </form>
+                                                <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
                                             </div>
                                         </div>
-                                    
+                                    </div>
+
                                 </div>
                             </section>
                         </div>
@@ -177,11 +173,6 @@
                         <div class="modal-body">
                             <form action="changepassword" method="post">
                                 <input type="hidden" name="user_Id" value="${sessionScope.us.user_Id}"/>
-                                <div>
-                                    ${old_pass}
-                                    ${new_pass2}
-                                    ${notification}
-                                </div>
                                 <b>Nhập mật khẩu cũ</b>&nbsp;&nbsp;
                                 <!--                                <i onclick="changeTypeOll_Pass()" class="fa fa-eye icon"></i>-->
                                 <div class="form-group">
@@ -202,6 +193,35 @@
                             </form>
                             <br><br>
                             <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 190px; text-decoration: none; border-radius: 100px;">Quay lại Profile</a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ResetPassword -->
+            <div class="modal fade col-md-12" role="dialog" id="ResetPasswordModal">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="border-radius: 10px; margin-top: 150px;">
+                        <div class="modal-header">
+                            <h1 style="text-align: center ; margin-left: 70px;">Cấp lại mật khẩu</h1>
+                        </div>
+                        <div class="modal-body">
+                            <form action="resetpassword" method="post">
+                                <div class="form-group">
+                                    <input name="email" type="email" class="form-control" placeholder="Email của bạn"style="border-radius: 100px;" required>
+                                </div>
+                                <br>
+                                <center>
+                                    <button type="submit" class="btn btn-dark" style="padding-right: 200px;
+                                            padding-left: 200px;
+                                            border-radius: 100px;
+                                            margin-bottom: -40px;
+                                            height: 50px;">Kiểm tra
+                                    </button>
+                                </center>
+                            </form>
+                            <br><br>
+                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 170px; text-decoration: none; border-radius: 100px;">Quay lại Đăng nhập</a> 
                         </div>
                     </div>
                 </div>
@@ -374,49 +394,11 @@
             </div>
             <!-- End Contact -->
 
-
         </div>
         <%@include file="components/footer.jsp" %>
 
 
     </div>
-
-    <!--JS Change Password -->       
-    <script>
-        function Changepass_openForm() {
-            document.getElementById("changepassword_Form").style.display = "block";
-        }
-
-        function Changepass_closeForm() {
-            document.getElementById("changepassword_Form").style.display = "none";
-            document.body.style.backgroundColor = "rgba(0,0,0,0)";
-        }
-        function changeTypeOll_Pass() {
-            var x = document.getElementById("changepassword_Input1");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-        function changeTypeNew_Pass1() {
-            var x = document.getElementById("changepassword_Input2");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-        function changeTypeNew_Pass2() {
-            var x = document.getElementById("changepassword_Input3");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
-
 </body>
 
 </html>
