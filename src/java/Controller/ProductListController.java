@@ -91,8 +91,8 @@ public class ProductListController extends HttpServlet {
             List<Product> listProduct = p.getProductWithPaging(page, PAGE_SIZE, searchKey, categoryId, type, value);
             List<Category> l = c.getAllCategory();
             Product pNew = p.getProductNew();
-            Slider listSlider_HomePageFirst = new SliderDAO().getFirst();
-            List<Slider> listSlider_HomePageAll = new SliderDAO().getALL();
+            Slider listSlider_HomePageFirst = new SliderDAO().getFirstSlider();
+            List<Slider> listSlider_HomePageAll = new SliderDAO().getALLSlider();
             
             // Set param request to jsp page
             session.setAttribute("pNew", pNew);
