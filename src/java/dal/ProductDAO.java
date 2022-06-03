@@ -159,4 +159,71 @@ public class ProductDAO extends DBContext {
         return list;
     }
 
+    public Product getProductById(int productId) {
+        String sql = "select * from Product where product_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, productId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = Product.builder()
+                        .id(rs.getInt(1))
+                        .name(rs.getString(2))
+                        .original_price(rs.getInt(3))
+                        .sale_price(rs.getInt(4))
+                        .desciption(rs.getString(5))
+                        .brief_infor(rs.getString(6))
+                        .status(rs.getBoolean(7))
+                        .quantity(rs.getInt(8))
+                        .category_id(rs.getInt(9))
+                        .update_date(rs.getDate(10))
+                        .image(getImgProduct(rs.getInt(1)))
+                        .rated_star(getRatedProduct(rs.getInt(1)))
+                        .build();
+
+                return p;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+
+    }
+
+   
+
+    public List<Product> getProductTop4Category(int categoryId, int productId) {
+        List<Product> list = new ArrayList<>();
+        String sql = "SELECT TOP 4 * FROM Product where category_id = ? and product_id != ? ORDER BY NEWID()";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, categoryId);
+            st.setInt(2, productId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = Product.builder()
+                        .id(rs.getInt(1))
+                        .name(rs.getString(2))
+                        .original_price(rs.getInt(3))
+                        .sale_price(rs.getInt(4))
+                        .desciption(rs.getString(5))
+                        .brief_infor(rs.getString(6))
+                        .status(rs.getBoolean(7))
+                        .quantity(rs.getInt(8))
+                        .category_id(rs.getInt(9))
+                        .update_date(rs.getDate(10))
+                        .image(getImgProduct(rs.getInt(1)))
+                        .rated_star(getRatedProduct(rs.getInt(1)))
+                        .build();
+
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
+
+    
+
 }
