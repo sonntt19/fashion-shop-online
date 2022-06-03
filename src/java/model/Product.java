@@ -25,8 +25,8 @@ public class Product {
     private String name;
     private int original_price;
     private int sale_price;
-    private String desciption;
     private String brief_infor;
+    private String desciption;
     private boolean status;
     private int quantity;
     private String image;

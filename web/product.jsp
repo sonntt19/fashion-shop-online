@@ -150,9 +150,8 @@
                                         <div class="reviews-rating__star is-half"></div> 
                                         <div class="reviews-rating__star "></div> 
                                     </div>
-                                    <a href="" class="product-thumb">
+                                    <a href="list-detail?productId=${p.id}&categoryId=${p.category_id}" class="product-thumb">
                                         <img src="${p.image}" height="365px" width="230px" alt="">
-
                                     </a>
                                     <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
 
