@@ -36,7 +36,7 @@
                 </ul>
                 <form class="d-flex me-5" action="list">
                     <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-danger" type="submit">Search</button>
                 </form>
 
 

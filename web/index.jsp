@@ -246,15 +246,15 @@
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" >
                     <div class="carousel-indicators">
 
-                        <c:forEach items="${listSlider_HomePageAll}" var="s" >
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${s.id -1}" class="${s.id == sliderFirst.id ? "active" : ""}" aria-current="${s.id == sliderFirst.id ? "true" : ""}" aria-label="Slide ${s.id}"></button>
+                        <c:forEach items="${sessionScope.listSlider_HomePageAll}" var="s" >
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${s.id -1}" class="${s.id == sessionScope.sliderFirst.id ? "active" : ""}" aria-current="${s.id == sliderFirst.id ? "true" : ""}" aria-label="Slide ${s.id}"></button>
                         </c:forEach>
                     </div>
 
                     <div class="carousel-inner">
 
-                        <c:forEach items="${listSlider_HomePageAll}" var="s" >
-                            <div class="carousel-item ${s.id == sliderFirst.id ? "active" : ""}">
+                        <c:forEach items="${sessionScope.listSlider_HomePageAll}" var="s" >
+                            <div class="carousel-item ${s.id == sessionScope.sliderFirst.id ? "active" : ""}">
                                 <img src="${s.slider_image}" class="d-block w-100" alt="...">
                             </div> 
 
@@ -281,7 +281,7 @@
                 <h2 class="section-heading">Trang phục cơ bản</h2>
                 <div  class="container-fluid">
                     <div class="row">
-                        <c:forEach items="${list4product}" var="p">
+                        <c:forEach items="${sessionScope.list4product}" var="p">
                             <div class="col-md-2 product-down">
                                 <div class="row">
                                     <div class="product-item">
@@ -372,7 +372,7 @@
                     <!-- blog list hot -->
                     <div class="blog-list">
 
-                        <c:forEach items="${listBlog_HomePage}" var="C">
+                        <c:forEach items="${sessionScope.listBlog_HomePage}" var="C">
                             <div class="blog-item">
                                 <img src="${C.thumbnail}" alt="" class="blog-img">
                                 <div class="blog-body">
