@@ -29,7 +29,7 @@
                         <div class="contact-info">
                             <p><i class="ti-location-pin"></i>Tran Duy Hung, Ha Noi</p>
                             <p><i class="ti-mobile"></i>Phone:+0879 112 113</p>
-                            <p><i class="ti-email"></i>Email:Sondbrr123@gmail.com</p>
+                            <p><i class="ti-email"></i>Sondbrr123@gmail.com</p>
                         </div>
                     </div>
                     <div class="clear"></div>

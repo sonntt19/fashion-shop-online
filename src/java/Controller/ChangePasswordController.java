@@ -81,10 +81,10 @@ public class ChangePasswordController extends HttpServlet {
         User user = new UserDAO().getUser(userId, old_pass);
         
         if (user == null) {
-            request.setAttribute("old_pass", "Old Password Wrong");
+            request.setAttribute("notification", "Old Password Wrong");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else if (!new_pass1.equals(new_pass2)) {
-            request.setAttribute("new_pass2", "Your New Password Does Not Match");
+            request.setAttribute("notification", "Your New Password Does Not Match");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
             new UserDAO().changePassword(userId, new_pass1);
