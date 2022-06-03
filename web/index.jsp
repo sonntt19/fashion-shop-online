@@ -19,7 +19,7 @@
         <div id="main">
 
             <%@include file="components/header.jsp" %>
-            
+
             <c:if test="${notification !=null}">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15">
                     <strong>${notification}</strong>
@@ -124,14 +124,14 @@
                         <div class="modal-body">
                             <section>
                                 <div class="container">
-                                    
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="${sessionScope.us.avatar}"><span class="font-weight-bold">${sessionScope.us.full_Name}</span><span class="text-black-50">${sessionScope.us.email}</span><span> </span></div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="p-3 py-5">
-                                                    <form action="edit" method="POST">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="${sessionScope.us.avatar}"><span class="font-weight-bold">${sessionScope.us.full_Name}</span><span class="text-black-50">${sessionScope.us.email}</span><span> </span></div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="p-3 py-5">
+                                                <form action="edit" method="POST">
                                                     <div class="row mt-4">
                                                         <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Họ và tên</label><input type="text" class="form-control" name="fullName" placeholder="Họ và tên" value="${sessionScope.us.full_Name}"></div>&nbsp;
                                                         <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Số điện thoại</label><input type="text" class="form-control" name="mobile" placeholder="Mobile" value="${sessionScope.us.mobile}"></div>&nbsp;
@@ -150,13 +150,13 @@
                                                         <div class="row mt-4 col-md-3"><label class="labels" style="font-size: 10px;">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
                                                     </div>
                                                     <div class="row mt-5 col-md-6 text-center"><button class="btn btn-dark" type="submit">Lưu</button></div>
-                                                    </form>
-                                                    <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
-                                                    <div class="row mt-4 col-md-3"><label class="labels">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
-                                                </div>
+                                                </form>
+                                                <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
+                                                <div class="row mt-4 col-md-3"><label class="labels">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
                                             </div>
                                         </div>
-                                    
+                                    </div>
+
                                 </div>
                             </section>
                         </div>
@@ -238,174 +238,176 @@
 
 
 
-        <!-- Content -->
-        <div id="content">
-            <div class="content-section background-product" style="width: 1500px">
+            <!-- Content -->
+            <div id="content">
+                <div class="content-section background-product" style="width: 1500px">
 
-                <!-- Base Product -->
-                <h2 class="section-heading">Trang phục cơ bản</h2>
-                <div  class="container-fluid">
-                    <div class="row">
-                        <c:forEach items="${list4product}" var="p">
-                            <div class="col-md-2 product-down">
-                                <div class="row">
-                                    <div class="product-item">
-                                        <div class="product-top">
+                    <!-- Base Product -->
+                    <h2 class="section-heading">Trang phục cơ bản</h2>
+                    <div  class="container-fluid">
+                        <div class="row">
+                            <c:forEach items="${list4product}" var="p">
+                                <div class="col-md-2 product-down">
+                                    <div class="row">
+                                        <div class="product-item">
+                                            <div class="product-top">
 
-                                            <div class="reviews-rating">
+                                                <div class="reviews-rating">
 
-                                                <c:forEach var="i" begin="0" end="4">
-                                                    <c:if test="${(p.rated_star - i) >= 1}">
-                                                        <div class="reviews-rating__star is-active"></div> 
-                                                    </c:if>
-                                                    <c:if test="${(p.rated_star - i) < 1 && (p.rated_star - i) > 0}">
-                                                        <div class="reviews-rating__star is-active is-half"></div> 
-                                                    </c:if>
-                                                    <c:if test="${(p.rated_star - i) <= 0}">
-                                                        <div class="reviews-rating__star"></div> 
-                                                    </c:if>
+                                                    <c:forEach var="i" begin="0" end="4">
+                                                        <c:if test="${(p.rated_star - i) >= 1}">
+                                                            <div class="reviews-rating__star is-active"></div> 
+                                                        </c:if>
+                                                        <c:if test="${(p.rated_star - i) < 1 && (p.rated_star - i) > 0}">
+                                                            <div class="reviews-rating__star is-active is-half"></div> 
+                                                        </c:if>
+                                                        <c:if test="${(p.rated_star - i) <= 0}">
+                                                            <div class="reviews-rating__star"></div> 
+                                                        </c:if>
 
-                                                </c:forEach>
+                                                    </c:forEach>
+
+                                                </div>
+                                                <a href="" class="product-thumb">
+                                                    <a href="list-detail?productId=${p.id}&categoryId=${p.category_id}">
+                                                        <img src="${p.image}" height="365px" width="230px" alt="">
+                                                    </a>
+
+                                                </a>
+                                                <a href="" class="buy-now" >Mua ngay</a>
 
                                             </div>
-                                            <a href="" class="product-thumb">
-                                                <img src="${p.image}" height="365px" width="230px" alt="">
-
-                                            </a>
-                                            <a href="" class="buy-now" >Mua ngay</a>
-
-                                        </div>
-                                        <div class="product-infor">
-                                            <a href="" class="product-name">${p.name}</a>
-                                            <div class="product-price">
-                                                <c:if test="${p.sale_price != 0}">
-                                                    ${p.sale_price}đ
-                                                    <del>${p.original_price}đ</del>
-                                                </c:if>
-                                                <c:if test="${p.sale_price == 0}">
-                                                    ${p.original_price}đ
-                                                </c:if>
+                                            <div class="product-infor">
+                                                <a href="" class="product-name">${p.name}</a>
+                                                <div class="product-price">
+                                                    <c:if test="${p.sale_price != 0}">
+                                                        ${p.sale_price}đ
+                                                        <del>${p.original_price}đ</del>
+                                                    </c:if>
+                                                    <c:if test="${p.sale_price == 0}">
+                                                        ${p.original_price}đ
+                                                    </c:if>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </c:forEach>
+                            </c:forEach>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div class="content-Category-section background-product"><!--
+                <div class="content-Category-section background-product"><!--
 
-                <!-- Product list -->
-                <h2 class="section-heading">Những sản phẩm đa dạng</h2>
-                <div class="category-list">
-                    <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg1.jpg') 
-                                    top center / cover no-repeat">
-                            <div class="category-content">Đồ mặc trong</div>
-                        </div></a>
+                    <!-- Product list -->
+                    <h2 class="section-heading">Những sản phẩm đa dạng</h2>
+                    <div class="category-list">
+                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg1.jpg') 
+                                        top center / cover no-repeat">
+                                <div class="category-content">Đồ mặc trong</div>
+                            </div></a>
 
-                    <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg2.jpg') 
-                                    top center / cover no-repeat">
-                            <div class="category-content">Đồ mặc ngoài</div>
-                        </div></a>
+                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg2.jpg') 
+                                        top center / cover no-repeat">
+                                <div class="category-content">Đồ mặc ngoài</div>
+                            </div></a>
 
-                    <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg3.jpg') 
-                                    top center / cover no-repeat">
-                            <div class="category-content">Đồ thể thao</div>
-                        </div></a>
+                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg3.jpg') 
+                                        top center / cover no-repeat">
+                                <div class="category-content">Đồ thể thao</div>
+                            </div></a>
 
-                    <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg4.jpg') 
-                                    top center / cover no-repeat">
-                            <div class="category-content">Tất cả</div>
-                        </div></a>
-
+                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg4.jpg') 
+                                        top center / cover no-repeat">
+                                <div class="category-content">Tất cả</div>
+                            </div></a>
 
 
 
 
-                    <div class="clear"></div>
-                </div> 
-            </div>
-            <!-- Blog -->
-            <div class="blog-section">
-                <div class="content-section">
-                    <h2 class="section-heading text-white">Chúng tôi luôn mang đến những công nghệ hiện đại nhất</h2>
-                    <p class="section-sub-heading text-white">Công nghệ Việt cho người Việt</p>
-
-                    <!-- blog list hot -->
-                    <div class="blog-list">
-
-                        <c:forEach items="${listBlog_HomePage}" var="C">
-                            <div class="blog-item">
-                                <img src="${C.thumbnail}" alt="" class="blog-img">
-                                <div class="blog-body">
-                                    <h3 class="blog-heading">${C.title}</h3>
-                                    <p class="blog-desc">${C.brief_info}</p>
-                                    <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
-                                </div>
-                            </div>
-                        </c:forEach>
 
                         <div class="clear"></div>
-                    </div>
+                    </div> 
                 </div>
+                <!-- Blog -->
+                <div class="blog-section">
+                    <div class="content-section">
+                        <h2 class="section-heading text-white">Chúng tôi luôn mang đến những công nghệ hiện đại nhất</h2>
+                        <p class="section-sub-heading text-white">Công nghệ Việt cho người Việt</p>
+
+                        <!-- blog list hot -->
+                        <div class="blog-list">
+
+                            <c:forEach items="${listBlog_HomePage}" var="C">
+                                <div class="blog-item">
+                                    <img src="${C.thumbnail}" alt="" class="blog-img">
+                                    <div class="blog-body">
+                                        <h3 class="blog-heading">${C.title}</h3>
+                                        <p class="blog-desc">${C.brief_info}</p>
+                                        <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
+                                    </div>
+                                </div>
+                            </c:forEach>
+
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+                <!-- End Contact -->
 
 
 
 
             </div>
-
-
-            <!-- End Contact -->
-
+            <%@include file="components/footer.jsp" %>
 
 
 
         </div>
-        <%@include file="components/footer.jsp" %>
 
-
-
-    </div>
-
-    <!--JS Change Password -->       
-    <script>
-        function Changepass_openForm() {
-            document.getElementById("changepassword_Form").style.display = "block";
-        }
-
-        function Changepass_closeForm() {
-            document.getElementById("changepassword_Form").style.display = "none";
-            document.body.style.backgroundColor = "rgba(0,0,0,0)";
-        }
-        function changeTypeOll_Pass() {
-            var x = document.getElementById("changepassword_Input1");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
+        <!--JS Change Password -->       
+        <script>
+            function Changepass_openForm() {
+                document.getElementById("changepassword_Form").style.display = "block";
             }
-        }
-        function changeTypeNew_Pass1() {
-            var x = document.getElementById("changepassword_Input2");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-        function changeTypeNew_Pass2() {
-            var x = document.getElementById("changepassword_Input3");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
 
-</body>
+            function Changepass_closeForm() {
+                document.getElementById("changepassword_Form").style.display = "none";
+                document.body.style.backgroundColor = "rgba(0,0,0,0)";
+            }
+            function changeTypeOll_Pass() {
+                var x = document.getElementById("changepassword_Input1");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+            function changeTypeNew_Pass1() {
+                var x = document.getElementById("changepassword_Input2");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+            function changeTypeNew_Pass2() {
+                var x = document.getElementById("changepassword_Input3");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+        </script>
+
+    </body>
 
 </html>

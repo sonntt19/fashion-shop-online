@@ -78,7 +78,7 @@
 
                                     </c:forEach>
                                 </div>
-                                <a href="" class="product-thumb">
+                                <a href="list-detail?productId=${sessionScope.pNew.id}&categoryId=${sessionScope.pNew.category_id}" class="product-thumb">
                                     <img src="${sessionScope.pNew.image}" alt="">
 
                                 </a>

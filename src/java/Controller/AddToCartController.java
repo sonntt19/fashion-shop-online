@@ -53,7 +53,7 @@ public class AddToCartController extends HttpServlet {
                 carts.put(productId, Cart.builder().product(product).quantity_cart(1).build());
             }
             session.setAttribute("carts", carts);
-            response.sendRedirect("list-detail?productId="+ productId);
+            response.sendRedirect("list-detail?productId="+ productId+"categoryId"+ categoryId);
         }
     }
 
