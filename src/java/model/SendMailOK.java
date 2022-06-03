@@ -1,6 +1,5 @@
 package model;
 
-
 import java.util.Date;
 import java.util.Properties;
 
@@ -48,6 +47,7 @@ public class SendMailOK {
 // — Set some other header information –
         msg.setHeader("X - Mailer", "LOTONtechEmail");
         msg.setSentDate(new Date());
+        msg.setContent(body, "text/html;charset=UTF-8");
         msg.saveChanges();
 // — Send the message –
         Transport.send(msg);
@@ -63,7 +63,7 @@ public class SendMailOK {
         {
             try {
                 String smtpServer = "smtp.gmail.com";
-                String to = "sonntthe151167@fpt.edu.vn";
+                String to = "khangdt01001@gamil.com";
                 String from = "khangdthe151162@fpt.edu.vn";
                 String subject = "Hello from Java";
                 String body = "Test using java to send mail.";
