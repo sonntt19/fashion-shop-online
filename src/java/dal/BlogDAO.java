@@ -20,7 +20,7 @@ import model.Blog;
  */
 public class BlogDAO extends DBContext{
 
-    public List<Blog> getAllInfo() {
+    public List<Blog> getAllBlog() {
         List<Blog> list = new ArrayList<>();
         String sql = "Select * from Blog";
         try {

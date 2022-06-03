@@ -19,7 +19,7 @@ import model.Slider;
  */
 public class SliderDAO extends DBContext {
 
-    public Slider getFirst() {
+    public Slider getFirstSlider() {
         String sql = "SELECT top 1 *\n"
                 + "  FROM [dbo].[Slider]";
         try {
@@ -39,7 +39,7 @@ public class SliderDAO extends DBContext {
         return null;
     }
 
-    public List<Slider> getALL() {
+    public List<Slider> getALLSlider() {
         List<Slider> list = new ArrayList<>();
         String sql = "SELECT  *\n"
                 + "  FROM [dbo].[Slider]";

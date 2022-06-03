@@ -15,9 +15,9 @@
 
     <!-- Begin nav -->
     <ul id="nav">
-        <li><a href="index.jsp">Trang chủ</a></li>
+        <li><a href="home">Trang chủ</a></li>
         <li><a href="">Blog</a></li>
-        <li><a href="">Sản phẩm</a></li>
+        <li><a href="list">Sản phẩm</a></li>
         <li><a href="">Liên hệ</a></li>
         <li>
             <a href="">
@@ -34,7 +34,7 @@
         <li>
             <form class="form-search" action="list">
                 <li><input type="text" name="key" placeholder="Tìm kiếm sản phẩm..." value="${key}" id="" required class="form-control"> </li>
-                <button type="submit" class="button-search"></button>
+                <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </li>
 
@@ -63,7 +63,13 @@
     </c:if>
     <!-- begin icon header -->
     <div class="btn-icon">
-        <a><i class="header-icon ti-shopping-cart"></i></a>
+        <a href="carts">
+            <i class="header-icon ti-shopping-cart"></i>
+        </a>
     </div>
+
+
+    
+
 
 </div>

@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="feedback-footer">
-                        <h2 class="mt-40">COOLMATE lắng nghe bạn!</h2>
+                        <h2 class="mt-40">KingsMan lắng nghe bạn!</h2>
                         <p>Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể nâng cấp trải nghiệm dịch vụ và sản phẩm tốt hơn nữa</p>
                         <input class="Button-Feedback mt-16" type="submit" value="gửi ý kiến">
                         <br>
@@ -29,7 +29,7 @@
                         <div class="contact-info">
                             <p><i class="ti-location-pin"></i>Tran Duy Hung, Ha Noi</p>
                             <p><i class="ti-mobile"></i>Phone:+0879 112 113</p>
-                            <p><i class="ti-email"></i>Email:Sondbrr123@gmail.com</p>
+                            <p><i class="ti-email"></i>Sondbrr123@gmail.com</p>
                         </div>
                     </div>
                     <div class="clear"></div>
