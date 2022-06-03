@@ -173,7 +173,7 @@
 
                                     </div>
                                     <a href="list-detail?productId=${p.id}&categoryId=${p.category_id}" class="product-thumb">
-                                        <img src="${p.image}" height="365px" width="230px" alt="">
+                                        <img src="${p.image}"alt="">
                                     </a>
                                     <a href="" class="buy-now" >Mua ngay</a>
 

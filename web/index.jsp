@@ -29,7 +29,7 @@
             </c:if>
 
 
-           <!-- Login -->
+            <!-- Login -->
             <div class="modal fade col-md-12" role="dialog" id="loginModal">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border-radius: 10px; margin-top: 258px;">
@@ -236,174 +236,174 @@
 
 
 
-        <!-- Content -->
-        <div id="content">
-            <div class="content-section background-product" style="width: 1500px">
+            <!-- Content -->
+            <div id="content">
+                <div class="content-section background-product" style="width: 1500px">
 
-                <!-- Base Product -->
-                <h2 class="section-heading">Trang phục cơ bản</h2>
-                <div  class="container-fluid">
-                    <div class="row">
-                        <c:forEach items="${list4product}" var="p">
-                            <div class="col-md-2 product-down">
-                                <div class="row">
-                                    <div class="product-item">
-                                        <div class="product-top">
+                    <!-- Base Product -->
+                    <h2 class="section-heading">Trang phục cơ bản</h2>
+                    <div  class="container-fluid">
+                        <div class="row">
+                            <c:forEach items="${list4product}" var="p">
+                                <div class="col-md-2 product-down">
+                                    <div class="row">
+                                        <div class="product-item">
+                                            <div class="product-top">
 
-                                            <div class="reviews-rating">
+                                                <div class="reviews-rating">
 
-                                                <c:forEach var="i" begin="0" end="4">
-                                                    <c:if test="${(p.rated_star - i) >= 1}">
-                                                        <div class="reviews-rating__star is-active"></div> 
-                                                    </c:if>
-                                                    <c:if test="${(p.rated_star - i) < 1 && (p.rated_star - i) > 0}">
-                                                        <div class="reviews-rating__star is-active is-half"></div> 
-                                                    </c:if>
-                                                    <c:if test="${(p.rated_star - i) <= 0}">
-                                                        <div class="reviews-rating__star"></div> 
-                                                    </c:if>
+                                                    <c:forEach var="i" begin="0" end="4">
+                                                        <c:if test="${(p.rated_star - i) >= 1}">
+                                                            <div class="reviews-rating__star is-active"></div> 
+                                                        </c:if>
+                                                        <c:if test="${(p.rated_star - i) < 1 && (p.rated_star - i) > 0}">
+                                                            <div class="reviews-rating__star is-active is-half"></div> 
+                                                        </c:if>
+                                                        <c:if test="${(p.rated_star - i) <= 0}">
+                                                            <div class="reviews-rating__star"></div> 
+                                                        </c:if>
 
-                                                </c:forEach>
+                                                    </c:forEach>
+
+                                                </div>
+                                                <a href="" class="product-thumb">
+                                                    <img src="${p.image}" height="365px" width="230px" alt="">
+
+                                                </a>
+                                                <a href="" class="buy-now" >Mua ngay</a>
 
                                             </div>
-                                            <a href="" class="product-thumb">
-                                                <img src="${p.image}" height="365px" width="230px" alt="">
-
-                                            </a>
-                                            <a href="" class="buy-now" >Mua ngay</a>
-
-                                        </div>
-                                        <div class="product-infor">
-                                            <a href="" class="product-name">${p.name}</a>
-                                            <div class="product-price">
-                                                <c:if test="${p.sale_price != 0}">
-                                                    ${p.sale_price}đ
-                                                    <del>${p.original_price}đ</del>
-                                                </c:if>
-                                                <c:if test="${p.sale_price == 0}">
-                                                    ${p.original_price}đ
-                                                </c:if>
+                                            <div class="product-infor">
+                                                <a href="" class="product-name">${p.name}</a>
+                                                <div class="product-price">
+                                                    <c:if test="${p.sale_price != 0}">
+                                                        ${p.sale_price}đ
+                                                        <del>${p.original_price}đ</del>
+                                                    </c:if>
+                                                    <c:if test="${p.sale_price == 0}">
+                                                        ${p.original_price}đ
+                                                    </c:if>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </c:forEach>
+                            </c:forEach>
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <div class="content-Category-section background-product"><!--
+                <div class="content-Category-section background-product"><!--
 
-                <!-- Product list -->
-                <h2 class="section-heading">Những sản phẩm đa dạng</h2>
-                <div class="category-list">
-                    <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg1.jpg') 
-                                    top center / cover no-repeat">
-                            <div class="category-content">Đồ mặc trong</div>
-                        </div></a>
+                    <!-- Product list -->
+                    <h2 class="section-heading">Những sản phẩm đa dạng</h2>
+                    <div class="category-list">
+                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg1.jpg') 
+                                        top center / cover no-repeat">
+                                <div class="category-content">Đồ mặc trong</div>
+                            </div></a>
 
-                    <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg2.jpg') 
-                                    top center / cover no-repeat">
-                            <div class="category-content">Đồ mặc ngoài</div>
-                        </div></a>
+                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg2.jpg') 
+                                        top center / cover no-repeat">
+                                <div class="category-content">Đồ mặc ngoài</div>
+                            </div></a>
 
-                    <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg3.jpg') 
-                                    top center / cover no-repeat">
-                            <div class="category-content">Đồ thể thao</div>
-                        </div></a>
+                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg3.jpg') 
+                                        top center / cover no-repeat">
+                                <div class="category-content">Đồ thể thao</div>
+                            </div></a>
 
-                    <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg4.jpg') 
-                                    top center / cover no-repeat">
-                            <div class="category-content">Tất cả</div>
-                        </div></a>
-
+                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg4.jpg') 
+                                        top center / cover no-repeat">
+                                <div class="category-content">Tất cả</div>
+                            </div></a>
 
 
 
 
-                    <div class="clear"></div>
-                </div> 
-            </div>
-            <!-- Blog -->
-            <div class="blog-section">
-                <div class="content-section">
-                    <h2 class="section-heading text-white">Chúng tôi luôn mang đến những công nghệ hiện đại nhất</h2>
-                    <p class="section-sub-heading text-white">Công nghệ Việt cho người Việt</p>
-
-                    <!-- blog list hot -->
-                    <div class="blog-list">
-
-                        <c:forEach items="${listBlog_HomePage}" var="C">
-                            <div class="blog-item">
-                                <img src="${C.thumbnail}" alt="" class="blog-img">
-                                <div class="blog-body">
-                                    <h3 class="blog-heading">${C.title}</h3>
-                                    <p class="blog-desc">${C.brief_info}</p>
-                                    <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
-                                </div>
-                            </div>
-                        </c:forEach>
 
                         <div class="clear"></div>
-                    </div>
+                    </div> 
                 </div>
+                <!-- Blog -->
+                <div class="blog-section">
+                    <div class="content-section">
+                        <h2 class="section-heading text-white">Chúng tôi luôn mang đến những công nghệ hiện đại nhất</h2>
+                        <p class="section-sub-heading text-white">Công nghệ Việt cho người Việt</p>
+
+                        <!-- blog list hot -->
+                        <div class="blog-list">
+
+                            <c:forEach items="${listBlog_HomePage}" var="C">
+                                <div class="blog-item">
+                                    <img src="${C.thumbnail}" alt="" class="blog-img">
+                                    <div class="blog-body">
+                                        <h3 class="blog-heading">${C.title}</h3>
+                                        <p class="blog-desc">${C.brief_info}</p>
+                                        <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
+                                    </div>
+                                </div>
+                            </c:forEach>
+
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+                <!-- End Contact -->
 
 
 
 
             </div>
-
-
-            <!-- End Contact -->
-
+            <%@include file="components/footer.jsp" %>
 
 
 
         </div>
-        <%@include file="components/footer.jsp" %>
 
-
-
-    </div>
-
-    <!--JS Change Password -->       
-    <script>
-        function Changepass_openForm() {
-            document.getElementById("changepassword_Form").style.display = "block";
-        }
-
-        function Changepass_closeForm() {
-            document.getElementById("changepassword_Form").style.display = "none";
-            document.body.style.backgroundColor = "rgba(0,0,0,0)";
-        }
-        function changeTypeOll_Pass() {
-            var x = document.getElementById("changepassword_Input1");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
+        <!--JS Change Password -->       
+        <script>
+            function Changepass_openForm() {
+                document.getElementById("changepassword_Form").style.display = "block";
             }
-        }
-        function changeTypeNew_Pass1() {
-            var x = document.getElementById("changepassword_Input2");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-        function changeTypeNew_Pass2() {
-            var x = document.getElementById("changepassword_Input3");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
 
-</body>
+            function Changepass_closeForm() {
+                document.getElementById("changepassword_Form").style.display = "none";
+                document.body.style.backgroundColor = "rgba(0,0,0,0)";
+            }
+            function changeTypeOll_Pass() {
+                var x = document.getElementById("changepassword_Input1");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+            function changeTypeNew_Pass1() {
+                var x = document.getElementById("changepassword_Input2");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+            function changeTypeNew_Pass2() {
+                var x = document.getElementById("changepassword_Input3");
+                if (x.type === "password") {
+                    x.type = "text";
+                } else {
+                    x.type = "password";
+                }
+            }
+        </script>
+
+    </body>
 
 </html>
