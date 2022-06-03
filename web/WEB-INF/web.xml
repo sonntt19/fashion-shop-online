@@ -9,6 +9,18 @@
         <servlet-class>Controller.ProductListController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ListDetailController</servlet-name>
+        <servlet-class>Controller.ListDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCartController</servlet-name>
+        <servlet-class>Controller.AddToCartController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartController</servlet-name>
+        <servlet-class>Controller.CartController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ChangePasswordController</servlet-name>
         <servlet-class>Controller.ChangePasswordController</servlet-class>
     </servlet>
@@ -25,6 +37,18 @@
         <url-pattern>/list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ListDetailController</servlet-name>
+        <url-pattern>/list-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartController</servlet-name>
+        <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartController</servlet-name>
+        <url-pattern>/carts</url-pattern>
+     </servlet-mapping>
+     <servlet-mapping>
         <servlet-name>ChangePasswordController</servlet-name>
         <url-pattern>/changepassword</url-pattern>
     </servlet-mapping>

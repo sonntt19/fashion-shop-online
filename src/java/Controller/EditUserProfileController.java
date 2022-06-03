@@ -34,15 +34,23 @@ public class EditUserProfileController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String uid = request.getParameter("userId");
         String uname = request.getParameter("fullName");
         String umobile = request.getParameter("mobile");
         String uaddress = request.getParameter("address");
         String uavatar = request.getParameter("avatar");
         String ugender = request.getParameter("gender");
+        int userId = Integer.parseInt(uid);
 
+        
          UserDAO dao = new UserDAO();
-         dao.editUserProfile(uname, uavatar, ugender, umobile, uaddress, uid);
+         dao.editUserProfile(uname, uavatar, ugender, umobile, uaddress, userId);
+         User u = dao.getUserById(userId);
+         HttpSession session = request.getSession();
+         session.setAttribute("us", u);
          response.sendRedirect("index.jsp");
     }
     

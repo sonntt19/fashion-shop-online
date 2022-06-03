@@ -19,7 +19,8 @@
         <div id="main">
 
             <%@include file="components/header.jsp" %>
-            <!-- Login -->
+
+            <!-- Notification User -->
             <c:if test="${notification !=null}">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15 ; margin-left: 40%">
                     <strong>${notification}</strong>
@@ -27,6 +28,8 @@
                 </div>
             </c:if>
 
+
+           <!-- Login -->
             <div class="modal fade col-md-12" role="dialog" id="loginModal">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border-radius: 10px; margin-top: 258px;">
@@ -35,15 +38,12 @@
                         </div>
                         <div class="modal-body">
                             <form action="login" method="post">
-                                ${mess}
                                 <div class="form-group">
                                     <input name="email" type="email" class="form-control" placeholder="Email của bạn"style="border-radius: 100px;" required="">
                                 </div>
                                 <div class="form-group">
                                     <input name="password" type="password" class="form-control" placeholder="Mật khẩu"style="border-radius: 100px;" required>
                                 </div>
-                                <input type="checkbox" style="height:15px;width:15px; ">&nbsp;Nhớ mật khẩu
-                                <br><br>
                                 <center><button type="submit" class="btn btn-dark" style="padding-right: 193px;padding-left: 193px; border-radius: 100px;">Đăng nhập</button></center>
                             </form>
                             <br><br>
@@ -67,8 +67,6 @@
                             <section>
                                 <div class="container">
                                     <form action="register" method="POST">
-                                        ${mess}
-                                        ${mess}
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -94,11 +92,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="form-group">
+                                                <div class="form-group" required>
                                                     Giới tính&nbsp;&nbsp;&nbsp;
-                                                    <input class="" name="gender" type="radio" value="True" />&nbsp; Nam
+                                                    <input class="" name="gender" type="radio" value="True" required/>&nbsp; Nam
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <input class="" name="gender" type="radio" value="False" />&nbsp; Nữ
+                                                    <input class="" name="gender" type="radio" value="False" required/>&nbsp; Nữ
                                                 </div>
                                             </div>
                                             <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 190px;padding-left: 190px; border-radius: 100px;">Đăng ký</button></center><br><br>
@@ -192,7 +190,7 @@
                                 <center><button type="submit" class="btn btn-dark" style="padding-right: 160px;padding-left: 160px; border-radius: 100px;">Cập nhập mật khẩu</button></center>
                             </form>
                             <br><br>
-                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 190px; text-decoration: none; border-radius: 100px;">Quay lại Profile</a> 
+                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 190px; text-decoration: none; border-radius: 100px;">Quay lại Login</a> 
                         </div>
                     </div>
                 </div>
@@ -259,44 +257,67 @@
                 </div>
             </div>
 
-        </div>
 
 
         <!-- Content -->
         <div id="content">
-            <div class="content-section background-product">
+            <div class="content-section background-product" style="width: 1500px">
 
                 <!-- Base Product -->
                 <h2 class="section-heading">Trang phục cơ bản</h2>
-                <div class="product-list">
-                    <div class="product-item">
-                        <p class="product-name">Áo dài tay</p>
-                        <img src="./assets/img/ProductExample/ProductEx1.jpg" alt="Name" class="product-img">
+                <div  class="container-fluid">
+                    <div class="row">
+                        <c:forEach items="${list4product}" var="p">
+                            <div class="col-md-2 product-down">
+                                <div class="row">
+                                    <div class="product-item">
+                                        <div class="product-top">
+
+                                            <div class="reviews-rating">
+
+                                                <c:forEach var="i" begin="0" end="4">
+                                                    <c:if test="${(p.rated_star - i) >= 1}">
+                                                        <div class="reviews-rating__star is-active"></div> 
+                                                    </c:if>
+                                                    <c:if test="${(p.rated_star - i) < 1 && (p.rated_star - i) > 0}">
+                                                        <div class="reviews-rating__star is-active is-half"></div> 
+                                                    </c:if>
+                                                    <c:if test="${(p.rated_star - i) <= 0}">
+                                                        <div class="reviews-rating__star"></div> 
+                                                    </c:if>
+
+                                                </c:forEach>
+
+                                            </div>
+                                            <a href="" class="product-thumb">
+                                                <img src="${p.image}" height="365px" width="230px" alt="">
+
+                                            </a>
+                                            <a href="" class="buy-now" >Mua ngay</a>
+
+                                        </div>
+                                        <div class="product-infor">
+                                            <a href="" class="product-name">${p.name}</a>
+                                            <div class="product-price">
+                                                <c:if test="${p.sale_price != 0}">
+                                                    ${p.sale_price}đ
+                                                    <del>${p.original_price}đ</del>
+                                                </c:if>
+                                                <c:if test="${p.sale_price == 0}">
+                                                    ${p.original_price}đ
+                                                </c:if>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
                     </div>
-
-                    <div class="product-item">
-                        <p class="product-name">Áo ngắn tay</p>
-                        <img src="./assets/img/ProductExample/ProductEx2.jpg" alt="Name" class="product-img">
-                    </div>
-
-                    <div class="product-item">
-                        <p class="product-name">Quần đùi</p>
-                        <img src="./assets/img/ProductExample/ProductEx3.jpg" alt="Name" class="product-img">
-                    </div>
-
-                    <div class="product-item">
-                        <p class="product-name">Quần lót nam</p>
-                        <img src="./assets/img/ProductExample/ProductEx4.jpg" alt="Name" class="product-img">
-                    </div>
-
-
-
-                    <div class="clear"></div>
-                </div> 
+                </div>
             </div>
 
 
-            <div class="content-Category-section background-product">
+            <div class="content-Category-section background-product"><!--
 
                 <!-- Product list -->
                 <h2 class="section-heading">Những sản phẩm đa dạng</h2>
@@ -351,53 +372,10 @@
                         <div class="clear"></div>
                     </div>
                 </div>
-
-
-
-
-            </div>
-
-            <!-- Contact-section -->
-
-            <div class="content-section">
-                <h2 class="section-heading">Liên lạc với chúng tôi</h2>
-                <p class="section-sub-heading">Nếu bạn muốn trở thành một người đàn ông thực thụ</p>
-
-                <div class="row contact-content">
-                    <div class="col col-half contact-info">
-                        <p><i class="ti-location-pin"></i>Tran Duy Hung, Ha Noi</p>
-                        <p><i class="ti-mobile"></i>Phone:+0879 112 113</p>
-                        <p><i class="ti-email"></i>Email:Sondbrr123@gmail.com</p>
-                    </div>
-                    <div class="col col-half contact-form">
-                        <form action="">
-                            <div class="row">
-                                <div class="col col-half">
-                                    <input type="text" name="" placeholder="Name" id="" required class="form-control">
-                                </div>
-                                <div class="col col-half">
-                                    <input type="email" name="" placeholder="Email" id="" required class="form-control">
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                            <div class="row mt-8">
-                                <div class="col col-full">
-                                    <input  type="text" name="" placeholder="Message" id="" required class="form-control">
-                                </div>
-                            </div>
-                            <input class="form-submit-btn mt-16" type="submit" value="Send">
-
-                        </form>
-                    </div>
-                    <div class="clear"></div>
-                </div>
             </div>
             <!-- End Contact -->
-
         </div>
         <%@include file="components/footer.jsp" %>
-
-
     </div>
 </body>
 

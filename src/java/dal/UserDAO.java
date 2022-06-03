@@ -79,8 +79,7 @@ public class UserDAO extends DBContext {
         }
     }
 
-
-    public void editUserProfile(String uname, String uavatar, String ugender, String umobile, String uaddress, String uid) {
+    public void editUserProfile(String uname, String uavatar, String ugender, String umobile, String uaddress, int uid) {
         String sql = "update dbo.[User]\n"
                 + "set [fullName] = ?,\n"
                 + "avatar = ?,\n"
@@ -95,7 +94,7 @@ public class UserDAO extends DBContext {
             st.setString(3, ugender);
             st.setString(4, umobile);
             st.setString(5, uaddress);
-            st.setString(6, uid);
+            st.setInt(6, uid);
             st.executeUpdate();
         } catch (Exception e) {
         }
@@ -145,7 +144,7 @@ public class UserDAO extends DBContext {
     }
 
     public User getUserByEmail(String email) {
-         try {
+        try {
             String sql = "select * from [User] where email = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, email);
@@ -171,4 +170,30 @@ public class UserDAO extends DBContext {
         return null;
     }
 
+    public User getUserById(int uid) {
+        try {
+            String sql = "select * from [User] where userId = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, uid);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                User user = User.builder()
+                        .user_Id(rs.getInt(1))
+                        .full_Name(rs.getString(2))
+                        .password(rs.getString(3))
+                        .avatar(rs.getString(4))
+                        .gender(rs.getBoolean(5))
+                        .email(rs.getString(6))
+                        .mobile(rs.getString(7))
+                        .address(rs.getString(8))
+                        .status(rs.getString(9))
+                        .role_Id(rs.getInt(10))
+                        .build();
+                return user;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 }

@@ -86,6 +86,9 @@ public class ChangePasswordController extends HttpServlet {
         } else if (!new_pass1.equals(new_pass2)) {
             request.setAttribute("notification", "Your New Password Does Not Match");
             request.getRequestDispatcher("index.jsp").forward(request, response);
+        }else if (new_pass1.equals(old_pass)) {
+            request.setAttribute("notification", "Your New Password and Oll Password are the same");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
             new UserDAO().changePassword(userId, new_pass1);
             request.setAttribute("notification", "Successful Change Password");
