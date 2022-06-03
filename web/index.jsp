@@ -22,7 +22,7 @@
 
             <!-- Notification User -->
             <c:if test="${notification !=null}">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15; margin-left: 800px">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15 ; margin-left: 40%">
                     <strong>${notification}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
@@ -46,8 +46,8 @@
                                 </div>
                                 <center><button type="submit" class="btn btn-dark" style="padding-right: 193px;padding-left: 193px; border-radius: 100px;">Đăng nhập</button></center>
                             </form>
-                            <br>
-                            <a type="button" data-toggle="modal" data-dismiss="modal" onclick="Changepass_openForm()" style="float:right; text-decoration: none; border-radius: 100px;">Quên Mật Khẩu</a>
+                            <br><br>
+                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#ResetPasswordModal" style="float:right; text-decoration: none; border-radius: 100px;">Quên Mật Khẩu</a>
                             <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#registerModal" style="float:left; text-decoration: none; border-radius: 100px;">Đăng ký tài khoản mới</a>
                         </div>
                     </div>
@@ -159,7 +159,11 @@
                                                             </div>
                                                         </div>
                                                         <div class="row mt-4 col-md-6" hidden><label class="labels" style="font-size: 10px;">ID</label><input type="text" class="form-control" name="userId" placeholder="ID" value="${sessionScope.us.user_Id}"></div>&nbsp;
+<<<<<<< HEAD
                                                         <div class="row mt-4 col-md-3"><label class="labels" style="font-size: 10px;">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal"  class="btn btn-dark" value="">Đổi mật khẩu</button></a></div>
+=======
+                                                        <div class="row mt-4 col-md-3"><label class="labels" style="font-size: 10px;">Mật khẩu</label><a href="#" style="text-decoration: none;"><button data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal"  type="button" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
+>>>>>>> 8a47509f4ecacb93f962f5f291cd6b0afe9ce385
                                                     </div>
                                                     <div class="row mt-5 col-md-6 text-center"><button class="btn btn-dark" type="submit">Lưu</button></div>
                                                 </form>
@@ -185,11 +189,6 @@
                         <div class="modal-body">
                             <form action="changepassword" method="post">
                                 <input type="hidden" name="user_Id" value="${sessionScope.us.user_Id}"/>
-                                <div>
-                                    ${old_pass}
-                                    ${new_pass2}
-                                    ${notification}
-                                </div>
                                 <b>Nhập mật khẩu cũ</b>&nbsp;&nbsp;
                                 <!--                                <i onclick="changeTypeOll_Pass()" class="fa fa-eye icon"></i>-->
                                 <div class="form-group">
@@ -209,7 +208,36 @@
                                 <center><button type="submit" class="btn btn-dark" style="padding-right: 160px;padding-left: 160px; border-radius: 100px;">Cập nhập mật khẩu</button></center>
                             </form>
                             <br><br>
-                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 190px; text-decoration: none; border-radius: 100px;">Quay lại Profile</a> 
+                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 190px; text-decoration: none; border-radius: 100px;">Quay lại Login</a> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ResetPassword -->
+            <div class="modal fade col-md-12" role="dialog" id="ResetPasswordModal">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="border-radius: 10px; margin-top: 150px;">
+                        <div class="modal-header">
+                            <h1 style="text-align: center ; margin-left: 70px;">Cấp lại mật khẩu</h1>
+                        </div>
+                        <div class="modal-body">
+                            <form action="resetpassword" method="post">
+                                <div class="form-group">
+                                    <input name="email" type="email" class="form-control" placeholder="Email của bạn"style="border-radius: 100px;" required>
+                                </div>
+                                <br>
+                                <center>
+                                    <button type="submit" class="btn btn-dark" style="padding-right: 200px;
+                                            padding-left: 200px;
+                                            border-radius: 100px;
+                                            margin-bottom: -40px;
+                                            height: 50px;">Kiểm tra
+                                    </button>
+                                </center>
+                            </form>
+                            <br><br>
+                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#loginModal" style="padding-left: 170px; text-decoration: none; border-radius: 100px;">Quay lại Đăng nhập</a> 
                         </div>
                     </div>
                 </div>
@@ -362,61 +390,11 @@
                         <div class="clear"></div>
                     </div>
                 </div>
-
-
-
-
             </div>
-
-
             <!-- End Contact -->
-
-
-
-
         </div>
         <%@include file="components/footer.jsp" %>
-
-
-
     </div>
-
-    <!--JS Change Password -->       
-    <script>
-        function Changepass_openForm() {
-            document.getElementById("changepassword_Form").style.display = "block";
-        }
-
-        function Changepass_closeForm() {
-            document.getElementById("changepassword_Form").style.display = "none";
-            document.body.style.backgroundColor = "rgba(0,0,0,0)";
-        }
-        function changeTypeOll_Pass() {
-            var x = document.getElementById("changepassword_Input1");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-        function changeTypeNew_Pass1() {
-            var x = document.getElementById("changepassword_Input2");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-        function changeTypeNew_Pass2() {
-            var x = document.getElementById("changepassword_Input3");
-            if (x.type === "password") {
-                x.type = "text";
-            } else {
-                x.type = "password";
-            }
-        }
-    </script>
-
 </body>
 
 </html>
