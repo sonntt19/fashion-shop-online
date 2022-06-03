@@ -20,7 +20,7 @@
 
             <%@include file="components/header.jsp" %>
 
-            <!-- Notification -->
+            <!-- Notification User -->
             <c:if test="${notification !=null}">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15; margin-left: 800px">
                     <strong>${notification}</strong>
@@ -46,7 +46,7 @@
                                 </div>
                                 <center><button type="submit" class="btn btn-dark" style="padding-right: 193px;padding-left: 193px; border-radius: 100px;">Đăng nhập</button></center>
                             </form>
-                            <br><br>
+                            <br>
                             <a type="button" data-toggle="modal" data-dismiss="modal" onclick="Changepass_openForm()" style="float:right; text-decoration: none; border-radius: 100px;">Quên Mật Khẩu</a>
                             <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#registerModal" style="float:left; text-decoration: none; border-radius: 100px;">Đăng ký tài khoản mới</a>
                         </div>
