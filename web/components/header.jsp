@@ -34,7 +34,7 @@
         <li>
             <form class="form-search" action="list">
                 <li><input type="text" name="key" placeholder="Tìm kiếm sản phẩm..." value="${key}" id="" required class="form-control"> </li>
-                <button type="submit" class="button-search"></button>
+                <button type="submit" class="btn btn-primary">Search</button>
             </form>
         </li>
 
