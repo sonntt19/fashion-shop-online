@@ -17,47 +17,46 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
-    <body style="height: 1000px">
+    <body >
 
         <%@include file="components/header.jsp" %>
-        <div  class="container-fluid" style="margin-top: 65px">
+        <div  class="container-fluid" >
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-10 col-sm-8">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" >
+                            <div class="carousel-indicators">
+
+                                <c:forEach items="${listSlider_HomePageAll}" var="s" >
+                                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${s.id -1}" class="${s.id == sliderFirst.id ? "active" : ""}" aria-current="${s.id == sliderFirst.id ? "true" : ""}" aria-label="Slide ${s.id}"></button>
+                                </c:forEach>
+                            </div>
+
+                            <div class="carousel-inner">
+
+                                <c:forEach items="${listSlider_HomePageAll}" var="s" >
+                                    <div class="carousel-item ${s.id == sliderFirst.id ? "active" : ""}">
+                                        <img src="${s.slider_image}" class="d-block w-100" alt="...">
+                                    </div> 
+
+                                </c:forEach>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="10000">
-                                <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/34KIDSDAY---Website.jpg" class="d-block w-100" alt="...">
-
-                            </div>
-                            <div class="carousel-item" data-bs-interval="2000">
-                                <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/Hero-banner-CleanVN_42.png" class="d-block w-100" alt="...">
-
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://media.coolmate.me/cdn-cgi/image/width=1920,quality=100/uploads/May2022/Hero-Excool-Website.jpg" class="d-block w-100" alt="...">
-
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-sm-4">
                     <div class="row">
                         <div id="wrapper" >
                             <div class="headline">
-                                <h3>Sản phẩm mới nhất</h3>
+                                <div class="new-product">Sản phẩm mới nhất</div>
                             </div>
                         </div>
                     </div>
@@ -66,27 +65,34 @@
                             <div class="product-top">
 
                                 <div class="reviews-rating">
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-active"></div>
-                                    <div class="reviews-rating__star is-active"></div> 
-                                    <div class="reviews-rating__star is-half"></div> 
-                                    <div class="reviews-rating__star "></div> 
+                                    <c:forEach var="i" begin="0" end="4">
+                                        <c:if test="${(sessionScope.pNew.rated_star - i) >= 1}">
+                                            <div class="reviews-rating__star is-active"></div> 
+                                        </c:if>
+                                        <c:if test="${(sessionScope.pNew.rated_star - i) < 1 && (sessionScope.pNew.rated_star - i) > 0}">
+                                            <div class="reviews-rating__star is-active is-half"></div> 
+                                        </c:if>
+                                        <c:if test="${(sessionScope.pNew.rated_star - i) <= 0}">
+                                            <div class="reviews-rating__star"></div> 
+                                        </c:if>
+
+                                    </c:forEach>
                                 </div>
                                 <a href="" class="product-thumb">
-                                    <img src="${sessionScope.pNew.image}" height="365px" width="230px" alt="">
+                                    <img src="${sessionScope.pNew.image}" alt="">
 
                                 </a>
-                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
+                                <a href="" class="buy-now" >Mua ngay</a>
 
                             </div>
                             <div class="product-infor">
                                 <a href="" class="product-name">${sessionScope.pNew.name}</a>
                                 <div class="product-price">
-                                    <c:if test="${sessionScope.pNew.sale_price != null}">
+                                    <c:if test="${sessionScope.pNew.sale_price != 0}">
                                         ${sessionScope.pNew.sale_price}đ
                                         <del>${sessionScope.pNew.original_price}đ</del>
                                     </c:if>
-                                    <c:if test="${sessionScope.pNew.sale_price != null}">
+                                    <c:if test="${sessionScope.pNew.sale_price == 0}">
                                         ${sessionScope.pNew.original_price}đ
                                     </c:if>
                                 </div>
@@ -99,67 +105,89 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-3">
-                <form class="input-search">
-                    <input type="text" name="keyword" value="" placeholder="Tìm kiếm sản phẩm..." class="filter-search__control">
-                    <button type="submit" class="button-search"></button>
+            <div class="col-md-4">
+                <form class="input-search" action="list">
+                    <div>
+                        <input type="text" name="key" value="${key}" placeholder="Tìm kiếm sản phẩm..." class="filter-search__control" >
+                        <button type="submit" class="button-search"></button>
+                    </div>
+
                 </form>
             </div>
 
             <div class="col-md-2">
-                <div class="dropdown">
-                    <button class="dropdown-font dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Danh Mục
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <c:forEach items="${sessionScope.listCategories}" var="c">
-                            <li><a class="dropdown-item" href="#">${c.name}</a></li>
-                            </c:forEach>
-                    </ul>
-                </div>
+                <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;">
+                    <option value="list?${historyKey}${historyValue}${historyType}" ${categoryId == 0 ? "Selected" : ""}>
+                        Tất Cả
+                    </option>
+                    <c:forEach items="${sessionScope.listCategories}" var="c">
+                        <option value="list?${historyKey}&categoryId=${c.id}${historyValue}${historyType}" ${categoryId == c.id ? "Selected" : ""}>
+                            ${c.name}
+                        </option>
+                    </c:forEach>
+                </select>
             </div>
             <div class="col-md-2">
-                <div class="dropdown sort">
-                    <button class="dropdown-font dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        Sắp Xếp
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </div>
+                <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;">
+                    <option value="list?${historyKey}${historyCategoryId}&type=desc" ${type eq "desc" ? "Selected" : ""}>
+                        Mới Nhất
+                    </option>
+                    <option value="list?${historyKey}${historyCategoryId}" ${type == null ? "Selected" : ""}>
+                        Cũ Nhất
+                    </option> 
+                    <option value="list?${historyKey}${historyCategoryId}&value=original_prices" ${value eq "original_prices" ? "Selected" : ""}>
+                        Giá tăng dần
+                    </option>
+                    <option value="list?${historyKey}${historyCategoryId}&value=original_prices&type=desc" ${value eq "original_prices" && type eq "desc" ? "Selected" : ""}>
+                        Giá giảm dần
+                    </option> 
+                </select>
             </div>
-            <div class="col-md-5">
-
+                        <div class="col-md-4 list">
+                <h2>Danh Sách Sản Phẩm</h2>
             </div>
         </div>
         <hr>
         <div  class="container-fluid">
             <div class="row">
                 <c:forEach items="${listProduct}" var="p">
-                    <div class="col-md-2 product-down">
+                    <div class="col-lg-2 col-md-3 col-sm-6 product-down">
                         <div class="row">
                             <div class="product-item">
                                 <div class="product-top">
 
                                     <div class="reviews-rating">
-                                        <div class="reviews-rating__star is-active"></div> 
-                                        <div class="reviews-rating__star is-active"></div>
-                                        <div class="reviews-rating__star is-active"></div> 
-                                        <div class="reviews-rating__star is-half"></div> 
-                                        <div class="reviews-rating__star "></div> 
+
+                                        <c:forEach var="i" begin="0" end="4">
+                                            <c:if test="${(p.rated_star - i) >= 1}">
+                                                <div class="reviews-rating__star is-active"></div> 
+                                            </c:if>
+                                            <c:if test="${(p.rated_star - i) < 1 && (p.rated_star - i) > 0}">
+                                                <div class="reviews-rating__star is-active is-half"></div> 
+                                            </c:if>
+                                            <c:if test="${(p.rated_star - i) <= 0}">
+                                                <div class="reviews-rating__star"></div> 
+                                            </c:if>
+
+                                        </c:forEach>
+
                                     </div>
                                     <a href="list-detail?productId=${p.id}&categoryId=${p.category_id}" class="product-thumb">
                                         <img src="${p.image}" height="365px" width="230px" alt="">
                                     </a>
-                                    <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
+                                    <a href="" class="buy-now" >Mua ngay</a>
 
                                 </div>
                                 <div class="product-infor">
                                     <a href="" class="product-name">${p.name}</a>
-                                    <div class="product-price">${p.sale_price != null ? p.sale_price  : p.original_price}đ  
-                                        <del>200.000đ</del>
+                                    <div class="product-price">
+                                        <c:if test="${p.sale_price != 0}">
+                                            ${p.sale_price}đ
+                                            <del>${p.original_price}đ</del>
+                                        </c:if>
+                                        <c:if test="${p.sale_price == 0}">
+                                            ${p.original_price}đ
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
@@ -170,19 +198,28 @@
         </div>
         <nav aria-label="..." class="pagination">
             <ul class="pagination">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
+                    <a <c:if test="${page!=1}">                         
+                            href="list?page=${page-1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
+                        </c:if> class="page-link" aria-label="Previous">
+                        <span  aria-hidden="true">«</span>
+                    </a>
+                </li>
+
+                <c:forEach begin="1" end="${totalPage}" var="i">
+                    <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="list?page=${i}${historyKey}${historyCategoryId}${historyValue}${historyType}">${i}</a></li>
+                    </c:forEach>
+
+                <li class="page-item">
+                    <a <c:if test="${page!=totalPage}">
+                            href="list?page=${page+1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
+                        </c:if> class="page-link" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
                 </li>
             </ul>
         </nav>
         <%@include file="components/footer.jsp" %>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     </body>
 </html>

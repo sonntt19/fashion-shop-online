@@ -1,9 +1,6 @@
 /* Reset css */
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
 
 .clear {
     clear: both;
@@ -54,7 +51,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 10;
 }
 
 /* begin logo-shop */
@@ -167,7 +164,6 @@
 /* Start slider */
 #slider {
     margin-top: 46px;
-    padding-top: 30%;
     position: relative;
 }
 
@@ -237,7 +233,7 @@
 
 #content .product-item {
     float: left;
-    width: 25%;
+    width: 100%;
     text-align: center;
 }
 
@@ -437,14 +433,14 @@
 
 /* css by son - product list */
 #wrapper{
-    margin: 0 auto;
+    margin-top: 52px;
 }
-h3{
-    padding: 5px 10px;
+.headline .new-product{
+    padding: 5% 10%;
     color: black;
-    font-size: 5px;
+    font-size: 100%;
     text-transform: uppercase;
-    border: 1px solid gainsboro;
+    border: 2px solid gainsboro;
     display: inline-block;
     font-weight: 900;
 }
@@ -462,7 +458,8 @@ h3{
 .product-price{
     color: #ff3102;
     padding: 2px 0px;
-    margin-right: 14px;
+    margin-right: 1%;
+    font-size: 100%;
 }
 .product-top a{
     display: block;
@@ -476,10 +473,7 @@ h3{
     bottom: 0px;
 
 }
-.product-top:hover a.feedback{
-    bottom: 0px;
 
-}
 .product-top:hover a img{
     filter: opacity(80%);
 }
@@ -491,25 +485,12 @@ h3{
     color: white;
     padding: 10px 0px;
     position: absolute;
-    width: 50%;
+    width: 100%;
     bottom: -44px;
     transition: 0.25s ease-in-out;
     opacity: 0.85;
 }
-.product-top .feedback{
-    text-transform: uppercase;
-    text-decoration: none;
-    text-align: center;
-    background-color: #ed3520;
-    color: white;
-    padding: 10px 0px;
-    position: absolute;
-    width: 50%;
-    bottom: -44px;
-    margin-left: 115px;
-    transition: 0.25s ease-in-out;
-    opacity: 0.85;
-}
+
 del{
     color: #c4c4c4;
     float: right;
@@ -533,42 +514,194 @@ del{
     background-image: url(../..//images/star-half.svg);
 }
 .filter-search__control{
-    height: 40px;
-    padding: 0 40px 0 15px;
+    height: 76%;
+    width: 72%;
+    padding: 2% 2%;
     border: 1px solid #d9d9d9;
-    border-radius: 16px
+    border-radius: 16px;
+    z-index: 2;
 }
 .input-search{
     position: relative;
     overflow: hidden;
-    margin: 0px 10px;
+    margin: 0px 4%;
+    height: 100%;
 }
 .button-search{
     position: absolute;
-    bottom: 10px;
-    width: 24px;
-    height: 24px;
-    margin: 0 -40px;
+    width: 11%;
+    height: 48%;
+    margin: 2% -15%;
     border: none;
     color: white;
     background-color: white;
     background-image: url(../..//images/icon-search.svg);
+    background-repeat: no-repeat;
+    z-index: 1;
 }
-.dropdown-font{
-    background-color: white;
-    height: 40px;
-    padding: 0 15px 0 15px;
-    border: 1px solid #d9d9d9;
-    border-radius: 16px;
-    float: left;
+.dropdown-font-new{
+    display: block;
+    width: 66%;
+    padding: 0.375rem 2.25rem 0.375rem 0.75rem;
+    -moz-padding-start: calc(0.75rem - 3px);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-image: url(../..//images/icon-v.svg);
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 5.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0% 4%;
 }
 .sort{
     margin: 0 10px;
 }
 .product-down{
-    margin: 30px 60px;
+    margin: 2% 4%;
 }
 .pagination{
     justify-content: center;
     margin: 20px 0px;
+}
+
+#carouselExampleDark{
+    z-index: 1;
+    margin-top: 46px;
+}
+.product-thumb img{
+    height: 100%;
+    width: 100%;
+}
+.list h2{
+    font-weight: 900;
+    margin-right: 5%;
+}
+.list {
+    text-align: center
+}
+
+.open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
+}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.changepassword_open-button {
+    background-color: #555;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.8;
+    position: fixed;
+    bottom: 23px;
+    right: 28px;
+    width: 280px;
+}
+
+/* The popup form - hidden by default */
+.changepassword_form-popup {
+    display: none;
+    bottom: 0;
+    z-index: 9;
+    position: fixed;
+    width: 300px;
+    height: 200px;
+    top: 30%;
+    left: 38%;
+    margin-top: -100px; /* Negative half of height. */
+    margin-left: -100px; /* Negative half of width. */
+}
+
+/* Add styles to the form container */
+.changepassword_form-container {
+    width: 600px;
+    Xpadding: 10px;
+    border-radius:20px;
+    background-color: white;
+}
+
+/* Full-width input fields */
+.changepassword_form-container input[type=text], .changepassword_form-container input[type=password] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+    margin-left: 25px;
+}
+
+/* When the inputs get focus, do something */
+.changepassword_form-container input[type=text]:focus, .changepassword_form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+/* Set a style for the submit/login button */
+.changepassword_form-container .changepassword_btn {
+    background-color: #2f5acf;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+    margin-bottom:10px;
+    opacity: 0.8;
+    border-radius: 20px;
+    margin-left: 25px; 
+    margin-bottom: 25px;
+}
+/* Add some hover effects to buttons */
+.changepassword_form-container .changepassword_btn:hover {
+    background: black;
+    opacity: 1;
+}
+.changepassword_bd_rd{
+    border-radius: 20px;
+}
+.changepassword_form-container label b {
+    margin-left: 25px;
+}
+/* style user profile */
+.back:hover {
+    color: #000;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 5px
+}
+
+.add-experience:hover {
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #000
+}
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:after {
+    border: 2px solid #000;
+}
+
+
+[type="radio"]:checked + span:after,
+[type="radio"].with-gap:checked + span:before,
+[type="radio"].with-gap:checked + span:after {
+    background-color: #000;
 }

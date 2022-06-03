@@ -5,12 +5,19 @@
  */
 package Controller;
 
+import dal.BlogDAO;
+import dal.ProductDAO;
+import dal.SliderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Blog;
+import model.Product;
+import model.Slider;
 
 /**
  *
@@ -30,18 +37,19 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet HomeController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Demo Khang Agan</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        List<Blog> listBlog_HomePage = new BlogDAO().getAllBlog();
+        request.setAttribute("listBlog_HomePage", listBlog_HomePage);
+        
+        Slider listSlider_HomePageFirst = new SliderDAO().getFirstSlider();
+        request.setAttribute("sliderFirst", listSlider_HomePageFirst);
+        
+        List<Slider> listSlider_HomePageAll = new SliderDAO().getALLSlider();
+        request.setAttribute("listSlider_HomePageAll", listSlider_HomePageAll);
+        
+        List<Product> list4product = new ProductDAO().get4ProductRandom();
+        request.setAttribute("list4product", list4product);
+        
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

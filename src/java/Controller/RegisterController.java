@@ -13,15 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.User;
 
 /**
  *
  * @author Veetu
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "RegisterController", urlPatterns = {"/register"})
+public class RegisterController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,6 +34,34 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String fullName = request.getParameter("fullName");
+        String email = request.getParameter("email");
+        String mobile = request.getParameter("mobile");
+        String password = request.getParameter("password");
+        String repassword = request.getParameter("repassword");
+        String gender = request.getParameter("gender");
+
+        if (!password.equals(repassword)) {
+            request.setAttribute("mess", "<div style=\"border-radius: 100px;\" class=\"alert alert-danger\" role=\"alert\">\n"
+                    + "  Nhập lại mật khẩu không giống nhau\n"
+                    + "</div>");
+            response.sendRedirect("index.jsp");
+        } else {
+            UserDAO dao = new UserDAO();
+            User u = dao.checkUserExist(email);
+            if (u == null) {
+                //dang ky thanh cong
+                dao.register(fullName, password, gender, email, mobile);
+                response.sendRedirect("index.jsp");
+            } else {
+                request.setAttribute("mess", "<div style=\"border-radius: 100px;\" class=\"alert alert-danger\" role=\"alert\">\n"
+                    + "  Tài khoản đã tồn tại\n"
+                    + "</div>");
+                response.sendRedirect("index.jsp");
+            }
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,21 +90,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-
-        UserDAO dao = new UserDAO();
-        User u = dao.login(email, password);
-        if (u == null) {
-            request.setAttribute("mess", "<div style=\"border-radius: 100px;\" class=\"alert alert-danger\" role=\"alert\">\n"
-                    + "  Sai email hoặc mật khẩu\n"
-                    + "</div>");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("us", u);
-            response.sendRedirect("index.jsp");
-        }
+        processRequest(request, response);
     }
 
     /**

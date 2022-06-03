@@ -9,7 +9,6 @@ import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,10 +17,9 @@ import model.User;
 
 /**
  *
- * @author Veetu
+ * @author GanKPoet
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
-public class LoginController extends HttpServlet {
+public class ChangePasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,6 +33,18 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ChangePasswordController</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ChangePasswordController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,20 +73,23 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        int userId = Integer.parseInt(request.getParameter("user_Id"));
+        String old_pass = request.getParameter("old_pass");
+        String new_pass1 = request.getParameter("new_pass1");
+        String new_pass2 = request.getParameter("new_pass2");
 
-        UserDAO dao = new UserDAO();
-        User u = dao.login(email, password);
-        if (u == null) {
-            request.setAttribute("mess", "<div style=\"border-radius: 100px;\" class=\"alert alert-danger\" role=\"alert\">\n"
-                    + "  Sai email hoặc mật khẩu\n"
-                    + "</div>");
+        User user = new UserDAO().getUser(userId, old_pass);
+        
+        if (user == null) {
+            request.setAttribute("notification", "Old Password Wrong");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else if (!new_pass1.equals(new_pass2)) {
+            request.setAttribute("notification", "Your New Password Does Not Match");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
-            HttpSession session = request.getSession();
-            session.setAttribute("us", u);
-            response.sendRedirect("index.jsp");
+            new UserDAO().changePassword(userId, new_pass1);
+            request.setAttribute("notification", "Successful Change Password");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 
