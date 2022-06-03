@@ -233,7 +233,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 #content .product-item {
     float: left;
-    width: 25%;
+    width: 100%;
     text-align: center;
 }
 

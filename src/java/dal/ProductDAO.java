@@ -128,5 +128,35 @@ public class ProductDAO extends DBContext {
         }
         return null;
     }
+    
+    public List<Product> get4ProductRandom() {
+        List<Product> list = new ArrayList<>();
+        String sql = "select top 4 * from Product ORDER BY NEWID()";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = Product.builder()
+                        .id(rs.getInt(1))
+                        .name(rs.getString(2))
+                        .original_price(rs.getInt(3))
+                        .sale_price(rs.getInt(4))
+                        .desciption(rs.getString(5))
+                        .brief_infor(rs.getString(6))
+                        .status(rs.getBoolean(7))
+                        .quantity(rs.getInt(8))
+                        .category_id(rs.getInt(9))
+                        .update_date(rs.getDate(10))
+                        .image(getImgProduct(rs.getInt(1)))
+                        .rated_star(getRatedProduct(rs.getInt(1)))
+                        .build();
+
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
 
 }
