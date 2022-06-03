@@ -19,14 +19,17 @@
         <div id="main">
 
             <%@include file="components/header.jsp" %>
-            
+
+            <!-- Notification -->
             <c:if test="${notification !=null}">
-                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15">
+                <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15; margin-left: 800px">
                     <strong>${notification}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             </c:if>
-            <!-- Login -->
+
+
+           <!-- Login -->
             <div class="modal fade col-md-12" role="dialog" id="loginModal">
                 <div class="modal-dialog">
                     <div class="modal-content" style="border-radius: 10px; margin-top: 258px;">
@@ -35,15 +38,12 @@
                         </div>
                         <div class="modal-body">
                             <form action="login" method="post">
-                                ${mess}
                                 <div class="form-group">
                                     <input name="email" type="email" class="form-control" placeholder="Email của bạn"style="border-radius: 100px;" required="">
                                 </div>
                                 <div class="form-group">
                                     <input name="password" type="password" class="form-control" placeholder="Mật khẩu"style="border-radius: 100px;" required>
                                 </div>
-                                <input type="checkbox" style="height:15px;width:15px; ">&nbsp;Nhớ mật khẩu
-                                <br><br>
                                 <center><button type="submit" class="btn btn-dark" style="padding-right: 193px;padding-left: 193px; border-radius: 100px;">Đăng nhập</button></center>
                             </form>
                             <br><br>
@@ -67,8 +67,6 @@
                             <section>
                                 <div class="container">
                                     <form action="register" method="POST">
-                                        ${mess}
-                                        ${mess}
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="form-group">
@@ -94,11 +92,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <div class="form-group">
+                                                <div class="form-group" required>
                                                     Giới tính&nbsp;&nbsp;&nbsp;
-                                                    <input class="" name="gender" type="radio" value="True" />&nbsp; Nam
+                                                    <input class="" name="gender" type="radio" value="True" required/>&nbsp; Nam
                                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <input class="" name="gender" type="radio" value="False" />&nbsp; Nữ
+                                                    <input class="" name="gender" type="radio" value="False" required/>&nbsp; Nữ
                                                 </div>
                                             </div>
                                             <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 190px;padding-left: 190px; border-radius: 100px;">Đăng ký</button></center><br><br>
@@ -124,14 +122,14 @@
                         <div class="modal-body">
                             <section>
                                 <div class="container">
-                                    
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="${sessionScope.us.avatar}"><span class="font-weight-bold">${sessionScope.us.full_Name}</span><span class="text-black-50">${sessionScope.us.email}</span><span> </span></div>
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="p-3 py-5">
-                                                    <form action="edit" method="POST">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="${sessionScope.us.avatar}"><span class="font-weight-bold">${sessionScope.us.full_Name}</span><span class="text-black-50">${sessionScope.us.email}</span><span> </span></div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="p-3 py-5">
+                                                <form action="edit" method="POST">
                                                     <div class="row mt-4">
                                                         <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Họ và tên</label><input type="text" class="form-control" name="fullName" placeholder="Họ và tên" value="${sessionScope.us.full_Name}"></div>&nbsp;
                                                         <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Số điện thoại</label><input type="text" class="form-control" name="mobile" placeholder="Mobile" value="${sessionScope.us.mobile}"></div>&nbsp;
@@ -150,13 +148,13 @@
                                                         <div class="row mt-4 col-md-3"><label class="labels" style="font-size: 10px;">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
                                                     </div>
                                                     <div class="row mt-5 col-md-6 text-center"><button class="btn btn-dark" type="submit">Lưu</button></div>
-                                                    </form>
-                                                    <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
-                                                    <div class="row mt-4 col-md-3"><label class="labels">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
-                                                </div>
+                                                </form>
+                                                <div class="row mt-5 col-md-6 text-center d-flex"><a href="index.jsp"><button class="btn btn-dark" type="button">Trang chủ</button></a></div>
+                                                <div class="row mt-4 col-md-3"><label class="labels">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal" class="btn btn-dark" placeholder="Ảnh đại diện" value="">Đổi mật khẩu</button></a></div>
                                             </div>
                                         </div>
-                                    
+                                    </div>
+
                                 </div>
                             </section>
                         </div>
