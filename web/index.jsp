@@ -272,7 +272,7 @@
                                                 <img src="${p.image}" height="365px" width="230px" alt="">
 
                                             </a>
-                                            <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Feedback</a>
+                                            <a href="" class="buy-now" >Mua ngay</a>
 
                                         </div>
                                         <div class="product-infor">

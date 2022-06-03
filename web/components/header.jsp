@@ -67,18 +67,9 @@
             <i class="header-icon ti-shopping-cart"></i>
         </a>
     </div>
-<<<<<<< HEAD
-    <!-- Button Login -->
-    <div class="btn-icon">
-        <a><i type="button" class="header-icon ti-user" data-toggle="modal" data-target="#loginModal"></i></a>
-    </div>
+
 
     
-    <div class="btn-icon">
-        <a href="#"><i class="header-icon ti-search"></i></a>
-    </div>
 
-=======
->>>>>>> 99342808424b0f2abf971f810dd191f0b37ca573
 
 </div>

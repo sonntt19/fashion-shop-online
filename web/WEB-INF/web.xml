@@ -9,7 +9,6 @@
         <servlet-class>Controller.ProductListController</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>ListDetailController</servlet-name>
         <servlet-class>Controller.ListDetailController</servlet-class>
     </servlet>
@@ -20,10 +19,10 @@
     <servlet>
         <servlet-name>CartController</servlet-name>
         <servlet-class>Controller.CartController</servlet-class>
-=======
+    </servlet>
+    <servlet>
         <servlet-name>ChangePasswordController</servlet-name>
         <servlet-class>Controller.ChangePasswordController</servlet-class>
->>>>>>> 99342808424b0f2abf971f810dd191f0b37ca573
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -34,7 +33,6 @@
         <url-pattern>/list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>ListDetailController</servlet-name>
         <url-pattern>/list-detail</url-pattern>
     </servlet-mapping>
@@ -45,10 +43,10 @@
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
         <url-pattern>/carts</url-pattern>
-=======
+     </servlet-mapping>
+     <servlet-mapping>
         <servlet-name>ChangePasswordController</servlet-name>
         <url-pattern>/changepassword</url-pattern>
->>>>>>> 99342808424b0f2abf971f810dd191f0b37ca573
     </servlet-mapping>
     <session-config>
         <session-timeout>
