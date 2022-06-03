@@ -22,7 +22,7 @@
         <%@include file="components/header.jsp" %>
         <div  class="container-fluid" >
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-10 col-sm-8">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" >
                             <div class="carousel-indicators">
@@ -52,11 +52,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-sm-4">
                     <div class="row">
                         <div id="wrapper" >
                             <div class="headline">
-                                <h3>Sản phẩm mới nhất</h3>
+                                <div class="new-product">Sản phẩm mới nhất</div>
                             </div>
                         </div>
                     </div>
@@ -82,7 +82,7 @@
                                     <img src="${sessionScope.pNew.image}" alt="">
 
                                 </a>
-                                <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Phản hồi</a>
+                                <a href="" class="buy-now" >Mua ngay</a>
 
                             </div>
                             <div class="product-infor">
@@ -105,10 +105,13 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <form class="input-search" action="list">
-                    <input type="text" name="key" value="${key}" placeholder="Tìm kiếm sản phẩm..." class="filter-search__control" >
-                    <button type="submit" class="button-search"></button>
+                    <div>
+                        <input type="text" name="key" value="${key}" placeholder="Tìm kiếm sản phẩm..." class="filter-search__control" >
+                        <button type="submit" class="button-search"></button>
+                    </div>
+
                 </form>
             </div>
 
@@ -140,7 +143,7 @@
                     </option> 
                 </select>
             </div>
-            <div class="col-md-5 list">
+                        <div class="col-md-4 list">
                 <h2>Danh Sách Sản Phẩm</h2>
             </div>
         </div>
@@ -148,7 +151,7 @@
         <div  class="container-fluid">
             <div class="row">
                 <c:forEach items="${listProduct}" var="p">
-                    <div class="col-md-2 product-down">
+                    <div class="col-lg-2 col-md-3 col-sm-6 product-down">
                         <div class="row">
                             <div class="product-item">
                                 <div class="product-top">
@@ -173,7 +176,7 @@
                                         <img src="${p.image}" height="365px" width="230px" alt="">
 
                                     </a>
-                                    <a href="" class="buy-now" >Mua ngay</a><a href="" class="feedback" >Phản hồi</a>
+                                    <a href="" class="buy-now" >Mua ngay</a>
 
                                 </div>
                                 <div class="product-infor">
