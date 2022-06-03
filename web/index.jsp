@@ -8,17 +8,13 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        
     </head>
     <body>
         <div id="main">
 
             <%@include file="components/header.jsp" %>
+<<<<<<< HEAD
 
             <c:if test="${notification !=null}">
                 <div class="alert alert-warning alert-dismissible fade show" role="alert" style="position: fixed; z-index: 15">
@@ -204,6 +200,9 @@
                 </div>
             </div>
 
+=======
+            <%@include file="components/account.jsp" %>
+>>>>>>> 4c4e27c181a28bb3c60d12133aa57221b2e26fae
             <!--Slider-->
 
 
@@ -211,15 +210,15 @@
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" >
                     <div class="carousel-indicators">
 
-                        <c:forEach items="${listSlider_HomePageAll}" var="s" >
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${s.id -1}" class="${s.id == sliderFirst.id ? "active" : ""}" aria-current="${s.id == sliderFirst.id ? "true" : ""}" aria-label="Slide ${s.id}"></button>
+                        <c:forEach items="${sessionScope.listSlider_HomePageAll}" var="s" >
+                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${s.id -1}" class="${s.id == sessionScope.sliderFirst.id ? "active" : ""}" aria-current="${s.id == sliderFirst.id ? "true" : ""}" aria-label="Slide ${s.id}"></button>
                         </c:forEach>
                     </div>
 
                     <div class="carousel-inner">
 
-                        <c:forEach items="${listSlider_HomePageAll}" var="s" >
-                            <div class="carousel-item ${s.id == sliderFirst.id ? "active" : ""}">
+                        <c:forEach items="${sessionScope.listSlider_HomePageAll}" var="s" >
+                            <div class="carousel-item ${s.id == sessionScope.sliderFirst.id ? "active" : ""}">
                                 <img src="${s.slider_image}" class="d-block w-100" alt="...">
                             </div> 
 
@@ -241,6 +240,7 @@
             <!-- Content -->
             <div id="content">
                 <div class="content-section background-product" style="width: 1500px">
+<<<<<<< HEAD
 
                     <!-- Base Product -->
                     <h2 class="section-heading">Trang phục cơ bản</h2>
@@ -251,6 +251,19 @@
                                     <div class="row">
                                         <div class="product-item">
                                             <div class="product-top">
+=======
+
+
+                <!-- Base Product -->
+                <h2 class="section-heading">Trang phục cơ bản</h2>
+                <div  class="container-fluid">
+                    <div class="row">
+                        <c:forEach items="${sessionScope.list4product}" var="p">
+                            <div class="col-md-2 product-down">
+                                <div class="row">
+                                    <div class="product-item">
+                                        <div class="product-top">
+>>>>>>> 4c4e27c181a28bb3c60d12133aa57221b2e26fae
 
                                                 <div class="reviews-rating">
 
@@ -269,9 +282,13 @@
 
                                                 </div>
                                                 <a href="" class="product-thumb">
+<<<<<<< HEAD
                                                     <a href="list-detail?productId=${p.id}&categoryId=${p.category_id}">
                                                         <img src="${p.image}" height="365px" width="230px" alt="">
                                                     </a>
+=======
+                                                    <img src="${p.image}" height="365px" width="230px" alt="">
+>>>>>>> 4c4e27c181a28bb3c60d12133aa57221b2e26fae
 
                                                 </a>
                                                 <a href="" class="buy-now" >Mua ngay</a>
@@ -317,19 +334,87 @@
                                         top center / cover no-repeat">
                                 <div class="category-content">Đồ thể thao</div>
                             </div></a>
+<<<<<<< HEAD
+
+                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg4.jpg') 
+                                        top center / cover no-repeat">
+                                <div class="category-content">Tất cả</div>
+                            </div></a>
+=======
 
                         <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg4.jpg') 
                                         top center / cover no-repeat">
                                 <div class="category-content">Tất cả</div>
                             </div></a>
 
+>>>>>>> 4c4e27c181a28bb3c60d12133aa57221b2e26fae
 
 
 
 
+
+<<<<<<< HEAD
+=======
+                    <div class="clear"></div>
+                </div> 
+            </div>
+            <!-- Blog -->
+            <div class="blog-section">
+                <div class="content-section">
+                    <h2 class="section-heading text-white">Chúng tôi luôn mang đến những công nghệ hiện đại nhất</h2>
+                    <p class="section-sub-heading text-white">Công nghệ Việt cho người Việt</p>
+
+                    <!-- blog list hot -->
+                    <div class="blog-list">
+
+                        <c:forEach items="${sessionScope.listBlog_HomePage}" var="C">
+                            <div class="blog-item">
+                                <img src="${C.thumbnail}" alt="" class="blog-img">
+                                <div class="blog-body">
+                                    <h3 class="blog-heading">${C.title}</h3>
+                                    <p class="blog-desc">${C.brief_info}</p>
+                                    <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
+                                </div>
+                            </div>
+                        </c:forEach>
+
+
+>>>>>>> 4c4e27c181a28bb3c60d12133aa57221b2e26fae
                         <div class="clear"></div>
                     </div> 
                 </div>
+                <!-- Blog -->
+                <div class="blog-section">
+                    <div class="content-section">
+                        <h2 class="section-heading text-white">Chúng tôi luôn mang đến những công nghệ hiện đại nhất</h2>
+                        <p class="section-sub-heading text-white">Công nghệ Việt cho người Việt</p>
+
+                        <!-- blog list hot -->
+                        <div class="blog-list">
+
+                            <c:forEach items="${listBlog_HomePage}" var="C">
+                                <div class="blog-item">
+                                    <img src="${C.thumbnail}" alt="" class="blog-img">
+                                    <div class="blog-body">
+                                        <h3 class="blog-heading">${C.title}</h3>
+                                        <p class="blog-desc">${C.brief_info}</p>
+                                        <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
+                                    </div>
+                                </div>
+                            </c:forEach>
+
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+
+
+                <!-- End Contact -->
+
                 <!-- Blog -->
                 <div class="blog-section">
                     <div class="content-section">
@@ -372,6 +457,7 @@
 
         </div>
 
+<<<<<<< HEAD
         <!--JS Change Password -->       
         <script>
             function Changepass_openForm() {
@@ -407,6 +493,9 @@
                 }
             }
         </script>
+=======
+     
+>>>>>>> 4c4e27c181a28bb3c60d12133aa57221b2e26fae
 
     </body>
 

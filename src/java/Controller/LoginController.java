@@ -69,9 +69,7 @@ public class LoginController extends HttpServlet {
         UserDAO dao = new UserDAO();
         User u = dao.login(email, password);
         if (u == null) {
-            request.setAttribute("mess", "<div style=\"border-radius: 100px;\" class=\"alert alert-danger\" role=\"alert\">\n"
-                    + "  Sai email hoặc mật khẩu\n"
-                    + "</div>");
+            request.setAttribute("notification", "Sai email hoặc mật khẩu");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
             HttpSession session = request.getSession();
