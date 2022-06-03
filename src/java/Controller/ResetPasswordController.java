@@ -12,14 +12,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.SendMailOK;
 import model.User;
 
 /**
  *
  * @author GanKPoet
  */
-public class ChangePasswordController extends HttpServlet {
+public class ResetPasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +38,10 @@ public class ChangePasswordController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangePasswordController</title>");            
+            out.println("<title>Servlet ResetPasswordController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ChangePasswordController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ResetPasswordController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -73,25 +73,47 @@ public class ChangePasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int userId = Integer.parseInt(request.getParameter("user_Id"));
-        String old_pass = request.getParameter("old_pass");
-        String new_pass1 = request.getParameter("new_pass1");
-        String new_pass2 = request.getParameter("new_pass2");
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String email = request.getParameter("email");
 
-        User user = new UserDAO().getUser(userId, old_pass);
-        
+        User user = new UserDAO().getUserByEmail(email);
+
         if (user == null) {
-            request.setAttribute("notification", "Old Password Wrong");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else if (!new_pass1.equals(new_pass2)) {
-            request.setAttribute("notification", "Your New Password Does Not Match");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }else if (new_pass1.equals(old_pass)) {
-            request.setAttribute("notification", "Your New Password and Oll Password are the same");
+            request.setAttribute("notification", "Email wrong");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
-            new UserDAO().changePassword(userId, new_pass1);
-            request.setAttribute("notification", "Successful Change Password");
+            try {
+                String smtpServer = "smtp.gmail.com";
+                String to = user.getEmail();
+                String from = "khangdthe151162@fpt.edu.vn";
+                String subject = "Re-issue old password\n";
+                String body =
+                        "<!DOCTYPE html>\n"
+                        + "<html lang=\"en\">\n"
+                        + "\n"
+                        + "<head>\n"
+                        + "</head>\n"
+                        + "\n"
+                        + "<body>\n"
+                        + "    <h3 style=\"color: blue;\">Hello " + user.getFull_Name() + "</h3>\n"
+                        + "    <div>Chúng tôi nhận được yêu cầu đặt lại mật khẩu của bạn tại http://localhost:8080/fashion-shop-online/home.</div>\n"
+                        + "    <h4 style=\"color: green;\">Mật khẩu cũ của bạn là :" + user.getPassword() + "</h4>\n"
+                        + "    <div>Nếu bạn không yêu cầu, bạn có thể bỏ qua email này. Nếu thực sự bạn quên mật khẩu, hãy click ngay vào nút bên trên , đăng nhập lại vào KingsMan để đổi mật khẩu , chúc bạn có một buổi mua sắm tuyệt vời với KingsMan.</div>\n"
+                        + "    <div>Hi vọng bạn sẽ không quên mật khẩu của mình, nhưng nếu có quên thì chúng tôi rất sẵn sàng hỗ trợ bạn.</div>\n"
+                        + "    <h3 style=\"color: blue;\">Trân trọng cảm ơn quý khách !</h3>\n"
+                        + "\n"
+                        + "</body>\n"
+                        + "\n"
+                        + "</html>";
+                String password = "khang0974421459";
+                SendMailOK.send(smtpServer, to, from, password, subject, body);
+
+            } catch (Exception ex) {
+                System.out.println("Usage: " + ex.getMessage());
+            }
+            request.setAttribute("notification", "Hãy kiểm tra hòm thư của bạn");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }

@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Blog;
 import model.Product;
 import model.Slider;
@@ -37,17 +38,19 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        
         List<Blog> listBlog_HomePage = new BlogDAO().getAllBlog();
-        request.setAttribute("listBlog_HomePage", listBlog_HomePage);
+        session.setAttribute("listBlog_HomePage", listBlog_HomePage);
         
         Slider listSlider_HomePageFirst = new SliderDAO().getFirstSlider();
-        request.setAttribute("sliderFirst", listSlider_HomePageFirst);
+        session.setAttribute("sliderFirst", listSlider_HomePageFirst);
         
         List<Slider> listSlider_HomePageAll = new SliderDAO().getALLSlider();
-        request.setAttribute("listSlider_HomePageAll", listSlider_HomePageAll);
+        session.setAttribute("listSlider_HomePageAll", listSlider_HomePageAll);
         
         List<Product> list4product = new ProductDAO().get4ProductRandom();
-        request.setAttribute("list4product", list4product);
+        session.setAttribute("list4product", list4product);
         
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }

@@ -99,6 +99,7 @@ public class UserDAO extends DBContext {
         } catch (Exception e) {
         }
     }
+
     public void changePassword(int userId, String new_pass1) {
         try {
             String sql = "UPDATE [dbo].[User]\n"
@@ -120,6 +121,33 @@ public class UserDAO extends DBContext {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, userId);
             ps.setString(2, old_pass);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                User user = User.builder()
+                        .user_Id(rs.getInt(1))
+                        .full_Name(rs.getString(2))
+                        .password(rs.getString(3))
+                        .avatar(rs.getString(4))
+                        .gender(rs.getBoolean(5))
+                        .email(rs.getString(6))
+                        .mobile(rs.getString(7))
+                        .address(rs.getString(8))
+                        .status(rs.getString(9))
+                        .role_Id(rs.getInt(10))
+                        .build();
+                return user;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public User getUserByEmail(String email) {
+        try {
+            String sql = "select * from [User] where email = ?";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 User user = User.builder()
