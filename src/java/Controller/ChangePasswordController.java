@@ -38,7 +38,7 @@ public class ChangePasswordController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChangePasswordController</title>");            
+            out.println("<title>Servlet ChangePasswordController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ChangePasswordController at " + request.getContextPath() + "</h1>");
@@ -79,14 +79,17 @@ public class ChangePasswordController extends HttpServlet {
         String new_pass2 = request.getParameter("new_pass2");
 
         User user = new UserDAO().getUser(userId, old_pass);
-        
+
         if (user == null) {
             request.setAttribute("notification", "Old Password Wrong");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else if (!new_pass1.equals(new_pass2)) {
-            request.setAttribute("notification", "Your New Password Does Not Match");
+            request.setAttribute("notification", "Your New Password Does Not Match ");
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        }else if (new_pass1.equals(old_pass)) {
+        } else if (new_pass1.length() <= 8 || new_pass1.length() >32) {
+            request.setAttribute("notification", "Your New Password less than 8 character or long than 32 characters");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else if (new_pass1.equals(old_pass)) {
             request.setAttribute("notification", "Your New Password and Oll Password are the same");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {

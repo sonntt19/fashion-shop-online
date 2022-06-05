@@ -49,7 +49,13 @@ public class RegisterController extends HttpServlet {
         } else {
             UserDAO dao = new UserDAO();
             User u = dao.checkUserExist(email);
-            if (u == null) {
+            if (!mobile.matches("[0-9]*")) {
+                request.setAttribute("notification", "Your Mobile Invalid");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } else if (password.length() <= 8 || password.length() > 32) {
+                request.setAttribute("notification", "Your New Password less than 8 character or long than 32 characters");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } else if (u == null) {
                 //dang ky thanh cong
                 dao.register(fullName, password, gender, email, mobile);
                 request.setAttribute("notification", "Đăng kí thành công");
