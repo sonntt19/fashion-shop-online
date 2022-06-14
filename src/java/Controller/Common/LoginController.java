@@ -3,24 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.Common;
 
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Cart;
+import model.User;
 
 /**
  *
- * @author dongh
+ * @author Veetu
  */
-public class CartController extends HttpServlet {
+@WebServlet(name = "LoginController", urlPatterns = {"/login"})
+public class LoginController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,16 +35,6 @@ public class CartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            Map<Integer,Cart> carts = (Map<Integer,Cart>) session.getAttribute("carts");
-            if(carts == null){
-                carts = new LinkedHashMap<>();
-                
-            }
-            request.setAttribute("carts", carts);
-            request.getRequestDispatcher("carts.jsp").forward(request, response);
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +63,21 @@ public class CartController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        String historyUrl = (String) session.getAttribute("historyUrl");
+        
+        UserDAO dao = new UserDAO();
+        User u = dao.login(email, password);
+        if (u == null) {
+            request.setAttribute("notification", "Sai email hoặc mật khẩu");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else {
+
+            session.setAttribute("us", u);
+            response.sendRedirect(historyUrl);
+        }
     }
 
     /**

@@ -84,7 +84,7 @@
                                     <img src="${sessionScope.pNew.image}" alt="">
 
                                 </a>
-                                <a href="" class="buy-now" >Mua ngay</a>
+                                <a href="addcart?productId=${sessionScope.pNew.id}" class="buy-now" >Mua ngay</a>
 
                             </div>
                             <div class="product-infor">
@@ -177,7 +177,7 @@
                                     <a href="list-detail?productId=${p.id}&categoryId=${p.category_id}" class="product-thumb">
                                         <img src="${p.image}"alt="">
                                     </a>
-                                    <a href="" class="buy-now" >Mua ngay</a>
+                                    <a href="addcart?productId=${p.id}" class="buy-now" >Mua ngay</a>
 
                                 </div>
                                 <div class="product-infor">

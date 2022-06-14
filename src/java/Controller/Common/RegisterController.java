@@ -3,23 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.Common;
 
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.User;
 
 /**
  *
- * @author GanKPoet
+ * @author Veetu
  */
-public class ChangePasswordController extends HttpServlet {
+@WebServlet(name = "RegisterController", urlPatterns = {"/register"})
+public class RegisterController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +34,36 @@ public class ChangePasswordController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ChangePasswordController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ChangePasswordController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String fullName = request.getParameter("fullName");
+        String email = request.getParameter("email");
+        String mobile = request.getParameter("mobile");
+        String password = request.getParameter("password");
+        String repassword = request.getParameter("repassword");
+        String gender = request.getParameter("gender");
+
+        if (!password.equals(repassword)) {
+            request.setAttribute("notification", "Nhập lại mật khẩu không giống nhau");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else {
+            UserDAO dao = new UserDAO();
+            User u = dao.checkUserExist(email);
+            if (!mobile.matches("[0-9]*")) {
+                request.setAttribute("notification", "Your Mobile Invalid");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } else if (password.length() <= 8 || password.length() > 32) {
+                request.setAttribute("notification", "Your New Password less than 8 character or long than 32 characters");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } else if (u == null) {
+                //dang ky thanh cong
+                dao.register(fullName, password, gender, email, mobile);
+                request.setAttribute("notification", "Đăng kí thành công");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } else {
+                request.setAttribute("notification", "Email đã tồn tại");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
         }
     }
 
@@ -73,30 +93,7 @@ public class ChangePasswordController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int userId = Integer.parseInt(request.getParameter("user_Id"));
-        String old_pass = request.getParameter("old_pass");
-        String new_pass1 = request.getParameter("new_pass1");
-        String new_pass2 = request.getParameter("new_pass2");
-
-        User user = new UserDAO().getUser(userId, old_pass);
-
-        if (user == null) {
-            request.setAttribute("notification", "Old Password Wrong");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else if (!new_pass1.equals(new_pass2)) {
-            request.setAttribute("notification", "Your New Password Does Not Match ");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else if (new_pass1.length() <= 8 || new_pass1.length() >32) {
-            request.setAttribute("notification", "Your New Password less than 8 character or long than 32 characters");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else if (new_pass1.equals(old_pass)) {
-            request.setAttribute("notification", "Your New Password and Oll Password are the same");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else {
-            new UserDAO().changePassword(userId, new_pass1);
-            request.setAttribute("notification", "Successful Change Password");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -40,7 +40,7 @@
             <link rel="stylesheet" href="do1/css/jquery-ui.min.css" type="text/css">
             <link rel="stylesheet" href="do1/css/slicknav.min.css" type="text/css">
             <link rel="stylesheet" href="do1/css/style.css" type="text/css">
-            
+
             <%@include file="components/javascript.jsp" %>
         </head>
 
@@ -57,86 +57,52 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th>Ảnh</th>
+                                            <th>ID</th>
                                             <th class="p-name">Tên sản phẩm</th>
-                                            <th>Giá gốc</th>
-                                            <th>Giảm giá</th>
+                                            <th>Giá tiền</th>
                                             <th>Số lượng</th>
                                             <th>Tổng tiền</th>
-                                            <th><i class="ti-close"></i></th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="cart-pic first-row"><img src="img/cart-page/product-1.jpg" alt=""></td>
-                                            <td class="cart-title first-row">
-                                                <h5>Pure Pineapple</h5>
-                                            </td>
-                                            <td class="p-price first-row">$60.00</td>
-                                            <td class="p-price first-row">$60.00</td>
-                                            <td class="qua-col first-row">
-                                                <div class="quantity">
-                                                    <div class="pro-qty">
-                                                        <input type="text" value="1">
+                                        <c:forEach items="${listCart}" var="c">
+                                            <tr>
+                                                <td class="p-price first-row">${c.product_id}</td>
+                                                <td class="cart-title first-row">
+                                                    <h5>${c.product_name}</h5>
+                                                </td>
+                                                <td class="p-price first-row">${c.product_price}đ</td>
+                                                <td class="qua-col first-row">
+                                                    <div class="quantity">                                                
+                                                            <form action="addcart">
+                                                                <input class="form-control form-control-sm" onchange="this.form.submit()" type="number" name="quantity" value="${c.quantity}">
+                                                                <input type="hidden" name="productId" value="${c.product_id}"/>
+                                                            </form>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="total-price first-row">$60.00</td>
-                                            <td class="close-td first-row"><i class="ti-close"></i></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="cart-pic"><img src="img/cart-page/product-2.jpg" alt=""></td>
-                                            <td class="cart-title">
-                                                <h5>American lobster</h5>
-                                            </td>
-                                            <td class="total-price">$60.00</td>
-                                            <td class="p-price">$60.00</td>
-                                            <td class="qua-col">
-                                                <div class="quantity">
-                                                    <div class="pro-qty">
-                                                        <input type="text" value="1">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="total-price">$60.00</td>
-                                            <td class="close-td"><i class="ti-close"></i></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="cart-pic"><img src="img/cart-page/product-3.jpg" alt=""></td>
-                                            <td class="cart-title">
-                                                <h5>Guangzhou sweater</h5>
-                                            </td>
-                                            <td class="total-price">$60.00</td>
-                                            <td class="p-price">$60.00</td>
-                                            <td class="qua-col">
-                                                <div class="quantity">
-                                                    <div class="pro-qty">
-                                                        <input type="text" value="1">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="total-price">$60.00</td>
-                                            <td class="close-td"><i class="ti-close"></i></td>
-                                        </tr>
+                                                </td>
+                                                <td class="total-price first-row">${c.total_cost}đ</td>
+                                                <td class="close-td first-row"><a href="delete-cart?productId=${c.product_id}&userId=${c.user_id}" class="btn-outline-danger text-decoration-none"><i class="ti-close"></i></a></td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>
                             <div class="row">
                                 <div class="col-lg-4">
-                                    
-<!--                                    <div class="discount-coupon">
-                                        <h6>Mã giảm giá</h6>
-                                        <form action="#" class="coupon-form">
-                                            <input type="text" placeholder="Nhập mã">
-                                            <button type="submit" class="site-btn coupon-btn">Apply</button>
-                                        </form>
-                                    </div>-->
+
+                                    <!--                                    <div class="discount-coupon">
+                                                                            <h6>Mã giảm giá</h6>
+                                                                            <form action="#" class="coupon-form">
+                                                                                <input type="text" placeholder="Nhập mã">
+                                                                                <button type="submit" class="site-btn coupon-btn">Apply</button>
+                                                                            </form>
+                                                                        </div>-->
                                 </div>
                                 <div class="col-lg-4 offset-lg-4">
                                     <div class="proceed-checkout">
                                         <ul>
-                                            <li class="subtotal">Tổng Phụ <span>$240.00</span></li>
-                                            <li class="cart-total">Tổng tiền các sản phẩm <span>$240.00</span></li>
+                                            <li class="cart-total">Tổng tiền các sản phẩm <span>${sum}đ</span></li>
                                         </ul>
                                         <a href="#" class="proceed-btn">Thanh toán</a>
                                     </div>

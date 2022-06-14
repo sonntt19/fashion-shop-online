@@ -3,28 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.Public;
 
-import dal.BlogDAO;
-import dal.ProductDAO;
-import dal.SliderDAO;
+import dal.CartDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Blog;
-import model.Product;
-import model.Slider;
+import model.Cart;
+import model.User;
 
 /**
  *
- * @author son22
+ * @author dongh
  */
-public class HomeController extends HttpServlet {
+public class CartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,21 +37,21 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        
-        List<Blog> listBlog_HomePage = new BlogDAO().getAllBlog();
-        session.setAttribute("listBlog_HomePage", listBlog_HomePage);
-        
-        Slider listSlider_HomePageFirst = new SliderDAO().getFirstSlider();
-        session.setAttribute("sliderFirst", listSlider_HomePageFirst);
-        
-        List<Slider> listSlider_HomePageAll = new SliderDAO().getALLSlider();
-        session.setAttribute("listSlider_HomePageAll", listSlider_HomePageAll);
-        
-        List<Product> list4product = new ProductDAO().get4ProductRandom();
-        session.setAttribute("list4product", list4product);
-        
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            CartDAO c = new CartDAO();
+            HttpSession session = request.getSession();
+            User u = (User)session.getAttribute("us");
+            int user_id = u.getUser_Id();
+            List<Cart> listCart = c.getAllCartByUserId(user_id);
+            int sum = 0;
+            for (Cart o : listCart) {
+                sum += o.getTotal_cost();
+            }
+            request.setAttribute("sum", sum);
+            session.setAttribute("historyUrl", "carts");
+            request.setAttribute("listCart",  listCart);
+            request.getRequestDispatcher("carts.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.Public;
 
 import dal.CategoryDAO;
 import dal.ProductDAO;
@@ -99,19 +99,24 @@ public class ProductListController extends HttpServlet {
             session.setAttribute("listCategories", l);
             session.setAttribute("listProduct", listProduct);
             session.setAttribute("historyUrl", "list");
+            String history = "list?page="+page;
             if (strSearchKey != null) {
+                history = history + "&key=" + strSearchKey;
                 request.setAttribute("historyKey", "&key=" + strSearchKey);
                 request.setAttribute("key", strSearchKey);
             }
             if (strCategoryId != null) {
+                history = history + "&categoryId=" + strCategoryId;
                 request.setAttribute("historyCategoryId", "&categoryId=" + strCategoryId);
                 request.setAttribute("categoryId", strCategoryId);
             }
             if (strValue != null) {
+                history = history + "&value=" + strValue;
                 request.setAttribute("historyValue", "&value=" + strValue);
                 request.setAttribute("value", strValue);
             }
             if (strType != null) {
+                history = history + "&type=" + strType;
                 request.setAttribute("historyType", "&type=" + strType);
                 request.setAttribute("type", strType);
             }                    
@@ -119,6 +124,7 @@ public class ProductListController extends HttpServlet {
             request.setAttribute("listSlider_HomePageAll", listSlider_HomePageAll);
             request.setAttribute("page", page);
             request.setAttribute("totalPage", totalPage);
+            session.setAttribute("historyUrl", history);
             
             // Request
             request.getRequestDispatcher("product.jsp").forward(request, response);
