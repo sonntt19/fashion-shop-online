@@ -51,7 +51,6 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" type="button" data-toggle="modal"  data-target="#userProfileModal">Thông tin cá nhân</a></li>
                                 <li><a class="dropdown-item" href="#">Danh sách đơn hàng</a></li>
-                                <li><a class="dropdown-item" href="carts">Giỏ hàng</a></li>
                                 <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
                             </ul>
                         </div>
@@ -64,7 +63,7 @@
                     <!-- begin icon header -->
 
                     <li class="nav-item">
-                        <a class="nav-link btn btn-icon py-2 px-4" href="#" tabindex="-1" aria-disabled="true"><i class="ti-shopping-cart"></i></a>
+                        <a class="nav-link btn btn-icon py-2 px-4" href="carts" tabindex="-1" aria-disabled="true"><i class="ti-shopping-cart"></i></a>
                     </li>
                 </ul>
 
