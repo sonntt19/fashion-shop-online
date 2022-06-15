@@ -15,14 +15,13 @@
                 <div class="info-footer">
                     <div class="content-footer">
                         <h2>Địa chỉ liên hệ</h2>
-                        <p class="mt-40">HUB Hà Nội: Số 103, Đường Vạn Phúc, Phường Vạn Phúc, Quận Hà Đông, TP. Hà Nội</p>
-                        <p class="mt-40">HUB Tp HCM: Lầu 1, Số 163 Trần Trọng Cung, Phường Tân Thuận Đông, Quận 7, Tp. Hồ Chí Minh</p>
+                        <p class="mt-40">HUB Hà Nội: Hoalaclink03, thôn Vân Lôi, xã Bình Yên, huyện Thạch Thất, TP. Hà Nội</p>
                     </div>
 
                     <div class="feedback-footer">
                         <h2 class="mt-40">KingsMan lắng nghe bạn!</h2>
                         <p>Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể nâng cấp trải nghiệm dịch vụ và sản phẩm tốt hơn nữa</p>
-                        <input class="Button-Feedback mt-16" type="submit" value="gửi ý kiến">
+                        <input class="Button-Feedback mt-16" type="submit" value="Gửi ý kiến">
                         <br>
                         <br>
                         <br>
