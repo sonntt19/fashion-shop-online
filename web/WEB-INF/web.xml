@@ -2,31 +2,35 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>HomeController</servlet-name>
-        <servlet-class>Controller.HomeController</servlet-class>
+        <servlet-class>Controller.Public.HomeController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProductListController</servlet-name>
-        <servlet-class>Controller.ProductListController</servlet-class>
+        <servlet-class>Controller.Public.ProductListController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListDetailController</servlet-name>
-        <servlet-class>Controller.ListDetailController</servlet-class>
+        <servlet-class>Controller.Public.ListDetailController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddToCartController</servlet-name>
-        <servlet-class>Controller.AddToCartController</servlet-class>
+        <servlet-class>Controller.Public.AddToCartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CartController</servlet-name>
-        <servlet-class>Controller.CartController</servlet-class>
+        <servlet-class>Controller.Public.CartController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ChangePasswordController</servlet-name>
-        <servlet-class>Controller.ChangePasswordController</servlet-class>
+        <servlet-class>Controller.Common.ChangePasswordController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ResetPasswordController</servlet-name>
-        <servlet-class>Controller.ResetPasswordController</servlet-class>
+        <servlet-class>Controller.Common.ResetPasswordController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCartController</servlet-name>
+        <servlet-class>Controller.Public.DeleteCartController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -42,19 +46,23 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddToCartController</servlet-name>
-        <url-pattern>/cart</url-pattern>
+        <url-pattern>/addcart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CartController</servlet-name>
         <url-pattern>/carts</url-pattern>
-     </servlet-mapping>
-     <servlet-mapping>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ChangePasswordController</servlet-name>
         <url-pattern>/changepassword</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ResetPasswordController</servlet-name>
         <url-pattern>/resetpassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCartController</servlet-name>
+        <url-pattern>/delete-cart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

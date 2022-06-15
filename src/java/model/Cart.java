@@ -14,6 +14,11 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Cart {
-        private Product product;
-        private int quantity_cart;
+        private int cart_id;
+        private int product_id;
+        private String product_name;
+        private int product_price;
+        private int quantity;
+        private int total_cost;
+        private int user_id;
 }

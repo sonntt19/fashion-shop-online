@@ -3,23 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.Public;
 
+import dal.CartDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Cart;
+import model.Product;
+import model.User;
 
 /**
  *
- * @author Veetu
+ * @author son22
  */
-@WebServlet(name = "LogoutController", urlPatterns = {"/logout"})
-public class LogoutController extends HttpServlet {
+public class DeleteCartController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,9 +36,19 @@ public class LogoutController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        session.removeAttribute("us");
-        response.sendRedirect("index.jsp");
+        try (PrintWriter out = response.getWriter()) {
+            String productId_raw = request.getParameter("productId");
+            int product_id = Integer.parseInt(productId_raw);
+            String userId_raw = request.getParameter("userId");
+            int user_id = Integer.parseInt(userId_raw);
+            
+            HttpSession session = request.getSession();
+            CartDAO cd = new CartDAO();
+            cd.deleteCart(product_id, user_id);
+           
+            String historyUrl = (String) session.getAttribute("historyUrl");
+            response.sendRedirect(historyUrl);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

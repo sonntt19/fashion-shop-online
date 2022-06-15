@@ -86,7 +86,7 @@
 
 
                                                 </a>
-                                                <a href="" class="buy-now" >Mua ngay</a>
+                                                <a href="addcart?productId=${p.id}" class="buy-now" >Mua ngay</a>
 
                                             </div>
                                             <div class="product-infor">

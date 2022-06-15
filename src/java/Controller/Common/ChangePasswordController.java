@@ -3,23 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.Common;
 
-import dal.ProductDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Product;
+import javax.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
- * @author dongh
+ * @author GanKPoet
  */
-public class ListDetailController extends HttpServlet {
+public class ChangePasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,15 +35,15 @@ public class ListDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            int productId = Integer.parseInt(request.getParameter("productId"));
-            int categoryId  = Integer.parseInt(request.getParameter("categoryId"));
-            
-            Product product = new ProductDAO().getProductById(productId);
-            List<Product> listProduct = new ProductDAO().getProductTop4Category(productId, categoryId);
-            
-            request.setAttribute("listProduct", listProduct);
-            request.setAttribute("product", product);
-            request.getRequestDispatcher("list-detail.jsp").forward(request, response);
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ChangePasswordController</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ChangePasswordController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -73,7 +73,30 @@ public class ListDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int userId = Integer.parseInt(request.getParameter("user_Id"));
+        String old_pass = request.getParameter("old_pass");
+        String new_pass1 = request.getParameter("new_pass1");
+        String new_pass2 = request.getParameter("new_pass2");
+
+        User user = new UserDAO().getUser(userId, old_pass);
+
+        if (user == null) {
+            request.setAttribute("notification", "Old Password Wrong");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else if (!new_pass1.equals(new_pass2)) {
+            request.setAttribute("notification", "Your New Password Does Not Match ");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else if (new_pass1.length() <= 8 || new_pass1.length() >32) {
+            request.setAttribute("notification", "Your New Password less than 8 character or long than 32 characters");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else if (new_pass1.equals(old_pass)) {
+            request.setAttribute("notification", "Your New Password and Oll Password are the same");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else {
+            new UserDAO().changePassword(userId, new_pass1);
+            request.setAttribute("notification", "Successful Change Password");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
     }
 
     /**
