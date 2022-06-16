@@ -33,6 +33,7 @@
         <servlet-class>Controller.Public.DeleteCartController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>ListUserController</servlet-name>
         <servlet-class>Controller.Admin.ListUserController</servlet-class>
     </servlet>
@@ -43,6 +44,18 @@
     <servlet>
         <servlet-name>AddToOrderController</servlet-name>
         <servlet-class>Controller.Public.AddToOrderController</servlet-class>
+=======
+        <servlet-name>CheckOutController</servlet-name>
+        <servlet-class>Controller.Public.CheckOutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductsListController</servlet-name>
+        <servlet-class>Controlller.Marketing.ProductsListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProductController</servlet-name>
+        <servlet-class>Controlller.Marketing.UpdateProductController</servlet-class>
+>>>>>>> 8ea4fcf6e54f0498a8432ee38aed83c5ed97ce9e
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -77,6 +90,7 @@
         <url-pattern>/delete-cart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>ListUserController</servlet-name>
         <url-pattern>/list-user</url-pattern>
     </servlet-mapping>
@@ -87,6 +101,19 @@
     <servlet-mapping>
         <servlet-name>AddToOrderController</servlet-name>
         <url-pattern>/add-order</url-pattern>
+=======
+
+        <servlet-name>CheckOutController</servlet-name>
+        <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductsListController</servlet-name>
+        <url-pattern>/marketingproductlist</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProductController</servlet-name>
+        <url-pattern>/update_product</url-pattern>
+>>>>>>> 8ea4fcf6e54f0498a8432ee38aed83c5ed97ce9e
     </servlet-mapping>
     <session-config>
         <session-timeout>
