@@ -7,9 +7,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div class="card mb-5" style="border-radius: 25px;">
-    <form>
+    <form action="blog">
         <div class="input-group">
-            <input class="form-control" type="text" placeholder="Tìm kiếm" aria-label="Enter search term..." aria-describedby="button-search" style="border-radius: 25px 0px 0px 25px"/>
+            <input class="form-control" name="key" value="${key}"  type="text" placeholder="Tìm kiếm" aria-label="Enter search term..." aria-describedby="button-search" style="border-radius: 25px 0px 0px 25px"/>
             <button class="btn btn-dark" id="button-search" type="submit" style="border-radius: 0px 25px 25px 0px">Tìm kiếm</button>
         </div>
     </form>
@@ -21,7 +21,7 @@
             Danh mục
         </div>
         <c:forEach items="${listCategoryBlog}" var="o">
-            <a href="categoryBlog?categoryBlog_id=${o.categoryBlog_id}" class="list-group-item list-group-item-action" style="${tag == o.categoryBlog_id ? "background-color: #fffc6c; font-weight: bold;":""}">${o.categoryBlog_name}</a>
+            <a href="blog?${historyKey}&categoryId=${o.categoryBlog_id}${historyValue}${historyType}" class="list-group-item list-group-item-action" style="${tag == o.categoryBlog_id ? "background-color: #fffc6c; font-weight: bold;":""}">${o.categoryBlog_name}</a>
         </c:forEach>
     </div>
 </div>
