@@ -32,6 +32,18 @@
         <servlet-name>DeleteCartController</servlet-name>
         <servlet-class>Controller.Public.DeleteCartController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListUserController</servlet-name>
+        <servlet-class>Controller.Admin.ListUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CartContactController</servlet-name>
+        <servlet-class>Controller.Public.CartContactController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToOrderController</servlet-name>
+        <servlet-class>Controller.Public.AddToOrderController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -63,6 +75,18 @@
     <servlet-mapping>
         <servlet-name>DeleteCartController</servlet-name>
         <url-pattern>/delete-cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListUserController</servlet-name>
+        <url-pattern>/list-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartContactController</servlet-name>
+        <url-pattern>/cart-contact</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToOrderController</servlet-name>
+        <url-pattern>/add-order</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
