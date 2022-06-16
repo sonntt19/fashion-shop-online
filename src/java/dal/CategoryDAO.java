@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Category;
+import model.CategoryBlog;
 
 /**
  *
@@ -39,5 +40,28 @@ public class CategoryDAO extends DBContext{
 
         return list;
     }
+    
+    public List<CategoryBlog> getAllCategoryBlog() {
+        List<CategoryBlog> list = new ArrayList<>();
+        String sql = "Select * from Category_Blog";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                CategoryBlog c = CategoryBlog.builder()
+                        .categoryBlog_id(rs.getInt(1))
+                        .categoryBlog_name(rs.getString(2))
+                        .build();
+
+                list.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+    }
+    
+    
     
 }
