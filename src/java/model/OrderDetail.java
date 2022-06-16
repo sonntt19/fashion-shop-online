@@ -26,4 +26,6 @@ public class OrderDetail {
     int product_id;
     String product_name;
     int total_cost;
+    String product_image;
+    String category_name;
 }

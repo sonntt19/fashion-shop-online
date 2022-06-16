@@ -74,4 +74,35 @@ public class OrderDetailDAO extends DBContext {
         return list;
     }
     
+    public List<OrderDetail> getDetailAllOrder(int orderId) {
+        List<OrderDetail> list = new ArrayList<>();
+        String sql = "select * from Order_Detail join Product \n"
+                + "                on Order_Detail.product_id = Product.product_id\n"
+                + "				join Products_Images on Order_Detail.product_id = Products_Images.product_id\n"
+                + "				join Category on Product.category_id = Category.category_id\n"
+                + "				where order_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, orderId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                OrderDetail c = OrderDetail.builder()
+                        .product_price(rs.getInt(2))
+                        .quantity(rs.getInt(3))
+                        .order_id(rs.getInt(4))
+                        .product_name(rs.getString(6))
+                        .product_image(rs.getString(20))
+                        .category_name(rs.getString(22))
+                        .build();
+
+                list.add(c);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        return list;
+
+    }
+    
 }
