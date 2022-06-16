@@ -80,21 +80,34 @@ public class UpdateProductController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        ProductDAO p = new ProductDAO();
         HttpSession session = request.getSession();
+        
+
         int id = Integer.parseInt(request.getParameter("id"));
+        Product pd = p.getProductById(id);
+        
         String name = request.getParameter("name");
-        String desciption = request.getParameter("comment");
+        String desciption = request.getParameter("desciption");
         String brief_infor = request.getParameter("brief_infor");
         boolean status = Boolean.parseBoolean(request.getParameter("status"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         int original_price = Integer.parseInt(request.getParameter("original_price"));
         int sale_price = Integer.parseInt(request.getParameter("sale_price"));
-        String imageUrl = request.getParameter("imageUrl");
+        String image_raw = request.getParameter("image");
+        String imageUrl;
+        if(image_raw != null && !image_raw.equalsIgnoreCase("")){
+            imageUrl = "images/product/" + image_raw;
+        }else{
+            imageUrl = pd.getImage();
+        }
+        
+        
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-        ProductDAO p = new ProductDAO();
+
         p.UpdateProduct(id, name, desciption, brief_infor, quantity, status, original_price, sale_price, categoryId);
         p.UpdateImageProduct(id, imageUrl);
-        Product pd = p.getProductById(id);
+        pd = p.getProductById(id);
         request.setAttribute("product", pd);
         request.getRequestDispatcher("update_product.jsp").forward(request, response);
     }

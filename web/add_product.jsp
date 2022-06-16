@@ -36,9 +36,9 @@
     </head>
     <body style="background-color: gainsboro">
         <div style="margin: 2% 2% 2% 2%;">
-            <h2 style="text-align: center">Update Product</h2>
+            <h2 style="text-align: center">Add Product</h2>
             <div class="center">
-                <form action="update_product" method="post">
+                <form action="add_product">
                     <input type="hidden"  name="id" value="${product.id}"/><br/>
                     <table style="background-color: window ; width: 60%">
                         <tr>
@@ -47,45 +47,45 @@
                         </tr>
                         <tr>
                             <td>Địa chỉ ảnh:</td>
-                            <td><input type="file" id="avatar" name="image"/><img  src="${product.image}" height="50px" width="50px" alt=""><br/></td>
+                            <td><input type="file" id="avatar" name="image" accept="image/png, image/jpeg"/><br/></td>
                         </tr>
                         <tr>
                             <td>Giá gốc:</td>
-                            <td><input type="text" name="original_price" value="${product.original_price}"/><br/></td>
+                            <td><input type="text" name="original_price" /><br/></td>
                         </tr>
                         <tr>
                             <td>Giá khuyến mãi:</td>
-                            <td><input type="text" name="sale_price" value="${product.sale_price}"/><br/></td>
+                            <td><input type="text" name="sale_price"/><br/></td>
                         </tr>
                         <tr>
                             <td>Tiêu đề:</td>
-                            <td><input type="text" name="brief_infor" value="${product.brief_infor}"/><br/></td>
+                            <td><input type="text" name="brief_infor"/><br/></td>
                         </tr>
                         <tr>
                             <td>Miêu tả :</td>
                             <td>
                                 
                                 <textarea rows="3" cols="80" name="desciption">
-                                    ${product.desciption}
+                                    
                                 </textarea>
                             </td>
                         </tr>
                         <tr>
                             <td>Trạng thái:</td>
                             <td>
-                                <input type="radio" name="status" value="True"  ${product.status == true ? "checked" : ""} />Hiện
-                                <input type="radio" name="status" value="False"  ${product.status != true ? "checked" : ""} />Ẩn
+                                <input type="radio" name="status" value="True" checked />Hiện
+                                <input type="radio" name="status" value="False"   />Ẩn
                             </td>
                         </tr>
                         <tr>
                             <td>Số lượng:</td>
-                            <td><input type="text" name="quantity" value="${product.quantity}"/><br/></td>
+                            <td><input type="text" name="quantity"/><br/></td>
                         </tr>
                         <tr>
                             <td>Danh mục:</td>
                             <td>
                                 <c:forEach items="${sessionScope.listCategories}" var="list">
-                                    <input type="radio" name="categoryId" value="${list.id}" ${list.id == product.category_id ? "checked" : ""} />${list.name}
+                                    <input type="radio" name="categoryId" value="${list.id}"/>${list.name}
                                 </c:forEach>
                             </td>
                         </tr>
