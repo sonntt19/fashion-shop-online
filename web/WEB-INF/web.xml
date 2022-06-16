@@ -56,6 +56,14 @@
         <servlet-name>UpdateProductController</servlet-name>
         <servlet-class>Controlller.Marketing.UpdateProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteUserController</servlet-name>
+        <servlet-class>Controller.Admin.DeleteUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateStatusUserController</servlet-name>
+        <servlet-class>Controller.Admin.UpdateStatusUserController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -111,6 +119,14 @@
     <servlet-mapping>
         <servlet-name>UpdateProductController</servlet-name>
         <url-pattern>/update_product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteUserController</servlet-name>
+        <url-pattern>/delete-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStatusUserController</servlet-name>
+        <url-pattern>/update-status-user</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

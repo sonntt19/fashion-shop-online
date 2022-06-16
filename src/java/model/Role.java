@@ -12,23 +12,13 @@ import lombok.ToString;
 
 /**
  *
- * @author GanKPoet
+ * @author dongh
  */
 @Builder
 @Getter
 @Setter
 @ToString
-public class User {
-    private int user_Id;
-    private String full_Name;
-    private String password;
-    private String avatar;
-    private boolean gender;
-    private String email;
-    private String mobile;
-    private String address;
-    private String status;
-    private String role_Id;
-
-    
+public class Role {
+    int role_id;
+    String role_name;
 }

@@ -38,7 +38,7 @@
 
             .table-title {
                 padding-bottom: 15px;
-                background: #299be4;
+                background: black;
                 color: #fff;
                 padding: 16px 30px;
                 margin: -20px -25px 10px;
@@ -235,49 +235,65 @@
                         <div class="container">
                             <h4 class="mb-5 text-secondary">Thêm Người Dùng</h4>
                             <div class="row">
-                                <div class="mb-3 col-md-12">
-                                    <label>Image Avatar<span class="text-danger">*</span></label>
-                                    <input id="file-upload" class="form-control" type="file" name="photo"/>
-                                    <c:if test="${not empty ErrCreateMsg[0]}" >
-                                        <div class="alert alert-danger" role="alert">
-                                            ${ErrCreateMsg[0]}
-                                        </div>
-                                    </c:if>
-                                </div>
-                                <div class="mb-3 col-md-12">
-                                    <label>Full name<span class="text-danger">*</span></label>
-                                    <input type="text" name="fname" class="form-control" placeholder="Enter Full Name">
-                                </div>
-
-                                <div class="mb-3 col-md-12">
-                                    <label>Password<span class="text-danger">*</span></label>
-                                    <input type="password" name="password" class="form-control" placeholder="Enter Password">
-                                </div>
-
                                 <!--                                <div class="mb-3 col-md-12">
-                                                                    <label>Confirm Password<span class="text-danger">*</span></label>
-                                                                    <input type="password" name="confirmpassword" class="form-control" placeholder="Confirm Password">
-                                                                </div>-->
-                                <div class="mb-3 col-md-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Nam
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            Nữ
-                                        </label>
-                                    </div>
+                                                                    <label>Image Avatar<span class="text-danger">*</span></label>
+                                                                    <input id="file-upload" class="form-control" type="file" name="photo"/>
+                                <c:if test="${not empty ErrCreateMsg[0]}" >
+                                    <div class="alert alert-danger" role="alert">
+                                    ${ErrCreateMsg[0]}
                                 </div>
+                                </c:if>
+                            </div>-->
+                                <form action="list-user">
+                                    <div class="mb-3 col-md-12">
+                                        <label for="fullname">Họ tên<span class="text-danger">*</span></label>
+                                        <input id="fullname" type="text" name="fname" class="form-control" placeholder="Nhập họ tên">
+                                    </div>
+                                    <div class="mb-3 col-md-12">
+                                        <label for="pass">Mật khẩu<span class="text-danger">*</span></label>
+                                        <input id="pass" type="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
+                                    </div>
+                                    <div class="mb-3 col-md-12">
+                                        <label for="Email">Email<span class="text-danger">*</span></label>
+                                        <input id="Email" type="text" name="email" class="form-control" placeholder="Nhập email">
+                                    </div>
+                                    <div class="mb-3 col-md-12">
+                                        <label for="phone">Số điện thoại<span class="text-danger">*</span></label>
+                                        <input id="phone" type="text" name="phone" class="form-control" placeholder="Nhập số điện thoại">
+                                    </div>
+                                    <div class="mb-3 col-md-12">
+                                        <label for="address" >Địa chỉ<span class="text-danger">*</span></label>
+                                        <input id="address" type="text" name="address" class="form-control" placeholder="Nhập địa chỉ">
+                                    </div>
 
 
-                                <div class="modal-footer">
-                                    <!--<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-                                    <button type="button" class="btn btn-primary">Lưu</button>
-                                </div>
+                                    <div class="mb-3 col-md-12 input-group " style="margin-top: 35px">
+                                        <label class="input-group-text" for="inputGroupSelect01" style="">Giới tính</label>
+                                        <select name="sex_id" class="form-select" id="inputGroupSelect01">
+                                            <option value="true">Nữ</option>
+                                            <option value="1">Nam</option> 
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 col-md-12 input-group "  style="margin-top: 35px">
+                                        <label class="input-group-text" for="inputGroupSelect02">Vai trò</label>
+
+                                        <select name="role_id" class="form-select" id="inputGroupSelect02">
+                                            <c:forEach items="${listRole}" var="lr">
+                                                <option value="${lr.role_id}">${lr.role_name}</option>
+                                            </c:forEach>
+
+                                        </select>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Lưu</button>
+                                    </div>
+
+
+                                </form>
+
+
+
+
                                 <!--                                <div class="col-md-12">
                                                                     <button class="btn btn-primary float-end">Signup Now</button>
                                                                 </div>-->
@@ -319,7 +335,7 @@
                             <c:forEach items="${listUsers}" var="U">
                                 <tr>
                                     <td>${U.user_Id}</td>
-                                    <td><a href="#" style="color: black">${U.full_Name}</a></td>
+                                    <td name="fullname"><a href="#" style="color: black">${U.full_Name}</a></td>
 
                                     <!--gender-->
                                     <c:if test="${U.gender == true}">
@@ -339,35 +355,34 @@
 
                                     <!--role-->
                                     <c:if test="${U.role_Id == 1}">
-                                        <td style="text-align: center">Admin</td>
-                                    </c:if>
-                                    <c:if test="${U.role_Id == 2}">
-                                        <td style="text-align: center">Guest</td>
-                                    </c:if>
-                                    <c:if test="${U.role_Id == 3}">
                                         <td style="text-align: center">Customer</td>
                                     </c:if>
-                                    <c:if test="${U.role_Id == 4}">
-                                        <td style="text-align: center">Maketing</td>
+                                    <c:if test="${U.role_Id == 2}">
+                                        <td style="text-align: center">Marketing</td>
                                     </c:if>
-                                    <c:if test="${U.role_Id == 5}">
+                                    <c:if test="${U.role_Id == 3}">
                                         <td style="text-align: center">Sale</td>
                                     </c:if>
-                                    <c:if test="${U.role_Id == 6}">
+                                    <c:if test="${U.role_Id == 4}">
                                         <td style="text-align: center">Sale manager</td>
                                     </c:if>
+                                    <c:if test="${U.role_Id == 5}">
+                                        <td style="text-align: center">admin</td>
+                                    </c:if>
+                                    
 
                                     <td>
                                         <a href="#" class="settings" title="Chi tiết Người Dùng" data-toggle="tooltip"><i
                                                 class="material-icons">&#xE8B8;</i></a>
-                                        <a href="delete-user?userId = ${U.user_Id}" class="delete" title="Xóa" data-toggle="tooltip"><i
+<!--                                                <a>delete-user?userId=${U.user_Id} </a>    -->
+                                        <a href="" class="delete" title="Xóa" data-toggle="tooltip"><i
                                                 class="material-icons">&#xE5C9;</i></a>
                                     </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
-                    <div class="clearfix">
+<!--                    <div class="clearfix">
                         <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                         <ul class="pagination">
                             <li class="page-item disabled"><a href="#">Previous</a></li>
@@ -378,7 +393,7 @@
                             <li class="page-item"><a href="#" class="page-link">5</a></li>
                             <li class="page-item"><a href="#" class="page-link">Next</a></li>
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>

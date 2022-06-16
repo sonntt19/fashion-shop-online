@@ -5,23 +5,20 @@
  */
 package Controller.Admin;
 
-import dal.RoleDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Role;
 import model.User;
 
 /**
  *
  * @author dongh
  */
-public class ListUserController extends HttpServlet {
+public class UpdateStatusUserController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,26 +32,14 @@ public class ListUserController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String fname = request.getParameter("fname");
-        String password = request.getParameter("password");
-        String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
-        String address = request.getParameter("address");
-        String status = "1";
-        String role_id = request.getParameter("role_id");
-        boolean gender = Boolean.parseBoolean(request.getParameter("sex_id"));
-        
-        
-        
-        new UserDAO().createNewUser(fname,password,email,phone,address,status,role_id,gender );
-        List<User> listUsers = new UserDAO().getAllUsers();
-        List<Role> listRole = new RoleDAO().getAllRole();
-
-        request.setAttribute("listUsers", listUsers);
-        request.setAttribute("listRole", listRole);
-
-        request.getRequestDispatcher("user-list.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            int user_Id = Integer.parseInt(request.getParameter("user_Id"));
+            int status = 0;
+            new UserDAO().UpdateStatusUser(status, user_Id);
+            
+            response.sendRedirect("list-user");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
