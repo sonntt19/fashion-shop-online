@@ -40,11 +40,11 @@
             <link rel="stylesheet" href="do1/css/jquery-ui.min.css" type="text/css">
             <link rel="stylesheet" href="do1/css/slicknav.min.css" type="text/css">
             <link rel="stylesheet" href="do1/css/style.css" type="text/css">
+
             <%@include file="components/javascript.jsp" %>
         </head>
 
         <body>
-
 
             <%@include file="components/header.jsp" %>
             <%@include file="components/account.jsp" %>

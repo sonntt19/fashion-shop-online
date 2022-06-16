@@ -3,25 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Public;
+package Controlller.Marketing;
 
-import dal.FeedbackDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Feedback;
+import javax.servlet.http.HttpSession;
 import model.Product;
 
 /**
  *
- * @author dongh
+ * @author son22
  */
-public class ListDetailController extends HttpServlet {
+public class AddProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,25 +33,26 @@ public class ListDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            int productId = Integer.parseInt(request.getParameter("productId"));
-            int categoryId  = Integer.parseInt(request.getParameter("categoryId"));
-            int product_id = Integer.parseInt(request.getParameter("productId"));
-            
-            Product product = new ProductDAO().getProductById(productId);
-            FeedbackDAO fed = new FeedbackDAO();
-            
-            int Total = fed.getTotalFeedback();
-            List<Feedback> listfeedbackbyproduct =  fed.getAllFeedbackByProductId(product_id);
-            List<Product> listProduct = new ProductDAO().getProductTop4Category(productId, categoryId);
-            
-            request.setAttribute("listfeedbackbyproduct", listfeedbackbyproduct);
-            request.setAttribute("total", Total);
-            request.setAttribute("listProduct", listProduct);
-            request.setAttribute("product", product);
-            request.getRequestDispatcher("list-detail.jsp").forward(request, response);
-        }
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        ProductDAO p = new ProductDAO();
+        HttpSession session = request.getSession();
+        
+        
+        String name = request.getParameter("name");
+        String desciption = request.getParameter("desciption");
+        String brief_infor = request.getParameter("brief_infor");
+        boolean status = Boolean.parseBoolean(request.getParameter("status"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int original_price = Integer.parseInt(request.getParameter("original_price"));
+        int sale_price = Integer.parseInt(request.getParameter("sale_price"));
+        String imageUrl = "images/product/"+request.getParameter("image");        
+        
+        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+
+        int new_id = p.addNewProduct(name, desciption, brief_infor, quantity, status, original_price, sale_price, categoryId);
+        p.AddImageProduct(new_id, imageUrl);
+        response.sendRedirect("marketingproductlist");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

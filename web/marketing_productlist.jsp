@@ -30,7 +30,7 @@
         <div style="height: 60px"></div>
         <div style="margin: 2% 2% 2% 2%;  ">
             <h2 class="marketing_productlist_displayinline" style="text-align: left";>Products List </h2> &nbsp;&nbsp;
-            <h5 class="marketing_productlist_displayinline"><a href="addnewproduct.jsp" type="button" style="background-color: whitesmoke; border-radius: 5px; border-color: ghostwhite">Thêm sản phẩm mới</a></h5>
+            <h5 class="marketing_productlist_displayinline"><a href="add_product.jsp" type="button" style="background-color: whitesmoke; border-radius: 5px; border-color: ghostwhite">Thêm sản phẩm mới</a></h5>
             <h6 style="margin-top: 1%; margin-bottom: 1%">All(0) | <span style="color: blue">Published(0)</span></h6>
             <div class="row">
                 <div class="col-md-4">
