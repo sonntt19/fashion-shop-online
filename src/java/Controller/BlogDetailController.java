@@ -44,7 +44,7 @@ public class BlogDetailController extends HttpServlet {
         
         BlogDAO dao = new BlogDAO();
         Blog listBlogDetail_BlogDetail = dao.getBlogByBlogId(blog_id);
-        session.setAttribute("listBlogById", listBlogDetail_BlogDetail);
+        request.setAttribute("listBlogById", listBlogDetail_BlogDetail);
         
         List<CategoryBlog> listCategoryBlog_BlogList = new CategoryDAO().getAllCategoryBlog();
         session.setAttribute("listCategoryBlog", listCategoryBlog_BlogList);
