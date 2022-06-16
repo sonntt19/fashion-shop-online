@@ -132,6 +132,8 @@ public class CheckOutController extends HttpServlet {
                 request.setAttribute("code", "00");
                 request.setAttribute("message", "success");
                 request.setAttribute("data", paymentUrl);
+                OrderDao od = new OrderDao();
+                od.updateStatusOrder(id, 2);
                 response.sendRedirect(paymentUrl);
             } else {
                 response.sendRedirect("successful?vnp_OrderInfo=-1");
@@ -218,7 +220,7 @@ public class CheckOutController extends HttpServlet {
                     + "                                            <td\n"
                     + "                                                style=\"text-transform:uppercase;font-size:14px;text-align:right;color:#999\">\n"
                     + "                                                <span style=\"font-size:16px\">\n"
-                    + "                                                    Đơn hàng " + o.getOrderID() + "\n"
+                    + "                                                    Đơn hàng "+ o.getOrderID()+"\n"
                     + "                                                </span>\n"
                     + "                                            </td>\n"
                     + "                                        </tr>\n"
@@ -247,7 +249,7 @@ public class CheckOutController extends HttpServlet {
                     + "                            Cám ơn bạn đã mua hàng!\n"
                     + "                        </h2>\n"
                     + "                        <p style=\"margin:0;color:#777;line-height:150%;font-size:16px\">\n"
-                    + "                            Xin chào " + u.getFull_Name() + ", Chúng tôi đã nhận được đặt hàng của bạn và đã sẵn sàng để\n"
+                    + "                            Xin chào "+o.getFullName()+", Chúng tôi đã nhận được đặt hàng của bạn và đã sẵn sàng để\n"
                     + "                            vận chuyển. Chúng tôi sẽ thông báo cho bạn khi đơn hàng được gửi đi.\n"
                     + "                        </p>\n"
                     + "\n"
@@ -256,7 +258,34 @@ public class CheckOutController extends HttpServlet {
                     + "                            <tbody>\n"
                     + "                                <tr>\n"
                     + "                                    <td>\n"
+                    + "                                        <table\n"
+                    + "                                            style=\"border-spacing:0;border-collapse:collapse;float:left;margin-right:15px\">\n"
+                    + "                                            <tbody>\n"
+                    + "                                                <tr>\n"
+                    + "                                                    <td\n"
+                    + "                                                        style=\"text-align:center;padding:20px 25px;border-radius:4px; background:#1666a2\">\n"
+                    + "                                                        <a href=\"https://thevapeclub.vn/account/orders/3ef26b22e8af44548d6198e5f323371c\"\n"
+                    + "                                                           style=\"font-size:16px;text-decoration:none;color:#fff\"\n"
+                    + "                                                           target=\"_blank\">Xem đơn hàng</a>\n"
+                    + "                                                    </td>\n"
+                    + "                                                </tr>\n"
+                    + "                                            </tbody>\n"
+                    + "                                        </table>\n"
                     + "\n"
+                    + "                                        <table\n"
+                    + "                                            style=\"border-spacing:0;border-collapse:collapse;margin-top:19px\">\n"
+                    + "                                            <tbody>\n"
+                    + "                                                <tr>\n"
+                    + "                                                    <td>\n"
+                    + "                                                        <a href=\"https://thevapeclub.vn\"\n"
+                    + "                                                           style=\"font-size:16px;text-decoration:none;color:#1666a2\"\n"
+                    + "                                                           target=\"_blank\"><span\n"
+                    + "                                                                style=\"font-size:16px;color:#999;display:inline-block;margin-right:10px\">hoặc</span>\n"
+                    + "                                                            Đến cửa hàng của chúng tôi</a>\n"
+                    + "                                                    </td>\n"
+                    + "                                                </tr>\n"
+                    + "                                            </tbody>\n"
+                    + "                                        </table>\n"
                     + "                                    </td>\n"
                     + "                                </tr>\n"
                     + "                            </tbody>\n"
