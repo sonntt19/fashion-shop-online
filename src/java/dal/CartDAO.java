@@ -127,4 +127,16 @@ public class CartDAO extends DBContext {
         }
     }
 
+    public void deleteCartByUserId(int user_id) {
+        try {
+            String sql = "DELETE FROM [dbo].[Cart]\n"
+                    + "      WHERE [user_id] = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, user_id);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

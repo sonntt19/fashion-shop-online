@@ -132,10 +132,10 @@
                         </div>
                         <div class="radio-buttons">
                             <div>
-                                <form>
+                                <form action="checkout" method="POST">
                                     <label class="payment-method__item">
                                         <span class="payment-method__item-custom-checkbox custom-radio">
-                                            <input type="radio" id="payment-COD" name="payment-method" value="COD">
+                                            <input type="radio" id="payment-COD" name="payment-method" value="COD" checked>
                                             <span class="checkmark">
                                             </span>
                                         </span>
@@ -144,14 +144,6 @@
                                         <span class="payment-method__item-name">COD <br>Thanh toán khi nhận hàng
                                         </span>
                                     </label>
-                                    <label class="payment-method__item">
-                                        <span class="payment-method__item-custom-checkbox custom-radio">
-                                            <input type="radio" id="payment-momo" name="payment-method" value="momo">
-                                            <span class="checkmark"></span>
-                                        </span>
-                                        <span class="payment-method__item-icon-wrapper"><img
-                                                src="https://www.coolmate.me/images/momo-icon.png" alt="MOMO"></span>
-                                        <span class="payment-method__item-name">MOMO</span></label>
                                     <label class="payment-method__item">
                                         <span class="payment-method__item-custom-checkbox custom-radio">
                                             <input type="radio" id="payment-vnpay" name="payment-method" value="vnpay">
@@ -164,6 +156,8 @@
                                             Thẻ ATM / Internet Banking<br>Thẻ tín dụng (Credit card) / Thẻ ghi nợ (Debit
                                             card)<br>VNPay QR
                                         </span>
+                                        <input type="hidden" name="order_id" value="${order_id}"/>
+                                        <input type="hidden" name="total_cost" value="${total_cost}"/>
                                     </label>
                                     <div class="mt-5 text-center"><button class="btn btn-primary" type="submit">Thanh
                                             toán</button></div>
