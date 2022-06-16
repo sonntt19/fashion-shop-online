@@ -61,7 +61,7 @@
                             <td>${c.total_cost}</td>
                             <td>${c.status_order_name}</td>
                             <td>
-                                <c:if test="${c.status_order_name eq 'Submited'}">
+                                <c:if test="${c.status_order_name} eq 'Submited'}">
                                     <div class="row">
                                         <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" >Thanh Toán</a>
                                         <a href="#" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" >Hủy</a>
