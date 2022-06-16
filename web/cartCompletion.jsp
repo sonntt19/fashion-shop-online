@@ -9,39 +9,41 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-        <style>
-            .payment-method__item-name {
-                font-size: 20px;
-                padding-left: 20px;
-            }
+    <style>
+        .payment-method__item-name {
+            font-size: 20px;
+            padding-left: 20px;
+        }
 
-            .payment-method__item {
-                display: flex;
-                align-items: center;
-                border: 1px solid #D9D9D9;
-                border-radius: 16px;
-                padding: 15px 20px;
-                margin-bottom: 1rem;
-            }
+        .payment-method__item {
+            display: flex;
+            align-items: center;
+            border: 1px solid #D9D9D9;
+            border-radius: 16px;
+            padding: 15px 20px;
+            margin-bottom: 1rem;
+        }
 
 
 
-            .payment-method__item-icon-wrapper img {
-                min-width: 100px;
-                max-height: 100px;
-                max-width: 100px;
-                padding-left: 40px;
-                image-rendering: -webkit-optimize-contrast;
-            }
+        .payment-method__item-icon-wrapper img {
+            min-width: 100px;
+            max-height: 100px;
+            max-width: 100px;
+            padding-left: 40px;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+
 
 
 
