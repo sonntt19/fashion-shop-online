@@ -9,18 +9,19 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
         <%@include file="components/javascript.jsp" %>
-
         <style>
             .payment-method__item-name {
                 font-size: 20px;
@@ -45,24 +46,17 @@
                 padding-left: 40px;
                 image-rendering: -webkit-optimize-contrast;
             }
-
-
-
-
-
-
-
-            body {
+            .body_cartCompletion {
                 font-family: sans-serif;
                 background: linear-gradient(110deg, #fdfdbe 60%, #f9f86c 60%);
             }
+            
         </style>
     </head>
 
-    <body>
+    <body class="body_cartCompletion">
         <%@include file="components/header.jsp" %>
         <%@include file="components/account.jsp" %>
-
         <!-- Hướng dẫn thanh toán -->
         <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
              aria-hidden="true">
@@ -89,9 +83,8 @@
                         <img style="max-width: 100%; padding-bottom: 2%" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/284620995_546087100573139_7857771663807796897_n.png?stp=dst-png_p403x403&_nc_cat=101&ccb=1-7&_nc_sid=aee45a&_nc_ohc=azaof46x9usAX_nHwjV&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVJ7AcfYXvotTnfrWl_aeCpsOI-_sssCS4dwVTJbYVAuDg&oe=62D07D9E"><br><br>
                         <img style="max-width: 100%; padding-bottom: 2%" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/286431165_5346772748677057_8465141157597209564_n.png?stp=dst-png_p403x403&_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=HtbhjfDGQ84AX-VGNgC&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVK61GyRh3fm-ZEsm-UlFUxUAPOHD7ycoH9W3rJxdM2Vfw&oe=62D0CFBF"><br><br>
                         <img style="max-width: 100%; padding-bottom: 2%" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/282166213_1892366127641016_5614138133000995956_n.png?stp=dst-png_p403x403&_nc_cat=107&ccb=1-7&_nc_sid=aee45a&_nc_ohc=NllW7QYjFcIAX8jG0lU&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVLE2o5FQ6RwO4Oc1Bd_O2FGLx77nPMAe2sH2rYHoVmTHw&oe=62CF9064">
-                    </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
@@ -99,12 +92,11 @@
 
         <!-- Hướng dẫn thanh toán bằng video -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+             aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="min-width: 50%">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Hướng dẫn thanh toán
-                            bằng video</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Hướng dẫn thanh toán bằng video</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -113,14 +105,14 @@
                         <video style="max-width: 100%;" src="https://sandbox.vnpayment.vn/apis/assets/images/Gioi-thieu-CTT-VNPAY.mp4" controls></video>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container rounded bg-white mt-5 mb-5 ">
-            <div class="row"  style="margin-top: 9%;">
+        <div class="container rounded bg-white mt-5 mb-5">
+            <div class="row" style="margin-top: 9%;">
                 <div class="col-md-6 border-right">
                     <div class="p-3 py-5">
                         <div class="col-md-12 text-center" style="">
@@ -162,6 +154,14 @@
                                     </label>
                                     <label class="payment-method__item">
                                         <span class="payment-method__item-custom-checkbox custom-radio">
+                                            <input type="radio" id="payment-momo" name="payment-method" value="momo">
+                                            <span class="checkmark"></span>
+                                        </span>
+                                        <span class="payment-method__item-icon-wrapper"><img
+                                                src="https://www.coolmate.me/images/momo-icon.png" alt="MOMO"></span>
+                                        <span class="payment-method__item-name">MOMO</span></label>
+                                    <label class="payment-method__item">
+                                        <span class="payment-method__item-custom-checkbox custom-radio">
                                             <input type="radio" id="payment-vnpay" name="payment-method" value="vnpay">
                                             <span class="checkmark"> </span>
                                         </span>
@@ -184,14 +184,12 @@
 
             </div>
         </div>
-    </div>
-</div>
-<!-- Footer-->
-<%@include file="components/footer.jsp" %>
-<!-- Bootstrap core JS-->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Core theme JS-->
-<script src="js/scripts.js"></script>
-</body>
+        <!-- Footer-->
+        <%@include file="components/footer.jsp" %>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
 
 </html>

@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%-- 
     Document   : BlogList
     Created on : Jun 7, 2022, 5:22:43 PM
@@ -67,12 +68,12 @@
                     <!-- Search widget-->
                     <%@include file="components/blogFeature.jsp" %>
                     <div class="col-md-2">
-                        <select class="dropdown-font-new" aria-label="Default select example">Sắp xếp
-                            <option>
-                                Mới Nhất&nbsp;
+                        <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;">
+                            <option value="blog?${historyKey}${historyCategoryId}&type=desc" ${type eq "desc" ? "Selected" : ""}>
+                                Mới Nhất
                             </option>
-                            <option>
-                                Cũ Nhất&nbsp;
+                            <option value="blog?${historyKey}${historyCategoryId}" ${type == null ? "Selected" : ""}>
+                                Cũ Nhất
                             </option>
                         </select>
                     </div>
@@ -81,12 +82,15 @@
                 <div class="col-lg-9">
                     <!-- Featured blog post-->
                     <div class="card mb-4" style="border-radius: 25px;">
-                        <a href="#!"><img class="card-img-top" style="border-radius: 25px 25px 0px 0px;" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
+                        <a href="blogDetail?blog_id=${newBlog.blog_id}&categoryBlog_id=${bnewBlog.categoryBlog_id}">
+                            <img class="card-img-top" style="border-radius: 25px 25px 0px 0px;" src="${newBlog.thumbnail}" alt="..." />
+                        </a>
                         <div class="card-body">
-                            <div class="small text-muted">January 1, 2022</div>
-                            <h2 class="card-title">Featured Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                            <a class="btn btn-dark" href="BlogDetail.jsp">Read more →</a>
+                            <div class="small text-muted">${newBlog.updated_date}</div>
+                            <a style="text-decoration: none" href="blogDetail?blog_id=${newBlog.blog_id}&categoryBlog_id=${bnewBlog.categoryBlog_id}">
+                                <h2 class="card-title"  style="color: black">${newBlog.title}</h2>
+                            </a>
+                            <p class="card-text">${newBlog.brief_infor}</p>
                         </div>
                     </div>
                 </div>
@@ -96,10 +100,16 @@
                         <div class="col-lg-4">
                             <!-- Blog post-->
                             <div class="card mb-4"  style="border-radius: 25px;">
-                                <a href="blogDetail?blog_id=${b.blog_id}&categoryBlog_id=${b.categoryBlog_id}"><img class="card-img-top" style="border-radius: 25px 25px 0px 0px;" src="${b.thumbnail}" alt="..." /></a>
+                                <a href="blogDetail?blog_id=${b.blog_id}&categoryBlog_id=${b.categoryBlog_id}"><img class="card-img-top" style="border-radius: 25px 25px 0px 0px; max-width: 100%" src="${b.thumbnail}" alt="..." /></a>
                                 <div class="card-body">
-                                    <div class="small text-muted">${b.updated_date}</div>
-                                    <a class="" style="text-decoration: none" href="blogDetail?blog_id=${b.blog_id}&categoryBlog_id=${b.categoryBlog_id}"><h2 class="card-title h4" style="color: black">${b.title}</h2></a>
+
+                                    <div class="small text-muted">
+                                        <c:forEach items="${sessionScope.listCategoryBlog}" var="c">${b.categoryBlog_id == c.categoryBlog_id ? c.categoryBlog_name:""}
+                                        </c:forEach> | ${b.updated_date}
+                                    </div>
+
+
+                                        <a class="" style="text-decoration: none" href="blogDetail?blog_id=${b.blog_id}&categoryBlog_id=${b.categoryBlog_id}"><h2 class="card-title h4" style="color: black">${b.title}</h2></a>
                                     <p class="card-text">${b.brief_infor}</p>
                                 </div>
                             </div>
@@ -108,22 +118,29 @@
                 </div>
 
                 <!-- Pagination-->
-                <nav aria-label="Pagination">
-                    <hr class="my-0  bg-dark" />
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item bg-dark"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item bg-dark"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item bg-dark"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </nav>
+                <nav aria-label="..." class="pagination">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a <c:if test="${page!=1}">                         
+                            href="blog?page=${page-1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
+                        </c:if> class="page-link" aria-label="Previous">
+                        <span  aria-hidden="true">«</span>
+                    </a>
+                </li>
+
+                <c:forEach begin="1" end="${totalPage}" var="i">
+                    <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="blog?page=${i}${historyKey}${historyCategoryId}${historyValue}${historyType}">${i}</a></li>
+                    </c:forEach>
+
+                <li class="page-item">
+                    <a <c:if test="${page!=totalPage}">
+                            href="blog?page=${page+1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
+                        </c:if> class="page-link" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
             </div>
         </div>
