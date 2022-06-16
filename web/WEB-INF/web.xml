@@ -56,6 +56,10 @@
         <servlet-name>UpdateProductController</servlet-name>
         <servlet-class>Controlller.Marketing.UpdateProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddProductController</servlet-name>
+        <servlet-class>Controlller.Marketing.AddProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>UpdateProductController</servlet-name>
         <url-pattern>/update_product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductController</servlet-name>
+        <url-pattern>/add_product</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

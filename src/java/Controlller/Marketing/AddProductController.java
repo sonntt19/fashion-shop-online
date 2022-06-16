@@ -5,24 +5,21 @@
  */
 package Controlller.Marketing;
 
-import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Category;
 import model.Product;
 
 /**
  *
- * @author GanKPoet
+ * @author son22
  */
-public class UpdateProductController extends HttpServlet {
+public class AddProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,17 +35,24 @@ public class UpdateProductController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String id = request.getParameter("product_id");
-            CategoryDAO c = new CategoryDAO();
-            ProductDAO pd = new ProductDAO();
-            HttpSession session = request.getSession();
-            Product p = pd.getProductById(Integer.parseInt(id));
-            List<Category> l = c.getAllCategory();
-            session.setAttribute("listCategories", l);
-            request.setAttribute("product", p);
-            request.getRequestDispatcher("update_product.jsp").forward(request, response);
-        }
+        ProductDAO p = new ProductDAO();
+        HttpSession session = request.getSession();
+        
+        
+        String name = request.getParameter("name");
+        String desciption = request.getParameter("desciption");
+        String brief_infor = request.getParameter("brief_infor");
+        boolean status = Boolean.parseBoolean(request.getParameter("status"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int original_price = Integer.parseInt(request.getParameter("original_price"));
+        int sale_price = Integer.parseInt(request.getParameter("sale_price"));
+        String imageUrl = "images/product/"+request.getParameter("image");        
+        
+        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+
+        int new_id = p.addNewProduct(name, desciption, brief_infor, quantity, status, original_price, sale_price, categoryId);
+        p.AddImageProduct(new_id, imageUrl);
+        response.sendRedirect("marketingproductlist");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -77,39 +81,7 @@ public class UpdateProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        ProductDAO p = new ProductDAO();
-        HttpSession session = request.getSession();
-        
-
-        int id = Integer.parseInt(request.getParameter("id"));
-        Product pd = p.getProductById(id);
-        
-        String name = request.getParameter("name");
-        String desciption = request.getParameter("desciption");
-        String brief_infor = request.getParameter("brief_infor");
-        boolean status = Boolean.parseBoolean(request.getParameter("status"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        int original_price = Integer.parseInt(request.getParameter("original_price"));
-        int sale_price = Integer.parseInt(request.getParameter("sale_price"));
-        String image_raw = request.getParameter("image");
-        String imageUrl;
-        if(image_raw != null && !image_raw.equalsIgnoreCase("")){
-            imageUrl = "images/product/" + image_raw;
-        }else{
-            imageUrl = pd.getImage();
-        }
-        
-        
-        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-
-        p.UpdateProduct(id, name, desciption, brief_infor, quantity, status, original_price, sale_price, categoryId);
-        p.UpdateImageProduct(id, imageUrl);
-        pd = p.getProductById(id);
-        request.setAttribute("product", pd);
-        request.getRequestDispatcher("update_product.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
