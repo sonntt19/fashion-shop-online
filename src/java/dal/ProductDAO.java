@@ -9,6 +9,7 @@ import context.DBContext;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Product;
@@ -21,7 +22,7 @@ public class ProductDAO extends DBContext {
 
     public int getTotalProduct(String searchKey, String categoryId) {
         String sql = "Select count(product_id) from Product "
-                + "where category_id "+categoryId+" and product_name like N'%"+searchKey+"%'\n";
+                + "where category_id " + categoryId + " and product_name like N'%" + searchKey + "%'\n";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -67,8 +68,8 @@ public class ProductDAO extends DBContext {
     public List<Product> getProductWithPaging(int page, int PAGE_SIZE, String searchKey, String categoryId, String type, String value) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
-                + "where category_id "+categoryId+" and product_name like N'%"+searchKey+"%'\n"
-                + " order by "+value+" "+type+" offset (?-1)*? row fetch next ? row only";
+                + "where category_id " + categoryId + " and product_name like N'%" + searchKey + "%'\n"
+                + " order by " + value + " " + type + " offset (?-1)*? row fetch next ? row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, page);
@@ -128,7 +129,7 @@ public class ProductDAO extends DBContext {
         }
         return null;
     }
-    
+
     public List<Product> get4ProductRandom() {
         List<Product> list = new ArrayList<>();
         String sql = "select top 4 * from Product ORDER BY NEWID()";
@@ -190,8 +191,6 @@ public class ProductDAO extends DBContext {
 
     }
 
-   
-
     public List<Product> getProductTop4Category(int categoryId, int productId) {
         List<Product> list = new ArrayList<>();
         String sql = "SELECT TOP 4 * FROM Product where category_id = ? and product_id != ? ORDER BY NEWID()";
@@ -224,6 +223,97 @@ public class ProductDAO extends DBContext {
         return list;
     }
 
-    
+    public void UpdateProduct(int id, String name, String desciption, String brief_infor, int quantity, boolean status, int original_price, int sale_price, int categoryId) {
+        try {
+            String sql = "UPDATE [dbo].[Product]\n"
+                    + "   SET [product_name] = ?\n"
+                    + "      ,[original_prices] = ?\n"
+                    + "      ,[sale_prices] = ?\n"
+                    + "      ,[product_details] = ?\n"
+                    + "      ,[brief_infor] = ?\n"
+                    + "      ,[status] = ?\n"
+                    + "      ,[quantity] = ?\n"
+                    + "      ,[category_id] = ?\n"
+                    + "\n"
+                    + " WHERE product_id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, name);
+            st.setInt(2, original_price);
+            st.setInt(3, sale_price);
+            st.setString(4, desciption);
+            st.setString(5, brief_infor);
+            st.setBoolean(6, status);
+            st.setInt(7, quantity);
+            st.setInt(8, categoryId);
+            st.setInt(9, id);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public void UpdateImageProduct(int id, String imageUrl) {
+        try {
+            String sql = "UPDATE [dbo].[Products_Images]\n"
+                    + "   SET\n"
+                    + "      [images] = ?\n"
+                    + " WHERE product_id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, imageUrl);
+            st.setInt(2, id);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public int addNewProduct(String name, String desciption, String brief_infor, int quantity, boolean status, int original_price, int sale_price, int categoryId) {
+        try {
+            String sql = "INSERT INTO [dbo].[Product]\n"
+                    + "           ([product_name]\n"
+                    + "           ,[original_prices]\n"
+                    + "           ,[sale_prices]\n"
+                    + "           ,[product_details]\n"
+                    + "           ,[brief_infor]\n"
+                    + "           ,[status]\n"
+                    + "           ,[quantity]\n"
+                    + "           ,[category_id])\n"
+                    + "     VALUES\n"
+                    + "           (?,?,?,?,?,?,?,?)";
+            PreparedStatement st = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            st.setString(1, name);
+            st.setInt(2, original_price);
+            st.setInt(3, sale_price);
+            st.setString(4, desciption);
+            st.setString(5, brief_infor);
+            st.setBoolean(6, status);
+            st.setInt(7, quantity);
+            st.setInt(8, categoryId);
+            st.executeUpdate();
+            ResultSet rs = st.getGeneratedKeys();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return 0;
+    }
+
+    public void AddImageProduct(int id, String imageUrl) {
+        try {
+            String sql = "INSERT INTO [dbo].[Products_Images]\n"
+                    + "           ([product_id]\n"
+                    + "           ,[images])\n"
+                    + "     VALUES\n"
+                    + "           (?,?)";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            st.setString(2, imageUrl);
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
 
 }

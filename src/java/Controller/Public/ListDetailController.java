@@ -5,6 +5,7 @@
  */
 package Controller.Public;
 
+import dal.FeedbackDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Feedback;
 import model.Product;
 
 /**
@@ -37,10 +39,17 @@ public class ListDetailController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             int productId = Integer.parseInt(request.getParameter("productId"));
             int categoryId  = Integer.parseInt(request.getParameter("categoryId"));
+            int product_id = Integer.parseInt(request.getParameter("productId"));
             
             Product product = new ProductDAO().getProductById(productId);
+            FeedbackDAO fed = new FeedbackDAO();
+            
+            int Total = fed.getTotalFeedback();
+            List<Feedback> listfeedbackbyproduct =  fed.getAllFeedbackByProductId(product_id);
             List<Product> listProduct = new ProductDAO().getProductTop4Category(productId, categoryId);
             
+            request.setAttribute("listfeedbackbyproduct", listfeedbackbyproduct);
+            request.setAttribute("total", Total);
             request.setAttribute("listProduct", listProduct);
             request.setAttribute("product", product);
             request.getRequestDispatcher("list-detail.jsp").forward(request, response);

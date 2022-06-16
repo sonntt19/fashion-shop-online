@@ -3,28 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Public;
+package Controlller.Marketing;
 
-import dal.CartDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Cart;
 import model.Product;
-import model.User;
 
 /**
  *
- * @author dongh
+ * @author son22
  */
-public class AddToCartController extends HttpServlet {
+public class AddProductController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,37 +33,26 @@ public class AddToCartController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String productId_raw = request.getParameter("productId");
-        int product_id = Integer.parseInt(productId_raw);
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        ProductDAO p = new ProductDAO();
         HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("us");
-        int user_id = u.getUser_Id();   
-        CartDAO cd = new CartDAO();
-        Cart c = cd.checkCart(user_id, product_id);
-        int quantity = 1;
-        int total_cost;
-        if (c == null) {
-            ProductDAO pd = new ProductDAO();
-            Product p = pd.getProductById(product_id);
-            int price = p.getOriginal_price();
-            if (p.getSale_price() != 0) {
-                price = p.getSale_price();
-            }
-            total_cost = quantity * price;
-            cd.addToCart(product_id, p.getName(), price, quantity, total_cost, user_id);
-        } else {
-            String quantity_raw = request.getParameter("quantity");
-            if (quantity_raw != null) {
-                quantity = Integer.parseInt(quantity_raw);
-            } else {
-                quantity = c.getQuantity() + 1;
-            }
-            total_cost = quantity * c.getProduct_price();
-            cd.addQuantityCartProduct(product_id, quantity, total_cost, user_id);
-        }
-        String historyUrl = (String) session.getAttribute("historyUrl");
-        response.sendRedirect(historyUrl);
+        
+        
+        String name = request.getParameter("name");
+        String desciption = request.getParameter("desciption");
+        String brief_infor = request.getParameter("brief_infor");
+        boolean status = Boolean.parseBoolean(request.getParameter("status"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
+        int original_price = Integer.parseInt(request.getParameter("original_price"));
+        int sale_price = Integer.parseInt(request.getParameter("sale_price"));
+        String imageUrl = "images/product/"+request.getParameter("image");        
+        
+        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 
+        int new_id = p.addNewProduct(name, desciption, brief_infor, quantity, status, original_price, sale_price, categoryId);
+        p.AddImageProduct(new_id, imageUrl);
+        response.sendRedirect("marketingproductlist");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

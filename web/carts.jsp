@@ -75,14 +75,18 @@
                                                 <td class="p-price first-row">${c.product_price}đ</td>
                                                 <td class="qua-col first-row">
                                                     <div class="quantity">                                                
-                                                            <form action="addcart">
-                                                                <input class="form-control form-control-sm" onchange="this.form.submit()" type="number" name="quantity" value="${c.quantity}">
-                                                                <input type="hidden" name="productId" value="${c.product_id}"/>
-                                                            </form>
+                                                        <form action="addcart">
+                                                            <input class="form-control form-control-sm" onchange="this.form.submit()" type="number" name="quantity" value="${c.quantity}">
+                                                            <input type="hidden" name="productId" value="${c.product_id}"/>
+                                                        </form>
                                                     </div>
                                                 </td>
                                                 <td class="total-price first-row">${c.total_cost}đ</td>
-                                                <td class="close-td first-row"><a href="delete-cart?productId=${c.product_id}&userId=${c.user_id}" class="btn-outline-danger text-decoration-none"><i class="ti-close"></i></a></td>
+                                                <td class="close-td first-row">
+                                                    <a href="delete-cart?productId=${c.product_id}&userId=${c.user_id}" class="btn-outline-danger text-decoration-none">
+                                                        <i class="ti-close"></i>
+                                                    </a>
+                                                </td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -104,7 +108,10 @@
                                         <ul>
                                             <li class="cart-total">Tổng tiền các sản phẩm <span>${sum}đ</span></li>
                                         </ul>
-                                        <a href="#" class="proceed-btn">Thanh toán</a>
+                                        <div class="proceed-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            <a href="cart-contact" style="color: white">Thanh toán</a>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
