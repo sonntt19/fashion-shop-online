@@ -244,7 +244,7 @@
                                 </div>
                                 </c:if>
                             </div>-->
-                                <form action="list-user">
+                                <form action="create-user">
                                     <div class="mb-3 col-md-12">
                                         <label for="fullname">Họ tên<span class="text-danger">*</span></label>
                                         <input id="fullname" type="text" name="fname" class="form-control" placeholder="Nhập họ tên">
@@ -270,8 +270,8 @@
                                     <div class="mb-3 col-md-12 input-group " style="margin-top: 35px">
                                         <label class="input-group-text" for="inputGroupSelect01" style="">Giới tính</label>
                                         <select name="sex_id" class="form-select" id="inputGroupSelect01">
-                                            <option value="true">Nữ</option>
-                                            <option value="1">Nam</option> 
+                                            <option value="False">Nam</option> 
+                                            <option value="True">Nữ</option>
                                         </select>
                                     </div>
                                     <div class="mb-3 col-md-12 input-group "  style="margin-top: 35px">
@@ -375,7 +375,7 @@
                                         <a href="#" class="settings" title="Chi tiết Người Dùng" data-toggle="tooltip"><i
                                                 class="material-icons">&#xE8B8;</i></a>
 <!--                                                <a>delete-user?userId=${U.user_Id} </a>    -->
-                                        <a href="" class="delete" title="Xóa" data-toggle="tooltip"><i
+                                        <a href="update-status-user?userId=${U.user_Id}" class="delete" title="Xóa" data-toggle="tooltip"><i
                                                 class="material-icons">&#xE5C9;</i></a>
                                     </td>
                                 </tr>

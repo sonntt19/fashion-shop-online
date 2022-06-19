@@ -12,13 +12,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.User;
 
 /**
  *
  * @author dongh
  */
-public class DeleteUserController extends HttpServlet {
+public class CreateUserController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,15 +34,16 @@ public class DeleteUserController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-//            int userId = Integer.parseInt(request.getParameter("userId"));
-//           UserDAO userDAO = new UserDAO();
-//           userDAO.deleteUser(userId);
+            String fname = request.getParameter("fname");
+            String password = request.getParameter("password");
+            String email = request.getParameter("email");
+            String phone = request.getParameter("phone");
+            String address = request.getParameter("address");
+            String status = "1";
+            String role_id = request.getParameter("role_id");
+            boolean gender = Boolean.parseBoolean(request.getParameter("sex_id"));
 
-            int user_Id = Integer.parseInt(request.getParameter("user_Id"));
-            int status = 0;
-            UserDAO userDAO = new UserDAO();
-            userDAO.UpdateStatusUser(status, user_Id);
+            new UserDAO().createNewUser(fname, password, email, phone, address, status, role_id, gender);
 
             response.sendRedirect("list-user");
         }

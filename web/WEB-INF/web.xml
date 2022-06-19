@@ -57,14 +57,14 @@
         <servlet-class>Controlller.Marketing.UpdateProductController</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>DeleteUserController</servlet-name>
         <servlet-class>Controller.Admin.DeleteUserController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateStatusUserController</servlet-name>
         <servlet-class>Controller.Admin.UpdateStatusUserController</servlet-class>
-=======
+    </servlet>
+    <servlet>
         <servlet-name>FeedbackController</servlet-name>
         <servlet-class>Controller.Public.FeedbackController</servlet-class>
     </servlet>
@@ -75,7 +75,10 @@
     <servlet>
         <servlet-name>AddProductController</servlet-name>
         <servlet-class>Controlller.Marketing.AddProductController</servlet-class>
->>>>>>> d288bdaf2b614e2b5c265b8c3c09b10ccdce4159
+    </servlet>
+    <servlet>
+        <servlet-name>CreateUserController</servlet-name>
+        <servlet-class>Controller.Admin.CreateUserController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -134,14 +137,14 @@
         <url-pattern>/update_product</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>DeleteUserController</servlet-name>
         <url-pattern>/delete-user</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateStatusUserController</servlet-name>
         <url-pattern>/update-status-user</url-pattern>
-=======
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>FeedbackController</servlet-name>
         <url-pattern>/feedback</url-pattern>
     </servlet-mapping>
@@ -152,7 +155,10 @@
     <servlet-mapping>
         <servlet-name>AddProductController</servlet-name>
         <url-pattern>/add_product</url-pattern>
->>>>>>> d288bdaf2b614e2b5c265b8c3c09b10ccdce4159
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateUserController</servlet-name>
+        <url-pattern>/create-user</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
