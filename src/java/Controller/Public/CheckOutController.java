@@ -157,22 +157,29 @@ public class CheckOutController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
+        
+        
         CartDAO cd = new CartDAO();
         OrderDao od = new OrderDao();
         OrderDetailDAO odd = new OrderDetailDAO();
         ProductDAO pd = new ProductDAO();
         CustomerDAO cus = new CustomerDAO();
         HttpSession session = request.getSession();
+        
+        
         User u = (User) session.getAttribute("us");
         int user_id = u.getUser_Id();
         cd.deleteCartByUserId(user_id);
         Order o = od.getOrderNew(user_id);
         int saler_id = od.getAssignOrder();
+        
+        
         od.updateSalerOrder(o.getOrderID(), saler_id);
         od.updateStatusOrder(o.getOrderID(), 1);
         List<OrderDetail> listOrderDetail = odd.getAllByOderId(o.getOrderID());
         pd.updateQuantityProduct(listOrderDetail);
         Customer c = cus.checkCustomer(o.getFullName(), u.getEmail(), o.getMobile());
+        
         if (c == null) {
             cus.storedNewCustomer(o.getFullName(), u.getEmail(), o.getMobile());
         }
