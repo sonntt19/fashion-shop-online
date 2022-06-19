@@ -107,10 +107,11 @@ public class FeedbackDAO extends DBContext {
         }
     }
 
-    public int getTotalFeedback() {
-        String sql = "select COUNT(feedBack_id) from Feedback";
+    public int getTotalFeedback(int product_id) {
+        String sql = "select COUNT(feedBack_id) from Feedback where product_id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, product_id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);

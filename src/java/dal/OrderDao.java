@@ -216,4 +216,32 @@ public class OrderDao extends DBContext {
         return null;
     }
 
+    public int getAssignOrder() {
+        String sql = "SELECT TOP 1 * FROM [User] where role_id = 3\n"
+                + "ORDER BY NEWID()";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return -1;
+    }
+
+    public void updateSalerOrder(int orderID, int saler_id) {
+        String sql = "UPDATE [dbo].[Order]\n"
+                + "   SET [saler_id] = ?\n"
+                + " WHERE order_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, saler_id);
+            st.setInt(2, orderID);
+            st.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
 }
