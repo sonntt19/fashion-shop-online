@@ -44,7 +44,7 @@
                             
                             <h1 class="fw-bolder mb-1">${listBlogById.title}</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Posted on ${listBlogById.updated_date} by 
+                            <div class="text-muted fst-italic mb-2">Posted on ${listBlogById.updated_date} by ${author}
                                 <c:forEach items="${sessionScope.listBlogById}" var="c">${b.author_id == c.user_Id ? c.full_Name:""}
                                         </c:forEach></div>
                            
