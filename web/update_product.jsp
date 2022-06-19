@@ -94,6 +94,7 @@
                         </tr>
                     </table>
                     <br/>
+                    <a class="buy-now btn btn-danger ml-5" href="marketingproductlist">Back</a>
                     <button type="submit" class="btn btn-primary" style="width: 100px; margin-left: 75%">Save</button>
                 </form>
             </div>

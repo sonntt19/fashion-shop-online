@@ -6,6 +6,7 @@
 package Controller.Public;
 
 import dal.FeedbackDAO;
+import dal.OrderDao;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Feedback;
+import model.Order;
 import model.Product;
+import model.User;
 
 /**
  *
@@ -41,20 +44,28 @@ public class ListDetailController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             int productId = Integer.parseInt(request.getParameter("productId"));
             int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-            int product_id = Integer.parseInt(request.getParameter("productId"));
+            User u = (User) session.getAttribute("us");
 
             Product product = new ProductDAO().getProductById(productId);
             FeedbackDAO fed = new FeedbackDAO();
+            OrderDao od = new OrderDao();
+            Order accept = null;
+            int Total = fed.getTotalFeedback(productId);
+            if (u != null) {
+                accept = od.checkProductOrderByUser(u.getUser_Id(), productId);
+            }
 
-            int Total = fed.getTotalFeedback(product_id);
-            List<Feedback> listfeedbackbyproduct = fed.getAllFeedbackByProductId(product_id);
+            List<Feedback> listfeedbackbyproduct = fed.getAllFeedbackByProductId(productId);
             List<Product> listProduct = new ProductDAO().getProductTop4Category(productId, categoryId);
+            double avg = new ProductDAO().getRatedProduct(productId);
 
             request.setAttribute("listfeedbackbyproduct", listfeedbackbyproduct);
             request.setAttribute("total", Total);
             request.setAttribute("listProduct", listProduct);
             request.setAttribute("product", product);
-            session.setAttribute("historyUrl", "list-detail?productId="+product_id+"&categoryId="+categoryId);
+            request.setAttribute("avg", avg);
+            request.setAttribute("accept", accept);
+            session.setAttribute("historyUrl", "list-detail?productId=" + productId + "&categoryId=" + categoryId);
             request.getRequestDispatcher("list-detail.jsp").forward(request, response);
         }
     }

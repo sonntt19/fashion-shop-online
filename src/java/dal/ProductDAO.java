@@ -66,10 +66,10 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
-    public List<Product> getProductWithPaging(int page, int PAGE_SIZE, String searchKey, String categoryId, String type, String value) {
+    public List<Product> getProductWithPaging(int page, int PAGE_SIZE, String searchKey, String categoryId, String type, String value, String status) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
-                + "where category_id " + categoryId + " and product_name like N'%" + searchKey + "%'\n"
+                + "where category_id " + categoryId +" and status "+status+ " and product_name like N'%" + searchKey + "%'\n"
                 + " order by " + value + " " + type + " offset (?-1)*? row fetch next ? row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -361,35 +361,6 @@ public class ProductDAO extends DBContext {
         return 0;
     }
      
-         public List<Product> getProductByStatus(int status) {
-        List<Product> list = new ArrayList<>();
-        String sql = "select * from Product where status = ?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, status);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                Product p = Product.builder()
-                        .id(rs.getInt(1))
-                        .name(rs.getString(2))
-                        .original_price(rs.getInt(3))
-                        .sale_price(rs.getInt(4))
-                        .desciption(rs.getString(5))
-                        .brief_infor(rs.getString(6))
-                        .status(rs.getBoolean(7))
-                        .quantity(rs.getInt(8))
-                        .category_id(rs.getInt(9))
-                        .update_date(rs.getDate(10))
-                        .image(getImgProduct(rs.getInt(1)))
-                        .rated_star(getRatedProduct(rs.getInt(1)))
-                        .build();
-
-                list.add(p);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return list;
-    }
+         
 
 }

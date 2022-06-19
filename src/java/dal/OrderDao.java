@@ -244,4 +244,24 @@ public class OrderDao extends DBContext {
         }
     }
 
+    public Order checkProductOrderByUser(int user_Id, int productId) {
+        String sql = "select * from [Order] o join Order_Detail od on o.order_id = od.order_id\n"
+                + "where o.userId = ? and od.product_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, user_Id);
+            st.setInt(2, productId);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Order c = Order.builder()
+                        .orderID(rs.getInt(1))
+                        .build();
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
 }
