@@ -333,5 +333,63 @@ public class ProductDAO extends DBContext {
             System.out.println(ex);
         }
     }
+    public int getTotalProduct() {
+        String sql = "select COUNT(product_id) from Product";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+    
+     public int getTotalPublishedProduct() {
+        String sql = "select COUNT(product_id) from Product where status = 1";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+     
+         public List<Product> getProductByStatus(int status) {
+        List<Product> list = new ArrayList<>();
+        String sql = "select * from Product where status = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, status);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = Product.builder()
+                        .id(rs.getInt(1))
+                        .name(rs.getString(2))
+                        .original_price(rs.getInt(3))
+                        .sale_price(rs.getInt(4))
+                        .desciption(rs.getString(5))
+                        .brief_infor(rs.getString(6))
+                        .status(rs.getBoolean(7))
+                        .quantity(rs.getInt(8))
+                        .category_id(rs.getInt(9))
+                        .update_date(rs.getDate(10))
+                        .image(getImgProduct(rs.getInt(1)))
+                        .rated_star(getRatedProduct(rs.getInt(1)))
+                        .build();
+
+                list.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return list;
+    }
 
 }

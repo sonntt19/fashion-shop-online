@@ -24,6 +24,8 @@
         <style>
             .center form table tr td {
                 font-size: 100%;
+                padding-top: 2%;
+                padding-left: 2%;
             }
             .center form table tr td input{
                 font-size: 100%;
@@ -31,6 +33,10 @@
             }
             table{
                 margin-left: 20%;
+            }
+            body{
+                background-image: url("images/slider/1.jpg");
+                background-size: 100% 108%;
             }
         </style>
     </head>
@@ -40,14 +46,14 @@
             <div class="center">
                 <form action="update_product" method="post">
                     <input type="hidden"  name="id" value="${product.id}"/><br/>
-                    <table style="background-color: window ; width: 60%">
+                    <table style="background-color: window ; width: 60% ; border-radius: 10px">
                         <tr>
                             <td>Tên sản phẩm:</td>
                             <td><input type="text"  name="name" value="${product.name}"/><br/></td>
                         </tr>
                         <tr>
-                            <td>Địa chỉ ảnh:</td>
-                            <td><input type="file" id="avatar" name="image"/><img  src="${product.image}" height="50px" width="50px" alt=""><br/></td>
+                            <td>Ảnh sản phẩm:</td>
+                            <td><input style="padding-left:8px" type="file" id="avatar" name="image"/><img  src="${product.image}" height="50px" width="50px" alt=""><br/></td>
                         </tr>
                         <tr>
                             <td>Giá gốc:</td>
@@ -64,10 +70,7 @@
                         <tr>
                             <td>Miêu tả :</td>
                             <td>
-                                
-                                <textarea rows="3" cols="80" name="desciption">
-                                    ${product.desciption}
-                                </textarea>
+                                <textarea rows="3" cols="80" name="desciption">${product.desciption}</textarea>
                             </td>
                         </tr>
                         <tr>
@@ -79,11 +82,11 @@
                         </tr>
                         <tr>
                             <td>Số lượng:</td>
-                            <td><input type="text" name="quantity" value="${product.quantity}"/><br/></td>
+                            <td style="padding-left: 2%"><input type="text" name="quantity" value="${product.quantity}"/><br/></td>
                         </tr>
                         <tr>
-                            <td>Danh mục:</td>
-                            <td>
+                            <td style="padding-bottom: 2%">Danh mục:</td>
+                            <td style="padding-bottom: 2%">
                                 <c:forEach items="${sessionScope.listCategories}" var="list">
                                     <input type="radio" name="categoryId" value="${list.id}" ${list.id == product.category_id ? "checked" : ""} />${list.name}
                                 </c:forEach>

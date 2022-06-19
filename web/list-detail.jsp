@@ -182,19 +182,19 @@
                             <div class="form-group">
                                 <textarea name="subject" placeholder="Viết bình luận.." style="height:200px ; width: 460px"></textarea>
                             </div>
-                            <b>Link ảnh phản hồi:</b>&nbsp;&nbsp;
+                            <b>Ảnh phản hồi:</b>&nbsp;&nbsp;
                             <div class="form-group">
-                                <input name="imageurl" type="text" class="form-control" style="border-radius: 100px;" required="">
+                                <input name="imageurl" type="file" class="form-control" style="border-radius: 100px;" required="">
                             </div>
                             <b>Đánh giá:</b>&nbsp;&nbsp;
                             <div class="form-group" >
                                 <select style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                                     <option selected>Chọn số sao bạn dành cho KingsMan</option>
-                                    <option name = "star" value="1">1</option>
-                                    <option name = "star" value="2">2</option>
-                                    <option name = "star" value="3">3</option>
-                                    <option name = "star" value="3">4</option>
-                                    <option name = "star" value="3">5</option>
+                                    <option name = "star" value="1">1<img style="height: 40px; width: 40px" src="images/images.png"></option>
+                                    <option name = "star" value="2">2<img style="height: 40px; width: 40px" src="images/images.png"></option>
+                                    <option name = "star" value="3">3<img style="height: 40px; width: 40px" src="images/images.png"></option>
+                                    <option name = "star" value="3">4<img style="height: 40px; width: 40px" src="images/images.png"></option>
+                                    <option name = "star" value="3">5<img style="height: 40px; width: 40px" src="images/images.png"></option>
                                 </select>
                             </div>
                             <br>
@@ -210,6 +210,7 @@
                 </div>
             </div>
         </div>
+                            
         <!-- Feedback List -->
         <c:if test="${total == 0}">
             <h3 style="text-align: center; font-style: oblique;">Không có bình luận</h3>
