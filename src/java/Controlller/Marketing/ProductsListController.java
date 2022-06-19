@@ -45,7 +45,10 @@ public class ProductsListController extends HttpServlet {
             HttpSession session = request.getSession();
             CategoryDAO c = new CategoryDAO();
             ProductDAO p = new ProductDAO();
-
+            
+            int Total = p.getTotalProduct();
+            int PublishedProduct = p.getTotalPublishedProduct();
+            int status = Integer.parseInt(request.getParameter("status")) ;
             // Set page
             int page = 1;
             String strPage = request.getParameter("page");
@@ -114,6 +117,8 @@ public class ProductsListController extends HttpServlet {
             request.setAttribute("totalPage", totalPage);
             
             // Request
+            request.setAttribute("total", Total);
+            request.setAttribute("PublishedProduct", PublishedProduct);
             request.getRequestDispatcher("marketing_productlist.jsp").forward(request, response);
         }
     }

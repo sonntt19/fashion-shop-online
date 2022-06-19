@@ -21,7 +21,7 @@
                     <div class="feedback-footer">
                         <h2 class="mt-40">KingsMan lắng nghe bạn!</h2>
                         <p>Chúng tôi luôn trân trọng và mong đợi nhận được mọi ý kiến đóng góp từ khách hàng để có thể nâng cấp trải nghiệm dịch vụ và sản phẩm tốt hơn nữa</p>
-                        <input class="Button-Feedback mt-16" type="submit" value="Gửi ý kiến">
+                        <a data-toggle="modal" data-dismiss="modal" data-target="#feedback"><input class="Button-Feedback mt-16" type="submit" value="Gửi ý kiến"></a> 
                         <br>
                         <br>
                         <br>
