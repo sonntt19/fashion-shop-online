@@ -42,6 +42,21 @@ public class FeedbackController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
+            HttpSession session = request.getSession();
+
+            User u = (User) session.getAttribute("us");
+            int product_id = Integer.parseInt(request.getParameter("productId"));
+            String subject = request.getParameter("subject");
+            String image = "images/feedback/"+request.getParameter("imageurl");
+            int star = Integer.parseInt(request.getParameter("star"));
+
+            FeedbackDAO fed = new FeedbackDAO();
+
+            fed.addNewFeedback(u.getFull_Name(), star, subject, image, 1, product_id, u.getUser_Id());
+            String historyUrl = (String) session.getAttribute("historyUrl");
+
+            response.sendRedirect(historyUrl);
+
         }
     }
 
@@ -72,26 +87,6 @@ public class FeedbackController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        
-        HttpSession session = request.getSession();
-        
-        User u = (User) session.getAttribute("us");
-        int user_Id = u.getUser_Id();
-        
-        int product_id = Integer.parseInt(request.getParameter("productId"));
-        String subject = request.getParameter("subject");
-        String image = request.getParameter("imageurl");
-        String name = u.getFull_Name();
-        int star = Integer.parseInt(request.getParameter("star"));
-        int status = Integer.parseInt(request.getParameter("status"));
-
-        FeedbackDAO fed = new FeedbackDAO();
-        
-        fed.addNewFeedback(name, user_Id, product_id, subject, image, star, status);
-        
-        request.getRequestDispatcher("list-detail").forward(request, response);
 
     }
 

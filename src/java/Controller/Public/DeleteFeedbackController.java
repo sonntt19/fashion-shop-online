@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,10 +33,12 @@ public class DeleteFeedbackController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession();
+            String historyUrl = (String) session.getAttribute("historyUrl");
             int id = Integer.parseInt(request.getParameter("id"));
             FeedbackDAO fd = new FeedbackDAO();
             fd.deleteFeedbacktById(id);
-            response.sendRedirect("list-detail.jsp");
+            response.sendRedirect(historyUrl);
         }
     }
 

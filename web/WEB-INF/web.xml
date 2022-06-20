@@ -80,6 +80,23 @@
         <servlet-name>CreateUserController</servlet-name>
         <servlet-class>Controller.Admin.CreateUserController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SuccessfulCheckoutController</servlet-name>
+        <servlet-class>Controller.Public.SuccessfulCheckoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyOrderController</servlet-name>
+        <servlet-class>Controller.Customer.MyOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderDetailController</servlet-name>
+        <servlet-class>Controller.Customer.OrderDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelOrderController</servlet-name>
+        <servlet-class>Controller.Customer.CancelOrderController</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -159,6 +176,22 @@
     <servlet-mapping>
         <servlet-name>CreateUserController</servlet-name>
         <url-pattern>/create-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SuccessfulCheckoutController</servlet-name>
+        <url-pattern>/successful</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyOrderController</servlet-name>
+        <url-pattern>/myorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailController</servlet-name>
+        <url-pattern>/order-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelOrderController</servlet-name>
+        <url-pattern>/cancel-order</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

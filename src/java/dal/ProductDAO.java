@@ -66,10 +66,10 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
-    public List<Product> getProductWithPaging(int page, int PAGE_SIZE, String searchKey, String categoryId, String type, String value) {
+    public List<Product> getProductWithPaging(int page, int PAGE_SIZE, String searchKey, String categoryId, String type, String value, String status) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
-                + "where category_id " + categoryId + " and product_name like N'%" + searchKey + "%'\n"
+                + "where category_id " + categoryId +" and status "+status+ " and product_name like N'%" + searchKey + "%'\n"
                 + " order by " + value + " " + type + " offset (?-1)*? row fetch next ? row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -333,5 +333,34 @@ public class ProductDAO extends DBContext {
             System.out.println(ex);
         }
     }
+    public int getTotalProduct() {
+        String sql = "select COUNT(product_id) from Product";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+    
+     public int getTotalPublishedProduct() {
+        String sql = "select COUNT(product_id) from Product where status = 1";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+     
+         
 
 }

@@ -1,4 +1,3 @@
-<%-- 
     Document   : product
     Created on : May 30, 2022, 2:30:55 PM
     Author     : son22
@@ -315,8 +314,7 @@
                             <div class="col-sm-7">
                                 <a href="#" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="material-icons">&#xE147;</i> 
                                     <span>Thêm người dùng mới</span></a>
-                                <a href="#" class="btn btn-secondary" ><i class="material-icons">&#xE24D;</i> <span>Export to
-                                        Excel</span></a>
+                                
                             </div>
                         </div>
                     </div>

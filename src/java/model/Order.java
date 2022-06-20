@@ -30,4 +30,7 @@ public class Order {
     int UserId;
     int saler_id;
     String note;
+    int countProduct;
+    String fullNameFirstProduct;
+    String status_order_name;
 }

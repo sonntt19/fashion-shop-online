@@ -67,7 +67,7 @@
                 <div class="col-lg-3">
                     <!-- Search widget-->
                     <%@include file="components/blogFeature.jsp" %>
-                    <div class="col-md-2">
+                    <div class="col-mb-4">
                         <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;">
                             <option value="blog?${historyKey}${historyCategoryId}&type=desc" ${type eq "desc" ? "Selected" : ""}>
                                 Mới Nhất

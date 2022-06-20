@@ -25,6 +25,6 @@ public class Feedback {
     private boolean status;
     private int product_id;
     private int user_id;
-
+    private Date date;
      
 }

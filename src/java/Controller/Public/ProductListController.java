@@ -54,6 +54,7 @@ public class ProductListController extends HttpServlet {
                 page = Integer.parseInt(strPage);
             }
 
+            
             // Set key for search 
             String searchKey = "";
             String strSearchKey = request.getParameter("key");
@@ -88,7 +89,7 @@ public class ProductListController extends HttpServlet {
             }
 
             // Get list product, new, category, slider
-            List<Product> listProduct = p.getProductWithPaging(page, PAGE_SIZE, searchKey, categoryId, type, value);
+            List<Product> listProduct = p.getProductWithPaging(page, PAGE_SIZE, searchKey, categoryId, type, value, "=1");
             List<Category> l = c.getAllCategory();
             Product pNew = p.getProductNew();
             Slider listSlider_HomePageFirst = new SliderDAO().getFirstSlider();

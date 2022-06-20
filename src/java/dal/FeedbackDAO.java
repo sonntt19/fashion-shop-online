@@ -63,6 +63,7 @@ public class FeedbackDAO extends DBContext {
                         .status(rs.getBoolean(6))
                         .product_id(rs.getInt(7))
                         .user_id(rs.getInt(8))
+                        .date(rs.getDate(9))
                         .build();
 
                 list.add(f);
@@ -74,43 +75,11 @@ public class FeedbackDAO extends DBContext {
         return list;
     }
 
-    public void addNewFeedback(String name, int user_Id, int product_id, String subject, String image, int star, int status) {
-        try {
-            String sql = "INSERT INTO [dbo].[Feedback]\n"
-                    + "           ([fullName]\n"
-                    + "           ,[rated_star]\n"
-                    + "           ,[feedback]\n"
-                    + "           ,[image]\n"
-                    + "           ,[status]\n"
-                    + "           ,[product_id]\n"
-                    + "           ,[userId])\n"
-                    + "     VALUES\n"
-                    + "           ?\n"
-                    + "           ,?\n"
-                    + "           ,?\n"
-                    + "           ,?\n"
-                    + "           ,?\n"
-                    + "           ,?\n"
-                    + "           ,?";
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, name);
-            st.setInt(2, star);
-            st.setString(3, subject);
-            st.setString(4, image);
-            st.setInt(5, status);
-            st.setInt(6, product_id);
-            st.setInt(7, user_Id);
-            st.executeUpdate();
-
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-    }
-
-    public int getTotalFeedback() {
-        String sql = "select COUNT(feedBack_id) from Feedback";
+    public int getTotalFeedback(int product_id) {
+        String sql = "select COUNT(feedBack_id) from Feedback where product_id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, product_id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
@@ -142,6 +111,33 @@ public class FeedbackDAO extends DBContext {
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setInt(1, id);
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void addNewFeedback(String full_Name, int star, String subject, String image, int i, int product_id, int user_Id) {
+        try {
+            String sql = "INSERT INTO [dbo].[Feedback]\n"
+                    + "           ([fullName]\n"
+                    + "           ,[rated_star]\n"
+                    + "           ,[feedback]\n"
+                    + "           ,[image]\n"
+                    + "           ,[status]\n"
+                    + "           ,[product_id]\n"
+                    + "           ,[userId])\n"
+                    + "     VALUES\n"
+                    + "           (?,?,?,?,?,?,?)";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, full_Name);
+            st.setInt(2, star);
+            st.setString(3, subject);
+            st.setString(4, image);
+            st.setInt(5, i);
+            st.setInt(6, product_id);
+            st.setInt(7, user_Id);
             st.executeUpdate();
 
         } catch (SQLException e) {

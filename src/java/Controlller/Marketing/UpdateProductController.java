@@ -47,7 +47,8 @@ public class UpdateProductController extends HttpServlet {
             List<Category> l = c.getAllCategory();
             session.setAttribute("listCategories", l);
             request.setAttribute("product", p);
-            request.getRequestDispatcher("update_product.jsp").forward(request, response);
+           request.getRequestDispatcher("update_product.jsp").forward(request, response);
+            
         }
     }
 
@@ -82,11 +83,10 @@ public class UpdateProductController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         ProductDAO p = new ProductDAO();
         HttpSession session = request.getSession();
-        
 
         int id = Integer.parseInt(request.getParameter("id"));
         Product pd = p.getProductById(id);
-        
+
         String name = request.getParameter("name");
         String desciption = request.getParameter("desciption");
         String brief_infor = request.getParameter("brief_infor");
@@ -96,13 +96,12 @@ public class UpdateProductController extends HttpServlet {
         int sale_price = Integer.parseInt(request.getParameter("sale_price"));
         String image_raw = request.getParameter("image");
         String imageUrl;
-        if(image_raw != null && !image_raw.equalsIgnoreCase("")){
+        if (image_raw != null && !image_raw.equalsIgnoreCase("")) {
             imageUrl = "images/product/" + image_raw;
-        }else{
+        } else {
             imageUrl = pd.getImage();
         }
-        
-        
+
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
 
         p.UpdateProduct(id, name, desciption, brief_infor, quantity, status, original_price, sale_price, categoryId);

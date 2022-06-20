@@ -5,27 +5,19 @@
  */
 package Controller.Public;
 
-import dal.FeedbackDAO;
 import dal.OrderDao;
-import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Feedback;
-import model.Order;
-import model.Product;
-import model.User;
 
 /**
  *
- * @author dongh
+ * @author son22
  */
-public class ListDetailController extends HttpServlet {
+public class SuccessfulCheckoutController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,33 +32,21 @@ public class ListDetailController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
             /* TODO output your page here. You may use following sample code. */
-            int productId = Integer.parseInt(request.getParameter("productId"));
-            int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-            User u = (User) session.getAttribute("us");
-
-            Product product = new ProductDAO().getProductById(productId);
-            FeedbackDAO fed = new FeedbackDAO();
             OrderDao od = new OrderDao();
-            Order accept = null;
-            int Total = fed.getTotalFeedback(productId);
-            if (u != null) {
-                accept = od.checkProductOrderByUser(u.getUser_Id(), productId);
+            String id_raw = request.getParameter("vnp_OrderInfo");
+            int id = Integer.parseInt(id_raw);
+            if (id == -1) {
+                request.setAttribute("notification", "Bạn đã chọn phương thức thanh toán khi nhận hàng.");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             }
+            if (id_raw != null) {
+                od.updateStatusOrder(id, 2);
+                request.setAttribute("notification", "Thanh toán bằng VNPAY thành công.");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            }
+            
 
-            List<Feedback> listfeedbackbyproduct = fed.getAllFeedbackByProductId(productId);
-            List<Product> listProduct = new ProductDAO().getProductTop4Category(productId, categoryId);
-            double avg = new ProductDAO().getRatedProduct(productId);
-
-            request.setAttribute("listfeedbackbyproduct", listfeedbackbyproduct);
-            request.setAttribute("total", Total);
-            request.setAttribute("listProduct", listProduct);
-            request.setAttribute("product", product);
-            request.setAttribute("avg", avg);
-            request.setAttribute("accept", accept);
-            session.setAttribute("historyUrl", "list-detail?productId=" + productId + "&categoryId=" + categoryId);
-            request.getRequestDispatcher("list-detail.jsp").forward(request, response);
         }
     }
 

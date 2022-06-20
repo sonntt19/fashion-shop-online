@@ -266,7 +266,6 @@ public class UserDAO extends DBContext {
 //            System.out.println(e);
 //        }
 //    }
-
     public void UpdateStatusUser(int status, int user_Id) {
         String sql = "UPDATE [dbo].[User]\n"
                 + "   SET [status] = ?\n"
@@ -280,6 +279,21 @@ public class UserDAO extends DBContext {
         } catch (SQLException e) {
             System.out.println(e);
         }
+    }
+
+    public String getAuthorById(int author_id) {
+        String sql = "select * from [User] where userId = ? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, author_id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+
+                return rs.getString(2);
+            }
+        } catch (Exception e) {
+        }
+        return null;
     }
 
 }

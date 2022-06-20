@@ -64,6 +64,13 @@
                         </div>
 
                         <div class="fs-5 mb-4">
+                            <c:if test="${product.sale_price == 0 || product.sale_price == null}">
+                            <div style="margin-bottom: 1.7%">
+                                Giá gốc: 
+                                <span >${product.original_price}đ</span>
+                            </div>
+                            </c:if>
+                            <c:if test="${product.sale_price != 0}">
                             <div style="margin-bottom: 1.7%">
                                 Giá gốc: 
                                 <span class="text-decoration-line-through">${product.original_price}đ</span>
@@ -72,6 +79,7 @@
                                 Giảm giá:
                                 <span>${product.sale_price}đ</span>
                             </div>
+                            </c:if>
                         </div>
                         <p class="lead">${product.brief_infor}</p>
                         <p class="lead">${product.desciption}</p>
@@ -175,63 +183,98 @@
                         <h2 style="margin-left: 35%">Bình luận</h2>
                     </div>
                     <div class="modal-body">
-                        <form action="feedback" method="post">
+                        <form action="feedback">
                             <input type="hidden" name="productId" value="${product.id}"/>
-                            <input type="hidden" name="status" value="1"/>
                             <b>Viết bình luận:</b>&nbsp;&nbsp;
                             <div class="form-group">
                                 <textarea name="subject" placeholder="Viết bình luận.." style="height:200px ; width: 460px"></textarea>
                             </div>
-                            <b>Link ảnh phản hồi:</b>&nbsp;&nbsp;
+                            <b>Ảnh phản hồi:</b>&nbsp;&nbsp;
                             <div class="form-group">
-                                <input name="imageurl" type="text" class="form-control" style="border-radius: 100px;" required="">
+                                <input name="imageurl" type="file" class="form-control" style="border-radius: 100px;" required="">
                             </div>
                             <b>Đánh giá:</b>&nbsp;&nbsp;
                             <div class="form-group" >
-                                <select style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                                <select name = "star" style="border-radius: 100px;" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                                     <option selected>Chọn số sao bạn dành cho KingsMan</option>
-                                    <option name = "star" value="1">1</option>
-                                    <option name = "star" value="2">2</option>
-                                    <option name = "star" value="3">3</option>
-                                    <option name = "star" value="3">4</option>
-                                    <option name = "star" value="3">5</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
                                 </select>
                             </div>
                             <br>
-                            <c:if test="${us == null}">
-                                <center><button data-target="#loginModal" type="submit" class="btn btn-dark" style="padding-right: 130px;padding-left: 130px; border-radius: 100px;">Đăng nhập để bình luận</button></center>
-                                </c:if>
-                                <c:if test="${us != null}">
-                                <center><button type="submit" class="btn btn-dark" style="padding-right: 160px;padding-left: 160px; border-radius: 100px;">Bình luận</button></center>
-                                </c:if>
+
+
+                            <center><button type="submit" class="btn btn-dark" style="padding-right: 160px;padding-left: 160px; border-radius: 100px;">Bình luận</button></center>
+
                         </form>
                         <br><br>
                     </div>
                 </div>
             </div>
         </div>
+
         <!-- Feedback List -->
         <c:if test="${total == 0}">
             <h3 style="text-align: center; font-style: oblique;">Không có bình luận</h3>
-        </c:if>             
-        <c:forEach items="${listfeedbackbyproduct}" var="f">
-            <div style="background-color:#f8f9fa;">
-                <hr class="marketing_feedback_margin">
-                <span><h2 class="marketing_feedback_margin marketing_feedbac_displayinline">${total} Đánh giá</h2></span>
-                <span><h2 class="marketing_feedback_margin marketing_feedbac_displayinline">${f.rated_star}/5 <img style="height: 40px; width: 40px" src="images/images.png"></h2></span>
-                <a data-toggle="modal" data-dismiss="modal" data-target="#feedback"><h2 class="marketing_feedback_margin marketing_feedbac_displayinline" style="color: blue">Viết nhận xét của bạn</h2></a>
-                <hr class="marketing_feedback_margin">
+        </c:if>           
+        <div style="background-color:#f8f9fa;">
+            <hr class="marketing_feedback_margin">
+            <span><h2 class="marketing_feedback_margin marketing_feedbac_displayinline">${total} Đánh giá</h2></span>
+            <span><h2 class="marketing_feedback_margin marketing_feedbac_displayinline">${avg}/5 <img style="height: 40px; width: 40px" src="images/images.png"></h2></span>
+                    <c:if test="${accept.orderID != null}">
+                <a data-toggle="modal" data-dismiss="modal" data-target="#feedback">
+                    <h2 class="marketing_feedback_margin marketing_feedbac_displayinline" style="color: blue">
+                        Viết nhận xét của bạn
+                    </h2>
+                </a>
+            </c:if>
+            <hr class="marketing_feedback_margin">
+            <div  class="container-fluid">
+                <div class="row">
+                    <c:forEach items="${listfeedbackbyproduct}" var="f">
+                        <div class="col-sm-6">
+                            <span>
+                                <h6 class="marketing_feedback_margin marketing_feedbac_displayinline">
+                                    <c:forEach var="i" begin="0" end="4">
+                                        <c:if test="${(f.rated_star - i) >= 1}">
+                                            <div class="reviews-rating__star is-active"></div> 
+                                        </c:if>
+                                        <c:if test="${(f.rated_star - i) < 1 && (f.rated_star - i) > 0}">
+                                            <div class="reviews-rating__star is-active is-half"></div> 
+                                        </c:if>
+                                        <c:if test="${(f.rated_star - i) <= 0}">
+                                            <div class="reviews-rating__star"></div> 
+                                        </c:if>
 
-                <span><h6 class="marketing_feedback_margin marketing_feedbac_displayinline"><b>${f.fullName} &nbsp &nbsp ${f.rated_star}/5</b>  <img style="height: 20px; width: 20px" src="images/images.png"></h6></span>
-                <h6 class="marketing_feedback_margin">${f.feedback} <a href="delete-feedback?id=${f.id}">Xóa bình luận</a></h6>
-                <h6 class="marketing_feedback_margin"><img style="height: 100px; width: 100px" src="${f.image}"></h6>
+                                    </c:forEach>
+                                    <br/>
+                                    <b class="marketing_feedback_margin">${f.fullName}</b>
+                                </h6>
+                            </span>
+
+                            <h6 class="marketing_feedback_margin mt-2">${f.feedback}
+                                <c:if test="${f.user_id == sessionScope.us.user_Id}">
+                                    <a href="delete-feedback?id=${f.id}" class="float-right btn btn-outline-danger">Xóa</a>
+                                </c:if>
+                            </h6>
+                            <h6 class="marketing_feedback_margin"><img style="height: 100px; width: 100px" src="${f.image}"></h6>
+                            <span class="reviews-listing__date marketing_feedback_margin">
+                                ${f.date}
+                            </span>
+                            <hr class="marketing_feedback_margin">
+
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
-        </c:forEach>
-        <!-- Footer-->
-        <%@include file="components/footer.jsp" %>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="do/js/scripts.js"></script>
+            <!-- Footer-->
+            <%@include file="components/footer.jsp" %>
+            <!-- Bootstrap core JS-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- Core theme JS-->
+            <script src="do/js/scripts.js"></script>
     </body>
 </html>

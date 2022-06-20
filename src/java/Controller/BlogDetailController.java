@@ -7,6 +7,7 @@ package Controller;
 
 import dal.BlogDAO;
 import dal.CategoryDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -44,8 +45,12 @@ public class BlogDetailController extends HttpServlet {
         
         BlogDAO dao = new BlogDAO();
         Blog listBlogDetail_BlogDetail = dao.getBlogByBlogId(blog_id);
-        session.setAttribute("listBlogById", listBlogDetail_BlogDetail);
+        request.setAttribute("listBlogById", listBlogDetail_BlogDetail);
         
+        UserDAO ud = new UserDAO();
+        String author = ud.getAuthorById(listBlogDetail_BlogDetail.getAuthor_id());
+        request.setAttribute("author", author);
+             
         List<CategoryBlog> listCategoryBlog_BlogList = new CategoryDAO().getAllCategoryBlog();
         session.setAttribute("listCategoryBlog", listCategoryBlog_BlogList);
         
