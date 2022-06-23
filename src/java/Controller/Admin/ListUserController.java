@@ -5,6 +5,7 @@
  */
 package Controller.Admin;
 
+import dal.RoleDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Role;
 import model.User;
 
 /**
@@ -32,10 +34,20 @@ public class ListUserController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+       response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        
+        
         List<User> listUsers = new UserDAO().getAllUsers();
-           
+        List<Role> listRole = new RoleDAO().getAllRole();
+
         request.setAttribute("listUsers", listUsers);
+        request.setAttribute("listRole", listRole);
+
         request.getRequestDispatcher("user-list.jsp").forward(request, response);
     }
 

@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div id="header">
 
-    
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand me-5 ti-joomla" href="home">KingsMan</a>
@@ -31,8 +31,8 @@
                     <li class="nav-item me-4">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
-                    
-                    
+
+
                 </ul>
                 <form class="d-flex me-5" action="list">
                     <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
@@ -50,7 +50,14 @@
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" type="button" data-toggle="modal"  data-target="#userProfileModal">Thông tin cá nhân</a></li>
-                                <li><a class="dropdown-item" href="#">Danh sách đơn hàng</a></li>
+                                    <c:if test="${sessionScope.us.role_Id == 1}">
+                                    <li><a class="dropdown-item" href="myorder">Danh sách đơn hàng</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.us.role_Id == 2}">
+                                    <li><a class="dropdown-item" href="marketingproductlist">Danh sách sản phẩm</a></li>
+                                    </c:if>
+                                <li><a class="dropdown-item" href="list-user" type="button">Thông tin người dùng</a></li>
+
                                 <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
                             </ul>
                         </div>

@@ -57,6 +57,14 @@
         <servlet-class>Controlller.Marketing.UpdateProductController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DeleteUserController</servlet-name>
+        <servlet-class>Controller.Admin.DeleteUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateStatusUserController</servlet-name>
+        <servlet-class>Controller.Admin.UpdateStatusUserController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>FeedbackController</servlet-name>
         <servlet-class>Controller.Public.FeedbackController</servlet-class>
     </servlet>
@@ -68,6 +76,27 @@
         <servlet-name>AddProductController</servlet-name>
         <servlet-class>Controlller.Marketing.AddProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateUserController</servlet-name>
+        <servlet-class>Controller.Admin.CreateUserController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SuccessfulCheckoutController</servlet-name>
+        <servlet-class>Controller.Public.SuccessfulCheckoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyOrderController</servlet-name>
+        <servlet-class>Controller.Customer.MyOrderController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderDetailController</servlet-name>
+        <servlet-class>Controller.Customer.OrderDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CancelOrderController</servlet-name>
+        <servlet-class>Controller.Customer.CancelOrderController</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -125,6 +154,14 @@
         <url-pattern>/update_product</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>DeleteUserController</servlet-name>
+        <url-pattern>/delete-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStatusUserController</servlet-name>
+        <url-pattern>/update-status-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>FeedbackController</servlet-name>
         <url-pattern>/feedback</url-pattern>
     </servlet-mapping>
@@ -135,6 +172,26 @@
     <servlet-mapping>
         <servlet-name>AddProductController</servlet-name>
         <url-pattern>/add_product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateUserController</servlet-name>
+        <url-pattern>/create-user</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SuccessfulCheckoutController</servlet-name>
+        <url-pattern>/successful</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyOrderController</servlet-name>
+        <url-pattern>/myorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailController</servlet-name>
+        <url-pattern>/order-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelOrderController</servlet-name>
+        <url-pattern>/cancel-order</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

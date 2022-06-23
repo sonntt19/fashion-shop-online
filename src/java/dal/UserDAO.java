@@ -29,7 +29,7 @@ public class UserDAO extends DBContext {
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
                         .status(rs.getString(9))
-                        .role_Id(rs.getInt(10))
+                        .role_Id(rs.getString(10))
                         .build();
                 return u;
 
@@ -57,7 +57,7 @@ public class UserDAO extends DBContext {
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
                         .status(rs.getString(9))
-                        .role_Id(rs.getInt(10))
+                        .role_Id(rs.getString(10))
                         .build();
                 return u;
             }
@@ -135,7 +135,7 @@ public class UserDAO extends DBContext {
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
                         .status(rs.getString(9))
-                        .role_Id(rs.getInt(10))
+                        .role_Id(rs.getString(10))
                         .build();
                 return user;
             }
@@ -162,7 +162,7 @@ public class UserDAO extends DBContext {
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
                         .status(rs.getString(9))
-                        .role_Id(rs.getInt(10))
+                        .role_Id(rs.getString(10))
                         .build();
                 return user;
             }
@@ -189,7 +189,7 @@ public class UserDAO extends DBContext {
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
                         .status(rs.getString(9))
-                        .role_Id(rs.getInt(10))
+                        .role_Id(rs.getString(10))
                         .build();
                 return user;
             }
@@ -216,7 +216,7 @@ public class UserDAO extends DBContext {
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
                         .status(rs.getString(9))
-                        .role_Id(rs.getInt(10))
+                        .role_Id(rs.getString(10))
                         .build();
                 list.add(u);
             }
@@ -224,4 +224,76 @@ public class UserDAO extends DBContext {
         }
         return list;
     }
+
+    public void createNewUser(String fname, String password, String email, String phone, String address, String status, String role_id, boolean gender) {
+        String sql = "INSERT INTO [dbo].[User]\n"
+                + "           ([fullName]\n"
+                + "           ,[password]\n"
+                + "           ,[email]\n"
+                + "           ,[mobile]\n"
+                + "           ,[address]\n"
+                + "           ,[status]\n"
+                + "           ,[role_id]\n"
+                + "		   ,[gender])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,?,?,?,?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, fname);
+            st.setString(2, password);
+            st.setString(3, email);
+            st.setString(4, phone);
+            st.setString(5, address);
+            st.setString(6, status);
+            st.setString(7, role_id);
+            st.setBoolean(8, gender);
+            st.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+//    public void deleteUser(int userId) {
+//        String sql = "DELETE FROM [dbo].[User]\n"
+//                + "      WHERE userId = ?";
+//        try {
+//            PreparedStatement st = connection.prepareStatement(sql);
+//            st.setInt(1, userId);
+//            st.executeUpdate();
+//
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//        }
+//    }
+    public void UpdateStatusUser(int status, int user_Id) {
+        String sql = "UPDATE [dbo].[User]\n"
+                + "   SET [status] = ?\n"
+                + " WHERE userId = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, status);
+            st.setInt(2, user_Id);
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public String getAuthorById(int author_id) {
+        String sql = "select * from [User] where userId = ? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, author_id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+
+                return rs.getString(2);
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
 }

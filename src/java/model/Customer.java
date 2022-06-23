@@ -5,26 +5,22 @@
  */
 package model;
 
-import java.sql.Date;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ *
+ * @author son22
+ */
 @Builder
 @Getter
 @Setter
 @ToString
-
-public class Feedback {
-    private int id;
-    private String fullName;
-    private int rated_star;
-    private String feedback;
-    private String image;
-    private boolean status;
-    private int product_id;
-    private int user_id;
-    private Date date;
-     
+public class Customer {
+    private int customer_id;
+    private String customer_name;
+    private String customer_email;
+    private String customer_mobile;
 }

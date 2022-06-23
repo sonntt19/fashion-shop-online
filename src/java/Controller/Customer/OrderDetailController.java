@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Public;
+package Controller.Customer;
 
-import dal.FeedbackDAO;
 import dal.OrderDao;
-import dal.ProductDAO;
+import dal.OrderDetailDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -16,16 +15,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Feedback;
 import model.Order;
-import model.Product;
-import model.User;
+import model.OrderDetail;
 
 /**
  *
- * @author dongh
+ * @author Admin
  */
-public class ListDetailController extends HttpServlet {
+public class OrderDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,35 +36,19 @@ public class ListDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            /* TODO output your page here. You may use following sample code. */
-            int productId = Integer.parseInt(request.getParameter("productId"));
-            int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-            User u = (User) session.getAttribute("us");
+        HttpSession session = request.getSession();
 
-            Product product = new ProductDAO().getProductById(productId);
-            FeedbackDAO fed = new FeedbackDAO();
-            OrderDao od = new OrderDao();
-            Order accept = null;
-            int Total = fed.getTotalFeedback(productId);
-            if (u != null) {
-                accept = od.checkProductOrderByUser(u.getUser_Id(), productId);
-            }
+        String orderId_raw = request.getParameter("orderId");
+        int orderId = Integer.parseInt(orderId_raw);
 
-            List<Feedback> listfeedbackbyproduct = fed.getAllFeedbackByProductId(productId);
-            List<Product> listProduct = new ProductDAO().getProductTop4Category(productId, categoryId);
-            double avg = new ProductDAO().getRatedProduct(productId);
+        List<OrderDetail> Order_Detail = new OrderDetailDAO().getDetailAllOrder(orderId);
+        request.setAttribute("Order_Detail", Order_Detail);
 
-            request.setAttribute("listfeedbackbyproduct", listfeedbackbyproduct);
-            request.setAttribute("total", Total);
-            request.setAttribute("listProduct", listProduct);
-            request.setAttribute("product", product);
-            request.setAttribute("avg", avg);
-            request.setAttribute("accept", accept);
-            session.setAttribute("historyUrl", "list-detail?productId=" + productId + "&categoryId=" + categoryId);
-            request.getRequestDispatcher("list-detail.jsp").forward(request, response);
-        }
+        List<Order> listMyOrderinDetail = new OrderDao().getAllOrderInDetail(orderId);
+        request.setAttribute("listMyOrderinDetail", listMyOrderinDetail);
+
+        session.setAttribute("historyUrl", "order-detail?orderId=" + orderId_raw);
+        request.getRequestDispatcher("order-detail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

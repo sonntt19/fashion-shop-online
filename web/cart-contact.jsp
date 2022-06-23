@@ -263,6 +263,7 @@
                     <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                         <div class="col">TỔNG TIỀN</div>
                         <div class="col text-right">${sum}đ</div>
+                        <input type="hidden" name="sum" value="${sum}">
                     </div>
                     <button type="submit" class="btn" style="font-size: 12px;">THANH TOÁN</button>
                     </form>
@@ -270,5 +271,5 @@
             </div>
         </div>
         <%@include file="components/footer.jsp" %>
-877777777777777777777777777777777777777    </body>
+</body>
 </html>

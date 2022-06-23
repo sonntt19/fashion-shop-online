@@ -7,6 +7,7 @@ package Controller.Public;
 
 import dal.CartDAO;
 import dal.OrderDao;
+import dal.OrderDetailDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -37,34 +38,32 @@ public class AddToOrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             String fullname = request.getParameter("fullname");
             String phone = request.getParameter("phone");
             String address = request.getParameter("address");
             String note = request.getParameter("note");
+            int sum = Integer.parseInt(request.getParameter("sum"));
 
             CartDAO c = new CartDAO();
+            OrderDao od = new OrderDao();
+            OrderDetailDAO odd = new OrderDetailDAO();
+            
             HttpSession session = request.getSession();
             User u = (User) session.getAttribute("us");
             int user_id = u.getUser_Id();
+            int order_id = od.createNewOrder(sum, fullname, phone, address, user_id, note);
             List<Cart> listCart = c.getAllCartByUserId(user_id);
-            int sum = 0;
-            for (Cart o : listCart) {
-                sum += o.getTotal_cost();
-            }
+            odd.addCartToOrder(listCart, order_id);
             
-//            Order order = Order.builder()
-//                    .total_cost(sum)
-//                    .fullName(fullname)
-//                    .mobile(phone)
-//                    .address(address)
-//                    .UserId(user_id)
-//                    .note(note)
-//                    .build();
-//            new OrderDao().createNewOrder(order);
-            new OrderDao().createNewOrder(sum,fullname,phone,address,user_id,note);
-            response.sendRedirect("home");
+            request.setAttribute("fullname", fullname);
+            request.setAttribute("phone", phone);
+            request.setAttribute("address", address);
+            
+            request.getRequestDispatcher("checkout").forward(request, response);
         }
     }
 

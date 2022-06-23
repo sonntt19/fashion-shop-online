@@ -25,13 +25,14 @@
             }
         </style>
     </head>
-    <body style="background-color: gainsboro">
+    <body style="font-family: sans-serif;
+          background: linear-gradient(110deg,#65c0d3  60%, #10567c 60%">
         <%@include file="components/header.jsp" %>
         <div style="height: 60px"></div>
         <div style="margin: 2% 2% 2% 2%;  ">
             <h2 class="marketing_productlist_displayinline" style="text-align: left";>Products List </h2> &nbsp;&nbsp;
             <h5 class="marketing_productlist_displayinline"><a href="add_product.jsp" type="button" style="background-color: whitesmoke; border-radius: 5px; border-color: ghostwhite">Thêm sản phẩm mới</a></h5>
-            <h6 style="margin-top: 1%; margin-bottom: 1%">All(0) | <span style="color: blue">Published(0)</span></h6>
+            <h6 style="margin-top: 1%; margin-bottom: 1%">All(${total}) | <span style="color: blue">Published(${PublishedProduct})</span></h6>
             <div class="row">
                 <div class="col-md-4">
                     <form class="input-search" action="marketingproductlist">
@@ -58,10 +59,10 @@
                         <option value="marketingproductlist?${historyKey}${historyValue}${historyType}" ${categoryId == 0 ? "Selected" : ""}>
                             Trạng thái
                         </option>
-                        <option>
+                        <option value="marketingproductlist?${historyKey}${historyCategoryId}&status=1" ${status eq "1" ? "Selected" : ""}>
                             Hiện
                         </option>
-                        <option>
+                        <option value="marketingproductlist?${historyKey}${historyCategoryId}&status=0" ${status eq "0" ? "Selected" : ""}>
                             Ẩn
                         </option>
                     </select>
@@ -151,7 +152,7 @@
         </li>
     </ul>
 </nav>
-<button type="button" class="btn btn-primary" style="width: 100px; margin-left: 90%">Save</button>
+<button type="button" class="btn btn-primary" style="width: 100px; margin-left: 90%; margin-top: -3%">Save</button>
 </div>
 </body>
 </html>

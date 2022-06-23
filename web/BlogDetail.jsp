@@ -44,13 +44,15 @@
                             
                             <h1 class="fw-bolder mb-1">${listBlogById.title}</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Posted on ${listBlogById.updated_date} by 
+                            <div class="text-muted fst-italic mb-2">Posted on ${listBlogById.updated_date} by ${author}
                                 <c:forEach items="${sessionScope.listBlogById}" var="c">${b.author_id == c.user_Id ? c.full_Name:""}
                                         </c:forEach></div>
+
                             <!-- Post categories-->
                             <c:forEach items="${sessionScope.listCategoryBlog}" var="c">
                             <a class="badge bg-secondary text-decoration-none link-light" href="categoryBlog?categoryBlog_id=${listBlogById.categoryBlog_id}">${listBlogById.categoryBlog_id == c.categoryBlog_id ? c.categoryBlog_name:""}</a>
                             </c:forEach>
+
                             </header>
                         <!-- Preview image figure-->
                         <figure class="mb-4"><img class="img-fluid rounded" src="${listBlogById.thumbnail}" style="min-width: 100%" alt="..." /></figure>

@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import model.OrderDetail;
 import model.Product;
 
 /**
@@ -65,10 +66,10 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
-    public List<Product> getProductWithPaging(int page, int PAGE_SIZE, String searchKey, String categoryId, String type, String value) {
+    public List<Product> getProductWithPaging(int page, int PAGE_SIZE, String searchKey, String categoryId, String type, String value, String status) {
         List<Product> list = new ArrayList<>();
         String sql = "select * from Product\n"
-                + "where category_id " + categoryId + " and product_name like N'%" + searchKey + "%'\n"
+                + "where category_id " + categoryId +" and status "+status+ " and product_name like N'%" + searchKey + "%'\n"
                 + " order by " + value + " " + type + " offset (?-1)*? row fetch next ? row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -315,5 +316,51 @@ public class ProductDAO extends DBContext {
             System.out.println(ex);
         }
     }
+
+    public void updateQuantityProduct(List<OrderDetail> listOrderDetail) {
+        try {
+            for (OrderDetail orderDetail : listOrderDetail) {
+                String sql = "UPDATE [dbo].[Product]\n"
+                        + "   SET [quantity] = (quantity - ? )\n"
+                        + " WHERE product_id = ?";
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, orderDetail.getQuantity());
+                st.setInt(2, orderDetail.getProduct_id());
+                st.executeUpdate();
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+    public int getTotalProduct() {
+        String sql = "select COUNT(product_id) from Product";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+    
+     public int getTotalPublishedProduct() {
+        String sql = "select COUNT(product_id) from Product where status = 1";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+     
+         
 
 }

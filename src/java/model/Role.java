@@ -3,12 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dal;
+package model;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  *
  * @author dongh
  */
-public class OrderDetail {
-    
+@Builder
+@Getter
+@Setter
+@ToString
+public class Role {
+    int role_id;
+    String role_name;
 }

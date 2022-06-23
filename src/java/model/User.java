@@ -28,5 +28,7 @@ public class User {
     private String mobile;
     private String address;
     private String status;
-    private int role_Id;
+    private String role_Id;
+
+    
 }
