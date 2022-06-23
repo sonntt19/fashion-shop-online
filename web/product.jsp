@@ -124,7 +124,7 @@
             </div>
 
             <div class="col-md-2">
-                <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;">
+                <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;" name="Sắp xếp">
                     <option value="list?${historyKey}${historyValue}${historyType}" ${categoryId == 0 ? "Selected" : ""}>
                         Tất Cả
                     </option>
