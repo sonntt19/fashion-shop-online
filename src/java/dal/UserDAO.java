@@ -225,7 +225,7 @@ public class UserDAO extends DBContext {
         return list;
     }
 
-    public void createNewUser(String fname, String password, String email, String phone, String address, String status, String role_id, boolean gender) {
+    public void createNewUser(String fname, String password, String email, String phone, String address, String status, String role_id, String gender) {
         String sql = "INSERT INTO [dbo].[User]\n"
                 + "           ([fullName]\n"
                 + "           ,[password]\n"
@@ -246,7 +246,7 @@ public class UserDAO extends DBContext {
             st.setString(5, address);
             st.setString(6, status);
             st.setString(7, role_id);
-            st.setBoolean(8, gender);
+            st.setString(8, gender);
             st.executeUpdate();
 
         } catch (Exception e) {

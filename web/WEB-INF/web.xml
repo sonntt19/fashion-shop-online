@@ -96,7 +96,10 @@
         <servlet-name>CancelOrderController</servlet-name>
         <servlet-class>Controller.Customer.CancelOrderController</servlet-class>
     </servlet>
-    
+    <servlet>
+        <servlet-name>UpdatePostController</servlet-name>
+        <servlet-class>Controlller.Marketing.UpdatePostController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -193,9 +196,37 @@
         <servlet-name>CancelOrderController</servlet-name>
         <url-pattern>/cancel-order</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePostController</servlet-name>
+        <url-pattern>/update-post</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    
+    <servlet>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>
+		<init-param>
+			<description>
+				Path to configuration file can be relative path inside application,
+				absolute path on local file system or UNC path.
+			</description>
+			<param-name>XMLConfig</param-name>
+			<param-value>/WEB-INF/config.xml</param-value>
+		</init-param>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>false</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConnectorServlet</servlet-name>
+		<url-pattern>
+			/ckfinder/core/connector/java/connector.java
+		</url-pattern>
+	</servlet-mapping>
 </web-app>

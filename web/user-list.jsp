@@ -269,8 +269,8 @@
                                     <div class="mb-3 col-md-12 input-group " style="margin-top: 35px">
                                         <label class="input-group-text" for="inputGroupSelect01" style="">Giới tính</label>
                                         <select name="sex_id" class="form-select" id="inputGroupSelect01">
-                                            <option value="False">Nam</option> 
-                                            <option value="True">Nữ</option>
+                                            <option value="True">Nam</option> 
+                                            <option value="False">Nữ</option>
                                         </select>
                                     </div>
                                     <div class="mb-3 col-md-12 input-group "  style="margin-top: 35px">
