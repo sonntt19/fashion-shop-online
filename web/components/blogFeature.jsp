@@ -16,12 +16,12 @@
 </div>
 <!-- Categories widget-->
 <div class="card mb-4" style="border-radius: 25px;">
-    <div class="list-group bg-dark" style="border-radius: 25px; padding-bottom: 18px">
+    <div class="list-group  bg-dark" style="border-radius: 25px; padding-bottom: 18px">
         <div href="#" class="list-group-item list-group-item-action bg-dark btn-dark active"  style="border-radius: 25px 25px 0px 0px">
             Danh mục
         </div>
         <c:forEach items="${listCategoryBlog}" var="o">
-            <a href="blog?${historyKey}&categoryId=${o.categoryBlog_id}${historyValue}${historyType}" class="list-group-item list-group-item-action" style="${tag == o.categoryBlog_id ? "background-color: #fffc6c; font-weight: bold;":""}">${o.categoryBlog_name}</a>
+            <a href="blog?${historyKey}&categoryId=${o.categoryBlog_id}${historyValue}${historyType}" class="list-group-item list-group-item-action" style="">${o.categoryBlog_name}</a>
         </c:forEach>
     </div>
 </div>

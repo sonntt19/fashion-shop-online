@@ -67,8 +67,8 @@
                 <div class="col-lg-3">
                     <!-- Search widget-->
                     <%@include file="components/blogFeature.jsp" %>
-                    <div class="col-md-2">
-                        <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;">
+                    <div class="col-mb-4">
+                        <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;"> Tất cả
                             <option value="blog?${historyKey}${historyCategoryId}&type=desc" ${type eq "desc" ? "Selected" : ""}>
                                 Mới Nhất
                             </option>
@@ -104,12 +104,12 @@
                                 <div class="card-body">
 
                                     <div class="small text-muted">
-                                        <c:forEach items="${sessionScope.listCategoryBlog}" var="c">${b.categoryBlog_id == c.categoryBlog_id ? c.categoryBlog_name:""}
+                                        <c:forEach items="${sessionScope.listCategoryBlog}" var="c">${b.categoryBlog_id == listBlogById.categoryBlog_id ? c.categoryBlog_name:""}
                                         </c:forEach> | ${b.updated_date}
                                     </div>
 
 
-                                        <a class="" style="text-decoration: none" href="blogDetail?blog_id=${b.blog_id}&categoryBlog_id=${b.categoryBlog_id}"><h2 class="card-title h4" style="color: black">${b.title}</h2></a>
+                                    <a class="" style="text-decoration: none" href="blogDetail?blog_id=${b.blog_id}&categoryBlog_id=${b.categoryBlog_id}"><h2 class="card-title h4" style="color: black">${b.title}</h2></a>
                                     <p class="card-text">${b.brief_infor}</p>
                                 </div>
                             </div>
@@ -119,28 +119,28 @@
 
                 <!-- Pagination-->
                 <nav aria-label="..." class="pagination">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a <c:if test="${page!=1}">                         
-                            href="blog?page=${page-1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
-                        </c:if> class="page-link" aria-label="Previous">
-                        <span  aria-hidden="true">«</span>
-                    </a>
-                </li>
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a <c:if test="${page!=1}">                         
+                                    href="blog?page=${page-1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
+                                </c:if> class="page-link" aria-label="Previous">
+                                <span  aria-hidden="true">«</span>
+                            </a>
+                        </li>
 
-                <c:forEach begin="1" end="${totalPage}" var="i">
-                    <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="blog?page=${i}${historyKey}${historyCategoryId}${historyValue}${historyType}">${i}</a></li>
-                    </c:forEach>
+                        <c:forEach begin="1" end="${totalPage}" var="i">
+                            <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="blog?page=${i}${historyKey}${historyCategoryId}${historyValue}${historyType}">${i}</a></li>
+                            </c:forEach>
 
-                <li class="page-item">
-                    <a <c:if test="${page!=totalPage}">
-                            href="blog?page=${page+1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
-                        </c:if> class="page-link" aria-label="Next">
-                        <span aria-hidden="true">»</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+                        <li class="page-item">
+                            <a <c:if test="${page!=totalPage}">
+                                    href="blog?page=${page+1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
+                                </c:if> class="page-link" aria-label="Next">
+                                <span aria-hidden="true">»</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
             </div>
         </div>
