@@ -142,7 +142,7 @@
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
                                     <a class="nav-link" href="MKTPostList.jsp">Post List</a>
-                                    <a class="nav-link" href="MKTPostDetail.jsp">Post Detail</a>
+                                    <a class="nav-link" href="MKTPostDetail.jsp">Detail</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -186,101 +186,42 @@
             </div>
             <div class="groundy" id="layoutSidenav_content">
                 <main>
-                    <div class="container rounded row" style="margin-top: 1% !important; margin-bottom: 1% !important">
-                        <div class="col-md-4 text-center">
-                            <a href="AddBlog.jsp"><button type="button" class="btn btn-dark " style="">Thêm</button></a>
-                        </div>
-                        <div class="col-md-4">
-                            <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;"> Tất cả
-                                <option value="blog?${historyKey}${historyCategoryId}&type=desc" ${type eq "desc" ? "Selected" : ""}>
-                                    Mới Nhất
-                                </option>
-                                <option value="blog?${historyKey}${historyCategoryId}" ${type == null ? "Selected" : ""}>
-                                    Cũ Nhất
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-md-4">
-                            <form class="input-search" action="list">
-                                <div>
-                                    <input type="text" name="key" value="${key}" placeholder="Tìm kiếm blog" class="filter-search__control" >
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                     <div class="container rounded bg-white mt-5 mb-5">
-                        <table class="table"  style="margin-top: 4%">
-                            <thead  class="text-center">
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Author ID</th>
-                                    <th scope="col">Updated date</th>
-                                    <th scope="col">Content</th>
-                                    <th scope="col">Thumbnail</th>
-                                    <th scope="col">Brief info</th>
-                                    <th scope="col">Category ID</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Option</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr  class="text-center">
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Mark</td>
-                                    <td><img class="circle" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/284194527_1133976170487933_1085416752535542040_n.png?stp=dst-png_s206x206&_nc_cat=104&ccb=1-7&_nc_sid=aee45a&_nc_ohc=LoSyTq95ad0AX-c2B2i&_nc_oc=AQk9uWi9k6EdP_vHZSebMr1lrkjH9P5HJQup6yxMO1w_VhjYBu2FjL8CkTVqWEVs77VA-0J1fK6jeRP0IOj8GFzD&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVK5T0ZY16zjCGg2cRnX1q6SSr8rRYlmyzwy0f5Zwauj0w&oe=62DA523B"></td>
-                                    <td>
-                                        <a class="btn btn-dark" href="#" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                            </svg></a>
-                                        <a class="btn btn-danger" href="#" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                                            </svg></a>
-                                    </td>
-                                </tr>
-                                <tr  class="text-center">
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>Mark</td>
-                                    <td><img class="circle" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/286934964_765449398234277_7570486452980265407_n.png?stp=dst-png_s206x206&_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=WUdnYmBKFyEAX8HpdPo&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVIGfrkbJvS9ypiE_Iq3Ls7sx1XGXjrDNAVY_7kFNKgvFA&oe=62DB6924"></td>
-                                    <td>
-                                        <a class="btn btn-dark" href="#" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
-                                            </svg></a>
-                                        <a class="btn btn-danger" href="#" role="button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                                            </svg></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="row"  style="margin-top: 8%;">
+                            <div class="p-4">
+
+                                <h4 class="text-center">Thêm blog</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 py-5">
+                                    <div class="col-md-12">Title<input type="text" class="form-control" placeholder="enter Title" value=""></div>
+                                    <div class="col-md-12">Content<input type="text" class="form-control" placeholder="Content" value=""></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="p-3 py-5">
+                                    <div class="row mt-16">
+                                        <div class="col-md-12">Blog ID<input type="text" class="form-control" placeholder="enter Blog ID" value="" readonly=""></div>
+                                        <div class="col-md-12">Author ID<input type="text" class="form-control" placeholder="enter Author ID" value=""></div>
+                                        <div class="col-md-12">Updated date<input type="text" class="form-control" placeholder="enter Updated date" value=""></div>
+                                        <div class="col-md-12">Thumbnail<input type="text" class="form-control" placeholder="Thumbnail" value=""></div>
+                                        <div class="col-md-12">Brief infor<input type="text" class="form-control" placeholder="Brief infor" value=""></div>
+                                        <div class="col-md-12">Category Blog ID<input type="text" class="form-control" placeholder="Category Blog ID" value=""></div>
+                                        <div class="col-md-12">Status<form>
+                                                <input name="gender" type="radio" value="Nam" />&nbsp;Status
+                                                <input name="gender" type="radio" value="Nữ" />&nbsp;Status
+                                            </form></div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="mt-5 p-4 text-center">
+                                <a href="MKTPostList.jsp"><button class="btn btn-outline-dark" type="button">Quay lại</button></a>
+                                <button class="btn btn-dark" type="button">Lưu</button>
+                            </div>
+                        </div>
                     </div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
-                        </ul>
-                    </nav>
                 </main>
                 <!-- Footer-->
                 <%@include file="components/footer.jsp" %>

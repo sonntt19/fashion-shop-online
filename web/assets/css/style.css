@@ -534,9 +534,7 @@ del{
     margin: 2% -15%;
     border: none;
     color: white;
-    background-color: white;
-    background-image: url(../..//images/icon-search.svg);
-    background-repeat: no-repeat;
+    background-color: black;
     z-index: 1;
 }
 .dropdown-font-new{
