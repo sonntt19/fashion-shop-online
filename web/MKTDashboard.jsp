@@ -85,6 +85,7 @@
                 </ul>
         </nav>
         <div id="layoutSidenav">
+<<<<<<< HEAD
             <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
@@ -164,6 +165,9 @@
                     </div>
                 </nav>
             </div>
+=======
+            <%@include file="components/MKT-left-board.jsp" %>
+>>>>>>> e71753bfa0b569469bd8055af3118ed831292cd3
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
