@@ -92,7 +92,7 @@
                 <!-- Navbar-->
                 <form class="d-flex me-5" action="list">
                     <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
-                    <button class="btn btn-outline-danger" type="submit">Search</button>
+                    <button class="btn btn-outline-danger" type="submit">Tìm</button>
                 </form>
 
 
@@ -128,21 +128,40 @@
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <div class="sb-sidenav-menu-heading">Bảng điểu khiển</div>
+                            <a class="nav-link" href="AdminDashboard.jsp">        
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Bảng điều khiển quản trị viên
+                            </a>
                             <a class="nav-link" href="MKTDashboard.jsp">        
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Marketing Dashboard
+                                Bảng điều khiển tiếp thị
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
+                            <a class="nav-link" href="SaleDashboard.jsp">        
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Bảng điều khiển bán hàng
+                            </a>
+                            <div class="sb-sidenav-menu-heading">Giao diện</div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Post Setting
+                                Cài đặt blog
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="MKTPostList.jsp">Post List</a>
-                                    <a class="nav-link" href="MKTPostDetail.jsp">Detail</a>
+                                    <a class="nav-link" href="MKTPostList.jsp">Danh sách blog</a>
+                                    <a class="nav-link" href="MKTPostDetail.jsp">Chi tiết thông tin blog</a>
+                                </nav>
+                            </div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCustomer" aria-expanded="false" aria-controls="collapseCustomer">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Cài đặt khách hàng
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            </a>
+                            <div class="collapse" id="collapseCustomer" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="CustomerList.jsp">Danh sách khách hàng</a>
+                                    <a class="nav-link" href="CustomerDetail.jsp">Chi tiết thông tin khách hàng</a>
                                 </nav>
                             </div>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
@@ -179,7 +198,7 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
+                        <div class="small">Đăng nhập bởi:</div>
                         ${sessionScope.us.full_Name}
                     </div>
                 </nav>

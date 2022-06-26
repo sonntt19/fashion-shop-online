@@ -24,6 +24,45 @@
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            .payment-method__item-name {
+                font-size: 20px;
+                padding-left: 20px;
+            }
+
+            .payment-method__item {
+                display: flex;
+                align-items: center;
+                border: 1px solid #D9D9D9;
+                border-radius: 16px;
+                padding: 15px 20px;
+                margin-bottom: 1rem;
+            }
+
+
+
+            .payment-method__item-icon-wrapper img {
+                min-width: 100px;
+                max-height: 100px;
+                max-width: 100px;
+                padding-left: 40px;
+                image-rendering: -webkit-optimize-contrast;
+            }
+            .body_cartCompletion {
+                font-family: sans-serif;
+                background: linear-gradient(110deg, #fdfdbe 60%, #f9f86c 60%);
+            }
+            .groundy{
+                font-family: sans-serif;
+                background: linear-gradient(110deg, #fdfdbe 60%, #f9f86c 60%);
+            }
+
+            .circle {
+                height: 10px;
+                width: 10px;
+                border: 50%;
+            }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <%@include file="components/account.jsp" %>
@@ -164,50 +203,36 @@
                     </div>
                 </nav>
             </div>
-            <div id="layoutSidenav_content">
+            <div class="groundy" id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Marketing Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Marketing Dashboard</li>
-                        </ol>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Thống kê bài đăng
+                    <div class="container rounded bg-white mt-5 mb-5">
+                        <div class="row ">
+                            <div class="p-4">
+                                <h4 class="text-center">Chỉnh sửa khách hàng</h4>
+                            </div>
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 py-5">
+                                    <div class="row mt-16">
+                                        <div class="col-md-12">ID<input type="text" class="form-control" placeholder="ID" value="" style="margin-bottom: 1rem;" readonly=""></div>
+                                        <div class="col-md-12">Họ và tên<input type="text" class="form-control" placeholder="Họ và tên" value="" style="margin-bottom: 1rem;" readonly=""></div>
+                                        <div class="col-md-12">Email<input type="text" class="form-control" placeholder="Email" value="" style="margin-bottom: 1rem;" readonly=""></div>
+                                        <div class="col-md-12">Số điện thoại<input type="text" class="form-control" placeholder="Số điện thoại" value="" style="margin-bottom: 1rem;" readonly=""></div>
+                                        <div class="col-md-6" readonly="">Giới tính<form>
+                                                <input name="gender" type="radio" value="Nam" checked/>&nbsp;Nam
+                                                <input name="gender" type="radio" value="Nữ" disabled/>&nbsp;Nữ
+                                            </form></div>
+                                        <div class="col-md-6">Trạng thái<form>
+                                                <input name="gender" type="radio" value="Nam" />&nbsp;Hiện
+                                                <input name="gender" type="radio" value="Nữ" />&nbsp;Ẩn
+                                            </form></div>
                                     </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Thống kê sản phẩm
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
+                            <div class="col-md-4">
                             </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-pie me-1"></i>
-                                        Thống kê khách hàng
-                                    </div>
-                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Thống kê phản hồi
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
+                            <div class="mt-5 p-4 text-center"><button class="btn btn-dark" type="button">Lưu</button></div>
                         </div>
                     </div>
                 </main>

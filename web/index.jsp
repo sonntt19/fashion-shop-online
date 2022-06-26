@@ -54,15 +54,15 @@
                 <div class="content-section background-product" style="width: 1500px">
 
 
-                <!-- Base Product -->
-                <h2 class="section-heading">Trang phục cơ bản</h2>
-                <div  class="container-fluid">
-                    <div class="row">
-                        <c:forEach items="${sessionScope.list4product}" var="p">
-                            <div class="col-md-2 product-down">
-                                <div class="row">
-                                    <div class="product-item">
-                                        <div class="product-top">
+                    <!-- Base Product -->
+                    <h2 class="section-heading">Trang phục cơ bản</h2>
+                    <div  class="container-fluid">
+                        <div class="row">
+                            <c:forEach items="${sessionScope.list4product}" var="p">
+                                <div class="col-md-2 product-down">
+                                    <div class="row">
+                                        <div class="product-item">
+                                            <div class="product-top">
                                                 <div class="reviews-rating">
 
                                                     <c:forEach var="i" begin="0" end="4">
@@ -142,51 +142,40 @@
 
 
 
-                    <div class="clear"></div>
-                </div> 
-            </div>
-            <!-- Blog -->
-            <div class="blog-section">
-                <div class="content-section">
-                    <h2 class="section-heading text-white">Chúng tôi luôn mang đến những công nghệ hiện đại nhất</h2>
-                    <p class="section-sub-heading text-white">Công nghệ Việt cho người Việt</p>
-
-                    <!-- blog list hot -->
-                    <div class="blog-list">
-
-                        <c:forEach items="${sessionScope.listBlog_HomePage}" var="C">
-                            <div class="blog-item">
-                                <img src="${C.thumbnail}" alt="" class="blog-img">
-                                <div class="blog-body">
-                                    <h3 class="blog-heading">${C.title}</h3>
-                                    <p class="blog-desc">${C.brief_info}</p>
-                                    <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
-                                </div>
-                            </div>
-                        </c:forEach>
-
                         <div class="clear"></div>
                     </div> 
                 </div>
-                
+                <!-- Blog -->
+                <div class="blog-section">
+                    <div class="content-section">
+                        <h2 class="section-heading text-white">Chúng tôi luôn mang đến những công nghệ hiện đại nhất</h2>
+                        <p class="section-sub-heading text-white">Công nghệ Việt cho người Việt</p>
+
+                        <!-- blog list hot -->
+                        <div class="blog-list">
+
+                            <c:forEach items="${sessionScope.listBlog_HomePage}" var="C">
+                                <div class="blog-item">
+                                    <img src="${C.thumbnail}" alt="" class="blog-img">
+                                    <div class="blog-body">
+                                        <h3 class="blog-heading">${C.title}</h3>
+                                        <p class="blog-desc">${C.brief_info}</p>
+                                        <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
+                                    </div>
+                                </div>
+                            </c:forEach>
+
+                            <div class="clear"></div>
+                        </div> 
+                    </div>
 
 
-                <!-- End Contact -->
+
+                    <!-- End Contact -->
 
 
 
-                <!-- End Contact -->
-
-
-
-
-            </div>
-            <%@include file="components/footer.jsp" %>
-
-
-
-        </div>
-
+                    <!-- End Contact --></div>
+                <%@include file="components/footer.jsp" %></div>
     </body>
-
 </html>

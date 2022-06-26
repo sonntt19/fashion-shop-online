@@ -24,6 +24,45 @@
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            .payment-method__item-name {
+                font-size: 20px;
+                padding-left: 20px;
+            }
+
+            .payment-method__item {
+                display: flex;
+                align-items: center;
+                border: 1px solid #D9D9D9;
+                border-radius: 16px;
+                padding: 15px 20px;
+                margin-bottom: 1rem;
+            }
+
+
+
+            .payment-method__item-icon-wrapper img {
+                min-width: 100px;
+                max-height: 100px;
+                max-width: 100px;
+                padding-left: 40px;
+                image-rendering: -webkit-optimize-contrast;
+            }
+            .body_cartCompletion {
+                font-family: sans-serif;
+                background: linear-gradient(110deg, #fdfdbe 60%, #f9f86c 60%);
+            }
+            .groundy{
+                font-family: sans-serif;
+                background: linear-gradient(110deg, #fdfdbe 60%, #f9f86c 60%);
+            }
+
+            .circle {
+                height: 10px;
+                width: 10px;
+                border: 50%;
+            }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <%@include file="components/account.jsp" %>
@@ -164,52 +203,144 @@
                     </div>
                 </nav>
             </div>
-            <div id="layoutSidenav_content">
-                <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">Marketing Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Marketing Dashboard</li>
-                        </ol>
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Thống kê bài đăng
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
+            <div class="groundy" id="layoutSidenav_content">
+                <!-- Add Customer -->
+
+                <div class="modal fade col-md-12" role="dialog" id="addCustomerModal" style="padding-right: 18px" >
+                    <div class="modal-dialog">
+                        <div class="modal-content" style="border-radius: 10px; margin-top: 180px;">
+                            <div class="modal-header">
+                                <h2 class="" id="registerModal" style="text-align:center; font-family: Arial"><b style="padding-left: 100px;">Thêm khách hàng</b></h2><br>
                             </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
-                                        Thống kê sản phẩm
-                                    </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-pie me-1"></i>
-                                        Thống kê khách hàng
-                                    </div>
-                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Thống kê phản hồi
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
+
+                            <div class="modal-body">
+                                <section>
+                                    <div class="container">
+                                        <form action="register" method="POST">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="name" placeholder="Họ và tên" name="fullName" style="border-radius: 100px; margin-bottom: 1rem;" required>
+                                                    </div></div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control" id="email" placeholder="Email" name="email" style="border-radius: 100px; margin-bottom: 1rem;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" id="name" placeholder="Số điện thoại" name="mobile" style="border-radius: 100px; margin-bottom: 1rem;" required>
+                                                    </div></div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control" id="pwd" placeholder="Mật khẩu" name="password" style="border-radius: 100px; margin-bottom: 1rem;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <input type="password" class="form-control" id="pwd" placeholder="Nhập lại mật khẩu" name="repassword" style="border-radius: 100px; margin-bottom: 1rem;" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" style="margin-bottom: 1rem;">
+                                                    <div class="form-group" required>
+                                                        Giới tính&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <input class="" name="gender" type="radio" value="True" required/>&nbsp; Nam
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <input class="" name="gender" type="radio" value="False" required/>&nbsp; Nữ
+                                                    </div>
+                                                    <div class="form-group" required>
+                                                        Trạng thái&nbsp;&nbsp;&nbsp;
+                                                        <input class="" name="gender" type="radio" value="True" required/>&nbsp; Hiện
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <input class="" name="gender" type="radio" value="False" required/>&nbsp; Ẩn
+                                                    </div>
+                                                </div>
+                                                <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 180px;padding-left: 180px; border-radius: 100px;">Thêm</button></center><br><br>
+                                            </div>
+                                        </form>
+                                    </div>    
+                                </section>
                             </div>
                         </div>
                     </div>
+                </div> 
+                <main>
+                    <div class="container rounded row" style="margin-top: 1% !important; margin-bottom: 1% !important">
+                        <div class="col-md-4 text-center">
+                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#addCustomerModal"><button type="button" class="btn btn-dark " style="">Thêm</button></a>
+                        </div>
+                        <div class="col-md-4">
+                            <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;"> Tất cả
+                                <option value="blog?${historyKey}${historyCategoryId}&type=desc" ${type eq "desc" ? "Selected" : ""}>
+                                    Họ tên
+                                </option>
+                                <option value="blog?${historyKey}${historyCategoryId}" ${type == null ? "Selected" : ""}>
+                                    Email
+                                </option>
+                                <option value="blog?${historyKey}${historyCategoryId}" ${type == null ? "Selected" : ""}>
+                                    Số điện thoại
+                                </option>
+                                <option value="blog?${historyKey}${historyCategoryId}" ${type == null ? "Selected" : ""}>
+                                    Trạng thái
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <form class="input-search" action="list">
+                                <div>
+                                    <input type="text" name="key" value="${key}" placeholder="Tìm kiếm khách hàng" class="filter-search__control" >
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="container rounded bg-white mt-5 mb-5">
+                        <table class="table"  style="margin-top: 4%">
+                            <thead  class="text-center">
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Họ và tên</th>
+                                    <th scope="col">Giới Tính</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Số điện thoại</th>
+                                    <th scope="col">Trạng thái</th>
+                                    <th scope="col">Option</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach items="${listCustomer}" var="o">
+                                    <tr  class="text-center">
+                                        <th scope="row">${o.user_Id}</th>
+                                        <td>${o.full_Name}</td>
+                                        <c:if test="${o.gender == true}"><td>Nam</td></c:if>
+                                        <c:if test="${o.gender == false}"><td>Nữ</td></c:if>
+                                        <td>${o.email}</td>
+                                        <td>${o.mobile}</td>
+                                        <c:if test="${o.status == true}"><td><img class="circle" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/284194527_1133976170487933_1085416752535542040_n.png?stp=dst-png_s206x206&_nc_cat=104&ccb=1-7&_nc_sid=aee45a&_nc_ohc=LoSyTq95ad0AX-c2B2i&_nc_oc=AQk9uWi9k6EdP_vHZSebMr1lrkjH9P5HJQup6yxMO1w_VhjYBu2FjL8CkTVqWEVs77VA-0J1fK6jeRP0IOj8GFzD&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVK5T0ZY16zjCGg2cRnX1q6SSr8rRYlmyzwy0f5Zwauj0w&oe=62DA523B"></td>
+                                            </c:if>
+                                            <c:if test="${o.status == false}"><td><img class="circle" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/286934964_765449398234277_7570486452980265407_n.png?stp=dst-png_s206x206&_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=WUdnYmBKFyEAX8HpdPo&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVIGfrkbJvS9ypiE_Iq3Ls7sx1XGXjrDNAVY_7kFNKgvFA&oe=62DB6924"></td>
+                                            </c:if>
+                                        <td>
+                                            <a class="btn btn-dark" href="#" role="button"><i class="fa-solid fa-pen-to-square">&#xf070;</i></a>
+                                            <a class="btn btn-danger" href="#" role="button"><i class="fas fa-eye-slash">&#xf070;</i></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </main>
                 <!-- Footer-->
                 <%@include file="components/footer.jsp" %>
