@@ -130,64 +130,58 @@
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container rounded bg-white mt-5 mb-5">
-                        <div class="row"  style="margin-top: 8%;">
-                            <div class="p-4">
+                        <form action="update-post" method="post">
+                            <div class="row"  style="margin-top: 8%;">
+                                <div class="p-4">
 
-                                <h4 class="text-center">Chỉnh sửa bài đăng</h4>
-                            </div>
-                            <div class="col-md-8">
-                                <div class="p-3 py-5">
-                                    <div class="col-md-12">Title<input type="text" class="form-control" placeholder="enter Title" value="Collab là gì ? Các lý do mà mô hình collab ngày càng trở nên thịnh hành"></div>
-                                    <div class="col-md-12">Brief infor<textarea class="form-control" name="Text1"  rows="2" >Trong những năm gần đây, đa số chúng ta đều đã từng bắt gặp những thuật ngữ Collab trên nhiều phương tiện truyền thông khác nhau. Vậy Collab là gì? Hãy cùng theo chân Kingsman tìm hiểu nhé!</textarea></div>
-                                    <div class="col-md-12">Content
-                                        <form action="update-post" method="post">
-                                            <textarea cols="20" rows="40" id="editor" name="content"></textarea>
+                                    <h4 class="text-center">Chỉnh sửa bài đăng</h4>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="p-3 py-5">
+                                        <div class="col-md-12">Title<input type="text" class="form-control" placeholder="enter Title" value="${blog.title}"></div>
+                                        <div class="col-md-12">Brief infor<textarea class="form-control" name="Text1"  rows="2" >${blog.brief_infor}</textarea></div>
+                                        <div class="col-md-12">Content
 
-                                        </form>
-                                        <script>
-                                            var editor = CKEDITOR.replace('editor');
-                                            CKFinder.setupCKEditor(editor, '<%=request.getContextPath()%>/ckfinder/');
-                                        </script>
+                                            <textarea cols="20" rows="40" id="editor" name="content">${blog.content}</textarea>
+
+
+                                            <script>
+                                                var editor = CKEDITOR.replace('editor');
+                                                CKFinder.setupCKEditor(editor, '<%=request.getContextPath()%>/ckfinder/');
+                                            </script>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="p-3 py-5">
-                                    <div class="row mt-16">
-                                        <div class="col-md-12">Blog ID<input type="text" class="form-control" placeholder="1" value="" readonly=""></div>
-                                        <div class="col-md-12">Author <select class="form-control" aria-label="Default select example" onchange="location = this.value;">
-                                                <option >
-                                                    Nguyễn Trí Trường Sơn
-                                                </option>
-                                                <option >
-                                                    Cũ Nhất
-                                                </option>
-                                            </select>
+                                <div class="col-md-4">
+                                    <div class="p-3 py-5">
+                                        <div class="row mt-16">
+                                            <div class="col-md-12">Blog ID<input type="text" class="form-control"  value="${blog.blog_id}" readonly ></div>
+                                            <div class="col-md-12">Author<input readonly type="text" class="form-control" value="${author}"/></div>                                        
+                                            <div class="col-md-12">Updated date<input type="date" class="form-control" value="${blog.updated_date}"  readonly=""></div>
+                                            <div class="col-md-12">Category 
+                                                <select class="form-control" aria-label="Default select example" >
+                                                    <c:forEach items="${sessionScope.listCategoryBlog}" var="c">
+                                                        <option ${blog.categoryBlog_id == c.categoryBlog_id ? "Selected" : ""}>
+                                                            ${c.categoryBlog_name}
+                                                        </option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12">Status
+                                                <br/>
+                                                <input name="status" type="radio" value="1" ${blog.status == true ? 'checked' : ''} />&nbsp;Hiện
+                                                <input name="status" type="radio" value="0" ${blog.status == false ? 'checked' : ''} />&nbsp;Ẩn
+                                            </div>
+                                            <div class="col-md-12">Thumbnail<input type="file" class="form-control" placeholder="Thumbnail" value=""></div>
+                                            <img class="mt-5" src="${blog.thumbnail}"/>
                                         </div>
-                                        <div class="col-md-12">Updated date<input type="date" class="form-control"  value="2022-01-06"></div>
-                                        <div class="col-md-12">Category <select class="form-control" aria-label="Default select example" onchange="location = this.value;">
-                                                <option >
-                                                    Mặc đẹp
-                                                </option>
-                                                <option >
-                                                    Cũ Nhất
-                                                </option>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-12">Status
-                                            <br/>
-                                            <input name="gender" type="radio" value="Nam" checked/>&nbsp;Hiện
-                                            <input name="gender" type="radio" value="Nữ" />&nbsp;Ẩn
-                                        </div>
-                                        <div class="col-md-12">Thumbnail<input type="file" class="form-control" placeholder="Thumbnail" value=""></div>
-                                        <img class="mt-5" src="https://media.coolmate.me/cdn-cgi/image/quality=80/uploads/June2022/hop-tac-thanh-cong.jpg"/>
+
                                     </div>
 
                                 </div>
-
+                                <div class="mt-5 p-4 text-center"><input class="btn btn-dark" type="submit" value="Lưu"></div>
                             </div>
-                            <div class="mt-5 p-4 text-center"><button class="btn btn-dark" type="button">Lưu</button></div>
-                        </div>
+                        </form> 
                     </div>
                 </main>
                 <!-- Footer-->

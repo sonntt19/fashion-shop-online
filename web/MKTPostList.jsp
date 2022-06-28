@@ -92,7 +92,9 @@
                 <!-- Navbar-->
                 <form class="d-flex me-5" action="list">
                     <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
-                    <button class="btn btn-outline-danger" type="submit">Search</button>
+                    <button type="submit" class="btn btn-outline-danger" href="#" role="button">
+                        <i style='font-size:15px' class='fas'>&#xf002;</i>
+                    </button>
                 </form>
 
 
@@ -127,129 +129,152 @@
             <%@include file="components/MKT-left-board.jsp" %>
             <div class="groundy" id="layoutSidenav_content">
                 <main>
-                    <div class="container rounded row" style="margin-top: 1% !important; margin-bottom: 1% !important">
-                        <div class="col-md-2 text-center">
+                    <div class="container-fluid rounded row" style="margin-top: 1% !important; margin-bottom: 1% !important">
+                        <div class="col-md-1">
                             <a href="AddBlog.jsp"><button type="button" class="btn btn-danger " style="">Thêm</button></a>
                         </div>
                         <div class="col-md-2">
-                            <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;"> Danh mục
-                                <option >
-                                    Danh mục
+                            <select class="dropdown-font-new" style="width: 100%" aria-label="Default select example" onchange="location = this.value;">
+                                <option value="posts-list?${historyKey}${historyValue}${historyType}${historyStatus}${historyAuthor}" ${categoryId == null ? "Selected" : ""}>
+                                    Danh Mục
                                 </option>
-                                <option >
-                                    Cũ Nhất
-                                </option>
+                                <c:forEach items="${sessionScope.listCategoryBlog}" var="c">
+                                    <option value="posts-list?${historyKey}${historyValue}${historyType}${historyStatus}${historyAuthor}&categoryId=${c.categoryBlog_id}" ${categoryId == c.categoryBlog_id ? "Selected" : ""}>
+                                        ${c.categoryBlog_name}
+                                    </option>
+                                </c:forEach>
+
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;"> Sắp xếp
-                                <option>
-                                    Sắp xếp
+                            <select class="dropdown-font-new float-left" style="width: 100%" aria-label="Default select example" onchange="location = this.value;"> Sắp xếp
+                                <option value="posts-list?${historyKey}${historyValue}${historyStatus}${historyAuthor}${historyCategoryId}&type=desc" ${type == "desc" ? "Selected" : ""}>
+                                    Mới Nhất
                                 </option>
-                                <option >
+                                <option value="posts-list?${historyKey}${historyValue}${historyStatus}${historyAuthor}${historyCategoryId}" ${type == null ? "Selected" : ""}>
                                     Cũ Nhất
                                 </option>
+
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;"> Tác giả
-                                <option >
+                            <select class="dropdown-font-new" style="width: 113%" aria-label="Default select example" onchange="location = this.value;">
+                                <option value="posts-list?${historyKey}${historyValue}${historyStatus}${historyCategoryId}" ${authorId == null ? "Selected" : ""}>
                                     Tác giả
                                 </option>
-                                <option }>
-                                    Cũ Nhất
-                                </option>
+                                <c:forEach items="${sessionScope.listAuthor}" var="a">
+                                    <option value="posts-list?${historyKey}${historyValue}${historyType}${historyStatus}${historyCategoryId}&authorId=${a.user_Id}" ${authorId == a.user_Id ? "Selected" : ""}>
+                                        ${a.full_Name}
+                                    </option>
+                                </c:forEach>
+
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;"> Trạng thái
-                                <option }>
+                            <select class="dropdown-font-new float-right" aria-label="Default select example" onchange="location = this.value;"> Trạng thái
+                                <option value="posts-list?${historyKey}${historyValue}${historyAuthor}${historyCategoryId}" ${status == null ? "Selected" : ""}>
                                     Trạng thái
                                 </option>
-                                <option }>
-                                    Cũ Nhất
+                                <option value="posts-list?${historyKey}${historyValue}${historyAuthor}${historyCategoryId}&status=1" ${status == 1 ? "Selected" : ""}>
+                                    Hiện
                                 </option>
+                                <option value="posts-list?${historyKey}${historyValue}${historyAuthor}${historyCategoryId}&status=0" ${status == 0 ? "Selected" : ""}>
+                                    Ẩn
+                                </option>
+
                             </select>
                         </div>
-                        <div class="col-md-2">
-                            <form class="input-search" action="list">
-                                <div>
-                                    <input type="text" name="key" value="${key}" placeholder="Tìm kiếm blog" class="filter-search__control" >
-                                </div>
+                        <div class="col-md-2 text-center">
+                            <form action="posts-list">
+                                <input type="text" name="key" value="${key}" placeholder="Tìm kiếm blog" class="filter-search__control" >
+                                <button type="submit" class="btn btn-outline-danger" href="#" role="button">
+                                    <i style='font-size:15px' class='fas'>&#xf002;</i>
+                                </button>
                             </form>
                         </div>
                     </div>
-                    <div class="container rounded bg-white mt-5 mb-5">
+                    <div class="container rounded bg-white mt-5 mb-5" >
                         <table class="table"  style="margin-top: 4%">
                             <thead  class="text-center">
                                 <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Thumbnail</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Author</th>
-                                    <th scope="col">Updated Date</th>
-                                    <th scope="col">Brief info</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Option</th>
+                                    <th>ID</th>
+                                    <th>Hình&nbsp;thu&nbsp;nhỏ</th>
+                                    <th>Tiêu&nbsp;đề</th>
+                                    <th>Danh&nbsp;mục</th>
+                                    <th>Tác&nbsp;giả</th>
+                                    <th>Ngày&nbsp;cập&nbsp;nhật</th>
+                                    <th>Trạng&nbsp;thái</th>
+                                    <th>Tùy&nbsp;chọn</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr  class="text-center">
-                                    <th scope="row">1</th>
-                                    <td><img src="https://media.coolmate.me/cdn-cgi/image/quality=80/uploads/June2022/hop-tac-thanh-cong.jpg" height="100px" width="100px"/></td>
-                                    <td>Collab là gì ? Các lý do mà mô hình collab ngày càng trở nên thịnh hành</td>
-                                    <td>Mặc đẹp</td>
-                                    <td>Nguyễn Trí Trường Sơn</td>
-                                    <td >20-10-2022</td>
-                                    <td>Trong những năm gần đây, đa số chúng ta đều đã từng bắt gặp những thuật ngữ Collab trên nhiều phương tiện truyền thông khác nhau. Vậy Collab là gì? Hãy cùng theo chân Kingsman tìm hiểu nhé!</td>
-                                    <td><img class="circle" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/284194527_1133976170487933_1085416752535542040_n.png?stp=dst-png_s206x206&_nc_cat=104&ccb=1-7&_nc_sid=aee45a&_nc_ohc=LoSyTq95ad0AX-c2B2i&_nc_oc=AQk9uWi9k6EdP_vHZSebMr1lrkjH9P5HJQup6yxMO1w_VhjYBu2FjL8CkTVqWEVs77VA-0J1fK6jeRP0IOj8GFzD&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVK5T0ZY16zjCGg2cRnX1q6SSr8rRYlmyzwy0f5Zwauj0w&oe=62DA523B"></td>
-                                    <td>
-                                        <a class="btn btn-danger" href="#" role="button">
-                                            <i style='font-size:15px' class='fas'>&#xf044;</i>
-                                        </a>
-                                        <a class="btn btn-dark" href="#" role="button">
-                                            <i style='font-size:15px' class='fas'>&#xf070;</i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr  class="text-center">
-                                    <th scope="row">2</th>
-                                    <td><img src="https://media.coolmate.me/cdn-cgi/image/quality=80/uploads/June2022/so-sanh-vai-modal-va-vai-tencel-2.jpg" height="100px" width="100px"/></td>
-                                    <td>[So sánh] Vải Modal và vải Tencel: Nên chọn chất liệu nào?</td>
-                                    <td>Mặc đẹp</td>
-                                    <td>Nguyễn Trí Trường Sơn</td>
-                                    <td >20-10-2022</td>
-                                    <td>Vải Tencel và vải Modal ngày càng trở nên phổ biến hơn trong lĩnh vực thời trang.  Cùng Kingsman so sánh vải Model và vải Tencel ngay trong bài viết này nhé.</td>
-                                    <td><img class="circle" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/286934964_765449398234277_7570486452980265407_n.png?stp=dst-png_s206x206&_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=WUdnYmBKFyEAX8HpdPo&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVIGfrkbJvS9ypiE_Iq3Ls7sx1XGXjrDNAVY_7kFNKgvFA&oe=62DB6924"></td>
-                                    <td>
-                                        <a class="btn btn-danger" href="#" role="button">
-                                            <i style='font-size:15px' class='fas'>&#xf044;</i>
-                                        </a>
-                                        <a class="btn btn-dark" href="#" role="button">
-                                            <i style='font-size:15px' class='fas'>&#xf06e;</i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <c:forEach items="${listBlogList}" var="b">
+                                    <tr  class="text-center">
+                                        <th scope="row">${b.blog_id}</th>
+                                        <td><img src="${b.thumbnail}" height="100px" width="100px"/></td>
+                                        <td>${b.title}</td>
+                                        <td>
+                                            <c:forEach items="${sessionScope.listCategoryBlog}" var="c">
+                                                ${b.categoryBlog_id == c.categoryBlog_id ? c.categoryBlog_name:""}
+                                            </c:forEach>
+                                        </td>
+                                        <td>
+                                            <c:forEach items="${sessionScope.listAuthor}" var="a">
+                                                ${b.author_id == a.user_Id ? a.full_Name:""}
+                                            </c:forEach>
+                                        </td>
+                                        <td >${b.updated_date}</td>
+                                        <c:if test="${b.status == true}">
+                                            <td><img class="circle" src="images/active.png"></td>
+                                            </c:if>
+                                            <c:if test="${b.status != true}">
+                                            <td><img class="circle" src="images/inactive.png"></td>
+                                            </c:if>
+                                        <td style="width: 125px">
+                                            <a class="btn btn-danger" href="post-details?blog_id=${b.blog_id}" role="button" style='font-size:10px'>
+                                                <i style='font-size:10px' class='fas'>&#xf044;</i>
+                                            </a>
+                                            <c:if test="${b.status == true}">
+                                                <a class="btn btn-dark" href="#" role="button" style='font-size:10px'>
+                                                    <i style='font-size:10px' class='fas far fa-eye-slash'>&#xf070;</i>
+                                                </a>
+                                            </c:if>
+                                            <c:if test="${b.status != true}">
+                                                <a class="btn btn-dark" href="#" role="button" style='font-size:10px'>
+                                                    <i style='font-size:10px' class='fas'>&#xf06e;</i>
+                                                </a>
+                                            </c:if>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <nav aria-label="..." class="pagination">
+                        <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
+                                <a <c:if test="${page!=1}">                         
+                                        href="posts-list?page=${page-1}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}"
+                                    </c:if> class="page-link" aria-label="Previous">
+                                    <span  aria-hidden="true">«</span>
+                                </a>
+                            </li>
+
+                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="posts-list?page=${i}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}">${i}</a></li>
+                                </c:forEach>
+
+                            <li class="page-item">
+                                <a <c:if test="${page!=totalPage}">
+                                        href="posts-list?page=${page+1}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}"
+                                    </c:if> class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">»</span>
+                                </a>
                             </li>
                         </ul>
                     </nav>
                 </main>
                 <!-- Footer-->
-                <%@include file="components/footer.jsp" %>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

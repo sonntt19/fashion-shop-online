@@ -95,6 +95,7 @@ public class BlogDAO extends DBContext {
                         .thumbnail(rs.getString(6))
                         .brief_infor(rs.getString(7))
                         .categoryBlog_id(rs.getInt(8))
+                        .status(rs.getBoolean(9))
                         .build();
 
                 return c;
@@ -168,6 +169,7 @@ public class BlogDAO extends DBContext {
                         .thumbnail(rs.getString(6))
                         .brief_infor(rs.getString(7))
                         .categoryBlog_id(rs.getInt(8))
+                        .status(rs.getBoolean(9))
                         .build();
 
                 list.add(c);
@@ -177,5 +179,53 @@ public class BlogDAO extends DBContext {
             System.out.println(e);
         }
         return null;
+    }
+
+    public List<Blog> getBlogWithPaging(int page, int PAGE_SIZE, String searchKey, String categoryId, String type, String value, String status, String authorId) {
+        List<Blog> list = new ArrayList<>();
+        String sql = "select * from Blog\n"
+                + "where categoryBlog_id " + categoryId + " and [status] " + status + " and author_id " + authorId + " and [title] like N'%" + searchKey + "%'\n"
+                + " order by " + value + " " + type + " offset (?-1)*? row fetch next ? row only";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, page);
+            st.setInt(2, PAGE_SIZE);
+            st.setInt(3, PAGE_SIZE);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Blog c = Blog.builder()
+                        .blog_id(rs.getInt(1))
+                        .title(rs.getString(2))
+                        .author_id(rs.getInt(3))
+                        .updated_date(rs.getDate(4))
+                        .content(rs.getString(5))
+                        .thumbnail(rs.getString(6))
+                        .brief_infor(rs.getString(7))
+                        .categoryBlog_id(rs.getInt(8))
+                        .status(rs.getBoolean(9))
+                        .build();
+
+                list.add(c);
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public int getTotalBlog(String searchKey, String categoryId, String status, String author) {
+        String sql = "Select count(*) from Blog "
+                + "where categoryBlog_id " + categoryId + " and [status] " + status + " and author_id " + author + " and title like N'%" + searchKey + "%'\n";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
     }
 }
