@@ -37,10 +37,10 @@ public class PostsListController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            response.setContentType("text/html;charset=UTF-8");
-            request.setCharacterEncoding("UTF-8");
-            response.setCharacterEncoding("UTF-8");
             HttpSession session = request.getSession();
             final int PAGE_SIZE = 6;  // Set total product each page
             BlogDAO bd = new BlogDAO();
@@ -83,14 +83,14 @@ public class PostsListController extends HttpServlet {
             if (strStatus != null) {
                 status = "= " + strStatus;
             }
-            
+
             // Set author
             String author = "!= -1";
             String strAuthor = request.getParameter("authorId");
             if (strAuthor != null) {
                 author = "= " + strAuthor;
             }
-            
+
             // Set total page 
             int totalBlog = bd.getTotalBlog(searchKey, categoryId, status, author);
             int totalPage = totalBlog / PAGE_SIZE;
@@ -142,7 +142,7 @@ public class PostsListController extends HttpServlet {
                 request.setAttribute("historyAuthor", "&authorId=" + strAuthor);
                 request.setAttribute("authorId", strAuthor);
             }
-            
+
             request.setAttribute("page", page);
             request.setAttribute("totalPage", totalPage);
             session.setAttribute("historyUrl", history);

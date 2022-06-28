@@ -5,6 +5,7 @@
  */
 package Controlller.Marketing;
 
+import dal.BlogDAO;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,6 +21,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.User;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -48,7 +51,7 @@ public class AddPostController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddPostController</title>");            
+            out.println("<title>Servlet AddPostController</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AddPostController at " + request.getContextPath() + "</h1>");
@@ -69,21 +72,18 @@ public class AddPostController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("us");
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-                // Create a factory for disk-based file items
+        String title = request.getParameter("title");
+        int user_id = u.getUser_Id();
+        String content = request.getParameter("content");
+        String brief_infor = request.getParameter("bried_infor");
+        int category_id = Integer.parseInt(request.getParameter("categoryId"));
+        boolean status = Boolean.parseBoolean(request.getParameter("status"));
+        String url_thumbnail = "images/blog/";
+
+        // Create a factory for disk-based file items
         DiskFileItemFactory factory = new DiskFileItemFactory();
 
 // Configure a repository (to ensure a secure temp location is used)
@@ -105,27 +105,42 @@ public class AddPostController extends HttpServlet {
 
                 if (item.isFormField()) {
                     fields.put(item.getFieldName(), item.getString());
-                    
+
                 } else {
                     String filename = item.getName();
-                    if(filename == null || filename.equals("")){
+                    if (filename == null || filename.equals("")) {
                         break;
-                    }else{
+                    } else {
                         Path path = Paths.get(filename);
-                        String storePath = servletContext.getRealPath("/images/blog");
+                        String storePath = servletContext.getRealPath("../../web/images/blog");
                         File uploadFile = new File(storePath + "/" + path.getFileName());
                         item.write(uploadFile);
-                        request.setAttribute("img", filename);
-                        request.getRequestDispatcher("AddBlog.jsp").forward(request, response);
+                        url_thumbnail += filename;
                     }
-                    
+
                 }
             }
         } catch (FileUploadException ex) {
-            
+
         } catch (Exception ex) {
-            
+
         }
+        BlogDAO bd = new BlogDAO();
+        bd.addNewBlog(title, user_id, content, brief_infor, category_id, status, url_thumbnail);
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
     }
 
     /**

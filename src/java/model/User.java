@@ -27,7 +27,7 @@ public class User {
     private String email;
     private String mobile;
     private String address;
-    private String status;
+    private boolean status;
     private String role_Id;
 
     

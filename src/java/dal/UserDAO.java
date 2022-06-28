@@ -28,7 +28,7 @@ public class UserDAO extends DBContext {
                         .email(rs.getString(6))
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
-                        .status(rs.getString(9))
+                        .status(rs.getBoolean(9))
                         .role_Id(rs.getString(10))
                         .build();
                 return u;
@@ -56,7 +56,7 @@ public class UserDAO extends DBContext {
                         .email(rs.getString(6))
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
-                        .status(rs.getString(9))
+                        .status(rs.getBoolean(9))
                         .role_Id(rs.getString(10))
                         .build();
                 return u;
@@ -134,7 +134,7 @@ public class UserDAO extends DBContext {
                         .email(rs.getString(6))
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
-                        .status(rs.getString(9))
+                        .status(rs.getBoolean(9))
                         .role_Id(rs.getString(10))
                         .build();
                 return user;
@@ -161,7 +161,7 @@ public class UserDAO extends DBContext {
                         .email(rs.getString(6))
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
-                        .status(rs.getString(9))
+                        .status(rs.getBoolean(9))
                         .role_Id(rs.getString(10))
                         .build();
                 return user;
@@ -188,7 +188,7 @@ public class UserDAO extends DBContext {
                         .email(rs.getString(6))
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
-                        .status(rs.getString(9))
+                        .status(rs.getBoolean(9))
                         .role_Id(rs.getString(10))
                         .build();
                 return user;
@@ -215,7 +215,7 @@ public class UserDAO extends DBContext {
                         .email(rs.getString(6))
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
-                        .status(rs.getString(9))
+                        .status(rs.getBoolean(9))
                         .role_Id(rs.getString(10))
                         .build();
                 list.add(u);
@@ -312,7 +312,7 @@ public class UserDAO extends DBContext {
                         .email(rs.getString(6))
                         .mobile(rs.getString(7))
                         .address(rs.getString(8))
-                        .status(rs.getString(9))
+                        .status(rs.getBoolean(9))
                         .role_Id(rs.getString(10))
                         .build();
                 list.add(u);

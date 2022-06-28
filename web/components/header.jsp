@@ -54,7 +54,7 @@
                                     <li><a class="dropdown-item" href="myorder">Danh sách đơn hàng</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.us.role_Id == 2}">
-                                    <li><a class="dropdown-item" href="marketingproductlist">Danh sách sản phẩm</a></li>
+                                    <li><a class="dropdown-item" href="MKTDashboard.jsp">Quản lý tiếp thị</a></li>
                                     </c:if>
                                 <li><a class="dropdown-item" href="list-user" type="button">Thông tin người dùng</a></li>
 

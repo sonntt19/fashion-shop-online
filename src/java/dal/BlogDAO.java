@@ -228,4 +228,31 @@ public class BlogDAO extends DBContext {
         }
         return 0;
     }
+
+    public void addNewBlog(String title, int user_id, String content, String brief_infor, int category_id, boolean status, String url_thumbnail) {
+        try {
+            String sql = "INSERT INTO [dbo].[Blog]\n"
+                    + "           ([title]\n"
+                    + "           ,[author_id]\n"
+                    + "           ,[content]\n"
+                    + "           ,[thumbnail]\n"
+                    + "           ,[brief_infor]\n"
+                    + "           ,[categoryBlog_id]\n"
+                    + "           ,[status])\n"
+                    + "     VALUES\n"
+                    + "           (?,?,?,?,?,?,?)";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, title);
+            st.setInt(2, user_id);
+            st.setString(3, content);
+            st.setString(4, brief_infor);
+            st.setInt(5, category_id);
+            st.setBoolean(6, status);
+            st.setString(7, url_thumbnail);
+
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
 }

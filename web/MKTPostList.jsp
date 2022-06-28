@@ -7,9 +7,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -92,9 +92,8 @@
                 <!-- Navbar-->
                 <form class="d-flex me-5" action="list">
                     <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
-                    <button type="submit" class="btn btn-outline-danger" href="#" role="button">
-                        <i style='font-size:15px' class='fas'>&#xf002;</i>
-                    </button>
+
+                    <button class="btn btn-outline-danger" type="submit">Tìm</button>
                 </form>
 
 
@@ -126,7 +125,9 @@
                 </ul>
         </nav>
         <div id="layoutSidenav">
+
             <%@include file="components/MKT-left-board.jsp" %>
+
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid rounded row" style="margin-top: 1% !important; margin-bottom: 1% !important">
