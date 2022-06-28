@@ -130,7 +130,7 @@
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container rounded bg-white mt-5 mb-5">
-                        <form action="add-post" enctype="multipart/form-data" >
+                        <form action="add-post" method="post" enctype="multipart/form-data" >
                             <div class="row"  style="margin-top: 8%;">
                                 <div class="p-4">
 
@@ -139,7 +139,7 @@
                                 <div class="col-md-8">
                                     <div class="p-3 py-5">
                                         <div class="col-md-12">Tiêu đề<input type="text" name="title" class="form-control" placeholder="Nhập tiêu đề" ></div>
-                                        <div class="col-md-12">Thông tin rút gọn<textarea class="form-control" name="bried_infor"  rows="2" ></textarea></div>
+                                        <div class="col-md-12">Thông tin rút gọn<textarea class="form-control" name="brief_infor"  rows="2" ></textarea></div>
                                         <div class="col-md-12">Nội dung
 
                                             <textarea cols="20" rows="40" id="editor" name="content"></textarea>
@@ -167,11 +167,11 @@
                                             </div>
                                             <div class="col-md-12">Trạng thái
                                                 <br/>
-                                                <input name="status" type="radio" value="True" checked/>&nbsp;Hiện
-                                                <input name="status" type="radio" value="False" />&nbsp;Ẩn
+                                                <input name="status" type="radio" value="1" checked/>&nbsp;Hiện
+                                                <input name="status" type="radio" value="0" />&nbsp;Ẩn
                                             </div>
                                             <div class="col-md-12">Hình thu nhỏ<input type="file" name="thumbnail" class="form-control" placeholder="Thumbnail">${img}</div>
-                                            <img src="images/blog/1.png">
+                                            
                                         </div>
 
                                     </div>

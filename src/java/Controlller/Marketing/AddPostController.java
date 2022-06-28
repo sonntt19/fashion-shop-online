@@ -72,15 +72,27 @@ public class AddPostController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+//        
+    }
+
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("us");
 
-        String title = request.getParameter("title");
-        int user_id = u.getUser_Id();
-        String content = request.getParameter("content");
-        String brief_infor = request.getParameter("bried_infor");
-        int category_id = Integer.parseInt(request.getParameter("categoryId"));
-        boolean status = Boolean.parseBoolean(request.getParameter("status"));
         String url_thumbnail = "images/blog/";
 
         // Create a factory for disk-based file items
@@ -93,6 +105,7 @@ public class AddPostController extends HttpServlet {
 
 // Create a new file upload handler
         ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setHeaderEncoding("UTF-8");
 
         try {
             // Parse the request
@@ -104,7 +117,7 @@ public class AddPostController extends HttpServlet {
                 FileItem item = iter.next();
 
                 if (item.isFormField()) {
-                    fields.put(item.getFieldName(), item.getString());
+                    fields.put(item.getFieldName(), item.getString("UTF-8"));
 
                 } else {
                     String filename = item.getName();
@@ -120,27 +133,25 @@ public class AddPostController extends HttpServlet {
 
                 }
             }
+
+            String title = fields.get("title");
+            int user_id = u.getUser_Id();
+            String content = fields.get("content");
+            String brief_infor = fields.get("brief_infor");
+            int category_id = Integer.parseInt(fields.get("categoryId"));
+            int status = Integer.parseInt(fields.get("status"));
+
+            BlogDAO bd = new BlogDAO();
+            bd.addNewBlog(title, user_id, content, brief_infor, category_id, status, url_thumbnail);
+            response.sendRedirect("posts-list");
         } catch (FileUploadException ex) {
 
         } catch (Exception ex) {
 
         }
-        BlogDAO bd = new BlogDAO();
-        bd.addNewBlog(title, user_id, content, brief_infor, category_id, status, url_thumbnail);
-    }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+//        BlogDAO bd = new BlogDAO();
+//        bd.addNewBlog(title, user_id, content, brief_infor, category_id, status, url_thumbnail);
     }
 
     /**
