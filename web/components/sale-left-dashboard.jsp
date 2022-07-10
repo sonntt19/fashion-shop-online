@@ -22,7 +22,7 @@
                 </a>
                 <div class="collapse" id="collapse1" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="marketingproductlist">Danh sách đơn hàng</a>
+                        <a class="nav-link" href="order-list-sale">Danh sách đơn hàng</a>
                     </nav>
                 </div>        
             </div>
