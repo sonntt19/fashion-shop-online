@@ -100,6 +100,18 @@
         <servlet-name>UpdatePostController</servlet-name>
         <servlet-class>Controlller.Marketing.UpdatePostController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PostsListController</servlet-name>
+        <servlet-class>Controlller.Marketing.PostsListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PostDetailsController</servlet-name>
+        <servlet-class>Controlller.Marketing.PostDetailsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddPostController</servlet-name>
+        <servlet-class>Controlller.Marketing.AddPostController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -200,12 +212,23 @@
         <servlet-name>UpdatePostController</servlet-name>
         <url-pattern>/update-post</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostsListController</servlet-name>
+        <url-pattern>/posts-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostDetailsController</servlet-name>
+        <url-pattern>/post-details</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPostController</servlet-name>
+        <url-pattern>/add-post</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
     <servlet>
         <servlet-name>ConnectorServlet</servlet-name>
         <servlet-class>com.ckfinder.connector.ConnectorServlet</servlet-class>

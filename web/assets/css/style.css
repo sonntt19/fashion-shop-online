@@ -529,12 +529,13 @@ del{
 }
 .button-search{
     position: absolute;
-    width: 11%;
-    height: 48%;
+    width: 25px;
+    height: 25px;
     margin: 2% -15%;
     border: none;
     color: white;
-    background-color: black;
+    background-image: url(../..//images/icon-search.svg);
+    background-repeat: no-repeat;
     z-index: 1;
 }
 .dropdown-font-new{

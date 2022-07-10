@@ -28,4 +28,5 @@ public class Blog {
     private String thumbnail;
     private String brief_infor;
     private int categoryBlog_id;
+    private boolean status;
 }
