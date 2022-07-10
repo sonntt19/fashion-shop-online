@@ -35,7 +35,43 @@
         <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
         <style>
             
+.payment-method__item-name {
+                font-size: 20px;
+                padding-left: 20px;
+            }
 
+            .payment-method__item {
+                display: flex;
+                align-items: center;
+                border: 1px solid #D9D9D9;
+                border-radius: 16px;
+                padding: 15px 20px;
+                margin-bottom: 1rem;
+            }
+
+
+
+            .payment-method__item-icon-wrapper img {
+                min-width: 100px;
+                max-height: 100px;
+                max-width: 100px;
+                padding-left: 40px;
+                image-rendering: -webkit-optimize-contrast;
+            }
+            .body_cartCompletion {
+                font-family: sans-serif;
+                background: linear-gradient(110deg, #fdfdbe 60%, #f9f86c 60%);
+            }
+            .groundy{
+                font-family: sans-serif;
+                background: linear-gradient(110deg, #fdfdbe 60%, #f9f86c 60%);
+            }
+
+            .circle {
+                height: 10px;
+                width: 10px;
+                border: 50%;
+            }
             .mtop {
                 margin-top: 2%;
             }
@@ -114,8 +150,10 @@
                 </ul>
         </nav>
 
-
+<div id="layoutSidenav">
+    <%@include file="components/sale-left-dashboard.jsp" %>
             <div class="groundy" id="layoutSidenav_content">
+                
                 <h2 class="mtop title-order" >Danh sách các đơn hàng</h2>
                 <div class="container mtop" style="width:100%">
                     <table class="table table-striped table-bordered tbborder" id="sortTable">
@@ -160,9 +198,8 @@
                     </table>
                 </div>
             </div>
-        
+</div>
         <div class = "mtop"></div>
-        <%@include file="components/footer.jsp" %>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
