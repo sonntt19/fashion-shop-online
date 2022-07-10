@@ -93,4 +93,100 @@ public class CustomerDAO extends DBContext {
         }
         return list;
     }
+
+    public User getCustomerById(String user_Id) {
+        String sql = "select * from [User]\n"
+                + "where userId = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, user_Id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = User.builder()
+                        .user_Id(rs.getInt(1))
+                        .full_Name(rs.getString(2))
+                        .password(rs.getString(3))
+                        .avatar(rs.getString(4))
+                        .gender(rs.getBoolean(5))
+                        .email(rs.getString(6))
+                        .mobile(rs.getString(7))
+                        .address(rs.getString(8))
+                        .status(rs.getBoolean(9))
+                        .role_Id(rs.getString(10))
+                        .build();
+                return u;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public void editCustomerProfile(String uname, String uemail, String ugender, String umobile, String uaddress, int uid, String ustatus) {
+        String sql = "update dbo.[User]\n"
+                + "set [fullName] = ?,\n"
+                + "email = ?,\n"
+                + "gender = ?,\n"
+                + "mobile = ?,\n"
+                + "[address] = ?,\n"
+                + "[status] = ?\n"
+                + "where userId = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, uname);
+            st.setString(2, uemail);
+            st.setString(3, ugender);
+            st.setString(4, umobile);
+            st.setString(5, uaddress);
+            st.setString(6, ustatus);
+            st.setInt(7, uid);
+            st.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    public User checkCustomerExist(String email) {
+        String sql = "select * from dbo.[User]\n"
+                + "where email = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, email);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = User.builder()
+                        .user_Id(rs.getInt(1))
+                        .full_Name(rs.getString(2))
+                        .password(rs.getString(3))
+                        .avatar(rs.getString(4))
+                        .gender(rs.getBoolean(5))
+                        .email(rs.getString(6))
+                        .mobile(rs.getString(7))
+                        .address(rs.getString(8))
+                        .status(rs.getBoolean(9))
+                        .role_Id(rs.getString(10))
+                        .build();
+                return u;
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
+    public void addCustomer(String fullName, String address, String gender, String email, String mobile, String status) {
+        String sql = "insert into [User]\n"
+                + "values (?,0,0,?,?,?,?,?,'1')";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, fullName);
+            st.setString(2, gender);
+            st.setString(3, email);
+            st.setString(4, mobile);
+            st.setString(5, address);
+            st.setString(6, status);
+            st.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+    
+    
 }
