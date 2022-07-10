@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Blog;
 import model.CategoryBlog;
+import model.Chart;
 import model.Product;
 
 /**
@@ -248,11 +249,123 @@ public class BlogDAO extends DBContext {
             st.setString(4, url_thumbnail);
             st.setString(5, brief_infor);
             st.setInt(6, category_id);
-            st.setInt(7,status);
+            st.setInt(7, status);
 
             st.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex);
         }
     }
+
+    public void UpdateBlogById(String title, int user_id, String content, String brief_infor, int category_id, int status, String url_thumbnail, int blog_id) {
+        try {
+            String sql = "UPDATE [dbo].[Blog]\n"
+                    + "   SET [title] = ?\n"
+                    + "      ,[author_id] = ?\n"
+                    + "      ,[updated_date] = getdate()\n"
+                    + "      ,[content] = ?\n"
+                    + "      ,[thumbnail] = ?\n"
+                    + "      ,[brief_infor] = ?\n"
+                    + "      ,[categoryBlog_id] = ?\n"
+                    + "      ,[status] = ?\n"
+                    + " WHERE blog_id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, title);
+            st.setInt(2, user_id);
+            st.setString(3, content);
+            st.setString(4, url_thumbnail);
+            st.setString(5, brief_infor);
+            st.setInt(6, category_id);
+            st.setInt(7, status);
+            st.setInt(8, blog_id);
+
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public void changeStatusById(int blog_id, int status) {
+        try {
+            String sql = "UPDATE [dbo].[Blog]\n"
+                    + "   SET [status] = ?\n"
+                    + " WHERE blog_id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, status);
+            st.setInt(2, blog_id);
+
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    public int CountDayByStartEnd(String start, String end) {
+        String sql = "SELECT DATEDIFF(day, ?, ?)";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, start);
+            st.setString(2, end);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public Chart test() {
+        String sql = "select  DATEADD(DAY, 1, '2022-07-01')";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Chart c = Chart.builder()
+                        .date(rs.getDate(1))
+                        .value(1)
+                        .build();
+                return c;
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public List<Chart> getChartBlog(String start, int day) {
+        List<Chart> list = new ArrayList<>();
+        for (int i = 0; i < day; i++) {
+            int value = 0;
+            String sql = "select count(*) from Blog where updated_date < DATEADD(DAY, ?, ?)";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    value = rs.getInt(1);
+                }
+                sql = "select  DATEADD(DAY, ?, ?)";
+                st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    Chart c = Chart.builder()
+                            .date(rs.getDate(1))
+                            .value(value)
+                            .build();
+                    list.add(c);
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+
+        return list;
+    }
+
 }

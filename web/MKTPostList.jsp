@@ -236,12 +236,12 @@
                                                 <i style='font-size:10px' class='fas'>&#xf044;</i>
                                             </a>
                                             <c:if test="${b.status == true}">
-                                                <a class="btn btn-dark" href="#" role="button" style='font-size:10px'>
+                                                <a class="btn btn-dark" href="change-status?status=0&blogId=${b.blog_id}" role="button" style='font-size:10px'>
                                                     <i style='font-size:10px' class='fas far fa-eye-slash'>&#xf070;</i>
                                                 </a>
                                             </c:if>
                                             <c:if test="${b.status != true}">
-                                                <a class="btn btn-dark" href="#" role="button" style='font-size:10px'>
+                                                <a class="btn btn-dark" href="change-status?status=1&blogId=${b.blog_id}" role="button" style='font-size:10px'>
                                                     <i style='font-size:10px' class='fas'>&#xf06e;</i>
                                                 </a>
                                             </c:if>
