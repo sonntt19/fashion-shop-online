@@ -158,109 +158,105 @@
             // Set new default font family and font color to mimic Bootstrap's default styling
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
             Chart.defaults.global.defaultFontColor = '#292b2c';
-
 // Area Chart Example
             var ctx1 = document.getElementById("myAreaChart-1");
             var ctx2 = document.getElementById("myAreaChart-2");
             var myLineChart = new Chart(ctx1, {
-                type: 'line',
-                data: {
+            type: 'line',
+                    data: {
                     labels: [<c:forEach  items="${listChartBlog}" var="blog" > "${blog.date}",</c:forEach>],
-                    datasets: [{
-                            label: "Sản Phẩm",
-                            lineTension: 0.3,
-                            backgroundColor: "rgba(2,117,216,0.2)",
-                            borderColor: "rgba(2,117,216,1)",
-                            pointRadius: 5,
-                            pointBackgroundColor: "rgba(2,117,216,1)",
-                            pointBorderColor: "rgba(255,255,255,0.8)",
-                            pointHoverRadius: 5,
-                            pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                            pointHitRadius: 50,
-                            pointBorderWidth: 2,
-                            data: [<c:forEach  items="${listChartBlog}" var="blog" > "${blog.value}",</c:forEach>],
-                        }],
-                },
-                options: {
-                    scales: {
-                        xAxes: [{
-                                time: {
-                                    unit: 'date'
-                                },
-                                gridLines: {
-                                    display: false
-                                },
-                                ticks: {
-                                    maxTicksLimit: 7
-                                }
-                            }],
-                        yAxes: [{
-                                ticks: {
-                                    min: 0,
-                                    max: 100,
-                                    maxTicksLimit: 5
-                                },
-                                gridLines: {
-                                    color: "rgba(0, 0, 0, .125)",
-                                }
+                            datasets: [{
+                            label: "Bài Đăng",
+                                    lineTension: 0.3,
+                                    backgroundColor: "rgba(2,117,216,0.2)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    pointRadius: 5,
+                                    pointBackgroundColor: "rgba(2,117,216,1)",
+                                    pointBorderColor: "rgba(255,255,255,0.8)",
+                                    pointHoverRadius: 5,
+                                    pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                                    pointHitRadius: 50,
+                                    pointBorderWidth: 2,
+                                    data: [<c:forEach  items="${listChartBlog}" var="blog" > "${blog.value}",</c:forEach>],
                             }],
                     },
-                    legend: {
-                        display: false
-                    }
-                }
-            });
-            var myLineChart = new Chart(ctx2, {
-                type: 'line',
-                data: {
-                    labels: ["20/6/2022", "2/2/2022", "3/2/2022", "4/2/2022", "5/2/2022", "6/2/2022", "7/2/2022"],
-                    datasets: [{
-                            label: "Sản Phẩm",
-                            lineTension: 0.3,
-                            backgroundColor: "rgba(2,117,216,0.2)",
-                            borderColor: "rgba(2,117,216,1)",
-                            pointRadius: 5,
-                            pointBackgroundColor: "rgba(2,117,216,1)",
-                            pointBorderColor: "rgba(255,255,255,0.8)",
-                            pointHoverRadius: 5,
-                            pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                            pointHitRadius: 50,
-                            pointBorderWidth: 2,
-                            data: [5, 10, 15, 20, 5, 10, 15],
-                        }],
-                },
-                options: {
+                    options: {
                     scales: {
-                        xAxes: [{
-                                time: {
-                                    unit: 'date'
-                                },
-                                gridLines: {
-                                    display: false
-                                },
-                                ticks: {
-                                    maxTicksLimit: 7
-                                }
-                            }],
-                        yAxes: [{
-                                ticks: {
-                                    min: 0,
+                    xAxes: [{
+                    time: {
+                    unit: 'date'
+                    },
+                            gridLines: {
+                            display: false
+                            },
+                            ticks: {
+                            maxTicksLimit: 7
+                            }
+                    }],
+                            yAxes: [{
+                            ticks: {
+                            min: 0,
                                     max: 100,
                                     maxTicksLimit: 5
-                                },
-                                gridLines: {
+                            },
+                                    gridLines: {
                                     color: "rgba(0, 0, 0, .125)",
-                                }
+                                    }
                             }],
                     },
-                    legend: {
-                        display: false
+                            legend: {
+                            display: false
+                            }
                     }
-                }
             });
-
         </script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script>
+/// Set new default font family and font color to mimic Bootstrap's default styling
+            Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+            Chart.defaults.global.defaultFontColor = '#292b2c';
+// Bar Chart Example
+            var ctx = document.getElementById("myBarChart");
+            var myLineChart = new Chart(ctx, {
+            type: 'bar',
+                    data: {
+                    labels: ["2022-07-10", "2022-07-10", "2022-07-10", "2022-07-10", "2022-07-10", "2022-07-10"],
+                            datasets: [{
+                            label: "Sản Phẩm",
+                                    backgroundColor: "rgba(2,117,216,1)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    data: [15, 12, 51, 41, 21, 84],
+                            }],
+                    },
+                    options: {
+                    scales: {
+                    xAxes: [{
+                    time: {
+                    unit: 'month'
+                    },
+                            gridLines: {
+                            display: false
+                            },
+                            ticks: {
+                            maxTicksLimit: 6
+                            }
+                    }],
+                            yAxes: [{
+                            ticks: {
+                            min: 0,
+                                    max: 100,
+                                    maxTicksLimit: 5
+                            },
+                                    gridLines: {
+                                    display: true
+                                    }
+                            }],
+                    },
+                            legend: {
+                            display: false
+                            }
+                    }
+            });
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
         <script src="assets/demo/chart-pie-demo.js"></script>

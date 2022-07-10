@@ -201,7 +201,6 @@
                             <th>Danh&nbsp;mục</th>
                             <th>Tác&nbsp;giả</th>
                             <th>Ngày&nbsp;cập&nbsp;nhật</th>
-                            <th>Thông&nbsp;tin&nbsp;ngắn&nbsp;gọn</th>
                             <th>Trạng&nbsp;thái</th>
                             <th style="width: 12%">Tùy&nbsp;chọn&nbsp;</th>
                             </thead>

@@ -6,6 +6,7 @@
 package Controlller.Marketing;
 
 import dal.BlogDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -38,12 +39,14 @@ public class MKTDashboardController extends HttpServlet {
         String end = "2022-07-10";
         
         BlogDAO bd = new BlogDAO();
+        ProductDAO pd = new ProductDAO();
         int day = bd.CountDayByStartEnd(start,end);
         
-        Chart a = bd.test();
         List<Chart> listChartBlog = bd.getChartBlog(start, day);
+        List<Chart> listChartProduct = pd.getChartProduct(start, day);
         
         request.setAttribute("listChartBlog", listChartBlog);
+        request.setAttribute("listChartProduct", listChartProduct);
         request.getRequestDispatcher("MKTDashboard.jsp").forward(request, response);
     }
 

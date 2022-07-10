@@ -316,23 +316,6 @@ public class BlogDAO extends DBContext {
         return 0;
     }
 
-    public Chart test() {
-        String sql = "select  DATEADD(DAY, 1, '2022-07-01')";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                Chart c = Chart.builder()
-                        .date(rs.getDate(1))
-                        .value(1)
-                        .build();
-                return c;
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return null;
-    }
 
     public List<Chart> getChartBlog(String start, int day) {
         List<Chart> list = new ArrayList<>();
