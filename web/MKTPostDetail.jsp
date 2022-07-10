@@ -130,7 +130,7 @@
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container rounded bg-white mt-5 mb-5">
-                        <form action="update-post" method="post">
+                        <form action="update-post" method="post" enctype="multipart/form-data">
                             <div class="row"  style="margin-top: 8%;">
                                 <div class="p-4">
 
@@ -138,9 +138,9 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="p-3 py-5">
-                                        <div class="col-md-12">Title<input type="text" class="form-control" placeholder="enter Title" value="${blog.title}"></div>
-                                        <div class="col-md-12">Brief infor<textarea class="form-control" name="Text1"  rows="2" >${blog.brief_infor}</textarea></div>
-                                        <div class="col-md-12">Content
+                                        <div class="col-md-12">Tiêu đề<input type="text" class="form-control"  name="title" value="${blog.title}"></div>
+                                        <div class="col-md-12">Thông tin rút gọn<textarea class="form-control" name="brief_infor"  rows="2" >${blog.brief_infor}</textarea></div>
+                                        <div class="col-md-12">Nội dung
 
                                             <textarea cols="20" rows="40" id="editor" name="content">${blog.content}</textarea>
 
@@ -155,31 +155,35 @@
                                 <div class="col-md-4">
                                     <div class="p-3 py-5">
                                         <div class="row mt-16">
-                                            <div class="col-md-12">Blog ID<input type="text" class="form-control"  value="${blog.blog_id}" readonly ></div>
-                                            <div class="col-md-12">Author<input readonly type="text" class="form-control" value="${author}"/></div>                                        
-                                            <div class="col-md-12">Updated date<input type="date" class="form-control" value="${blog.updated_date}"  readonly=""></div>
-                                            <div class="col-md-12">Category 
-                                                <select class="form-control" aria-label="Default select example" >
+                                            <div class="col-md-12">Blog ID<input type="text" name="blogId" class="form-control"  value="${blog.blog_id}" readonly ></div>
+                                            <div class="col-md-12">Tác giả<input readonly type="text" class="form-control" value="${author}"/></div>                                        
+                                            <div class="col-md-12">Ngày cập nhật<input type="date" class="form-control" value="${blog.updated_date}"  readonly=""></div>
+                                            <div class="col-md-12">Danh mục 
+                                                <select class="form-control"  name="categoryId" aria-label="Default select example" >
                                                     <c:forEach items="${sessionScope.listCategoryBlog}" var="c">
-                                                        <option ${blog.categoryBlog_id == c.categoryBlog_id ? "Selected" : ""}>
+                                                        <option value="${c.categoryBlog_id}" ${blog.categoryBlog_id == c.categoryBlog_id ? "Selected" : ""}>
                                                             ${c.categoryBlog_name}
                                                         </option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="col-md-12">Status
+                                            <div class="col-md-12">Trạng thái
                                                 <br/>
                                                 <input name="status" type="radio" value="1" ${blog.status == true ? 'checked' : ''} />&nbsp;Hiện
                                                 <input name="status" type="radio" value="0" ${blog.status == false ? 'checked' : ''} />&nbsp;Ẩn
                                             </div>
-                                            <div class="col-md-12">Thumbnail<input type="file" class="form-control" placeholder="Thumbnail" value=""></div>
-                                            <img class="mt-5" src="${blog.thumbnail}"/>
+                                            <div class="col-md-12">Hình thu nhỏ<input type="file" name="thumbnail" class="form-control" placeholder="Thumbnail" value=""></div>
+                                            <img class="mt-5"  src="${blog.thumbnail}"/>
                                         </div>
 
                                     </div>
 
                                 </div>
-                                <div class="mt-5 p-4 text-center"><input class="btn btn-dark" type="submit" value="Lưu"></div>
+                                
+                                <div class="mt-5 p-4 text-center">
+                                    <a href="posts-list"><button class="btn btn-outline-dark" type="button">Quay lại</button></a>
+                                    <input class="btn btn-dark" type="submit" value="Lưu">
+                                </div>
                             </div>
                         </form> 
                     </div>

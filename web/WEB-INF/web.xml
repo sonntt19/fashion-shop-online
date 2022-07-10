@@ -112,6 +112,14 @@
         <servlet-name>AddPostController</servlet-name>
         <servlet-class>Controlller.Marketing.AddPostController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeStatusController</servlet-name>
+        <servlet-class>Controlller.Marketing.ChangeStatusController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MKTDashboardController</servlet-name>
+        <servlet-class>Controlller.Marketing.MKTDashboardController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -223,6 +231,14 @@
     <servlet-mapping>
         <servlet-name>AddPostController</servlet-name>
         <url-pattern>/add-post</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeStatusController</servlet-name>
+        <url-pattern>/change-status</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MKTDashboardController</servlet-name>
+        <url-pattern>/mkt-dashboard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

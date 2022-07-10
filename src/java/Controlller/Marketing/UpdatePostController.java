@@ -5,12 +5,26 @@
  */
 package Controlller.Marketing;
 
+import dal.BlogDAO;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.User;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -65,7 +79,70 @@ public class UpdatePostController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        
+        HttpSession session = request.getSession();
+        User u = (User) session.getAttribute("us");
+
+        String url_thumbnail = "images/blog/";
+
+        // Create a factory for disk-based file items
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+
+// Configure a repository (to ensure a secure temp location is used)
+        ServletContext servletContext = this.getServletConfig().getServletContext();
+        File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+        factory.setRepository(repository);
+
+// Create a new file upload handler
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setHeaderEncoding("UTF-8");
+
+        try {
+            // Parse the request
+            List<FileItem> items = upload.parseRequest(request);
+            // Process the uploaded items
+            Iterator<FileItem> iter = items.iterator();
+            HashMap<String, String> fields = new HashMap<>();
+            while (iter.hasNext()) {
+                FileItem item = iter.next();
+
+                if (item.isFormField()) {
+                    fields.put(item.getFieldName(), item.getString("UTF-8"));
+
+                } else {
+                    String filename = item.getName();
+                    if (filename == null || filename.equals("")) {
+                        break;
+                    } else {
+                        Path path = Paths.get(filename);
+                        String storePath = servletContext.getRealPath("../../web/images/blog");
+                        File uploadFile = new File(storePath + "/" + path.getFileName());
+                        item.write(uploadFile);
+                        url_thumbnail += filename;
+                    }
+
+                }
+            }
+            
+            int blog_id = Integer.parseInt(fields.get("blogId"));
+            String title = fields.get("title");
+            int user_id = u.getUser_Id();
+            String content = fields.get("content");
+            String brief_infor = fields.get("brief_infor");
+            int category_id = Integer.parseInt(fields.get("categoryId"));
+            int status = Integer.parseInt(fields.get("status"));
+
+            BlogDAO bd = new BlogDAO();
+            bd.UpdateBlogById(title, user_id, content, brief_infor, category_id, status, url_thumbnail, blog_id);
+            response.sendRedirect("post-details?blog_id="+blog_id);
+        } catch (FileUploadException ex) {
+
+        } catch (Exception ex) {
+
+        }
     }
 
     /**

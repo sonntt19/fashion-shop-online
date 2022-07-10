@@ -111,7 +111,7 @@ public class PostsListController extends HttpServlet {
             // Set param request to jsp page
             session.setAttribute("listBlogList", listBlog);
             session.setAttribute("historyUrl", "blog");
-            String history = "blog?page=" + page;
+            String history = "posts-list?page=" + page;
             if (strSearchKey != null) {
                 history = history + "&key=" + strSearchKey;
                 request.setAttribute("historyKey", "&key=" + strSearchKey);

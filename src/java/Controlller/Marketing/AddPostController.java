@@ -150,8 +150,7 @@ public class AddPostController extends HttpServlet {
 
         }
 
-//        BlogDAO bd = new BlogDAO();
-//        bd.addNewBlog(title, user_id, content, brief_infor, category_id, status, url_thumbnail);
+
     }
 
     /**
