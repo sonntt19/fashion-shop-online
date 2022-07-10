@@ -24,6 +24,18 @@
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <style>
+            .dateFromTo {
+                font-size: 20px;
+                padding: 1%;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            input[type="date"] {
+                font-size: 20px;
+                border-radius: 5px;
+            }
+        </style>
     </head>
     <body class="sb-nav-fixed">
         <%@include file="components/account.jsp" %>
@@ -85,21 +97,17 @@
                 </ul>
         </nav>
         <div id="layoutSidenav">
-
             <%@include file="components/MKT-left-board.jsp" %>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Marketing Dashboard</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">
-                                <form action="mkt-dashboard">
-                                    <input type="date" name="start" value="2018-07-22"/>
-                                    <input type="date" name="end"/>
-                                    <input type="submit" value="Lọc"/>
-                                </form>
-                            </li>
-                        </ol>
+                        <h1 class="mt-4">Bảng điều khiển tiếp thị</h1>
+                        <div class="dateFromTo">
+                            Từ: 
+                            <input class="" type="date" id="start">
+                            Đến: 
+                            <input type="date" id="end">
+                        </div>
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="card mb-4">
@@ -133,8 +141,8 @@
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
                                         Thống kê phản hồi
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                    </div>  
+                                    <div class="card-body"><canvas id="myPieChartFeedback" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                         </div>
@@ -255,6 +263,9 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script src="assets/demo/chart-pie-demo.js"></script>
+        <script src="assets/demo/chart-line-demo.js"></script>
+        <script src="assets/demo/chart-pie-demo-feedback.js"></script>
     </body>
 </html>
 

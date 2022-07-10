@@ -8,6 +8,7 @@ var ctx2 = document.getElementById("myAreaChart-2");
 var myLineChart = new Chart(ctx1, {
   type: 'line',
   data: {
+
     labels: ["1/2/2022", "2/2/2022", "3/2/2022", "4/2/2022", "5/2/2022", "6/2/2022", "7/2/2022"],
     datasets: [{
       label: "Sản Phẩm",
@@ -21,6 +22,7 @@ var myLineChart = new Chart(ctx1, {
       pointHoverBackgroundColor: "rgba(2,117,216,1)",
       pointHitRadius: 50,
       pointBorderWidth: 2,
+
       data: [5, 10, 15, 20, 25, 30, 35],
     }],
   },

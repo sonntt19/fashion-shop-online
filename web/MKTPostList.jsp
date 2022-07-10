@@ -125,9 +125,7 @@
                 </ul>
         </nav>
         <div id="layoutSidenav">
-
             <%@include file="components/MKT-left-board.jsp" %>
-
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid rounded row" style="margin-top: 1% !important; margin-bottom: 1% !important">
@@ -197,16 +195,15 @@
                     <div class="container rounded bg-white mt-5 mb-5" >
                         <table class="table"  style="margin-top: 4%">
                             <thead  class="text-center">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Hình&nbsp;thu&nbsp;nhỏ</th>
-                                    <th>Tiêu&nbsp;đề</th>
-                                    <th>Danh&nbsp;mục</th>
-                                    <th>Tác&nbsp;giả</th>
-                                    <th>Ngày&nbsp;cập&nbsp;nhật</th>
-                                    <th>Trạng&nbsp;thái</th>
-                                    <th>Tùy&nbsp;chọn</th>
-                                </tr>
+                            <th>ID</th>
+                            <th>Hình&nbsp;thu&nbsp;nhỏ</th>
+                            <th>Tiêu&nbsp;đề</th>
+                            <th>Danh&nbsp;mục</th>
+                            <th>Tác&nbsp;giả</th>
+                            <th>Ngày&nbsp;cập&nbsp;nhật</th>
+                            <th>Thông&nbsp;tin&nbsp;ngắn&nbsp;gọn</th>
+                            <th>Trạng&nbsp;thái</th>
+                            <th style="width: 12%">Tùy&nbsp;chọn&nbsp;</th>
                             </thead>
                             <tbody>
                                 <c:forEach items="${listBlogList}" var="b">

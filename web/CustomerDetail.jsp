@@ -206,34 +206,49 @@
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container rounded bg-white mt-5 mb-5">
-                        <div class="row ">
-                            <div class="p-4">
-                                <h4 class="text-center">Chỉnh sửa khách hàng</h4>
-                            </div>
-                            <div class="col-md-4">
-                            </div>
-                            <div class="col-md-4">
-                                <div class="p-3 py-5">
-                                    <div class="row mt-16">
-                                        <div class="col-md-12">ID<input type="text" class="form-control" placeholder="ID" value="" style="margin-bottom: 1rem;" readonly=""></div>
-                                        <div class="col-md-12">Họ và tên<input type="text" class="form-control" placeholder="Họ và tên" value="" style="margin-bottom: 1rem;" readonly=""></div>
-                                        <div class="col-md-12">Email<input type="text" class="form-control" placeholder="Email" value="" style="margin-bottom: 1rem;" readonly=""></div>
-                                        <div class="col-md-12">Số điện thoại<input type="text" class="form-control" placeholder="Số điện thoại" value="" style="margin-bottom: 1rem;" readonly=""></div>
-                                        <div class="col-md-6" readonly="">Giới tính<form>
-                                                <input name="gender" type="radio" value="Nam" checked/>&nbsp;Nam
-                                                <input name="gender" type="radio" value="Nữ" disabled/>&nbsp;Nữ
-                                            </form></div>
-                                        <div class="col-md-6">Trạng thái<form>
-                                                <input name="gender" type="radio" value="Nam" />&nbsp;Hiện
-                                                <input name="gender" type="radio" value="Nữ" />&nbsp;Ẩn
-                                            </form></div>
-                                    </div>
+                        <form action="customer-detail" method="post">
+                            <div class="row ">
+                                <div class="p-4">
+                                    <h4 class="text-center">Chỉnh sửa khách hàng</h4>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                            </div>
-                            <div class="mt-5 p-4 text-center"><button class="btn btn-dark" type="button">Lưu</button></div>
-                        </div>
+                                <div class="col-md-2">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="p-3 py-5">
+                                        <div class="row mt-16">
+                                            <div class="col-md-6">ID<input name="userId" type="text" class="form-control" placeholder="ID" value="${sessionScope.customerDetail.user_Id}" style="margin-bottom: 1rem;" readonly=""></div>
+                                            <div class="col-md-6">Họ và tên<input name="fullName" type="text" class="form-control" placeholder="Họ và tên" value="${sessionScope.customerDetail.full_Name}" style="margin-bottom: 1rem;" required=""></div>
+                                            <div class="col-md-6">Email<input name="email" type="text" class="form-control" placeholder="Email" value="${sessionScope.customerDetail.email}" style="margin-bottom: 1rem; "required=""></div>
+                                            <div class="col-md-6">Số điện thoại<input name="mobile" type="text" class="form-control" placeholder="Số điện thoại" value="${sessionScope.customerDetail.mobile}" style="margin-bottom: 1rem;" required=""></div>
+                                            <div class="col-md-6">Địa chỉ<input name="address" type="text" class="form-control" placeholder="Địa chỉ" value="${sessionScope.customerDetail.address}" style="margin-bottom: 1rem;" required=""></div>
+                                            <div class="col-md-3">Giới tính
+                                                <c:if test="${sessionScope.customerDetail.gender == true}">
+                                                    <input name="gender" type="radio" value="True" checked/>&nbsp;Nam
+                                                    <input name="gender" type="radio" value="False"/>&nbsp;Nữ 
+                                                </c:if>
+                                                <c:if test="${sessionScope.customerDetail.gender == false}">
+                                                    <input name="gender" type="radio" value="True"/>&nbsp;Nam
+                                                    <input name="gender" type="radio" value="False" checked/>&nbsp;Nữ 
+                                                </c:if>
+                                        </div>
+                                        <div class="col-md-3">Trạng thái
+                                                <c:if test="${sessionScope.customerDetail.status == true}">
+                                                    <input name="status" type="radio" value="True" checked/>&nbsp;Hiện
+                                                    <input name="status" type="radio" value="False"/>&nbsp;Ẩn
+                                                </c:if>
+                                                <c:if test="${sessionScope.customerDetail.status == false}">
+                                                    <input name="status" type="radio" value="True"/>&nbsp;Hiện
+                                                    <input name="status" type="radio" value="False" checked/>&nbsp;Ẩn
+                                                </c:if>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                    </div>
+                                    <div class="mt-5 p-4 text-center"><button class="btn btn-dark" type="submit">Lưu</button></div>
+
+                                </div>
+                        </form>
                     </div>
                 </main>
                 <!-- Footer-->
