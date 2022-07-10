@@ -49,7 +49,7 @@
                     <table style="background-color: window ; width: 60% ; border-radius: 10px">
                         <tr>
                             <td>Tên sản phẩm:</td>
-                            <td><input type="text"  name="name" value="${product.name}"/><br/></td>
+                            <td><input style="border-radius: 10px; width: 62%" type="text"  name="name" value="${product.name}"/><br/></td>
                         </tr>
                         <tr>
                             <td>Ảnh sản phẩm:</td>
@@ -57,15 +57,15 @@
                         </tr>
                         <tr>
                             <td>Giá gốc:</td>
-                            <td><input type="text" name="original_price" value="${product.original_price}"/><br/></td>
+                            <td><input style=" border-radius: 10px;" type="text" name="original_price" value="${product.original_price}"/><br/></td>
                         </tr>
                         <tr>
                             <td>Giá khuyến mãi:</td>
-                            <td><input type="text" name="sale_price" value="${product.sale_price}"/><br/></td>
+                            <td><input style=" border-radius: 10px;" type="text" name="sale_price" value="${product.sale_price}"/><br/></td>
                         </tr>
                         <tr>
                             <td>Tiêu đề:</td>
-                            <td><input type="text" name="brief_infor" value="${product.brief_infor}"/><br/></td>
+                            <td><input style="border-radius: 10px; width: 62%" type="text" name="brief_infor" value="${product.brief_infor}"/><br/></td>
                         </tr>
                         <tr>
                             <td>Miêu tả :</td>
@@ -76,13 +76,13 @@
                         <tr>
                             <td>Trạng thái:</td>
                             <td>
-                                <input type="radio" name="status" value="True"  ${product.status == true ? "checked" : ""} />Hiện
+                                <input type="radio" name="status" value="True"  ${product.status == true ? "checked" : ""} />Hiện &nbsp;&nbsp;
                                 <input type="radio" name="status" value="False"  ${product.status != true ? "checked" : ""} />Ẩn
                             </td>
                         </tr>
                         <tr>
                             <td>Số lượng:</td>
-                            <td style="padding-left: 2%"><input type="text" name="quantity" value="${product.quantity}"/><br/></td>
+                            <td style="padding-left: 2%;"><input style=" border-radius: 10px;" type="text" name="quantity" value="${product.quantity}"/><br/></td>
                         </tr>
                         <tr>
                             <td style="padding-bottom: 2%">Danh mục:</td>
@@ -94,8 +94,8 @@
                         </tr>
                     </table>
                     <br/>
-                    <a class="buy-now btn btn-danger ml-5" href="marketingproductlist">Back</a>
-                    <button type="submit" class="btn btn-primary" style="width: 100px; margin-left: 75%">Save</button>
+                    <a class="buy-now btn btn-danger" style="width: 5%; margin-left: 20%;margin-top:2% " href="marketingproductlist">Back</a>
+                    <button type="submit" class=" btn btn-primary" style="width: 5%; margin-left: 75%;">Save</button>
                 </form>
             </div>
 
