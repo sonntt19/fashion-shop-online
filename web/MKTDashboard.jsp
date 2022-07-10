@@ -103,10 +103,13 @@
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Bảng điều khiển tiếp thị</h1>
                         <div class="dateFromTo">
+                            <form action="mkt-dashboard">
                             Từ: 
-                            <input class="" type="date" id="start">
+                            <input class="" type="date" id="start" name="start" value="${start}">
                             Đến: 
-                            <input type="date" id="end">
+                            <input type="date" id="end" name="end" value="${end}">
+                            <input class="ml-4 btn btn-danger" type="submit" value="Thống kê"/>
+                            </form>
                         </div>
                         <div class="row">
                             <div class="col-xl-6">
@@ -124,7 +127,7 @@
                                         <i class="fas fa-chart-bar me-1"></i>
                                         Thống kê sản phẩm
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><canvas id="myBarChart-1" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
@@ -133,7 +136,7 @@
                                         <i class="fas fa-chart-pie me-1"></i>
                                         Thống kê khách hàng
                                     </div>
-                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><canvas id="myAreaChart-2" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
@@ -142,7 +145,7 @@
                                         <i class="fas fa-chart-area me-1"></i>
                                         Thống kê phản hồi
                                     </div>  
-                                    <div class="card-body"><canvas id="myPieChartFeedback" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><canvas id="myBarChart-2" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                         </div>
@@ -209,22 +212,70 @@
                             }
                     }
             });
+             var myLineChart = new Chart(ctx2, {
+            type: 'line',
+                    data: {
+                    labels: [<c:forEach  items="${listChartCustomer}" var="customer" > "${customer.date}",</c:forEach>],
+                            datasets: [{
+                            label: "Khách hàng",
+                                    lineTension: 0.3,
+                                    backgroundColor: "rgba(2,117,216,0.2)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    pointRadius: 5,
+                                    pointBackgroundColor: "rgba(2,117,216,1)",
+                                    pointBorderColor: "rgba(255,255,255,0.8)",
+                                    pointHoverRadius: 5,
+                                    pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                                    pointHitRadius: 50,
+                                    pointBorderWidth: 2,
+                                    data: [<c:forEach  items="${listChartCustomer}" var="customer" > "${customer.value}",</c:forEach>],
+                            }],
+                    },
+                    options: {
+                    scales: {
+                    xAxes: [{
+                    time: {
+                    unit: 'date'
+                    },
+                            gridLines: {
+                            display: false
+                            },
+                            ticks: {
+                            maxTicksLimit: 7
+                            }
+                    }],
+                            yAxes: [{
+                            ticks: {
+                            min: 0,
+                                    max: 20,
+                                    maxTicksLimit: 5
+                            },
+                                    gridLines: {
+                                    color: "rgba(0, 0, 0, .125)",
+                                    }
+                            }],
+                    },
+                            legend: {
+                            display: false
+                            }
+                    }
+            });
         </script>
         <script>
 /// Set new default font family and font color to mimic Bootstrap's default styling
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
             Chart.defaults.global.defaultFontColor = '#292b2c';
 // Bar Chart Example
-            var ctx = document.getElementById("myBarChart");
-            var myLineChart = new Chart(ctx, {
+            var ctx1 = document.getElementById("myBarChart-1");
+            var myLineChart = new Chart(ctx1, {
             type: 'bar',
                     data: {
-                    labels: ["2022-07-10", "2022-07-10", "2022-07-10", "2022-07-10", "2022-07-10", "2022-07-10"],
+                    labels: [<c:forEach  items="${listChartProduct}" var="product" > "${product.date}",</c:forEach>],
                             datasets: [{
                             label: "Sản Phẩm",
                                     backgroundColor: "rgba(2,117,216,1)",
                                     borderColor: "rgba(2,117,216,1)",
-                                    data: [15, 12, 51, 41, 21, 84],
+                                    data: [<c:forEach  items="${listChartProduct}" var="product" > "${product.value}",</c:forEach>],
                             }],
                     },
                     options: {
@@ -244,6 +295,47 @@
                             ticks: {
                             min: 0,
                                     max: 100,
+                                    maxTicksLimit: 5
+                            },
+                                    gridLines: {
+                                    display: true
+                                    }
+                            }],
+                    },
+                            legend: {
+                            display: false
+                            }
+                    }
+            });
+            var ctx2 = document.getElementById("myBarChart-2");
+            var myLineChart = new Chart(ctx2, {
+            type: 'bar',
+                    data: {
+                    labels: [<c:forEach  items="${listChartFeedback}" var="feedback" > "${feedback.date}",</c:forEach>],
+                            datasets: [{
+                            label: "Phàn Hồi",
+                                    backgroundColor: "rgba(2,117,216,1)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    data: [<c:forEach  items="${listChartFeedback}" var="feedback" > "${feedback.value}",</c:forEach>],
+                            }],
+                    },
+                    options: {
+                    scales: {
+                    xAxes: [{
+                    time: {
+                    unit: 'month'
+                    },
+                            gridLines: {
+                            display: false
+                            },
+                            ticks: {
+                            maxTicksLimit: 6
+                            }
+                    }],
+                            yAxes: [{
+                            ticks: {
+                            min: 0,
+                                    max: 20,
                                     maxTicksLimit: 5
                             },
                                     gridLines: {

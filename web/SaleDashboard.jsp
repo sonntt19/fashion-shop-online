@@ -90,36 +90,34 @@
                 </ul>
         </nav>
         <div id="layoutSidenav">
-            <%@include file="components/MKT-left-board.jsp" %>
+            <%@include file="components/sale-left-dashboard.jsp" %>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Bảng điều khiển bán hàng</h1>
                         <div class="row mb-2 dateFromTo">
+                            <div class="col-xl-6">
+                                <form action="sale-dashboard">
+                                    Từ: 
+                                    <input class="" type="date" id="start" name="start" value="${start}">
+                                    Đến: 
+                                    <input type="date" id="end" name="end" value="${end}">
+                                    <input class="ml-4 btn btn-danger" type="submit" value="Thống kê"/>
+                                </form>
+                            </div>
                             <div class="col-xl-3">
-                                Từ: 
-                                <input class="" type="date" id="start">
-                                Đến: 
-                                <input type="date" id="end">
+
                             </div>
                             <div class="col-xl-3">
                                 <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;"> Tất cả
-                                    <option>
-                                        Giảm giá
+                                    <option value="sale-dashboard?$start=${start}&end=${end}" ${salerId == null ? "Selected" : ""}>
+                                        Tất cả
                                     </option>
-                                    <option>
-                                        Không giảm giá
-                                    </option>
-                                </select>
-                            </div>
-                                        <div class="col-xl-3">
-                                <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;"> Tất cả
-                                    <option>
-                                        Ẩn
-                                    </option>
-                                    <option>
-                                        Hiện
-                                    </option>
+                                    <c:forEach items="${listSaler}" var="s">
+                                        <option value="sale-dashboard?start=${start}&end=${end}&salerId=${s.user_Id}" ${salerId == s.user_Id ? "Selected" : ""}>
+                                            ${s.full_Name}
+                                        </option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
@@ -128,50 +126,105 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-area me-1"></i>
-                                        Thống kê xu hướng thành công / tổng số đơn đặt hàng
+                                        Thống kê đơn hàng
                                     </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+                                    <h4 class="text-center mt-4">Tổng số ${total} đơn đặt hàng</h4>
+                                    <div class="card-body"><canvas id="myPieChartOrder" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-1"></i>
-                                        Thống kê xu hướng doanh thu
+                                        Thống kê doanh thu
                                     </div>
                                     <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                                 </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-pie me-1"></i>
-                                        Thống kê khách hàng
-                                    </div>
-                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Thống kê phản hồi
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
+                            </div>                       
                         </div>
                     </div>
                 </main>
-                <!-- Footer-->
-                <%@include file="components/footer.jsp" %>
+
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script>
+                                    /// Set new default font family and font color to mimic Bootstrap's default styling
+                                    Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+                                    Chart.defaults.global.defaultFontColor = '#292b2c';
+// Bar Chart Example
+                                    var ctx1 = document.getElementById("myBarChart");
+                                    var myLineChart = new Chart(ctx1, {
+                                    type: 'bar',
+                                            data: {
+                                            labels: [<c:forEach  items="${listChartOrder}" var="order" > "${order.date}",</c:forEach>],
+                                                    datasets: [{
+                                                    label: "Doanh Thu",
+                                                            backgroundColor: "rgba(2,117,216,1)",
+                                                            borderColor: "rgba(2,117,216,1)",
+                                                            data: [<c:forEach  items="${listChartOrder}" var="order" > "${order.value}",</c:forEach>],
+                                                    }],
+                                            },
+                                            options: {
+                                            scales: {
+                                            xAxes: [{
+                                            time: {
+                                            unit: 'month'
+                                            },
+                                                    gridLines: {
+                                                    display: false
+                                                    },
+                                                    ticks: {
+                                                    maxTicksLimit: 6
+                                                    }
+                                            }],
+                                                    yAxes: [{
+                                                    ticks: {
+                                                    min: 0,
+                                                            max: 10000000,
+                                                            maxTicksLimit: 5
+                                                    },
+                                                            gridLines: {
+                                                            display: true
+                                                            }
+                                                    }],
+                                            },
+                                                    legend: {
+                                                    display: false
+                                                    }
+                                            }
+                                    });
+            </script>
+            <script>
+                // Set new default font family and font color to mimic Bootstrap's default styling
+                Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+                Chart.defaults.global.defaultFontColor = '#292b2c';
+                // Pie Chart Example
+                var ctx = document.getElementById("myPieChartOrder");
+                var myPieChart = new Chart(ctx, {
+                type: 'polarArea',
+                        data: {
+                        labels: [
+                                'Đã hủy',
+                                'Thành công',
+                                'Đã gửi'
+                        ],
+                                datasets: [{
+                                label: 'My First Dataset',
+                                        data: [${totalCancel}, ${totalSucces}, ${totalSubmit}],
+                                        backgroundColor: [
+                                                'rgb(255, 99, 132)',
+                                                'rgb(75, 192, 192)',
+                                                'rgb(255, 205, 86)'
+                                        ]
+                                }]
+                        },
+                        options: {}
+                });
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>

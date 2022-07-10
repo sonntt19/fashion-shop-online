@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Chart;
+import model.ChartStar;
 import model.Feedback;
 
 /**
@@ -143,6 +145,75 @@ public class FeedbackDAO extends DBContext {
         } catch (SQLException e) {
             System.out.println(e);
         }
+    }
+
+    public List<Chart> getChartFeedback(String start, int day) {
+        List<Chart> list = new ArrayList<>();
+        for (int i = 1; i <= day; i++) {
+            int value = 0;
+            String sql = "select count(*) from Feedback where date < DATEADD(DAY, ?, ?)";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    value = rs.getInt(1);
+                }
+                sql = "select  DATEADD(DAY, ?, ?)";
+                st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    Chart c = Chart.builder()
+                            .date(rs.getDate(1))
+                            .value(value)
+                            .build();
+                    list.add(c);
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+
+        return list;
+    }
+
+    public List<ChartStar> getChartAvgStar(String start, int day) {
+        List<ChartStar> list = new ArrayList<>();
+        for (int i = 1; i <= day; i++) {
+            double value = 0;
+            String sql = "select CAST(AVG(rated_star) AS DECIMAL(10,1)) from Feedback where date < DATEADD(DAY, ?, ?) and [date] > ?";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                st.setString(3, start);
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    value = rs.getDouble(1);
+                }
+                sql = "select  DATEADD(DAY, ?, ?)";
+                st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    ChartStar c = ChartStar.builder()
+                            .date(rs.getDate(1))
+                            .value(value)
+                            .build();
+                    list.add(c);
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+
+        return list;
     }
 
 }

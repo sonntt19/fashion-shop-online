@@ -300,26 +300,12 @@ public class BlogDAO extends DBContext {
         }
     }
 
-    public int CountDayByStartEnd(String start, String end) {
-        String sql = "SELECT DATEDIFF(day, ?, ?)";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, start);
-            st.setString(2, end);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                return rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return 0;
-    }
+    
 
 
     public List<Chart> getChartBlog(String start, int day) {
         List<Chart> list = new ArrayList<>();
-        for (int i = 0; i < day; i++) {
+        for (int i = 1; i <= day; i++) {
             int value = 0;
             String sql = "select count(*) from Blog where updated_date < DATEADD(DAY, ?, ?)";
             try {

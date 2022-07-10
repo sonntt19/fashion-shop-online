@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Cart;
+import model.Chart;
 import model.Order;
 
 /**
@@ -262,6 +263,108 @@ public class OrderDao extends DBContext {
             System.out.println(e);
         }
         return null;
+    }
+
+    public int getTotalOrder(String salerId, String start, String end) {
+        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate < ?  and orderDate > ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, end);
+            st.setString(2, start);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public int getTotalOrderSubmited(String salerId, String start, String end) {
+        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate < ?  and orderDate > ? and status_order = 1 ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, end);
+            st.setString(2, start);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public int getTotalOrderSuccesful(String salerId, String start, String end) {
+        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate < ?  and orderDate > ? and status_order = 2";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, end);
+            st.setString(2, start);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public int getTotalOrderCanceled(String salerId, String start, String end) {
+        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate < ?  and orderDate > ? and status_order = 3";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, end);
+            st.setString(2, start);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return 0;
+    }
+
+    public List<Chart> getChartOrder(String salerId,String start,String end, int day) {
+        List<Chart> list = new ArrayList<>();
+        for (int i = 1; i <= day; i++) {
+            int value = 0;
+            String sql = "select sum(total_cost) from [Order] where  saler_id " + salerId + " and orderDate < DATEADD(DAY, ?, ?) and orderDate > ?";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                st.setString(3, start);
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    value = rs.getInt(1);
+                }
+                sql = "select  DATEADD(DAY, ?, ?)";
+                st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    Chart c = Chart.builder()
+                            .date(rs.getDate(1))
+                            .value(value)
+                            .build();
+                    list.add(c);
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+         return list;
     }
 
 }

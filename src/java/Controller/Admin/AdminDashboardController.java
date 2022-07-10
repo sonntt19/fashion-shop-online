@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlller.Marketing;
+package Controller.Admin;
 
-import dal.BlogDAO;
+import dal.CategoryDAO;
 import dal.CustomerDAO;
 import dal.DateDAO;
 import dal.FeedbackDAO;
+import dal.OrderDao;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,14 +18,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Category;
 import model.Chart;
+import model.ChartStar;
 import model.Date;
 
 /**
  *
  * @author son22
  */
-public class MKTDashboardController extends HttpServlet {
+public class AdminDashboardController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,13 +41,15 @@ public class MKTDashboardController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        BlogDAO bd = new BlogDAO();
         ProductDAO pd = new ProductDAO();
         CustomerDAO cd = new CustomerDAO();
         FeedbackDAO fd = new FeedbackDAO();
+        CategoryDAO ctd = new CategoryDAO();
+        OrderDao od = new OrderDao();
         DateDAO dd = new DateDAO();
 
         Date date = dd.get7day();
+        String salerId = "!= -1";
         String start = date.getStart().toString();
         String end = date.getEnd().toString();
         String start_raw = request.getParameter("start");
@@ -56,18 +61,30 @@ public class MKTDashboardController extends HttpServlet {
 
         int day = dd.CountDayByStartEnd(start, end);
 
-        List<Chart> listChartBlog = bd.getChartBlog(start, day);
-        List<Chart> listChartProduct = pd.getChartProduct(start, day);
-        List<Chart> listChartCustomer = cd.getChartCustomer(start, day);
-        List<Chart> listChartFeedback = fd.getChartFeedback(start, day);
+        int totalProduct = pd.getTotalProduct(end);
+        int totalProduct1 = pd.getTotalProduct(1, end);
+        int totalProduct2 = pd.getTotalProduct(2, end);
+        int totalProduct3 = pd.getTotalProduct(3, end);
+        int totalProduct4 = pd.getTotalProduct(4, end);
 
-        request.setAttribute("listChartBlog", listChartBlog);
-        request.setAttribute("listChartProduct", listChartProduct);
+        List<Category> listCategoryProduct = ctd.getAllCategory();
+        List<Chart> listChartOrder = od.getChartOrder(salerId, start, end, day);
+        List<Chart> listChartCustomer = cd.getChartCustomer(start, day);
+        List<ChartStar> listChartAvgStar = fd.getChartAvgStar(start, day);
+
+
+        request.setAttribute("totalProduct", totalProduct);
+        request.setAttribute("totalProduct1", totalProduct1);
+        request.setAttribute("totalProduct2", totalProduct2);
+        request.setAttribute("totalProduct3", totalProduct3);
+        request.setAttribute("totalProduct4", totalProduct4);
+        request.setAttribute("listCategoryProduct", listCategoryProduct);
+        request.setAttribute("listChartOrder", listChartOrder);
         request.setAttribute("listChartCustomer", listChartCustomer);
-        request.setAttribute("listChartFeedback", listChartFeedback);
+        request.setAttribute("listChartAvgStar", listChartAvgStar);
         request.setAttribute("start", start);
         request.setAttribute("end", end);
-        request.getRequestDispatcher("MKTDashboard.jsp").forward(request, response);
+        request.getRequestDispatcher("AdminDashboard.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

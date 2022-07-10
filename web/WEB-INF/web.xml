@@ -120,6 +120,14 @@
         <servlet-name>MKTDashboardController</servlet-name>
         <servlet-class>Controlller.Marketing.MKTDashboardController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaleDashboardController</servlet-name>
+        <servlet-class>Controller.Sale.SaleDashboardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDashboardController</servlet-name>
+        <servlet-class>Controller.Admin.AdminDashboardController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -239,6 +247,14 @@
     <servlet-mapping>
         <servlet-name>MKTDashboardController</servlet-name>
         <url-pattern>/mkt-dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaleDashboardController</servlet-name>
+        <url-pattern>/sale-dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDashboardController</servlet-name>
+        <url-pattern>/admin-dashboard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

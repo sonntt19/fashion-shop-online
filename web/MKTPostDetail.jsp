@@ -181,7 +181,7 @@
                                 </div>
                                 
                                 <div class="mt-5 p-4 text-center">
-                                    <a href="posts-list"><button class="btn btn-outline-dark" type="button">Quay lại</button></a>
+                                    <a href="${historyUrl}"><button class="btn btn-outline-dark" type="button">Quay lại</button></a>
                                     <input class="btn btn-dark" type="submit" value="Lưu">
                                 </div>
                             </div>

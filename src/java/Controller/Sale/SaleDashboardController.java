@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlller.Marketing;
+package Controller.Sale;
 
-import dal.BlogDAO;
-import dal.CustomerDAO;
 import dal.DateDAO;
-import dal.FeedbackDAO;
-import dal.ProductDAO;
+import dal.OrderDao;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,12 +17,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Chart;
 import model.Date;
+import model.User;
 
 /**
  *
  * @author son22
  */
-public class MKTDashboardController extends HttpServlet {
+public class SaleDashboardController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,36 +37,46 @@ public class MKTDashboardController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        BlogDAO bd = new BlogDAO();
-        ProductDAO pd = new ProductDAO();
-        CustomerDAO cd = new CustomerDAO();
-        FeedbackDAO fd = new FeedbackDAO();
+        OrderDao od = new OrderDao();
         DateDAO dd = new DateDAO();
+        UserDAO ud = new UserDAO();
 
         Date date = dd.get7day();
         String start = date.getStart().toString();
         String end = date.getEnd().toString();
+        String salerId = "!= -1";
         String start_raw = request.getParameter("start");
         String end_raw = request.getParameter("end");
+        String salerId_raw = request.getParameter("salerId");
         if (start_raw != null) {
             start = start_raw;
             end = end_raw;
         }
+        if(salerId_raw != null){
+            salerId = "= "+salerId_raw;
+        }
 
         int day = dd.CountDayByStartEnd(start, end);
+        
+        int totalOrder = od.getTotalOrder(salerId,start, end);
+        int totalOrderSubmited = od.getTotalOrderSubmited(salerId,start, end);
+        int totalOrderSuccesful = od.getTotalOrderSuccesful(salerId,start, end);
+        int totalOrderCanceled = od.getTotalOrderCanceled(salerId,start, end);
 
-        List<Chart> listChartBlog = bd.getChartBlog(start, day);
-        List<Chart> listChartProduct = pd.getChartProduct(start, day);
-        List<Chart> listChartCustomer = cd.getChartCustomer(start, day);
-        List<Chart> listChartFeedback = fd.getChartFeedback(start, day);
+        List<Chart> listChartOrder= od.getChartOrder(salerId,start,end, day);
+        List<User> listSaler = ud.getAllSaler();
 
-        request.setAttribute("listChartBlog", listChartBlog);
-        request.setAttribute("listChartProduct", listChartProduct);
-        request.setAttribute("listChartCustomer", listChartCustomer);
-        request.setAttribute("listChartFeedback", listChartFeedback);
+        request.setAttribute("listSaler", listSaler);
+        request.setAttribute("listChartOrder", listChartOrder);
         request.setAttribute("start", start);
         request.setAttribute("end", end);
-        request.getRequestDispatcher("MKTDashboard.jsp").forward(request, response);
+        request.setAttribute("total", totalOrder);
+        request.setAttribute("totalSubmit", totalOrderSubmited);
+        request.setAttribute("totalSucces", totalOrderSuccesful);
+        request.setAttribute("totalCancel", totalOrderCanceled);
+        request.setAttribute("salerId", salerId_raw);
+        
+        request.getRequestDispatcher("SaleDashboard.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

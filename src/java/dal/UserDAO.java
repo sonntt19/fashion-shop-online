@@ -322,4 +322,30 @@ public class UserDAO extends DBContext {
         return list;
     }
 
+    public List<User> getAllSaler() {
+        List<User> list = new ArrayList<>();
+        String sql = "select * from [User] where role_id = 3";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                User u = User.builder()
+                        .user_Id(rs.getInt(1))
+                        .full_Name(rs.getString(2))
+                        .password(rs.getString(3))
+                        .avatar(rs.getString(4))
+                        .gender(rs.getBoolean(5))
+                        .email(rs.getString(6))
+                        .mobile(rs.getString(7))
+                        .address(rs.getString(8))
+                        .status(rs.getBoolean(9))
+                        .role_Id(rs.getString(10))
+                        .build();
+                list.add(u);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+    }
+
 }

@@ -45,7 +45,7 @@
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
-           <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item me-4">
                         <a class="nav-link active" aria-current="page" href="home">Trang chủ</a>
@@ -59,11 +59,11 @@
                     <li class="nav-item me-4">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
-                    
-                    
+
+
                 </ul>
-            <!-- Navbar-->
-            <form class="d-flex me-5" action="list">
+                <!-- Navbar-->
+                <form class="d-flex me-5" action="list">
                     <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
                     <button class="btn btn-outline-danger" type="submit">Tìm</button>
                 </form>
@@ -97,103 +97,29 @@
                 </ul>
         </nav>
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Bảng điểu khiển</div>
-                            <a class="nav-link" href="AdminDashboard.jsp">        
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Bảng điều khiển quản trị viên
-                            </a>
-                            <a class="nav-link" href="MKTDashboard.jsp">        
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Bảng điều khiển tiếp thị
-                            </a>
-                            <a class="nav-link" href="SaleDashboard.jsp">        
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Bảng điều khiển bán hàng
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Giao diện</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Cài đặt blog
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="MKTPostList.jsp">Danh sách blog</a>
-                                    <a class="nav-link" href="MKTPostDetail.jsp">Chi tiết thông tin blog</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCustomer" aria-expanded="false" aria-controls="collapseCustomer">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Cài đặt khách hàng
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseCustomer" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="CustomerList.jsp">Danh sách khách hàng</a>
-                                    <a class="nav-link" href="CustomerDetail.jsp">Chi tiết thông tin khách hàng</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                            <a class="nav-link" href="password.html">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Đăng nhập bởi:</div>
-                        ${sessionScope.us.full_Name}
-                    </div>
-                </nav>
-            </div>
+            <%@include file="components/admin-left-dashboard.jsp" %>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Bảng điều khiển quản trị viên</h1>
                         <div class="dateFromTo">
-                            Từ: 
-                            <input class="" type="date" id="start">
-                            Đến: 
-                            <input type="date" id="end">
+                            <form action="admin-dashboard">
+                                Từ: 
+                                <input class="" type="date" id="start" name="start" value="${start}">
+                                Đến: 
+                                <input type="date" id="end" name="end" value="${end}">
+                                <input class="ml-4 btn btn-danger" type="submit" value="Thống kê"/>
+                            </form>
                         </div>
                         <div class="row">
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
-                                        <i class="fas fa-chart-pie me-1"></i>
-                                        Thống kê các đơn đặt hàng mới
+                                        <i class="fas fa-chart-bar me-1"></i>
+                                        Thống kê sản phẩm
                                     </div>
-                                    <div class="card-body"><canvas id="myPieChartOrder" width="100%" height="40"></canvas></div>
+                                    <h4 class="text-center mt-4">Tổng số ${totalProduct} sản phẩm</h4>
+                                    <div class="card-body"><canvas id="myPieChartAdminCustomers" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
@@ -211,43 +137,186 @@
                                         <i class="fas fa-chart-pie me-1"></i>
                                         Thống kê khách hàng
                                     </div>
-                                    <div class="card-body"><canvas id="myPieChartAdminCustomers" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><canvas id="myAreaChart-2" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-bar me-4"></i>
-                                        Thống kê phản hồi
+                                        Thống kê đánh giá
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChartAdminFeedback" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
-                            <div class="col-xl-12">
-                                <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-area me-2"></i>
-                                        Thống kê xu hướng số lượng đơn đặt hàng
-                                    </div>
-                                    <div class="card-body"><canvas id="myRadaChartAdminTrendOrder" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><canvas id="myBarChart-2" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
-                <!-- Footer-->
-        <%@include file="components/footer.jsp" %>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo_admin_feedback.js"></script>
-        <script src="assets/demo/chart-pie-demo_order.js"></script>
-        <script src="assets/demo/chart-pie-demo_admin_customers.js"></script>
-        <script src="assets/demo/chart-rada-demo_admin_trend_order.js"></script>
+        <script>
+            // Set new default font family and font color to mimic Bootstrap's default styling
+            Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+            Chart.defaults.global.defaultFontColor = '#292b2c';
+// Pie Chart Example
+            var ctx = document.getElementById("myPieChartAdminCustomers");
+            var myPieChart = new Chart(ctx, {
+            type: 'pie',
+                    data: {
+                    labels: [<c:forEach  items="${listCategoryProduct}" var="category" > "${category.name}",</c:forEach>],
+                            datasets: [{
+                            data: [${totalProduct1}, ${totalProduct2}, ${totalProduct3}, ${totalProduct4}],
+                                    backgroundColor: ['#ffc107', '#28a745', '#7e3bad', '#d91a53'],
+                            }],
+                    },
+            });
+        </script>
+        <script>
+            /// Set new default font family and font color to mimic Bootstrap's default styling
+            Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+            Chart.defaults.global.defaultFontColor = '#292b2c';
+// Bar Chart Example
+            var ctx1 = document.getElementById("myBarChart");
+            var myLineChart = new Chart(ctx1, {
+            type: 'bar',
+                    data: {
+                    labels: [<c:forEach  items="${listChartOrder}" var="order" > "${order.date}",</c:forEach>],
+                            datasets: [{
+                            label: "Doanh Thu",
+                                    backgroundColor: "rgba(2,117,216,1)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    data: [<c:forEach  items="${listChartOrder}" var="order" > "${order.value}",</c:forEach>],
+                            }],
+                    },
+                    options: {
+                    scales: {
+                    xAxes: [{
+                    time: {
+                    unit: 'month'
+                    },
+                            gridLines: {
+                            display: false
+                            },
+                            ticks: {
+                            maxTicksLimit: 6
+                            }
+                    }],
+                            yAxes: [{
+                            ticks: {
+                            min: 0,
+                                    max: 5000000,
+                                    maxTicksLimit: 5
+                            },
+                                    gridLines: {
+                                    display: true
+                                    }
+                            }],
+                    },
+                            legend: {
+                            display: false
+                            }
+                    }
+            });
+            var ctx2 = document.getElementById("myBarChart-2");
+            var myLineChart = new Chart(ctx2, {
+            type: 'bar',
+                    data: {
+                    labels: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.date}",</c:forEach>],
+                            datasets: [{
+                            label: "Đánh giá",
+                                    backgroundColor: "rgba(2,117,216,1)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    data: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.value}",</c:forEach>],
+                            }],
+                    },
+                    options: {
+                    scales: {
+                    xAxes: [{
+                    time: {
+                    unit: 'month'
+                    },
+                            gridLines: {
+                            display: false
+                            },
+                            ticks: {
+                            maxTicksLimit: 6
+                            }
+                    }],
+                            yAxes: [{
+                            ticks: {
+                            min: 0,
+                                    max: 5,
+                                    maxTicksLimit: 5
+                            },
+                                    gridLines: {
+                                    display: true
+                                    }
+                            }],
+                    },
+                            legend: {
+                            display: false
+                            }
+                    }
+            });
+            </script>
+            <script >
+                // Set new default font family and font color to mimic Bootstrap's default styling
+                Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+                Chart.defaults.global.defaultFontColor = '#292b2c';
+                // Area Chart Example
+                var ctx2 = document.getElementById("myAreaChart-2");
+                var myLineChart = new Chart(ctx2, {
+                type: 'line',
+                        data: {
+                        labels: [<c:forEach  items="${listChartCustomer}" var="customer" > "${customer.date}",</c:forEach>],
+                                datasets: [{
+                                label: "Khách hàng",
+                                        lineTension: 0.3,
+                                        backgroundColor: "rgba(2,117,216,0.2)",
+                                        borderColor: "rgba(2,117,216,1)",
+                                        pointRadius: 5,
+                                        pointBackgroundColor: "rgba(2,117,216,1)",
+                                        pointBorderColor: "rgba(255,255,255,0.8)",
+                                        pointHoverRadius: 5,
+                                        pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                                        pointHitRadius: 50,
+                                        pointBorderWidth: 2,
+                                        data: [<c:forEach  items="${listChartCustomer}" var="customer" > "${customer.value}",</c:forEach>],
+                                }],
+                        },
+                        options: {
+                        scales: {
+                        xAxes: [{
+                        time: {
+                        unit: 'date'
+                        },
+                                gridLines: {
+                                display: false
+                                },
+                                ticks: {
+                                maxTicksLimit: 7
+                                }
+                        }],
+                                yAxes: [{
+                                ticks: {
+                                min: 0,
+                                        max: 20,
+                                        maxTicksLimit: 5
+                                },
+                                        gridLines: {
+                                        color: "rgba(0, 0, 0, .125)",
+                                        }
+                                }],
+                        },
+                                legend: {
+                                display: false
+                                }
+                        }
+                });
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>
