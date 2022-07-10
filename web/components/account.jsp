@@ -26,7 +26,7 @@
                         <input name="email" type="email" class="form-control" placeholder="Email của bạn"style="border-radius: 100px;" required="">
                     </div>
                     <div class="form-group">
-                        <input name="password" type="password" class="form-control" placeholder="Mật khẩu"style="border-radius: 100px;" required>
+                        <input name="password" type="password" class="form-control" placeholder="Mật khẩu" style="border-radius: 100px;" required>
                     </div>
                     <center><button type="submit" class="btn btn-dark" style="padding-right: 193px;padding-left: 193px; border-radius: 100px;">Đăng nhập</button></center>
                 </form>
