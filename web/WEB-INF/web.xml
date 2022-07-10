@@ -120,6 +120,26 @@
         <servlet-name>MKTDashboardController</servlet-name>
         <servlet-class>Controlller.Marketing.MKTDashboardController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderListSale</servlet-name>
+        <servlet-class>Controller.Sale.OrderListSale</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSuccessfullOrder</servlet-name>
+        <servlet-class>Controller.Sale.UpdateSuccessfullOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderDetailSale</servlet-name>
+        <servlet-class>Controller.Sale.OrderDetailSale</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SliderListController</servlet-name>
+        <servlet-class>Controlller.Marketing.SliderListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SliderDetailController</servlet-name>
+        <servlet-class>Controlller.Marketing.SliderDetailController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -239,6 +259,26 @@
     <servlet-mapping>
         <servlet-name>MKTDashboardController</servlet-name>
         <url-pattern>/mkt-dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderListSale</servlet-name>
+        <url-pattern>/order-list-sale</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSuccessfullOrder</servlet-name>
+        <url-pattern>/update-successfull-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailSale</servlet-name>
+        <url-pattern>/order-detail-sale</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderListController</servlet-name>
+        <url-pattern>/slider-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderDetailController</servlet-name>
+        <url-pattern>/slider-detail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
