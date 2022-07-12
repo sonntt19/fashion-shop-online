@@ -101,51 +101,92 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Bảng điều khiển tiếp thị</h1>
+                        <h1 class="mt-4 text-center mb-4">Bảng điều khiển tiếp thị</h1>
                         <div class="dateFromTo">
                             <form action="mkt-dashboard">
-                            Từ: 
-                            <input class="" type="date" id="start" name="start" value="${start}">
-                            Đến: 
-                            <input type="date" id="end" name="end" value="${end}">
-                            <input class="ml-4 btn btn-danger" type="submit" value="Thống kê"/>
+                                Từ: 
+                                <input class="" type="date" id="start" name="start" value="${start}">
+                                Đến: 
+                                <input type="date" id="end" name="end" value="${end}">
+                                <input class="ml-4 btn btn-danger" type="submit" value="Thống kê"/>
                             </form>
                         </div>
                         <div class="row">
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <div class="card mb-4">
-                                    <div class="card-header">
+                                    <div class="card-header mb-4 nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseThongkebaidang" aria-expanded="false" aria-controls="collapseThongkebaidang">
                                         <i class="fas fa-chart-area me-1"></i>
                                         Thống kê bài đăng
                                     </div>
-                                    <div class="card-body"><canvas id="myAreaChart-1" width="100%" height="40"></canvas></div>
+                                    <div id="collapseThongkebaidang" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting" class="collapse card-body">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+
+                                                <div class="card-body"><canvas id="myBarChart-1" width="100%" height="40"></canvas></div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="card-body"><canvas id="myAreaChart-1" width="100%" height="40"></canvas></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-bar me-1"></i>
+                                    <div class="card-header mb-4 nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseThongkesanpham" aria-expanded="false" aria-controls="collapseThongkesanpham">
+                                        <i class="fas fa-chart-area me-1"></i>
                                         Thống kê sản phẩm
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChart-1" width="100%" height="40"></canvas></div>
+                                    <div id="collapseThongkesanpham" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting" class="collapse card-body">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="card-body"><canvas id="myBarChart-2" width="100%" height="40"></canvas></div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="card-body"><canvas id="myAreaChart-2" width="100%" height="40"></canvas></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <div class="card mb-4">
-                                    <div class="card-header">
-                                        <i class="fas fa-chart-pie me-1"></i>
+                                    <div class="card-header mb-4 nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseThongkekhachhang" aria-expanded="false" aria-controls="collapseThongkekhachhang">
+                                        <i class="fas fa-chart-area me-1"></i>
                                         Thống kê khách hàng
                                     </div>
-                                    <div class="card-body"><canvas id="myAreaChart-2" width="100%" height="40"></canvas></div>
+                                    <div id="collapseThongkekhachhang" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting" class="collapse card-body">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="card-body"><canvas id="myBarChart-3" width="100%" height="40"></canvas></div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="card-body"><canvas id="myAreaChart-3" width="100%" height="40"></canvas></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <div class="card mb-4">
-                                    <div class="card-header">
+                                    <div class="card-header mb-4 nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseThongkephanhoi" aria-expanded="false" aria-controls="collapseThongkephanhoi">
                                         <i class="fas fa-chart-area me-1"></i>
                                         Thống kê phản hồi
-                                    </div>  
-                                    <div class="card-body"><canvas id="myBarChart-2" width="100%" height="40"></canvas></div>
+                                    </div>
+                                    <div id="collapseThongkephanhoi" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting" class="collapse card-body">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="card-body"><canvas id="myBarChart-4" width="100%" height="40"></canvas></div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="card-body"><canvas id="myAreaChart-4" width="100%" height="40"></canvas></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -163,11 +204,10 @@
             Chart.defaults.global.defaultFontColor = '#292b2c';
 // Area Chart Example
             var ctx1 = document.getElementById("myAreaChart-1");
-            var ctx2 = document.getElementById("myAreaChart-2");
             var myLineChart = new Chart(ctx1, {
             type: 'line',
                     data: {
-                    labels: [<c:forEach  items="${listChartBlog}" var="blog" > "${blog.date}",</c:forEach>],
+                    labels: [<c:forEach  items="${listChartBlogArea}" var="blog" > "${blog.date}",</c:forEach>],
                             datasets: [{
                             label: "Bài Đăng",
                                     lineTension: 0.3,
@@ -180,7 +220,7 @@
                                     pointHoverBackgroundColor: "rgba(2,117,216,1)",
                                     pointHitRadius: 50,
                                     pointBorderWidth: 2,
-                                    data: [<c:forEach  items="${listChartBlog}" var="blog" > "${blog.value}",</c:forEach>],
+                                    data: [<c:forEach  items="${listChartBlogArea}" var="blog" > "${blog.value}",</c:forEach>],
                             }],
                     },
                     options: {
@@ -199,7 +239,7 @@
                             yAxes: [{
                             ticks: {
                             min: 0,
-                                    max: 100,
+                                    max: ${maxListChartBlogArea},
                                     maxTicksLimit: 5
                             },
                                     gridLines: {
@@ -212,12 +252,13 @@
                             }
                     }
             });
-             var myLineChart = new Chart(ctx2, {
+            var ctx2 = document.getElementById("myAreaChart-2");
+            var myLineChart = new Chart(ctx2, {
             type: 'line',
                     data: {
-                    labels: [<c:forEach  items="${listChartCustomer}" var="customer" > "${customer.date}",</c:forEach>],
+                    labels: [<c:forEach  items="${listChartProductArea}" var="product" > "${product.date}",</c:forEach>],
                             datasets: [{
-                            label: "Khách hàng",
+                            label: "Sản Phẩm",
                                     lineTension: 0.3,
                                     backgroundColor: "rgba(2,117,216,0.2)",
                                     borderColor: "rgba(2,117,216,1)",
@@ -228,7 +269,7 @@
                                     pointHoverBackgroundColor: "rgba(2,117,216,1)",
                                     pointHitRadius: 50,
                                     pointBorderWidth: 2,
-                                    data: [<c:forEach  items="${listChartCustomer}" var="customer" > "${customer.value}",</c:forEach>],
+                                    data: [<c:forEach  items="${listChartProductArea}" var="product" > "${product.value}",</c:forEach>],
                             }],
                     },
                     options: {
@@ -247,7 +288,105 @@
                             yAxes: [{
                             ticks: {
                             min: 0,
-                                    max: 20,
+                                    max: ${maxListChartProductArea},
+                                    maxTicksLimit: 5
+                            },
+                                    gridLines: {
+                                    color: "rgba(0, 0, 0, .125)",
+                                    }
+                            }],
+                    },
+                            legend: {
+                            display: false
+                            }
+                    }
+            });
+            var ctx3 = document.getElementById("myAreaChart-3");
+            var myLineChart = new Chart(ctx3, {
+            type: 'line',
+                    data: {
+                    labels: [<c:forEach  items="${listChartCustomerArea}" var="customer" > "${customer.date}",</c:forEach>],
+                            datasets: [{
+                            label: "Khách Hàng",
+                                    lineTension: 0.3,
+                                    backgroundColor: "rgba(2,117,216,0.2)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    pointRadius: 5,
+                                    pointBackgroundColor: "rgba(2,117,216,1)",
+                                    pointBorderColor: "rgba(255,255,255,0.8)",
+                                    pointHoverRadius: 5,
+                                    pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                                    pointHitRadius: 50,
+                                    pointBorderWidth: 2,
+                                    data: [<c:forEach  items="${listChartCustomerArea}" var="customer" > "${customer.value}",</c:forEach>],
+                            }],
+                    },
+                    options: {
+                    scales: {
+                    xAxes: [{
+                    time: {
+                    unit: 'date'
+                    },
+                            gridLines: {
+                            display: false
+                            },
+                            ticks: {
+                            maxTicksLimit: 7
+                            }
+                    }],
+                            yAxes: [{
+                            ticks: {
+                            min: 0,
+                                    max: ${maxListChartCustomerArea},
+                                    maxTicksLimit: 5
+                            },
+                                    gridLines: {
+                                    color: "rgba(0, 0, 0, .125)",
+                                    }
+                            }],
+                    },
+                            legend: {
+                            display: false
+                            }
+                    }
+            });
+            var ctx4 = document.getElementById("myAreaChart-4");
+            var myLineChart = new Chart(ctx4, {
+            type: 'line',
+                    data: {
+                    labels: [<c:forEach  items="${listChartFeedbackArea}" var="feedback" > "${feedback.date}",</c:forEach>],
+                            datasets: [{
+                            label: "Phản hồi",
+                                    lineTension: 0.3,
+                                    backgroundColor: "rgba(2,117,216,0.2)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    pointRadius: 5,
+                                    pointBackgroundColor: "rgba(2,117,216,1)",
+                                    pointBorderColor: "rgba(255,255,255,0.8)",
+                                    pointHoverRadius: 5,
+                                    pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                                    pointHitRadius: 50,
+                                    pointBorderWidth: 2,
+                                    data: [<c:forEach  items="${listChartFeedbackArea}" var="feedback" > "${feedback.value}",</c:forEach>],
+                            }],
+                    },
+                    options: {
+                    scales: {
+                    xAxes: [{
+                    time: {
+                    unit: 'date'
+                    },
+                            gridLines: {
+                            display: false
+                            },
+                            ticks: {
+                            maxTicksLimit: 7
+                            }
+                    }],
+                            yAxes: [{
+                            ticks: {
+                            min: 0,
+                                    max: ${maxListChartFeedbackArea},
                                     maxTicksLimit: 5
                             },
                                     gridLines: {
@@ -262,20 +401,20 @@
             });
         </script>
         <script>
-/// Set new default font family and font color to mimic Bootstrap's default styling
+            /// Set new default font family and font color to mimic Bootstrap's default styling
             Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
             Chart.defaults.global.defaultFontColor = '#292b2c';
-// Bar Chart Example
+            // Bar Chart Example
             var ctx1 = document.getElementById("myBarChart-1");
             var myLineChart = new Chart(ctx1, {
             type: 'bar',
                     data: {
-                    labels: [<c:forEach  items="${listChartProduct}" var="product" > "${product.date}",</c:forEach>],
+                    labels: [<c:forEach  items="${listChartBlogBar}" var="product" > "${product.date}",</c:forEach>],
                             datasets: [{
-                            label: "Sản Phẩm",
+                            label: "Bài Đăng",
                                     backgroundColor: "rgba(2,117,216,1)",
                                     borderColor: "rgba(2,117,216,1)",
-                                    data: [<c:forEach  items="${listChartProduct}" var="product" > "${product.value}",</c:forEach>],
+                                    data: [<c:forEach  items="${listChartBlogBar}" var="product" > "${product.value}",</c:forEach>],
                             }],
                     },
                     options: {
@@ -294,7 +433,7 @@
                             yAxes: [{
                             ticks: {
                             min: 0,
-                                    max: 100,
+                                    max: ${maxListChartBlogBar},
                                     maxTicksLimit: 5
                             },
                                     gridLines: {
@@ -311,12 +450,12 @@
             var myLineChart = new Chart(ctx2, {
             type: 'bar',
                     data: {
-                    labels: [<c:forEach  items="${listChartFeedback}" var="feedback" > "${feedback.date}",</c:forEach>],
+                    labels: [<c:forEach  items="${listChartProductBar}" var="product" > "${product.date}",</c:forEach>],
                             datasets: [{
-                            label: "Phàn Hồi",
+                            label: "Sản Phẩm",
                                     backgroundColor: "rgba(2,117,216,1)",
                                     borderColor: "rgba(2,117,216,1)",
-                                    data: [<c:forEach  items="${listChartFeedback}" var="feedback" > "${feedback.value}",</c:forEach>],
+                                    data: [<c:forEach  items="${listChartProductBar}" var="product" > "${product.value}",</c:forEach>],
                             }],
                     },
                     options: {
@@ -335,7 +474,89 @@
                             yAxes: [{
                             ticks: {
                             min: 0,
-                                    max: 20,
+                                    max: ${maxListChartProductBar},
+                                    maxTicksLimit: 5
+                            },
+                                    gridLines: {
+                                    display: true
+                                    }
+                            }],
+                    },
+                            legend: {
+                            display: false
+                            }
+                    }
+            });
+            var ctx3 = document.getElementById("myBarChart-3");
+            var myLineChart = new Chart(ctx3, {
+            type: 'bar',
+                    data: {
+                    labels: [<c:forEach  items="${listChartCustomerBar}" var="customer" > "${customer.date}",</c:forEach>],
+                            datasets: [{
+                            label: "Khách Hàng",
+                                    backgroundColor: "rgba(2,117,216,1)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    data: [<c:forEach  items="${listChartCustomerBar}" var="customer" > "${customer.value}",</c:forEach>],
+                            }],
+                    },
+                    options: {
+                    scales: {
+                    xAxes: [{
+                    time: {
+                    unit: 'month'
+                    },
+                            gridLines: {
+                            display: false
+                            },
+                            ticks: {
+                            maxTicksLimit: 6
+                            }
+                    }],
+                            yAxes: [{
+                            ticks: {
+                            min: 0,
+                                    max: ${maxListChartCustomerBar},
+                                    maxTicksLimit: 5
+                            },
+                                    gridLines: {
+                                    display: true
+                                    }
+                            }],
+                    },
+                            legend: {
+                            display: false
+                            }
+                    }
+            });
+            var ctx4 = document.getElementById("myBarChart-4");
+            var myLineChart = new Chart(ctx4, {
+            type: 'bar',
+                    data: {
+                    labels: [<c:forEach  items="${listChartFeedbackBar}" var="feedback" > "${feedback.date}",</c:forEach>],
+                            datasets: [{
+                            label: "Phản Hồi",
+                                    backgroundColor: "rgba(2,117,216,1)",
+                                    borderColor: "rgba(2,117,216,1)",
+                                    data: [<c:forEach  items="${listChartFeedbackBar}" var="feedback" > "${feedback.value}",</c:forEach>],
+                            }],
+                    },
+                    options: {
+                    scales: {
+                    xAxes: [{
+                    time: {
+                    unit: 'month'
+                    },
+                            gridLines: {
+                            display: false
+                            },
+                            ticks: {
+                            maxTicksLimit: 6
+                            }
+                    }],
+                            yAxes: [{
+                            ticks: {
+                            min: 0,
+                                    max: ${maxListChartFeedbackBar},
                                     maxTicksLimit: 5
                             },
                                     gridLines: {
@@ -351,9 +572,6 @@
         </script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-        <script src="assets/demo/chart-pie-demo.js"></script>
-        <script src="assets/demo/chart-line-demo.js"></script>
-        <script src="assets/demo/chart-pie-demo-feedback.js"></script>
     </body>
 </html>
 

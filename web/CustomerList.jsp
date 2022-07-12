@@ -186,21 +186,7 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="name" placeholder="Địa chỉ" name="address" style="border-radius: 100px; margin-bottom: 1rem;" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12" style="margin-bottom: 1rem;">
-                                                    <div class="form-group" required>
-                                                        Giới tính&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <input class="" name="gender" type="radio" value="True" required/>&nbsp; Nam
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <input class="" name="gender" type="radio" value="False" required/>&nbsp; Nữ
-                                                    </div>
-                                                    <div class="form-group" required>
-                                                        Trạng thái&nbsp;&nbsp;&nbsp;
-                                                        <input class="" name="status" type="radio" value="True" required/>&nbsp; Hiện
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <input class="" name="status" type="radio" value="False" required/>&nbsp; Ẩn
+                                                        <input type="date" class="form-control" id="name" placeholder="Ngày mua hàng" name="updated_date" style="border-radius: 100px; margin-bottom: 1rem;" required>
                                                     </div>
                                                 </div>
                                                 <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 180px;padding-left: 180px; border-radius: 100px;">Thêm</button></center><br><br>
@@ -229,28 +215,22 @@
                                 <tr>    
                                     <th scope="col">ID</th>
                                     <th scope="col">Họ và tên</th>
-                                    <th scope="col">Giới Tính</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Số điện thoại</th>
-                                    <th scope="col">Trạng thái</th>
+                                    <th scope="col">Ngày mua hàng</th>
                                     <th scope="col">Tùy Chọn</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <c:forEach items="${listCustomer}" var="o">
                                     <tr  class="text-center">
-                                        <th scope="row">${o.user_Id}</th>
-                                        <td>${o.full_Name}</td>
-                                        <c:if test="${o.gender == true}"><td>Nam</td></c:if>
-                                        <c:if test="${o.gender == false}"><td>Nữ</td></c:if>
-                                        <td>${o.email}</td>
-                                        <td>${o.mobile}</td>
-                                        <c:if test="${o.status == true}"><td style="color: white">1<img class="circle" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/284194527_1133976170487933_1085416752535542040_n.png?stp=dst-png_s206x206&_nc_cat=104&ccb=1-7&_nc_sid=aee45a&_nc_ohc=LoSyTq95ad0AX-c2B2i&_nc_oc=AQk9uWi9k6EdP_vHZSebMr1lrkjH9P5HJQup6yxMO1w_VhjYBu2FjL8CkTVqWEVs77VA-0J1fK6jeRP0IOj8GFzD&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVK5T0ZY16zjCGg2cRnX1q6SSr8rRYlmyzwy0f5Zwauj0w&oe=62DA523B"></td>
-                                            </c:if>
-                                            <c:if test="${o.status == false}"><td style="color: white">2<img class="circle" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/286934964_765449398234277_7570486452980265407_n.png?stp=dst-png_s206x206&_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=WUdnYmBKFyEAX8HpdPo&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVIGfrkbJvS9ypiE_Iq3Ls7sx1XGXjrDNAVY_7kFNKgvFA&oe=62DB6924"></td>
-                                            </c:if>
+                                        <th scope="row">${o.customer_id}</th>
+                                        <td>${o.customer_name}</td>
+                                        <td>${o.customer_email}</td>
+                                        <td>${o.customer_mobile}</td>
+                                        <td>${o.updated_date}</td>
                                         <td>
-                                            <a class="btn btn-dark" href="load-customer?cid=${o.user_Id}" role="button"><i class="fa-solid fa-pen-to-square">&#xf070;</i></a>
+                                            <a class="btn btn-dark" href="load-customer?cid=${o.customer_id}" role="button"><i class="fa-solid fa-pen-to-square">&#xf070;</i></a>
                                         </td>
                                     </tr>
                                 </c:forEach>

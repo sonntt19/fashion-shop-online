@@ -5,26 +5,20 @@
  */
 package Controlller.Marketing;
 
-import dal.CustomerDAO;
-import dal.UserDAO;
+import dal.FeedbackDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Customer;
-import model.User;
+import model.Feedback;
 
 /**
  *
- * @author Veetu
+ * @author dongh
  */
-@WebServlet(name = "CustomerListController", urlPatterns = {"/customer-list"})
-public class CustomerListController extends HttpServlet {
+public class FeedbackDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,13 +32,14 @@ public class CustomerListController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        CustomerDAO cus = new CustomerDAO();
-        List<Customer> listCustomer = cus.getAllCustomerByRoleId();
-        
-        request.setAttribute("listCustomer", listCustomer);
-        request.getRequestDispatcher("CustomerList.jsp").forward(request, response);
-                
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            int feedbackId = Integer.parseInt(request.getParameter("feedbackId"));
+            Feedback feedback = new FeedbackDAO().getFeedbackUserById(feedbackId);
+            
+            request.setAttribute("feedback", feedback);
+            request.getRequestDispatcher("MKTFeedbackDetail.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

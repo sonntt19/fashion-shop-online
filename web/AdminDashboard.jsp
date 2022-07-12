@@ -101,7 +101,7 @@
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Bảng điều khiển quản trị viên</h1>
+                        <h1 class="mt-4 text-center mb-4">Bảng điều khiển quản trị viên</h1>
                         <div class="dateFromTo">
                             <form action="admin-dashboard">
                                 Từ: 
@@ -128,7 +128,7 @@
                                         <i class="fas fa-chart-bar me-1"></i>
                                         Thống kê doanh thu
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><canvas id="myAreaChart-1" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                             <div class="col-xl-6">
@@ -146,7 +146,7 @@
                                         <i class="fas fa-chart-bar me-4"></i>
                                         Thống kê đánh giá
                                     </div>
-                                    <div class="card-body"><canvas id="myBarChart-2" width="100%" height="40"></canvas></div>
+                                    <div class="card-body"><canvas id="myAreaChart-3" width="100%" height="40"></canvas></div>
                                 </div>
                             </div>
                         </div>
@@ -174,101 +174,62 @@
                     },
             });
         </script>
-        <script>
-            /// Set new default font family and font color to mimic Bootstrap's default styling
-            Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-            Chart.defaults.global.defaultFontColor = '#292b2c';
-// Bar Chart Example
-            var ctx1 = document.getElementById("myBarChart");
-            var myLineChart = new Chart(ctx1, {
-            type: 'bar',
-                    data: {
-                    labels: [<c:forEach  items="${listChartOrder}" var="order" > "${order.date}",</c:forEach>],
-                            datasets: [{
-                            label: "Doanh Thu",
-                                    backgroundColor: "rgba(2,117,216,1)",
-                                    borderColor: "rgba(2,117,216,1)",
-                                    data: [<c:forEach  items="${listChartOrder}" var="order" > "${order.value}",</c:forEach>],
-                            }],
-                    },
-                    options: {
-                    scales: {
-                    xAxes: [{
-                    time: {
-                    unit: 'month'
-                    },
-                            gridLines: {
-                            display: false
-                            },
-                            ticks: {
-                            maxTicksLimit: 6
-                            }
-                    }],
-                            yAxes: [{
-                            ticks: {
-                            min: 0,
-                                    max: 5000000,
-                                    maxTicksLimit: 5
-                            },
-                                    gridLines: {
-                                    display: true
-                                    }
-                            }],
-                    },
-                            legend: {
-                            display: false
-                            }
-                    }
-            });
-            var ctx2 = document.getElementById("myBarChart-2");
-            var myLineChart = new Chart(ctx2, {
-            type: 'bar',
-                    data: {
-                    labels: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.date}",</c:forEach>],
-                            datasets: [{
-                            label: "Đánh giá",
-                                    backgroundColor: "rgba(2,117,216,1)",
-                                    borderColor: "rgba(2,117,216,1)",
-                                    data: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.value}",</c:forEach>],
-                            }],
-                    },
-                    options: {
-                    scales: {
-                    xAxes: [{
-                    time: {
-                    unit: 'month'
-                    },
-                            gridLines: {
-                            display: false
-                            },
-                            ticks: {
-                            maxTicksLimit: 6
-                            }
-                    }],
-                            yAxes: [{
-                            ticks: {
-                            min: 0,
-                                    max: 5,
-                                    maxTicksLimit: 5
-                            },
-                                    gridLines: {
-                                    display: true
-                                    }
-                            }],
-                    },
-                            legend: {
-                            display: false
-                            }
-                    }
-            });
-            </script>
             <script >
                 // Set new default font family and font color to mimic Bootstrap's default styling
                 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
                 Chart.defaults.global.defaultFontColor = '#292b2c';
                 // Area Chart Example
+                var ctx1 = document.getElementById("myAreaChart-1");
+                var myLineChart1 = new Chart(ctx1, {
+                type: 'line',
+                        data: {
+                        labels: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.date}",</c:forEach>],
+                                datasets: [{
+                                label: "Daonh Thu",
+                                        lineTension: 0.3,
+                                        backgroundColor: "rgba(2,117,216,0.2)",
+                                        borderColor: "rgba(2,117,216,1)",
+                                        pointRadius: 5,
+                                        pointBackgroundColor: "rgba(2,117,216,1)",
+                                        pointBorderColor: "rgba(255,255,255,0.8)",
+                                        pointHoverRadius: 5,
+                                        pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                                        pointHitRadius: 50,
+                                        pointBorderWidth: 2,
+                                        data: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.value}",</c:forEach>],
+                                }],
+                        },
+                        options: {
+                        scales: {
+                        xAxes: [{
+                        time: {
+                        unit: 'date'
+                        },
+                                gridLines: {
+                                display: false
+                                },
+                                ticks: {
+                                maxTicksLimit: 7
+                                }
+                        }],
+                                yAxes: [{
+                                ticks: {
+                                min: 0,
+                                        max: ${maxListChartRevenueArea},
+                                        maxTicksLimit: 5
+                                },
+                                        gridLines: {
+                                        color: "rgba(0, 0, 0, .125)",
+                                        }
+                                }],
+                        },
+                                legend: {
+                                display: false
+                                }
+                        }
+                });
                 var ctx2 = document.getElementById("myAreaChart-2");
-                var myLineChart = new Chart(ctx2, {
+                var myLineChart2 = new Chart(ctx2, {
                 type: 'line',
                         data: {
                         labels: [<c:forEach  items="${listChartCustomer}" var="customer" > "${customer.date}",</c:forEach>],
@@ -303,7 +264,56 @@
                                 yAxes: [{
                                 ticks: {
                                 min: 0,
-                                        max: 20,
+                                        max: ${maxListChartCustomerArea},
+                                        maxTicksLimit: 5
+                                },
+                                        gridLines: {
+                                        color: "rgba(0, 0, 0, .125)",
+                                        }
+                                }],
+                        },
+                                legend: {
+                                display: false
+                                }
+                        }
+                });
+                var ctx3 = document.getElementById("myAreaChart-3");
+                var myLineChart3 = new Chart(ctx3, {
+                type: 'line',
+                        data: {
+                        labels: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.date}",</c:forEach>],
+                                datasets: [{
+                                label: "Sao Trung Bình",
+                                        lineTension: 0.3,
+                                        backgroundColor: "rgba(2,117,216,0.2)",
+                                        borderColor: "rgba(2,117,216,1)",
+                                        pointRadius: 5,
+                                        pointBackgroundColor: "rgba(2,117,216,1)",
+                                        pointBorderColor: "rgba(255,255,255,0.8)",
+                                        pointHoverRadius: 5,
+                                        pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                                        pointHitRadius: 50,
+                                        pointBorderWidth: 2,
+                                        data: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.value}",</c:forEach>],
+                                }],
+                        },
+                        options: {
+                        scales: {
+                        xAxes: [{
+                        time: {
+                        unit: 'date'
+                        },
+                                gridLines: {
+                                display: false
+                                },
+                                ticks: {
+                                maxTicksLimit: 7
+                                }
+                        }],
+                                yAxes: [{
+                                ticks: {
+                                min: 0,
+                                        max: 5,
                                         maxTicksLimit: 5
                                 },
                                         gridLines: {

@@ -58,16 +58,54 @@ public class SaleDashboardController extends HttpServlet {
 
         int day = dd.CountDayByStartEnd(start, end);
         
+        
+        // set parameter for order
         int totalOrder = od.getTotalOrder(salerId,start, end);
         int totalOrderSubmited = od.getTotalOrderSubmited(salerId,start, end);
         int totalOrderSuccesful = od.getTotalOrderSuccesful(salerId,start, end);
         int totalOrderCanceled = od.getTotalOrderCanceled(salerId,start, end);
 
-        List<Chart> listChartOrder= od.getChartOrder(salerId,start,end, day);
+        // set chart for order
+        List<Chart> listChartOrderBar = od.getChartOrderBar(salerId,start, day);
+        int maxListChartOderBar = -1;
+        for (Chart o : listChartOrderBar) {
+            if (o.getValue() > maxListChartOderBar) {
+                maxListChartOderBar = o.getValue();
+            }
+        }
+        
+        // set chart revenue
+        List<Chart> listChartRevenueBar = od.getChartRevenueBar(salerId,start, day);
+        List<Chart> listChartRevenueArea = od.getChartRevenueArea(salerId,start, day);
+        int maxListChartRevenueBar = -1;
+        for (Chart o : listChartRevenueBar) {
+            if (o.getValue() > maxListChartRevenueBar) {
+                maxListChartRevenueBar = o.getValue();
+            }
+        }
+
+        maxListChartRevenueBar = (maxListChartRevenueBar / 1000000 + 1) * 1000000;
+        int maxListChartRevenueArea = -1;
+        for (Chart o : listChartRevenueArea) {
+            if (o.getValue() > maxListChartRevenueArea) {
+                maxListChartRevenueArea = o.getValue();
+            }
+        }
+        maxListChartRevenueArea = (maxListChartRevenueArea / 1000000 + 1) * 1000000;
+
+        maxListChartOderBar = (maxListChartOderBar / 10 + 1) * 10;
         List<User> listSaler = ud.getAllSaler();
 
+        
+        // set parameter blog chart request to jsp
+        request.setAttribute("listChartRevenueBar", listChartRevenueBar);
+        request.setAttribute("listChartRevenueArea", listChartRevenueArea);
+        request.setAttribute("maxListChartRevenueBar", maxListChartRevenueBar);
+        request.setAttribute("maxListChartRevenueArea", maxListChartRevenueArea);
+        
+        request.setAttribute("listChartOrderBar", listChartOrderBar);
+        request.setAttribute("maxListChartOderBar", maxListChartOderBar);
         request.setAttribute("listSaler", listSaler);
-        request.setAttribute("listChartOrder", listChartOrder);
         request.setAttribute("start", start);
         request.setAttribute("end", end);
         request.setAttribute("total", totalOrder);

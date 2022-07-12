@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Customer;
 import model.User;
 
 /**
@@ -40,9 +41,9 @@ public class LoadCustomerDetailController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         
-        String user_Id = request.getParameter("cid");
+        String customer_id = request.getParameter("cid");
         CustomerDAO cus = new CustomerDAO();
-        User c = cus.getCustomerById(user_Id);
+        Customer c = cus.getCustomerById(customer_id);
         
         session.setAttribute("customerDetail", c);
         request.getRequestDispatcher("CustomerDetail.jsp").forward(request, response);

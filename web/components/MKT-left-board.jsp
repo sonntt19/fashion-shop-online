@@ -47,6 +47,7 @@
                         <a class="nav-link" href="customer-list">Danh sách khách hàng</a>
                     </nav>
                 </div>
+
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapseCustomer">
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Quản lý thanh trượt
@@ -65,7 +66,7 @@
                 </a>
                 <div class="collapse" id="collapse5" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="posts-list">Danh sách phản hồi</a>
+                        <a class="nav-link" href="feedback-list">Danh sách phản hồi</a>
                     </nav>
                 </div>
             </div>

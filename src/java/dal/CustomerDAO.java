@@ -6,6 +6,7 @@
 package dal;
 
 import context.DBContext;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -68,54 +69,43 @@ public class CustomerDAO extends DBContext {
         }
     }
 
-    public List<User> getAllCustomerByRoleId() {
-        List<User> list = new ArrayList<>();
-        String sql = "select * from [User]\n"
-                + "where role_id = 1";
+    public List<Customer> getAllCustomerByRoleId() {
+        List<Customer> list = new ArrayList<>();
+        String sql = "select * from [Customer]\n";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                User u = User.builder()
-                        .user_Id(rs.getInt(1))
-                        .full_Name(rs.getString(2))
-                        .password(rs.getString(3))
-                        .avatar(rs.getString(4))
-                        .gender(rs.getBoolean(5))
-                        .email(rs.getString(6))
-                        .mobile(rs.getString(7))
-                        .address(rs.getString(8))
-                        .status(rs.getBoolean(9))
-                        .role_Id(rs.getString(10))
+                Customer c = Customer.builder()
+                        .customer_id(rs.getInt(1))
+                        .customer_name(rs.getString(2))
+                        .customer_email(rs.getString(3))
+                        .customer_mobile(rs.getString(4))
+                        .updated_date(rs.getDate(5))
                         .build();
-                list.add(u);
+                list.add(c);
             }
         } catch (Exception e) {
         }
         return list;
     }
 
-    public User getCustomerById(String user_Id) {
-        String sql = "select * from [User]\n"
-                + "where userId = ?";
+    public Customer getCustomerById(String user_Id) {
+        String sql = "select * from [Customer]\n"
+                + "where customer_id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, user_Id);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                User u = User.builder()
-                        .user_Id(rs.getInt(1))
-                        .full_Name(rs.getString(2))
-                        .password(rs.getString(3))
-                        .avatar(rs.getString(4))
-                        .gender(rs.getBoolean(5))
-                        .email(rs.getString(6))
-                        .mobile(rs.getString(7))
-                        .address(rs.getString(8))
-                        .status(rs.getBoolean(9))
-                        .role_Id(rs.getString(10))
+                Customer c = Customer.builder()
+                        .customer_id(rs.getInt(1))
+                        .customer_name(rs.getString(2))
+                        .customer_email(rs.getString(3))
+                        .customer_mobile(rs.getString(4))
+                        .updated_date(rs.getDate(5))
                         .build();
-                return u;
+                return c;
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -123,77 +113,69 @@ public class CustomerDAO extends DBContext {
         return null;
     }
 
-    public void editCustomerProfile(String uname, String uemail, String ugender, String umobile, String uaddress, int uid, String ustatus) {
-        String sql = "update dbo.[User]\n"
-                + "set [fullName] = ?,\n"
-                + "email = ?,\n"
-                + "gender = ?,\n"
-                + "mobile = ?,\n"
-                + "[address] = ?,\n"
-                + "[status] = ?\n"
-                + "where userId = ?";
+    public void editCustomerProfile(String cname, String cemail, String cmobile, int cid, String cdate) {
+        String sql = "update dbo.[Customer]\n"
+                + "               set [customer_name] = ?,\n"
+                + "               customer_email = ?,\n"
+                + "               customer_mobile = ?,\n"
+                + "			   updated_date = ?\n"
+                + "               where customer_id = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, uname);
-            st.setString(2, uemail);
-            st.setString(3, ugender);
-            st.setString(4, umobile);
-            st.setString(5, uaddress);
-            st.setString(6, ustatus);
-            st.setInt(7, uid);
+
+            st.setString(1, cname);
+            st.setString(2, cemail);
+            st.setString(3, cmobile);
+            st.setString(4, cdate);
+            st.setInt(5, cid);
+
             st.executeUpdate();
         } catch (Exception e) {
         }
     }
-    
-    public User checkCustomerExist(String email) {
-        String sql = "select * from dbo.[User]\n"
+
+    public Customer checkCustomerExist(String email) {
+        String sql = "select * from dbo.[Customer]\n"
                 + "where email = ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, email);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                User u = User.builder()
-                        .user_Id(rs.getInt(1))
-                        .full_Name(rs.getString(2))
-                        .password(rs.getString(3))
-                        .avatar(rs.getString(4))
-                        .gender(rs.getBoolean(5))
-                        .email(rs.getString(6))
-                        .mobile(rs.getString(7))
-                        .address(rs.getString(8))
-                        .status(rs.getBoolean(9))
-                        .role_Id(rs.getString(10))
+                Customer c = Customer.builder()
+                        .customer_id(rs.getInt(1))
+                        .customer_name(rs.getString(2))
+                        .customer_email(rs.getString(3))
+                        .customer_mobile(rs.getString(4))
+                        .updated_date(rs.getDate(5))
                         .build();
-                return u;
+                return c;
             }
         } catch (Exception e) {
         }
         return null;
     }
-    
-    public void addCustomer(String fullName, String address, String gender, String email, String mobile, String status) {
-        String sql = "insert into [User]\n"
-                + "values (?,0,0,?,?,?,?,?,'1')";
+
+    public void addCustomer(String customer_name, String customer_email, String customer_moblie, String updated_date) {
+        String sql = "insert into Customer\n"
+                + "values (?,?,?,?)";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, fullName);
-            st.setString(2, gender);
-            st.setString(3, email);
-            st.setString(4, mobile);
-            st.setString(5, address);
-            st.setString(6, status);
+            st.setString(1, customer_name);
+            st.setString(2, customer_email);
+            st.setString(3, customer_moblie);
+            st.setString(4, updated_date);
             st.executeUpdate();
         } catch (Exception e) {
         }
     }
 
-    public List<Chart> getChartCustomer(String start, int day) {
+
+    public List<Chart> getChartCustomerBar(String start, int day) {
         List<Chart> list = new ArrayList<>();
-        for (int i = 1; i <= day; i++) {
+        for (int i = 0; i < day; i++) {
             int value = 0;
-            String sql = "select count(*) from Customer where updated_date < DATEADD(DAY, ?, ?)";
+            String sql = "select count(*) from Customer where updated_date = DATEADD(DAY, ?, ?)";
             try {
                 PreparedStatement st = connection.prepareStatement(sql);
                 st.setInt(1, i);
@@ -222,6 +204,39 @@ public class CustomerDAO extends DBContext {
 
         return list;
     }
-    
+
+    public List<Chart> getChartCustomerArea(String start, int day) {
+        List<Chart> list = new ArrayList<>();
+        for (int i = 0; i < day; i++) {
+            int value = 0;
+            String sql = "select count(*) from Customer where updated_date <= DATEADD(DAY, ?, ?)";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    value = rs.getInt(1);
+                }
+                sql = "select  DATEADD(DAY, ?, ?)";
+                st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    Chart c = Chart.builder()
+                            .date(rs.getDate(1))
+                            .value(value)
+                            .build();
+                    list.add(c);
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+
+        return list;
+    }
     
 }

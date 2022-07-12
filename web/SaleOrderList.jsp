@@ -184,7 +184,7 @@
                                     <td>${c.saler_id}</td>
                                     <td>${c.status_order_name}</td>
                                     <td>
-                                        <c:if test="${c.status_order_name eq 'Submited'}">
+                                        <c:if test="${c.status_order == 1}">
                                             <div class="row">
                                                 <a href="update-successfull-order?order_id=${c.orderID}" class="btn btn-danger btn-lg active" role="button" aria-pressed="true" style="font-size: 12px">Giao Hàng thành công</a>
                                             </div>

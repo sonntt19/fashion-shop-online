@@ -42,30 +42,30 @@
     </head>
     <body style="background-color: gainsboro">
         <div style="margin: 2% 2% 2% 2%;">
-            <h2 style="text-align: center">Add Product</h2>
+            <h2 style="text-align: center">Thêm sản phẩm</h2>
             <div class="center">
                 <form action="add_product">
                     <input type="hidden"  name="id" value="${product.id}"/><br/>
                     <table style="background-color: window ; width: 60%; border-radius: 10px">
                         <tr>
                             <td>Tên sản phẩm:</td>
-                            <td><input type="text"  name="name" value="${product.name}"/><br/></td>
+                            <td><input style="border-radius: 10px; width: 62%" type="text"  name="name" value="${product.name}"/><br/></td>
                         </tr>
                         <tr>
                             <td>Địa chỉ ảnh:</td>
-                            <td><input type="file" style="padding-left:8px" id="avatar" name="image" accept="image/png, image/jpeg"/><br/></td>
+                            <td><input v style="padding-left:8px" id="avatar" name="image" accept="image/png, image/jpeg"/><br/></td>
                         </tr>
                         <tr>
                             <td>Giá gốc:</td>
-                            <td><input type="text" name="original_price" /><br/></td>
+                            <td><input style=" border-radius: 10px;" type="text" name="original_price" /><br/></td>
                         </tr>
                         <tr>
                             <td>Giá khuyến mãi:</td>
-                            <td><input type="text" name="sale_price"/><br/></td>
+                            <td><input style=" border-radius: 10px;" type="text" name="sale_price"/><br/></td>
                         </tr>
                         <tr>
                             <td>Tiêu đề:</td>
-                            <td><input type="text" name="brief_infor"/><br/></td>
+                            <td><input style="border-radius: 10px; width: 62%" type="text" name="brief_infor"/><br/></td>
                         </tr>
                         <tr>
                             <td>Miêu tả :</td>
@@ -76,25 +76,30 @@
                         <tr>
                             <td>Trạng thái:</td>
                             <td>
-                                <input type="radio" name="status" value="True" checked />Hiện
+                                <input type="radio" name="status" value="True" checked />Hiện &nbsp;&nbsp;
                                 <input type="radio" name="status" value="False"   />Ẩn
                             </td>
                         </tr>
                         <tr>
                             <td>Số lượng:</td>
-                            <td><input type="text" name="quantity"/><br/></td>
+                            <td style="padding-left: 2%;"><input style=" border-radius: 10px;" type="text" name="quantity"/><br/></td>
                         </tr>
                         <tr>
                             <td style="padding-bottom: 2%">Danh mục:</td>
                             <td style="padding-bottom: 2%">
-                                <c:forEach items="${sessionScope.listCategories}" var="list">
-                                    <input type="radio" name="categoryId" value="${list.id}"/>${list.name}
-                                </c:forEach>
+                                <select   name="categoryId" aria-label="Default select example" style="border-radius: 10px;">
+                                    <c:forEach items="${sessionScope.listCategories}" var="list">
+                                        <option value="${list.id}" ${list.id == product.category_id ? "Selected" : ""}>
+                                            ${list.name}
+                                        </option>
+                                    </c:forEach>
+                                </select>
                             </td>
                         </tr>
                     </table>
                     <br/>
-                    <button type="submit" class="btn btn-primary" style="width: 100px; margin-left: 75%">Save</button>
+                    <a class="buy-now btn btn-danger" style="width: 5%; margin-left: 20%;margin-top:2% " href="marketingproductlist">Quay lại</a>
+                    <button type="submit" class="btn btn-primary" style="width: 100px; margin-left: 75%">Thêm</button>
                 </form>
             </div>
 

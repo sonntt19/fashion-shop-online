@@ -248,7 +248,6 @@
                                         <c:if test="${(f.rated_star - i) <= 0}">
                                             <div class="reviews-rating__star"></div> 
                                         </c:if>
-
                                     </c:forEach>
                                     <br/>
                                     <b class="marketing_feedback_margin">${f.fullName}</b>

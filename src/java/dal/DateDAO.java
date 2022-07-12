@@ -25,7 +25,7 @@ public class DateDAO extends DBContext {
             st.setString(2, end);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                return rs.getInt(1);
+                return rs.getInt(1)+1;
             }
         } catch (SQLException e) {
             System.out.println(e);
@@ -34,7 +34,7 @@ public class DateDAO extends DBContext {
     }
 
     public Date get7day() {
-        String sql = "select GETDATE(), GETDATE()-7";
+        String sql = "select GETDATE(), GETDATE()-6";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();

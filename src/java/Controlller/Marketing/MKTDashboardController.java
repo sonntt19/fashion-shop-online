@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Chart;
+import model.ChartStar;
 import model.Date;
 
 /**
@@ -44,6 +45,7 @@ public class MKTDashboardController extends HttpServlet {
         FeedbackDAO fd = new FeedbackDAO();
         DateDAO dd = new DateDAO();
 
+        // set parameter
         Date date = dd.get7day();
         String start = date.getStart().toString();
         String end = date.getEnd().toString();
@@ -56,15 +58,107 @@ public class MKTDashboardController extends HttpServlet {
 
         int day = dd.CountDayByStartEnd(start, end);
 
-        List<Chart> listChartBlog = bd.getChartBlog(start, day);
-        List<Chart> listChartProduct = pd.getChartProduct(start, day);
-        List<Chart> listChartCustomer = cd.getChartCustomer(start, day);
-        List<Chart> listChartFeedback = fd.getChartFeedback(start, day);
+        // set chart blog 
+        List<Chart> listChartBlogBar = bd.getChartBlogBar(start, day);
+        List<Chart> listChartBlogArea = bd.getChartBlogArea(start, day);
+        int maxListChartBlogBar = -1;
+        for (Chart o : listChartBlogBar) {
+            if (o.getValue() > maxListChartBlogBar) {
+                maxListChartBlogBar = o.getValue();
+            }
+        }
 
-        request.setAttribute("listChartBlog", listChartBlog);
-        request.setAttribute("listChartProduct", listChartProduct);
-        request.setAttribute("listChartCustomer", listChartCustomer);
-        request.setAttribute("listChartFeedback", listChartFeedback);
+        maxListChartBlogBar = (maxListChartBlogBar / 10 + 1) * 10;
+        int maxListChartBlogArea = -1;
+        for (Chart o : listChartBlogArea) {
+            if (o.getValue() > maxListChartBlogArea) {
+                maxListChartBlogArea = o.getValue();
+            }
+        }
+        maxListChartBlogArea = (maxListChartBlogArea / 10 + 1) * 10;
+
+        // set chart product
+        List<Chart> listChartProductBar = pd.getChartProductBar(start, day);
+        List<Chart> listChartProductArea = pd.getChartProductArea(start, day);
+        int maxListChartProductBar = -1;
+        for (Chart o : listChartProductBar) {
+            if (o.getValue() > maxListChartProductBar) {
+                maxListChartProductBar = o.getValue();
+            }
+        }
+
+        maxListChartProductBar = (maxListChartProductBar / 10 + 1) * 10;
+        int maxListChartProductArea = -1;
+        for (Chart o : listChartProductArea) {
+            if (o.getValue() > maxListChartProductArea) {
+                maxListChartProductArea = o.getValue();
+            }
+        }
+        maxListChartProductArea = (maxListChartProductArea / 10 + 1) * 10;
+
+        // set chart customer
+        List<Chart> listChartCustomerBar = cd.getChartCustomerBar(start, day);
+        List<Chart> listChartCustomerArea = cd.getChartCustomerArea(start, day);
+        int maxListChartCustomerBar = -1;
+        for (Chart o : listChartCustomerBar) {
+            if (o.getValue() > maxListChartCustomerBar) {
+                maxListChartCustomerBar = o.getValue();
+            }
+        }
+
+        maxListChartCustomerBar = (maxListChartCustomerBar / 10 + 1) * 10;
+        int maxListChartCustomerArea = -1;
+        for (Chart o : listChartCustomerArea) {
+            if (o.getValue() > maxListChartCustomerArea) {
+                maxListChartCustomerArea = o.getValue();
+            }
+        }
+        maxListChartCustomerArea = (maxListChartCustomerArea / 10 + 1) * 10;
+        
+        // set chart feedback
+        List<Chart> listChartFeedbackBar = fd.getChartFeedbackBar(start, day);
+        List<Chart> listChartFeedbackArea = fd.getChartFeedbackArea(start, day);
+        int maxListChartFeedbackBar = -1;
+        for (Chart o : listChartFeedbackBar) {
+            if (o.getValue() > maxListChartFeedbackBar) {
+                maxListChartFeedbackBar = o.getValue();
+            }
+        }
+
+        maxListChartFeedbackBar = (maxListChartFeedbackBar / 10 + 1) * 10;
+        int maxListChartFeedbackArea = -1;
+        for (Chart o : listChartFeedbackArea) {
+            if (o.getValue() > maxListChartFeedbackArea) {
+                maxListChartFeedbackArea = o.getValue();
+            }
+        }
+        maxListChartFeedbackArea = (maxListChartFeedbackArea / 10 + 1) * 10;
+
+
+        // set parameter blog chart request to jsp
+        request.setAttribute("listChartBlogBar", listChartBlogBar);
+        request.setAttribute("listChartBlogArea", listChartBlogArea);
+        request.setAttribute("maxListChartBlogBar", maxListChartBlogBar);
+        request.setAttribute("maxListChartBlogArea", maxListChartBlogArea);
+
+        // set parameter product chart request to jsp
+        request.setAttribute("listChartProductBar", listChartProductBar);
+        request.setAttribute("listChartProductArea", listChartProductArea);
+        request.setAttribute("maxListChartProductBar", maxListChartProductBar);
+        request.setAttribute("maxListChartProductArea", maxListChartProductArea);
+
+        // set parameter customer chart request to jsp
+        request.setAttribute("listChartCustomerBar", listChartCustomerBar);
+        request.setAttribute("listChartCustomerArea", listChartCustomerArea);
+        request.setAttribute("maxListChartCustomerBar", maxListChartCustomerBar);
+        request.setAttribute("maxListChartCustomerArea", maxListChartCustomerArea);
+        
+        // set parameter feedback chart request to jsp
+        request.setAttribute("listChartFeedbackBar", listChartFeedbackBar);
+        request.setAttribute("listChartFeedbackArea", listChartFeedbackArea);
+        request.setAttribute("maxListChartFeedbackBar", maxListChartFeedbackBar);
+        request.setAttribute("maxListChartFeedbackArea", maxListChartFeedbackArea);
+
         request.setAttribute("start", start);
         request.setAttribute("end", end);
         request.getRequestDispatcher("MKTDashboard.jsp").forward(request, response);
