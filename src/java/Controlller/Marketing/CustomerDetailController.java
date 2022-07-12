@@ -9,12 +9,14 @@ import dal.CustomerDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Customer;
 import model.User;
 
 /**
@@ -37,27 +39,25 @@ public class CustomerDetailController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String uid = request.getParameter("userId");
-        String uname = request.getParameter("fullName");
-        String uemail = request.getParameter("email");
-        String umobile = request.getParameter("mobile");
-        String uaddress = request.getParameter("address");
-        String ugender = request.getParameter("gender");
-        String ustatus = request.getParameter("status");
-        int userId = Integer.parseInt(uid);
+        String cid = request.getParameter("customer_id");
+        String cname = request.getParameter("customer_name");
+        String cemail = request.getParameter("customer_email");
+        String cmobile = request.getParameter("customer_mobile");
+        String cdate = request.getParameter("updated_date");
+        int userId = Integer.parseInt(cid);
 
         CustomerDAO dao = new CustomerDAO();
-        if (!umobile.matches("[0-9]*")) {
+        if (!cmobile.matches("[0-9]*")) {
             request.setAttribute("notification", "Số điện thoại không hợp lệ");
             request.getRequestDispatcher("customer-list").forward(request, response);
         } else {
             //sua thanh cong
-            dao.editCustomerProfile(uname, uemail, ugender, umobile, uaddress, userId, ustatus);
+            dao.editCustomerProfile(cname, cemail, cmobile, userId, cdate);
             request.setAttribute("notification", "Chỉnh sửa thành công");
             request.getRequestDispatcher("customer-list").forward(request, response);
         }
 
-        User u = dao.getCustomerById(uid);
+        Customer u = dao.getCustomerById(cid);
         HttpSession session = request.getSession();
         session.setAttribute("customerDetail", u);
         response.sendRedirect("customer-list");

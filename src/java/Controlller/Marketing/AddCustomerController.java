@@ -9,11 +9,13 @@ import dal.CustomerDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Customer;
 import model.User;
 
 /**
@@ -38,21 +40,19 @@ public class AddCustomerController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        String fullName = request.getParameter("fullName");
-        String email = request.getParameter("email");
-        String mobile = request.getParameter("mobile");
-        String gender = request.getParameter("gender");
-        String address = request.getParameter("address");
-        String status = request.getParameter("status");
+        String customer_name = request.getParameter("fullName");
+        String customer_email = request.getParameter("email");
+        String customer_mobile = request.getParameter("mobile");
+        String updated_date = request.getParameter("updated_date");
 
         CustomerDAO dao = new CustomerDAO();
-        User u = dao.checkCustomerExist(email);
-        if (!mobile.matches("[0-9]*")) {
+        Customer u = dao.checkCustomerExist(customer_email);
+        if (!customer_mobile.matches("[0-9]*")) {
             request.setAttribute("notification", "Số điện thoại không hợp lệ");
             request.getRequestDispatcher("customer-list").forward(request, response);
         } else if (u == null) {
             //dang ky thanh cong
-            dao.addCustomer(fullName, address, gender, email, mobile, status);
+            dao.addCustomer(customer_name, customer_email, customer_mobile, updated_date);
             request.setAttribute("notification", "Thêm khách hàng thành công");
             request.getRequestDispatcher("customer-list").forward(request, response);
         } else {
