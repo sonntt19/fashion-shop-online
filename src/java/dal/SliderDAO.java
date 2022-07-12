@@ -182,4 +182,20 @@ public class SliderDAO extends DBContext {
         }
     }
 
+    public String getUrlImageById(int id) {
+        String sql = "select slider_image from Slider where slider_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
 }

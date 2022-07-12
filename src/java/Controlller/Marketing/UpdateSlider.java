@@ -50,7 +50,7 @@ public class UpdateSlider extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet UpdateSlider</title>");            
+            out.println("<title>Servlet UpdateSlider</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet UpdateSlider at " + request.getContextPath() + "</h1>");
@@ -85,11 +85,11 @@ public class UpdateSlider extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
 
+        SliderDAO sd = new SliderDAO();
         String url_thumbnail = "images/slider/";
 
         // Create a factory for disk-based file items
@@ -119,6 +119,8 @@ public class UpdateSlider extends HttpServlet {
                 } else {
                     String filename = item.getName();
                     if (filename == null || filename.equals("")) {
+                        String url_old = sd.getUrlImageById(Integer.parseInt(fields.get("slider_id")));
+                        url_thumbnail = url_old;
                         break;
                     } else {
                         Path path = Paths.get(filename);
@@ -130,18 +132,16 @@ public class UpdateSlider extends HttpServlet {
 
                 }
             }
-            
+
             int slider_id = Integer.parseInt(fields.get("slider_id"));
             String slider_title = fields.get("slider_title");
             String backlink = fields.get("backlink");
-            
-;
+            ;
 
-            SliderDAO sd = new SliderDAO();
-            sd.UpdateSliderById(slider_id,slider_title,backlink,url_thumbnail);
+            sd.UpdateSliderById(slider_id, slider_title, backlink, url_thumbnail);
             TimeUnit.SECONDS.sleep(2);
-            response.sendRedirect("slider-detail?sliderId="+slider_id);
-            
+            response.sendRedirect("slider-detail?sliderId=" + slider_id);
+
         } catch (FileUploadException ex) {
 
         } catch (Exception ex) {
