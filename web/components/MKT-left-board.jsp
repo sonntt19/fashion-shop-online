@@ -65,7 +65,7 @@
                 </a>
                 <div class="collapse" id="collapse5" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="posts-list">Danh sách phản hồi</a>
+                        <a class="nav-link" href="feedback-list">Danh sách phản hồi</a>
                     </nav>
                 </div>
             </div>

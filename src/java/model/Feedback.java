@@ -26,5 +26,7 @@ public class Feedback {
     private int product_id;
     private int user_id;
     private Date date;
-     
+    private String product_name;
+    private String email;
+    private String phone;
 }
