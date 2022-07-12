@@ -84,7 +84,7 @@
         </style>
     </head>
     <body  class="sb-nav-fixed">
-                <%@include file="components/account.jsp" %>
+        <%@include file="components/account.jsp" %>
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-light    ">
             <!-- Navbar Brand-->
             <a class="navbar-brand me-5 ti-joomla" href="home" style="padding-left: 2%">KingsMan</a>
@@ -145,46 +145,61 @@
         </nav>
         <div id="layoutSidenav">
             <div class="groundy" id="layoutSidenav_content">
-            <%@include file="components/MKT-left-board.jsp" %>
-        <h2 class="mtop title-order" >Danh sách Slider</h2>
-        <div class="container mtop" style="width:80%">
-            <table class="table table-striped table-bordered" id="sortTable">
-                <thead>
-                    <tr>
-                        <th>Slider_ID</th>
-                        <th>Slider_Title</th>
-                        <th>Slider_Image</th>
-                        <th>backlink</th>
-                        <th>status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items ="${SliderList}" var="c">
-                        <tr>
-                            <td><a href="slider-detail?sliderId=${c.id}">
-                                    ${c.id}</a></td>
-                            <td>${c.slider_title}</td>
-                            
-                                <td>${c.slider_image}</td>
-                            
-                            
-                            <td>${c.backlink}</td>
-                            <td>${c.status}</td>
-                            <td>${c.updated_by}</td>
-                        </tr>
+                <%@include file="components/MKT-left-board.jsp" %>
+                <h2 class="mtop title-order" >Danh sách Slider</h2>
+                <div class="container mtop" style="width:80%">
+                    <table class="table table-striped table-bordered" id="sortTable">
+                        <thead>
+                            <tr>
+                                <th>Slider_ID</th>
+                                <th>Slider_Title</th>
+                                <th>Slider_Image</th>
+                                <th>Backlink</th>
+                                <th>Status</th>
+                                <th>Update_Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items ="${SliderList}" var="c">
+                                <tr>
+                                    <td><a href="slider-detail?sliderId=${c.id}">
+                                            ${c.id}</a></td>
+                                    <td>${c.slider_title}</td>
 
-                    </c:forEach>
+                                    <td><img  src="${c.slider_image}" width="200px"></td></td>
 
-                </tbody>
-            </table>
-        </div>
-        <div class="mtop"></div>
-        </div>
+
+                                    <td>${c.backlink}</td>
+                                    <td>${c.status}</td>
+                                    <td>
+                                        <c:if test="${c.status eq 'True'}">
+                                            <div class="row">
+                                                <a href="update-false-slider?slider_id=${c.id}" class="btn btn-danger btn-lg active" role="button" aria-pressed="true" style="font-size: 12px">False</a>
+                                            </div>
+
+                                        </c:if>
+
+                                        <c:if test="${c.status eq 'False'}">
+                                            <div class="row">
+                                                <a href="update-true-slider?slider_id=${c.id}" class="btn btn-info btn-lg active" role="button" aria-pressed="true" style="font-size: 12px">True</a>
+                                            </div>
+
+                                        </c:if>
+                                    </td>
+                                </tr>
+
+                            </c:forEach>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mtop"></div>
+            </div>
         </div>
         <script>
             $('#sortTable').DataTable();
         </script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>

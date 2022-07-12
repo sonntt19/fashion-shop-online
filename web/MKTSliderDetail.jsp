@@ -130,20 +130,26 @@
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container rounded bg-white mt-5 mb-5">
-                        <form action="update-post" method="post" enctype="multipart/form-data">
+                        <form action="update-slider" method="post" enctype="multipart/form-data">
                             <div class="row"  style="margin-top: 8%;">
                                 <div class="p-4">
 
                                     <h4 class="text-center">Chỉnh sửa Slider</h4>
                                 </div>
+
                                 <div class="col-md-8">
                                     <div class="p-3 py-5">
-                                        <div class="col-md-12">Tiêu đề<input type="text" class="form-control"  name="slider_title" value="${slider.slider_title}"></div>
-                                        <div class="col-md-12">link URL<textarea class="form-control" name="slider_image"  rows="2" >${slider.slider_image}</textarea></div>
+                                        <div class="col-md-12"><input type="hidden" class="form-control"  name="slider_id" value="${Slider_Detail.id}"></div>
+                                        <div class="col-md-12">Tiêu đề<input type="text" class="form-control"  name="slider_title" value="${Slider_Detail.slider_title}"></div>
+                                        <div class="col-md-12">link URL<textarea class="form-control" name="backlink"  rows="2" >${Slider_Detail.backlink}</textarea></div>
+                                        <div class="col-md-12">Hình thu nhỏ<input type="file" name="slider_image" class="form-control" placeholder="Thumbnail" value=""></div>
+                                            <img class="mt-5"  src="${Slider_Detail.slider_image}" width="800px"/>
+
+
                                     </div>
                                 </div>
-                                
-                                
+
+
                                 <div class="mt-5 p-4 text-center">
                                     <a href="slider-list"><button class="btn btn-outline-dark" type="button">Quay lại</button></a>
                                     <input class="btn btn-dark" type="submit" value="Lưu">

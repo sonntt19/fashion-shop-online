@@ -22,16 +22,18 @@
                 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" >
                     <div class="carousel-indicators">
 
-                        <c:forEach items="${sessionScope.listSlider_HomePageAll}" var="s" >
-                            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="${s.id -1}" class="${s.id == sessionScope.sliderFirst.id ? "active" : ""}" aria-current="${s.id == sliderFirst.id ? "true" : ""}" aria-label="Slide ${s.id}"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <c:forEach begin="1" end="${sessionScope.totalSlider-1}" var="c">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${c}" aria-label="Slide ${c+1}"></button>
                         </c:forEach>
+                       
                     </div>
 
                     <div class="carousel-inner">
 
                         <c:forEach items="${sessionScope.listSlider_HomePageAll}" var="s" >
                             <div class="carousel-item ${s.id == sessionScope.sliderFirst.id ? "active" : ""}">
-                                <img src="${s.slider_image}" class="d-block w-100" alt="...">
+                                <a href="${s.backlink}"><img src="${s.slider_image}" class="d-block w-100" alt="..."></a>
                             </div> 
 
                         </c:forEach>

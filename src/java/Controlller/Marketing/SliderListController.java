@@ -33,7 +33,7 @@ public class SliderListController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        List<Slider> SliderList = new SliderDAO().getALLSlider(); 
+        List<Slider> SliderList = new SliderDAO().getALLSlider_True_False(); 
         request.setAttribute("SliderList", SliderList);
         
         request.getRequestDispatcher("MKTSliderList.jsp").forward(request, response);

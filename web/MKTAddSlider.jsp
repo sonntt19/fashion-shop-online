@@ -1,19 +1,20 @@
 <%-- 
-    Document   : MKTOrderList
-    Created on : Jun 29, 2022, 4:16:29 AM
-    Author     : Admin
+    Document   : MKTDashboard
+    Created on : Jun 23, 2022, 7:56:23 AM
+    Author     : Veetu
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>OrderList_Sale</title>
+        <title>Dashboard - SB Admin</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
@@ -23,18 +24,9 @@
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="./assets/css/style.css">
-        <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
-        <%@include file="components/javascript.jsp" %>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
-        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/ckfinder/ckfinder.js"></script>
         <style>
-
             .payment-method__item-name {
                 font-size: 20px;
                 padding-left: 20px;
@@ -72,30 +64,15 @@
                 width: 10px;
                 border: 50%;
             }
-            .mtop {
-                margin-top: 2%;
-            }
-            .title-order {
-                display: flex;
-                justify-content: center;
-                color: red;
-            }
-            .tbborder {
-                border: 2px solid black;
-            }
-            .sb-nav-fixed #layoutSidenav #layoutSidenav_content{
-                justify-content: center;
-            }
-
-
         </style>
     </head>
-    <body>
+    <body class="sb-nav-fixed">
         <%@include file="components/account.jsp" %>
-        <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
+        <nav class="sb-topnav navbar navbar-expand navbar-light bg-light    ">
             <!-- Navbar Brand-->
             <a class="navbar-brand me-5 ti-joomla" href="home" style="padding-left: 2%">KingsMan</a>
             <!-- Sidebar Toggle-->
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
             <!-- Navbar Search-->
             <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -117,7 +94,6 @@
                 <!-- Navbar-->
                 <form class="d-flex me-5" action="list">
                     <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
-
                     <button class="btn btn-outline-danger" type="submit">Tìm</button>
                 </form>
 
@@ -149,57 +125,47 @@
                     </li>
                 </ul>
         </nav>
-
         <div id="layoutSidenav">
-            <%@include file="components/sale-left-dashboard.jsp" %>
+            <%@include file="components/MKT-left-board.jsp" %>
             <div class="groundy" id="layoutSidenav_content">
+                <main>
+                    <div class="container rounded bg-white mt-5 mb-5">
+                        <form action="add-slider" method="post" enctype="multipart/form-data">
+                            <div class="row"  style="margin-top: 8%;">
+                                <div class="p-4">
 
-                <h2 class="mtop title-order" >Danh sách các đơn hàng</h2>
-                <div class="container mtop" style="width:100%">
-                    <table class="table table-striped table-bordered tbborder" id="sortTable">
-                        <thead>
-                            <tr>
-                                <th>OrderID</th>
-                                <th>Ngày&nbspmua&nbsp hàng</th>
-                                <th>Sản&nbspphẩm</th>
-                                <th>Tổng&nbspchi&nbspphí</th>
-                                <th>Nhân&nbspviên&nbspsale</th>
-                                <th>Tình&nbsptrạng</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items ="${OrderList}" var="c">
-                                <tr>
-                                    <td><a href="order-detail-sale?orderId=${c.orderID}">
-                                            ${c.orderID}</a></td>
-                                    <td>${c.date}</td>
-                                    <c:if test="${c.countProduct != 0}">
-                                        <td>${c.fullNameFirstProduct} và ${c.countProduct} sản phẩm khác</td>
-                                    </c:if>
-                                    <c:if test="${c.countProduct == 0}">
-                                        <td>${c.fullNameFirstProduct}</td>
-                                    </c:if>
-                                    <td>${c.total_cost}</td>
-                                    <td>${c.saler_id}</td>
-                                    <td>${c.status_order_name}</td>
-                                    <td>
-                                        <c:if test="${c.status_order_name eq 'Submited'}">
-                                            <div class="row">
-                                                <a href="update-successfull-order?order_id=${c.orderID}" class="btn btn-danger btn-lg active" role="button" aria-pressed="true" style="font-size: 12px">Giao Hàng thành công</a>
-                                            </div>
+                                    <h4 class="text-center">Thêm Slider</h4>
+                                </div>
 
-                                        </c:if></td>
-                                </tr>
+                                <div class="col-md-8">
+                                    <div class="p-3 py-5">
+                                        <div class="col-md-12">Tiêu đề<input type="text" class="form-control"  name="slider_title" ></div>
+                                        <div class="col-md-12">link URL<textarea class="form-control" name="backlink"  rows="2" ></textarea></div>
+                                        <div class="col-md-12">Status
+                                            <br/>
+                                            <input type="radio"  name="status" value="0" >Ẩn
+                                            <input type="radio" name="status" value="1">Hiện
+                                        </div>
+                                        <div class="col-md-12">Hình thu nhỏ<input type="file" name="slider_image" class="form-control" placeholder="Thumbnail" ></div>
+                                            <img class="mt-5"  src="" width="600px"/>
 
-                            </c:forEach>
 
-                        </tbody>
-                    </table>
-                </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="mt-5 p-4 text-center">
+                                    <a href="slider-list"><button class="btn btn-outline-dark" type="button">Quay lại</button></a>
+                                    <input class="btn btn-dark" type="submit" value="Lưu">
+                                </div>
+                            </div>
+                        </form> 
+                    </div>
+                </main>
+                <!-- Footer-->
+                <%@include file="components/footer.jsp" %>
             </div>
         </div>
-        <div class = "mtop"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
@@ -207,9 +173,7 @@
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
-        <script>
-            $('#sortTable').DataTable();
-        </script>
     </body>
 </html>
+
 

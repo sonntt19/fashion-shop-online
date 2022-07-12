@@ -3,28 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Public;
+package Controlller.Marketing;
 
-import dal.BlogDAO;
-import dal.ProductDAO;
 import dal.SliderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Blog;
-import model.Product;
-import model.Slider;
 
 /**
  *
- * @author son22
+ * @author Admin
  */
-public class HomeController extends HttpServlet {
+public class UpdateFalseSlider extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,26 +31,9 @@ public class HomeController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        
-        List<Blog> listBlog_HomePage = new BlogDAO().getAllBlog();
-        session.setAttribute("listBlog_HomePage", listBlog_HomePage);
-        
-        Slider listSlider_HomePageFirst = new SliderDAO().getFirstSlider();
-        session.setAttribute("sliderFirst", listSlider_HomePageFirst);
-        
-        int totalSlider = new SliderDAO().getcountSlider();
-        session.setAttribute("totalSlider", totalSlider);        
-        
-        List<Slider> listSlider_HomePageAll = new SliderDAO().getALLSlider();
-        session.setAttribute("listSlider_HomePageAll", listSlider_HomePageAll);
-        
-        List<Product> list4product = new ProductDAO().get4ProductRandom();
-        session.setAttribute("list4product", list4product);
-        
-        session.setAttribute("historyUrl", "home");
-        
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        int id = Integer.parseInt(request.getParameter("slider_id"));
+            new SliderDAO().updateStatusSlider(id, 0);
+            response.sendRedirect("slider-list");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

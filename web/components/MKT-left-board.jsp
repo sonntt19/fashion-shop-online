@@ -54,8 +54,8 @@
                 </a>
                 <div class="collapse" id="collapse4" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="posts-list">Danh sách slider</a>
-                        <a class="nav-link" href="AddBlog.jsp">Thêm mới slider</a>
+                        <a class="nav-link" href="slider-list">Danh sách slider</a>
+                        <a class="nav-link" href="MKTAddSlider.jsp">Thêm mới slider</a>
                     </nav>
                 </div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapseCustomer">
