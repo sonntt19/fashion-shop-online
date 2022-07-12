@@ -109,13 +109,13 @@
                             <input type="date" id="end">
                         </div>
                         <div class="row">
-                            <div class="col-xl-6">
+                            <div class="col-xl-12">
                                 <div class="card mb-4">
-                                    <div class="card-header">
+                                    <a class="card-header mb-4 nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseThongkebaidang" aria-expanded="false" aria-controls="collapseThongkebaidang">
                                         <i class="fas fa-chart-area me-1"></i>
                                         Thống kê bài đăng
-                                    </div>
-                                    <div class="card-body"><canvas id="myAreaChart-1" width="100%" height="40"></canvas></div>
+                                    </a>
+                                    <div id="collapseThongkebaidang" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting" class="collapse card-body"><canvas id="myBarChart" width="100%" height="40"></canvas>  </div>
                                 </div>
                             </div>
                             <div class="col-xl-6">

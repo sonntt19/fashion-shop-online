@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Customer;
 import model.User;
 
 /**
@@ -39,7 +40,7 @@ public class CustomerListController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         CustomerDAO cus = new CustomerDAO();
-        List<User> listCustomer = cus.getAllCustomerByRoleId();
+        List<Customer> listCustomer = cus.getAllCustomerByRoleId();
         
         request.setAttribute("listCustomer", listCustomer);
         request.getRequestDispatcher("CustomerList.jsp").forward(request, response);
