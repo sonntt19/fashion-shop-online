@@ -83,9 +83,10 @@ public class UpdatePostController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
+        BlogDAO bd = new BlogDAO();
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("us");
-
+           
         String url_thumbnail = "images/blog/";
 
         // Create a factory for disk-based file items
@@ -115,6 +116,8 @@ public class UpdatePostController extends HttpServlet {
                 } else {
                     String filename = item.getName();
                     if (filename == null || filename.equals("")) {
+                        String url_old = bd.getUrlImageById(Integer.parseInt(fields.get("blogId")));
+                        url_thumbnail = url_old;
                         break;
                     } else {
                         Path path = Paths.get(filename);
@@ -135,7 +138,7 @@ public class UpdatePostController extends HttpServlet {
             int category_id = Integer.parseInt(fields.get("categoryId"));
             int status = Integer.parseInt(fields.get("status"));
 
-            BlogDAO bd = new BlogDAO();
+            
             bd.UpdateBlogById(title, user_id, content, brief_infor, category_id, status, url_thumbnail, blog_id);
             response.sendRedirect("post-details?blog_id="+blog_id);
         } catch (FileUploadException ex) {

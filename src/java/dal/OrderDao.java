@@ -113,6 +113,7 @@ public class OrderDao extends DBContext {
                         .fullName(rs.getString(4))
                         .mobile(rs.getString(5))
                         .address(rs.getString(6))
+                        .status_order(rs.getInt(7))
                         .status_order_name(rs.getString(12))
                         .build();
 
@@ -143,6 +144,7 @@ public class OrderDao extends DBContext {
                         .mobile(rs.getString(5))
                         .address(rs.getString(6))
                         .saler_id(rs.getInt(9))
+                        .status_order(rs.getInt(7))
                         .status_order_name(rs.getString(12))
                         .build();
 
@@ -208,6 +210,7 @@ public class OrderDao extends DBContext {
                         .fullName(rs.getString(4))
                         .mobile(rs.getString(5))
                         .address(rs.getString(6))
+                        .status_order(rs.getInt(7))
                         .status_order_name(rs.getString(12))
                         .build();
 
@@ -236,6 +239,7 @@ public class OrderDao extends DBContext {
                         .fullName(rs.getString(4))
                         .mobile(rs.getString(5))
                         .address(rs.getString(6))
+                        .status_order(rs.getInt(7))
                         .status_order_name(rs.getString(12))
                         .build();
 
@@ -296,7 +300,7 @@ public class OrderDao extends DBContext {
     }
 
     public int getTotalOrder(String salerId, String start, String end) {
-        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate < ?  and orderDate > ?";
+        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate <= ?  and orderDate >= ?";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, end);
@@ -313,7 +317,7 @@ public class OrderDao extends DBContext {
     }
 
     public int getTotalOrderSubmited(String salerId, String start, String end) {
-        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate < ?  and orderDate > ? and status_order = 1 ";
+        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate <= ?  and orderDate >= ? and status_order = 1 ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, end);
@@ -330,7 +334,7 @@ public class OrderDao extends DBContext {
     }
 
     public int getTotalOrderSuccesful(String salerId, String start, String end) {
-        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate < ?  and orderDate > ? and status_order = 2";
+        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate <= ?  and orderDate >= ? and status_order = 2";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, end);
@@ -347,7 +351,7 @@ public class OrderDao extends DBContext {
     }
 
     public int getTotalOrderCanceled(String salerId, String start, String end) {
-        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate < ?  and orderDate > ? and status_order = 3";
+        String sql = "select count(*) from [Order] where saler_id " + salerId + "  and orderDate <= ?  and orderDate >= ? and status_order = 3";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, end);
@@ -363,11 +367,78 @@ public class OrderDao extends DBContext {
         return 0;
     }
 
-    public List<Chart> getChartOrder(String salerId,String start,String end, int day) {
+
+    public List<Chart> getChartOrderBar(String salerId,String start, int day) {
         List<Chart> list = new ArrayList<>();
-        for (int i = 1; i <= day; i++) {
+        for (int i = 0; i < day; i++) {
             int value = 0;
-            String sql = "select sum(total_cost) from [Order] where  saler_id " + salerId + " and orderDate < DATEADD(DAY, ?, ?) and orderDate > ?";
+            String sql = "select count(*) from [Order] where saler_id " + salerId + " and orderDate  = DATEADD(DAY, ?, ?)";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    value = rs.getInt(1);
+                }
+                sql = "select  DATEADD(DAY, ?, ?)";
+                st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    Chart c = Chart.builder()
+                            .date(rs.getDate(1))
+                            .value(value)
+                            .build();
+                    list.add(c);
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+         return list;
+    }
+
+    public List<Chart> getChartRevenueBar(String salerId,String start, int day) {
+        List<Chart> list = new ArrayList<>();
+        for (int i = 0; i < day; i++) {
+            int value = 0;
+            String sql = "select sum(total_cost) from [Order] where  saler_id " + salerId + " and orderDate = DATEADD(DAY, ?, ?)";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    value = rs.getInt(1);
+                }
+                sql = "select  DATEADD(DAY, ?, ?)";
+                st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    Chart c = Chart.builder()
+                            .date(rs.getDate(1))
+                            .value(value)
+                            .build();
+                    list.add(c);
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+         return list;
+    }
+
+    public List<Chart> getChartRevenueArea(String salerId,String start, int day) {
+        List<Chart> list = new ArrayList<>();
+        for (int i = 0; i < day; i++) {
+            int value = 0;
+            String sql = "select sum(total_cost) from [Order] where  saler_id " + salerId + " and orderDate <= DATEADD(DAY, ?, ?) and orderDate >= ?";
             try {
                 PreparedStatement st = connection.prepareStatement(sql);
                 st.setInt(1, i);

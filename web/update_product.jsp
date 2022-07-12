@@ -42,7 +42,7 @@
     </head>
     <body style="background-color: gainsboro">
         <div style="margin: 2% 2% 2% 2%;">
-            <h2 style="text-align: center">Update Product</h2>
+            <h2 style="text-align: center">Cập nhật sản phẩm</h2>
             <div class="center">
                 <form action="update_product" method="post">
                     <input type="hidden"  name="id" value="${product.id}"/><br/>
@@ -87,15 +87,19 @@
                         <tr>
                             <td style="padding-bottom: 2%">Danh mục:</td>
                             <td style="padding-bottom: 2%">
-                                <c:forEach items="${sessionScope.listCategories}" var="list">
-                                    <input type="radio" name="categoryId" value="${list.id}" ${list.id == product.category_id ? "checked" : ""} />${list.name}
-                                </c:forEach>
+                                <select   name="categoryId" aria-label="Default select example" style="border-radius: 10px;">
+                                    <c:forEach items="${sessionScope.listCategories}" var="list">
+                                        <option value="${list.id}" ${list.id == product.category_id ? "Selected" : ""}>
+                                            ${list.name}
+                                        </option>
+                                    </c:forEach>
+                                </select>
                             </td>
                         </tr>
                     </table>
                     <br/>
-                    <a class="buy-now btn btn-danger" style="width: 5%; margin-left: 20%;margin-top:2% " href="marketingproductlist">Back</a>
-                    <button type="submit" class=" btn btn-primary" style="width: 5%; margin-left: 75%;">Save</button>
+                    <a class="buy-now btn btn-danger" style="width: 5%; margin-left: 20%;margin-top:2% " href="marketingproductlist">Quay lại</a>
+                    <button type="submit" class=" btn btn-primary" style="width: 5%; margin-left: 75%;">Cập nhật</button>
                 </form>
             </div>
 

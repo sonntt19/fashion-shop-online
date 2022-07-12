@@ -189,11 +189,46 @@ public class CustomerDAO extends DBContext {
         }
     }
 
-    public List<Chart> getChartCustomer(String start, int day) {
+
+    public List<Chart> getChartCustomerBar(String start, int day) {
         List<Chart> list = new ArrayList<>();
-        for (int i = 1; i <= day; i++) {
+        for (int i = 0; i < day; i++) {
             int value = 0;
-            String sql = "select count(*) from Customer where updated_date < DATEADD(DAY, ?, ?)";
+            String sql = "select count(*) from Customer where updated_date = DATEADD(DAY, ?, ?)";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    value = rs.getInt(1);
+                }
+                sql = "select  DATEADD(DAY, ?, ?)";
+                st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    Chart c = Chart.builder()
+                            .date(rs.getDate(1))
+                            .value(value)
+                            .build();
+                    list.add(c);
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+
+        return list;
+    }
+
+    public List<Chart> getChartCustomerArea(String start, int day) {
+        List<Chart> list = new ArrayList<>();
+        for (int i = 0; i < day; i++) {
+            int value = 0;
+            String sql = "select count(*) from Customer where updated_date <= DATEADD(DAY, ?, ?)";
             try {
                 PreparedStatement st = connection.prepareStatement(sql);
                 st.setInt(1, i);
