@@ -47,20 +47,13 @@
                         <a class="nav-link" href="customer-list">Danh sách khách hàng</a>
                     </nav>
                 </div>
-<<<<<<< HEAD
-                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseProduct" aria-expanded="false" aria-controls="collapseCustomer">
-=======
+
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapseCustomer">
->>>>>>> 55498d3f8430518b0a1c183b7daa465db25672f8
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Quản lý thanh trượt
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
-<<<<<<< HEAD
-                <div class="collapse" id="collapseProduct" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting">
-=======
                 <div class="collapse" id="collapse4" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting">
->>>>>>> 55498d3f8430518b0a1c183b7daa465db25672f8
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="posts-list">Danh sách slider</a>
                         <a class="nav-link" href="AddBlog.jsp">Thêm mới slider</a>

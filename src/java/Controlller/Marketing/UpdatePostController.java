@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -140,6 +141,7 @@ public class UpdatePostController extends HttpServlet {
 
             
             bd.UpdateBlogById(title, user_id, content, brief_infor, category_id, status, url_thumbnail, blog_id);
+            TimeUnit.SECONDS.sleep(1);
             response.sendRedirect("post-details?blog_id="+blog_id);
         } catch (FileUploadException ex) {
 
