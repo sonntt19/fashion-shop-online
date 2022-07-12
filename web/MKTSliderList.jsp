@@ -1,15 +1,26 @@
 <%-- 
-    Document   : MKTDashboard
-    Created on : Jun 23, 2022, 7:56:23 AM
-    Author     : Veetu
+    Document   : myorder
+    Created on : Jun 13, 2022, 3:35:42 PM
+    Author     : Admin
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+        <link rel="stylesheet" href="./assets/css/style.css">
+        <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
+        <%@include file="components/javascript.jsp" %>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -24,8 +35,6 @@
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
-        <script type="text/javascript" src="<%=request.getContextPath()%>/ckfinder/ckfinder.js"></script>
         <style>
             .payment-method__item-name {
                 font-size: 20px;
@@ -64,10 +73,18 @@
                 width: 10px;
                 border: 50%;
             }
+            .mtop {
+                margin-top: 6%;
+            }
+            .title-order {
+                display: flex;
+                justify-content: center;
+                color: red;
+            }
         </style>
     </head>
-    <body class="sb-nav-fixed">
-        <%@include file="components/account.jsp" %>
+    <body  class="sb-nav-fixed">
+                <%@include file="components/account.jsp" %>
         <nav class="sb-topnav navbar navbar-expand navbar-light bg-light    ">
             <!-- Navbar Brand-->
             <a class="navbar-brand me-5 ti-joomla" href="home" style="padding-left: 2%">KingsMan</a>
@@ -94,7 +111,8 @@
                 <!-- Navbar-->
                 <form class="d-flex me-5" action="list">
                     <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
-                    <button class="btn btn-outline-danger" type="submit">Search</button>
+
+                    <button class="btn btn-outline-danger" type="submit">Tìm</button>
                 </form>
 
 
@@ -126,76 +144,50 @@
                 </ul>
         </nav>
         <div id="layoutSidenav">
-            <%@include file="components/MKT-left-board.jsp" %>
             <div class="groundy" id="layoutSidenav_content">
-                <main>
-                    <div class="container rounded bg-white mt-5 mb-5">
-                        <form action="add-post" method="post" enctype="multipart/form-data" >
-                            <div class="row"  style="margin-top: 8%;">
-                                <div class="p-4">
+            <%@include file="components/MKT-left-board.jsp" %>
+        <h2 class="mtop title-order" >Danh sách Slider</h2>
+        <div class="container mtop" style="width:80%">
+            <table class="table table-striped table-bordered" id="sortTable">
+                <thead>
+                    <tr>
+                        <th>Slider_ID</th>
+                        <th>Slider_Title</th>
+                        <th>Slider_Image</th>
+                        <th>backlink</th>
+                        <th>status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach items ="${SliderList}" var="c">
+                        <tr>
+                            <td><a href="slider-detail?sliderId=${c.id}">
+                                    ${c.id}</a></td>
+                            <td>${c.slider_title}</td>
+                            
+                                <td>${c.slider_image}</td>
+                            
+                            
+                            <td>${c.backlink}</td>
+                            <td>${c.status}</td>
+                            <td>${c.updated_by}</td>
+                        </tr>
 
-                                    <h4 class="text-center">Thêm Bài Viết</h4>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="p-3 py-5">
-                                        <div class="col-md-12">Tiêu đề<input type="text" name="title" class="form-control" placeholder="Nhập tiêu đề" ></div>
-                                        <div class="col-md-12">Thông tin rút gọn<textarea class="form-control" name="brief_infor"  rows="2" ></textarea></div>
-                                        <div class="col-md-12">Nội dung
+                    </c:forEach>
 
-                                            <textarea cols="20" rows="40" id="editor" name="content"></textarea>
-
-
-                                            <script>
-                                                var editor = CKEDITOR.replace('editor');
-                                                CKFinder.setupCKEditor(editor, '<%=request.getContextPath()%>/ckfinder/');
-                                            </script>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="p-3 py-5">
-                                        <div class="row mt-16">
-                                            <div class="col-md-12">Danh mục
-                                                <select class="form-control" name="categoryId" aria-label="Default select example">
-                                                    <c:forEach items="${sessionScope.listCategoryBlog}" var="c">
-                                                        <option value="${c.categoryBlog_id}">
-                                                            ${c.categoryBlog_name}
-                                                        </option>
-                                                    </c:forEach>
-
-                                                </select>
-                                            </div>
-                                            <div class="col-md-12">Trạng thái
-                                                <br/>
-                                                <input name="status" type="radio" value="1" checked/>&nbsp;Hiện
-                                                <input name="status" type="radio" value="0" />&nbsp;Ẩn
-                                            </div>
-                                            <div class="col-md-12">Hình thu nhỏ<input type="file" name="thumbnail" class="form-control" placeholder="Thumbnail">${img}</div>
-                                            
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <div class="mt-5 p-4 text-center">
-                                    <a href="${historyUrl}"><button class="btn btn-outline-dark" type="button">Quay lại</button></a>
-                                    <input class="btn btn-danger ml-5" type="submit" value="Thêm mới">
-                                </div>
-                            </div>
-                        </form> 
-                    </div>
-                </main>
-                <!-- Footer-->
-            </div>
+                </tbody>
+            </table>
         </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <div class="mtop"></div>
+        </div>
+        </div>
+        <script>
+            $('#sortTable').DataTable();
+        </script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>
-
 

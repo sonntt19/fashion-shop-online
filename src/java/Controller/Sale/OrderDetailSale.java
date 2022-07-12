@@ -3,25 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Common;
+package Controller.Sale;
 
-import dal.UserDAO;
+import dal.OrderDao;
+import dal.OrderDetailDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.User;
+import model.Order;
+import model.OrderDetail;
 
 /**
  *
- * @author Veetu
+ * @author Admin
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/login"})
-public class LoginController extends HttpServlet {
+public class OrderDetailSale extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,6 +36,18 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        String orderId_raw = request.getParameter("orderId");
+        int orderId = Integer.parseInt(orderId_raw);
+
+        List<OrderDetail> Order_Detail = new OrderDetailDAO().getDetailAllOrder(orderId);
+        request.setAttribute("Order_Detail", Order_Detail);
+
+        List<Order> listMyOrderinDetail = new OrderDao().getAllOrderInDetail(orderId);
+        request.setAttribute("listMyOrderinDetail", listMyOrderinDetail);
+
+        session.setAttribute("historyUrl", "order-detail?orderId=" + orderId_raw);
+        request.getRequestDispatcher("SaleOrderDetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,21 +76,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        String historyUrl = (String) session.getAttribute("historyUrl");
-        
-        UserDAO dao = new UserDAO();
-        User u = dao.login(email, password);
-        if (u == null) {
-            request.setAttribute("notification", "Sai email hoặc mật khẩu");
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else {
-
-            session.setAttribute("us", u);
-            response.sendRedirect("home");
-        }
+        processRequest(request, response);
     }
 
     /**

@@ -11,22 +11,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+/**
+ *
+ * @author son22
+ */
 @Builder
 @Getter
 @Setter
 @ToString
-
-public class Feedback {
-    private int id;
-    private String fullName;
-    private int rated_star;
-    private String feedback;
-    private String image;
-    private boolean status;
-    private int product_id;
-    private int user_id;
+public class ChartStar {
     private Date date;
-    private String product_name;
-    private String email;
-    private String phone;
+    private double value;
 }

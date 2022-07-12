@@ -94,7 +94,7 @@
                 <!-- Navbar-->
                 <form class="d-flex me-5" action="list">
                     <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
-                    <button class="btn btn-outline-danger" type="submit">Search</button>
+                    <button class="btn btn-outline-danger" type="submit">Tìm</button>
                 </form>
 
 
@@ -130,62 +130,30 @@
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container rounded bg-white mt-5 mb-5">
-                        <form action="add-post" method="post" enctype="multipart/form-data" >
+                        <form action="update-post" method="post" enctype="multipart/form-data">
                             <div class="row"  style="margin-top: 8%;">
                                 <div class="p-4">
 
-                                    <h4 class="text-center">Thêm Bài Viết</h4>
+                                    <h4 class="text-center">Chỉnh sửa Slider</h4>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="p-3 py-5">
-                                        <div class="col-md-12">Tiêu đề<input type="text" name="title" class="form-control" placeholder="Nhập tiêu đề" ></div>
-                                        <div class="col-md-12">Thông tin rút gọn<textarea class="form-control" name="brief_infor"  rows="2" ></textarea></div>
-                                        <div class="col-md-12">Nội dung
-
-                                            <textarea cols="20" rows="40" id="editor" name="content"></textarea>
-
-
-                                            <script>
-                                                var editor = CKEDITOR.replace('editor');
-                                                CKFinder.setupCKEditor(editor, '<%=request.getContextPath()%>/ckfinder/');
-                                            </script>
-                                        </div>
+                                        <div class="col-md-12">Tiêu đề<input type="text" class="form-control"  name="slider_title" value="${slider.slider_title}"></div>
+                                        <div class="col-md-12">link URL<textarea class="form-control" name="slider_image"  rows="2" >${slider.slider_image}</textarea></div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="p-3 py-5">
-                                        <div class="row mt-16">
-                                            <div class="col-md-12">Danh mục
-                                                <select class="form-control" name="categoryId" aria-label="Default select example">
-                                                    <c:forEach items="${sessionScope.listCategoryBlog}" var="c">
-                                                        <option value="${c.categoryBlog_id}">
-                                                            ${c.categoryBlog_name}
-                                                        </option>
-                                                    </c:forEach>
-
-                                                </select>
-                                            </div>
-                                            <div class="col-md-12">Trạng thái
-                                                <br/>
-                                                <input name="status" type="radio" value="1" checked/>&nbsp;Hiện
-                                                <input name="status" type="radio" value="0" />&nbsp;Ẩn
-                                            </div>
-                                            <div class="col-md-12">Hình thu nhỏ<input type="file" name="thumbnail" class="form-control" placeholder="Thumbnail">${img}</div>
-                                            
-                                        </div>
-
-                                    </div>
-
-                                </div>
+                                
+                                
                                 <div class="mt-5 p-4 text-center">
-                                    <a href="${historyUrl}"><button class="btn btn-outline-dark" type="button">Quay lại</button></a>
-                                    <input class="btn btn-danger ml-5" type="submit" value="Thêm mới">
+                                    <a href="slider-list"><button class="btn btn-outline-dark" type="button">Quay lại</button></a>
+                                    <input class="btn btn-dark" type="submit" value="Lưu">
                                 </div>
                             </div>
                         </form> 
                     </div>
                 </main>
                 <!-- Footer-->
+                <%@include file="components/footer.jsp" %>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

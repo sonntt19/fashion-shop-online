@@ -54,9 +54,14 @@
                                     <li><a class="dropdown-item" href="myorder">Danh sách đơn hàng</a></li>
                                     </c:if>
                                     <c:if test="${sessionScope.us.role_Id == 2}">
-                                    <li><a class="dropdown-item" href="MKTDashboard.jsp">Quản lý tiếp thị</a></li>
+                                    <li><a class="dropdown-item" href="mkt-dashboard">Quản lý tiếp thị</a></li>
                                     </c:if>
-                                <li><a class="dropdown-item" href="list-user" type="button">Thông tin người dùng</a></li>
+                                    <c:if test="${sessionScope.us.role_Id == 3 || sessionScope.us.role_Id == 4}">
+                                    <li><a class="dropdown-item" href="sale-dashboard">Quản lý bán hàng</a></li>
+                                    </c:if>
+                                    <c:if test="${sessionScope.us.role_Id == 5}">
+                                    <li><a class="dropdown-item" href="admin-dashboard">Quản lý hệ thống</a></li>
+                                    </c:if>
 
                                 <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
                             </ul>

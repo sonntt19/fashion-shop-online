@@ -130,7 +130,7 @@
                 <main>
                     <div class="container-fluid rounded row" style="margin-top: 1% !important; margin-bottom: 1% !important">
                         <div class="col-md-1">
-                            <a href="AddBlog.jsp"><button type="button" class="btn btn-danger " style="">Thêm</button></a>
+                            <a href="#"><button type="button" class="btn btn-danger " style="">---------</button></a>
                         </div>
                         <div class="col-md-2">
                             <select class="dropdown-font-new" style="width: 100%" aria-label="Default select example" onchange="location = this.value;">
@@ -184,8 +184,8 @@
                             </select>
                         </div>
                         <div class="col-md-2 text-center">
-                            <form action="posts-list">
-                                <input type="text" name="key" value="${key}" placeholder="Tìm kiếm blog" class="filter-search__control" >
+                            <form action="feedback-list">
+                                <input type="text" name="key" value="${key}" placeholder="Tìm kiếm" class="filter-search__control" >
                                 <button type="submit" class="btn btn-outline-danger" href="#" role="button">
                                     <i style='font-size:15px' class='fas'>&#xf002;</i>
                                 </button>
@@ -196,48 +196,50 @@
                         <table class="table"  style="margin-top: 4%">
                             <thead  class="text-center">
                             <th>ID</th>
-                            <th>Hình&nbsp;thu&nbsp;nhỏ</th>
-                            <th>Tiêu&nbsp;đề</th>
-                            <th>Danh&nbsp;mục</th>
-                            <th>Tác&nbsp;giả</th>
-                            <th>Ngày&nbsp;cập&nbsp;nhật</th>
+                            <th>Ảnh đánh giá</th>
+                            <th>Tên liên hệ</th>
+                            <th>Sản phẩm</th>
+                            <th>Số sao</th>
                             <th>Trạng&nbsp;thái</th>
                             <th style="width: 12%">Tùy&nbsp;chọn&nbsp;</th>
                             </thead>
                             <tbody>
-                                <c:forEach items="${listBlogList}" var="b">
+                                <c:forEach items="${listFeedback}" var="f">
                                     <tr  class="text-center">
-                                        <th scope="row">${b.blog_id}</th>
-                                        <td><img src="${b.thumbnail}" height="100px" width="100px"/></td>
-                                        <td>${b.title}</td>
-                                        <td>
-                                            <c:forEach items="${sessionScope.listCategoryBlog}" var="c">
-                                                ${b.categoryBlog_id == c.categoryBlog_id ? c.categoryBlog_name:""}
+                                        <th scope="row">${f.id}</th>
+                                        <td><img src="${f.image}" height="140px" width="100px"/></td>
+                                        <td>${f.fullName}</td>
+                                        <td>${f.product_name}</td>
+                                        <td lass="reviews-rating">
+                                            <c:forEach var="i" begin="0" end="4">
+                                                <c:if test="${(f.rated_star - i) >= 1}">
+                                                    <div style="height:10px; width: 10px;" class="reviews-rating__star is-active"></div> 
+                                                </c:if>
+                                                <c:if test="${(f.rated_star - i) < 1 && (p.rated_star - i) > 0}">
+                                                    <div style="height:10px; width: 10px;" class="reviews-rating__star is-active is-half"></div> 
+                                                </c:if>
+                                                <c:if test="${(f.rated_star - i) <= 0}">
+                                                    <div style="height:10px; width: 10px;" class="reviews-rating__star"></div> 
+                                                </c:if>
                                             </c:forEach>
                                         </td>
-                                        <td>
-                                            <c:forEach items="${sessionScope.listAuthor}" var="a">
-                                                ${b.author_id == a.user_Id ? a.full_Name:""}
-                                            </c:forEach>
-                                        </td>
-                                        <td >${b.updated_date}</td>
-                                        <c:if test="${b.status == true}">
+                                        <c:if test="${f.status == true}">
                                             <td><img class="circle" src="images/active.png"></td>
                                             </c:if>
-                                            <c:if test="${b.status != true}">
+                                            <c:if test="${f.status != true}">
                                             <td><img class="circle" src="images/inactive.png"></td>
                                             </c:if>
                                         <td style="width: 125px">
-                                            <a class="btn btn-danger" href="post-details?blog_id=${b.blog_id}" role="button" style='font-size:10px'>
+                                            <a class="btn btn-danger" href="feedback-detail?feedbackId=${f.id}" role="button" title="Chi tiết" style='font-size:10px'>
                                                 <i style='font-size:10px' class='fas'>&#xf044;</i>
                                             </a>
-                                            <c:if test="${b.status == true}">
-                                                <a class="btn btn-dark" href="change-status?status=0&blogId=${b.blog_id}" role="button" style='font-size:10px'>
+                                            <c:if test="${f.status == true}">
+                                                <a class="btn btn-dark" href="status-feedback?status=0&feedbackId=${f.id}" role="button" title="Ẩn" style='font-size:10px'>
                                                     <i style='font-size:10px' class='fas far fa-eye-slash'>&#xf070;</i>
                                                 </a>
                                             </c:if>
-                                            <c:if test="${b.status != true}">
-                                                <a class="btn btn-dark" href="change-status?status=1&blogId=${b.blog_id}" role="button" style='font-size:10px'>
+                                            <c:if test="${f.status != true}">
+                                                <a class="btn btn-dark" href="status-feedback?status=1&feedbackId=${f.id}" role="button" title="Hiện" style='font-size:10px'>
                                                     <i style='font-size:10px' class='fas'>&#xf06e;</i>
                                                 </a>
                                             </c:if>
@@ -251,19 +253,21 @@
                         <ul class="pagination">
                             <li class="page-item">
                                 <a <c:if test="${page!=1}">                         
-                                        href="posts-list?page=${page-1}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}"
+                                        href="feedback-list?page=${page-1}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}"
                                     </c:if> class="page-link" aria-label="Previous">
                                     <span  aria-hidden="true">«</span>
                                 </a>
                             </li>
 
                             <c:forEach begin="1" end="${totalPage}" var="i">
-                                <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="posts-list?page=${i}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}">${i}</a></li>
+                                <li class="page-item ${i==page ?"active" : ""}">
+                                    <a class="page-link" href="feedback-list?page=${i}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}">${i}</a>
+                                </li>
                                 </c:forEach>
 
                             <li class="page-item">
                                 <a <c:if test="${page!=totalPage}">
-                                        href="posts-list?page=${page+1}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}"
+                                        href="feedback-list?page=${page+1}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}"
                                     </c:if> class="page-link" aria-label="Next">
                                     <span aria-hidden="true">»</span>
                                 </a>

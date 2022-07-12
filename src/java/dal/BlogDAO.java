@@ -300,28 +300,15 @@ public class BlogDAO extends DBContext {
         }
     }
 
-    public int CountDayByStartEnd(String start, String end) {
-        String sql = "SELECT DATEDIFF(day, ?, ?)";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, start);
-            st.setString(2, end);
-            ResultSet rs = st.executeQuery();
-            while (rs.next()) {
-                return rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return 0;
-    }
+    
 
 
-    public List<Chart> getChartBlog(String start, int day) {
+
+    public List<Chart> getChartBlogBar(String start, int day) {
         List<Chart> list = new ArrayList<>();
         for (int i = 0; i < day; i++) {
             int value = 0;
-            String sql = "select count(*) from Blog where updated_date < DATEADD(DAY, ?, ?)";
+            String sql = "select count(*) from Blog where updated_date = DATEADD(DAY, ?, ?) and status = 1";
             try {
                 PreparedStatement st = connection.prepareStatement(sql);
                 st.setInt(1, i);
@@ -349,6 +336,56 @@ public class BlogDAO extends DBContext {
         }
 
         return list;
+    }
+
+    public List<Chart> getChartBlogArea(String start, int day) {
+        List<Chart> list = new ArrayList<>();
+        for (int i = 0; i < day; i++) {
+            int value = 0;
+            String sql = "select count(*) from Blog where updated_date <= DATEADD(DAY, ?, ?) and status = 1";
+            try {
+                PreparedStatement st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                ResultSet rs = st.executeQuery();
+                while (rs.next()) {
+                    value = rs.getInt(1);
+                }
+                sql = "select  DATEADD(DAY, ?, ?)";
+                st = connection.prepareStatement(sql);
+                st.setInt(1, i);
+                st.setString(2, start);
+                rs = st.executeQuery();
+                while (rs.next()) {
+                    Chart c = Chart.builder()
+                            .date(rs.getDate(1))
+                            .value(value)
+                            .build();
+                    list.add(c);
+                }
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+
+        return list;
+    }
+
+    public String getUrlImageById(int id) {
+        String sql = "select thumbnail from Blog where blog_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
     }
 
 }

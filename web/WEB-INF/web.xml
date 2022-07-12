@@ -65,10 +65,6 @@
         <servlet-class>Controller.Admin.UpdateStatusUserController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>FeedbackController</servlet-name>
-        <servlet-class>Controller.Public.FeedbackController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>DeleteFeedbackController</servlet-name>
         <servlet-class>Controller.Public.DeleteFeedbackController</servlet-class>
     </servlet>
@@ -119,6 +115,46 @@
     <servlet>
         <servlet-name>MKTDashboardController</servlet-name>
         <servlet-class>Controlller.Marketing.MKTDashboardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaleDashboardController</servlet-name>
+        <servlet-class>Controller.Sale.SaleDashboardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminDashboardController</servlet-name>
+        <servlet-class>Controller.Admin.AdminDashboardController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderListSale</servlet-name>
+        <servlet-class>Controller.Sale.OrderListSale</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSuccessfullOrder</servlet-name>
+        <servlet-class>Controller.Sale.UpdateSuccessfullOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderDetailSale</servlet-name>
+        <servlet-class>Controller.Sale.OrderDetailSale</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SliderListController</servlet-name>
+        <servlet-class>Controlller.Marketing.SliderListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SliderDetailController</servlet-name>
+        <servlet-class>Controlller.Marketing.SliderDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FeedbackListController</servlet-name>
+        <servlet-class>Controlller.Marketing.FeedbackListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeStatusFeedbackController</servlet-name>
+        <servlet-class>Controlller.Marketing.ChangeStatusFeedbackController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FeedbackDetailController</servlet-name>
+        <servlet-class>Controlller.Marketing.FeedbackDetailController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -185,10 +221,6 @@
         <url-pattern>/update-status-user</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>FeedbackController</servlet-name>
-        <url-pattern>/feedback</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>DeleteFeedbackController</servlet-name>
         <url-pattern>/delete-feedback</url-pattern>
     </servlet-mapping>
@@ -239,6 +271,46 @@
     <servlet-mapping>
         <servlet-name>MKTDashboardController</servlet-name>
         <url-pattern>/mkt-dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaleDashboardController</servlet-name>
+        <url-pattern>/sale-dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminDashboardController</servlet-name>
+        <url-pattern>/admin-dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderListSale</servlet-name>
+        <url-pattern>/order-list-sale</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSuccessfullOrder</servlet-name>
+        <url-pattern>/update-successfull-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderDetailSale</servlet-name>
+        <url-pattern>/order-detail-sale</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderListController</servlet-name>
+        <url-pattern>/slider-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderDetailController</servlet-name>
+        <url-pattern>/slider-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackListController</servlet-name>
+        <url-pattern>/feedback-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeStatusFeedbackController</servlet-name>
+        <url-pattern>/status-feedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackDetailController</servlet-name>
+        <url-pattern>/feedback-detail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

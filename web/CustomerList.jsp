@@ -204,9 +204,9 @@
                             <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#addCustomerModal"><button type="button" class="btn btn-dark " style="">Thêm</button></a>
                         </div>
                         <div class="col-md-5">
-                                <div>
-                                    <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Tìm kiếm khách hàng" class="filter-search__control" >
-                                </div>
+                            <div>
+                                <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Tìm kiếm khách hàng" class="filter-search__control" >
+                            </div>
                         </div>
                     </div>
                     <div class="container rounded bg-white mt-5 mb-5">
@@ -251,8 +251,6 @@
                         </ul>
                     </nav>
                 </main>
-                <!-- Footer-->
-                <%@include file="components/footer.jsp" %>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

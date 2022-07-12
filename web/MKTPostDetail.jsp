@@ -181,15 +181,13 @@
                                 </div>
                                 
                                 <div class="mt-5 p-4 text-center">
-                                    <a href="posts-list"><button class="btn btn-outline-dark" type="button">Quay lại</button></a>
+                                    <a href="${historyUrl}"><button class="btn btn-outline-dark" type="button">Quay lại</button></a>
                                     <input class="btn btn-dark" type="submit" value="Lưu">
                                 </div>
                             </div>
                         </form> 
                     </div>
                 </main>
-                <!-- Footer-->
-                <%@include file="components/footer.jsp" %>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
