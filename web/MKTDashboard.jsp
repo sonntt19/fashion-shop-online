@@ -114,13 +114,6 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="card mb-4">
-<<<<<<< HEAD
-                                    <a class="card-header mb-4 nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseThongkebaidang" aria-expanded="false" aria-controls="collapseThongkebaidang">
-                                        <i class="fas fa-chart-area me-1"></i>
-                                        Thống kê bài đăng
-                                    </a>
-                                    <div id="collapseThongkebaidang" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting" class="collapse card-body"><canvas id="myBarChart" width="100%" height="40"></canvas>  </div>
-=======
                                     <div class="card-header mb-4 nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseThongkebaidang" aria-expanded="false" aria-controls="collapseThongkebaidang">
                                         <i class="fas fa-chart-area me-1"></i>
                                         Thống kê bài đăng
@@ -128,7 +121,6 @@
                                     <div id="collapseThongkebaidang" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting" class="collapse card-body">
                                         <div class="row">
                                             <div class="col-xl-6">
-                                                <p class="mt-3">Số bài đăng mới</p>
 
                                                 <div class="card-body"><canvas id="myBarChart-1" width="100%" height="40"></canvas></div>
                                             </div>
@@ -138,7 +130,6 @@
                                         </div>
                                     </div>
 
->>>>>>> 55498d3f8430518b0a1c183b7daa465db25672f8
                                 </div>
                             </div>
                             <div class="col-xl-12">

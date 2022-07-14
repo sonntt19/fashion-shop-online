@@ -5,7 +5,7 @@
  */
 package Controlller.Marketing;
 
-import dal.BlogDAO;
+import dal.SliderDAO;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -29,9 +29,9 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
- * @author son22
+ * @author Admin
  */
-public class UpdatePostController extends HttpServlet {
+public class UpdateSlider extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,12 +45,17 @@ public class UpdatePostController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String content = request.getParameter("content");
-            request.setAttribute("content", content);
-            request.getRequestDispatcher("rs-post-detail.jsp").forward(request, response);
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet UpdateSlider</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet UpdateSlider at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -83,12 +88,9 @@ public class UpdatePostController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
-        BlogDAO bd = new BlogDAO();
-        HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("us");
-           
-        String url_thumbnail = "images/blog/";
+
+        SliderDAO sd = new SliderDAO();
+        String url_thumbnail = "images/slider/";
 
         // Create a factory for disk-based file items
         DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -117,12 +119,12 @@ public class UpdatePostController extends HttpServlet {
                 } else {
                     String filename = item.getName();
                     if (filename == null || filename.equals("")) {
-                        String url_old = bd.getUrlImageById(Integer.parseInt(fields.get("blogId")));
+                        String url_old = sd.getUrlImageById(Integer.parseInt(fields.get("slider_id")));
                         url_thumbnail = url_old;
                         break;
                     } else {
                         Path path = Paths.get(filename);
-                        String storePath = servletContext.getRealPath("../../web/images/blog");
+                        String storePath = servletContext.getRealPath("../../web/images/slider");
                         File uploadFile = new File(storePath + "/" + path.getFileName());
                         item.write(uploadFile);
                         url_thumbnail += filename;
@@ -130,19 +132,16 @@ public class UpdatePostController extends HttpServlet {
 
                 }
             }
-            
-            int blog_id = Integer.parseInt(fields.get("blogId"));
-            String title = fields.get("title");
-            int user_id = u.getUser_Id();
-            String content = fields.get("content");
-            String brief_infor = fields.get("brief_infor");
-            int category_id = Integer.parseInt(fields.get("categoryId"));
-            int status = Integer.parseInt(fields.get("status"));
 
-            
-            bd.UpdateBlogById(title, user_id, content, brief_infor, category_id, status, url_thumbnail, blog_id);
-            TimeUnit.SECONDS.sleep(1);
-            response.sendRedirect("post-details?blog_id="+blog_id);
+            int slider_id = Integer.parseInt(fields.get("slider_id"));
+            String slider_title = fields.get("slider_title");
+            String backlink = fields.get("backlink");
+            ;
+
+            sd.UpdateSliderById(slider_id, slider_title, backlink, url_thumbnail);
+            TimeUnit.SECONDS.sleep(2);
+            response.sendRedirect("slider-detail?sliderId=" + slider_id);
+
         } catch (FileUploadException ex) {
 
         } catch (Exception ex) {

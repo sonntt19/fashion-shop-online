@@ -97,8 +97,8 @@
                             </td>
                         </tr>
                     </table>
-                    <br/>
-                    <a class="buy-now btn btn-danger" style="width: 5%; margin-left: 20%;margin-top:2% " href="marketingproductlist">Quay lại</a>
+                    <br/><br/>
+                    <a class="buy-now btn btn-danger" style="width: 7%; margin-left: 20%;margin-top:2% " href="marketingproductlist">Quay lại</a>
                     <button type="submit" class="btn btn-primary" style="width: 100px; margin-left: 75%">Thêm</button>
                 </form>
             </div>

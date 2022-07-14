@@ -34,13 +34,12 @@ public class SliderDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        
+
         int sliderId = Integer.parseInt(request.getParameter("sliderId"));
         
 
-        List<Slider> Slider_Detail = new SliderDAO().GetSliderDetailbyID(sliderId);
-        request.setAttribute("slider", Slider_Detail);
+        Slider Slider_Detail = new SliderDAO().GetSliderDetailbyID(sliderId);
+        request.setAttribute("Slider_Detail", Slider_Detail);
         
         
         

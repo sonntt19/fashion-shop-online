@@ -145,6 +145,23 @@
         <servlet-class>Controlller.Marketing.SliderDetailController</servlet-class>
     </servlet>
     <servlet>
+
+        <servlet-name>UpdateFalseSlider</servlet-name>
+        <servlet-class>Controlller.Marketing.UpdateFalseSlider</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateTrueSlider</servlet-name>
+        <servlet-class>Controlller.Marketing.UpdateTrueSlider</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSlider</servlet-name>
+        <servlet-class>Controlller.Marketing.UpdateSlider</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSliderController</servlet-name>
+        <servlet-class>Controlller.Marketing.AddSliderController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>FeedbackListController</servlet-name>
         <servlet-class>Controlller.Marketing.FeedbackListController</servlet-class>
     </servlet>
@@ -299,6 +316,23 @@
     <servlet-mapping>
         <servlet-name>SliderDetailController</servlet-name>
         <url-pattern>/slider-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+
+        <servlet-name>UpdateFalseSlider</servlet-name>
+        <url-pattern>/update-false-slider</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateTrueSlider</servlet-name>
+        <url-pattern>/update-true-slider</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSlider</servlet-name>
+        <url-pattern>/update-slider</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSliderController</servlet-name>
+        <url-pattern>/add-slider</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FeedbackListController</servlet-name>

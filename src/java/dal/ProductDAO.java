@@ -22,9 +22,9 @@ import model.Product;
  */
 public class ProductDAO extends DBContext {
 
-    public int getTotalProduct(String searchKey, String categoryId) {
+    public int getTotalProduct(String searchKey, String categoryId, String status) {
         String sql = "Select count(product_id) from Product "
-                + "where category_id " + categoryId + " and product_name like N'%" + searchKey + "%'\n";
+                + "where category_id " + categoryId + " and status "+status+" and product_name like N'%" + searchKey + "%'\n";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();

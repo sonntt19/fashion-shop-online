@@ -98,7 +98,7 @@
                         </tr>
                     </table>
                     <br/>
-                    <a class="buy-now btn btn-danger" style="width: 5%; margin-left: 20%;margin-top:2% " href="marketingproductlist">Quay lại</a>
+                    <a class="buy-now btn btn-danger" style="width: 7%; margin-left: 20%;margin-top:2% " href="marketingproductlist">Quay lại</a>
                     <button type="submit" class=" btn btn-primary" style="width: 5%; margin-left: 75%;">Cập nhật</button>
                 </form>
             </div>

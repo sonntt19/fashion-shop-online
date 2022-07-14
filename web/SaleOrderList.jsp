@@ -34,8 +34,8 @@
         <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
         <style>
-            
-.payment-method__item-name {
+
+            .payment-method__item-name {
                 font-size: 20px;
                 padding-left: 20px;
             }
@@ -86,8 +86,8 @@
             .sb-nav-fixed #layoutSidenav #layoutSidenav_content{
                 justify-content: center;
             }
-            
-            
+
+
         </style>
     </head>
     <body>
@@ -150,10 +150,10 @@
                 </ul>
         </nav>
 
-<div id="layoutSidenav">
-    <%@include file="components/sale-left-dashboard.jsp" %>
+        <div id="layoutSidenav">
+            <%@include file="components/sale-left-dashboard.jsp" %>
             <div class="groundy" id="layoutSidenav_content">
-                
+
                 <h2 class="mtop title-order" >Danh sách các đơn hàng</h2>
                 <div class="container mtop" style="width:100%">
                     <table class="table table-striped table-bordered tbborder" id="sortTable">
@@ -198,7 +198,7 @@
                     </table>
                 </div>
             </div>
-</div>
+        </div>
         <div class = "mtop"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>

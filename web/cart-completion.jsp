@@ -83,7 +83,7 @@
                         <img style="max-width: 100%; padding-bottom: 2%" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/286431165_5346772748677057_8465141157597209564_n.png?stp=dst-png_p403x403&_nc_cat=110&ccb=1-7&_nc_sid=aee45a&_nc_ohc=HtbhjfDGQ84AX-VGNgC&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVK61GyRh3fm-ZEsm-UlFUxUAPOHD7ycoH9W3rJxdM2Vfw&oe=62D0CFBF"><br><br>
                         <img style="max-width: 100%; padding-bottom: 2%" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/282166213_1892366127641016_5614138133000995956_n.png?stp=dst-png_p403x403&_nc_cat=107&ccb=1-7&_nc_sid=aee45a&_nc_ohc=NllW7QYjFcIAX8jG0lU&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVLE2o5FQ6RwO4Oc1Bd_O2FGLx77nPMAe2sH2rYHoVmTHw&oe=62CF9064">
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                         <video style="max-width: 100%;" src="https://sandbox.vnpayment.vn/apis/assets/images/Gioi-thieu-CTT-VNPAY.mp4" controls></video>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-dark" data-dismiss="modal">Đóng</button>
                     </div>
                 </div>
             </div>

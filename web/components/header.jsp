@@ -29,14 +29,14 @@
                         <a class="nav-link" href="blog">Blog</a>
                     </li>
                     <li class="nav-item me-4">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a class="nav-link" href="#">Liên hệ</a>
                     </li>
 
 
                 </ul>
                 <form class="d-flex me-5" action="list">
                     <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
-                    <button class="btn btn-outline-danger" type="submit">Search</button>
+                    <button class="btn btn-outline-danger" type="submit">Tìm</button>
                 </form>
 
 
