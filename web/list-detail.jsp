@@ -84,8 +84,8 @@
                         <p class="lead">${product.brief_infor}</p>
                         <p class="lead">${product.desciption}</p>
 
-                        <!-- Colder Product Detail-->
-                        <!--                        <div class="pd-color">
+                         Colder Product Detail
+                                                <div class="pd-color">
                                                     <h6>Color</h6>
                                                     <div class="pd-color-choose">
                                                         <div class="cc-item">
@@ -101,10 +101,10 @@
                                                             <label for="cc-violet" class="cc-violet"></label>
                                                         </div>
                                                     </div>
-                                                </div>-->
+                                                </div>
 
-                        <!-- Size Product Detail-->
-                        <!--                        <div class="pd-size-choose">
+                         Size Product Detail
+                                                <div class="pd-size-choose">
                                                             <div class="sc-item">
                                                                 <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="S">
                                                                 <label for="sm-size">s</label>
@@ -121,7 +121,7 @@
                                                                 <input type="radio" id="xl-size">
                                                                 <label for="xl-size">xs</label>
                                                             </div>
-                                                        </div>-->
+                                                        </div>
 
 
 
@@ -129,7 +129,7 @@
                             <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                             <a class="btn btn-outline-dark flex-shrink-0" type="button" href="cart?productId=${product.id}">
                                 <i class="bi-cart-fill me-1"></i>
-                                Add to cart
+                                Thêm vào giỏ hàng
                             </a>
                         </div>
                     </div>
@@ -165,7 +165,7 @@
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Xem chi tiết</a></div>
                                 </div>
                             </div>
 

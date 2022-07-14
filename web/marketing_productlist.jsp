@@ -201,6 +201,7 @@
                                                         <input class="" name="status" type="radio" value="True" required/>&nbsp; Hiện
                                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                                         <input class="" name="status" type="radio" value="False" required/>&nbsp; Ẩn
+                                                        <input type="reset"
                                                     </div>
                                                 </div>
                                                 <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 180px;padding-left: 180px; border-radius: 100px;">Thêm</button></center><br><br>
@@ -214,9 +215,9 @@
                 </div> 
                 <main>
                     <div style="margin: 2% 2% 2% 2%;  ">
-                        <h2 class="marketing_productlist_displayinline" style="text-align: left";>Products List </h2> &nbsp;&nbsp;
+                        <h2 class="marketing_productlist_displayinline" style="text-align: left";>Danh sách sản phẩm </h2> &nbsp;&nbsp;
                         <h5 class="marketing_productlist_displayinline"><a href="add_product.jsp" type="button" style="background-color: whitesmoke; border-radius: 5px; border-color: ghostwhite">Thêm sản phẩm mới</a></h5>
-                        <h6 style="margin-top: 1%; margin-bottom: 1%">All(${total}) | <span style="color: blue">Published(${PublishedProduct})</span></h6>
+                        <h6 style="margin-top: 1%; margin-bottom: 1%">Tất cả(${total}) | <span style="color: blue">Công khai(${PublishedProduct})</span></h6>
                         <div class="row">
                             <div class="col-md-4">
                                 <form class="input-search" action="marketingproductlist">
@@ -230,11 +231,11 @@
                             </div>
                             <div class="col-md-2">
                                 <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;">
-                                    <option value="marketingproductlist?${historyKey}${historyValue}${historyType}" ${categoryId == 0 ? "Selected" : ""}>
+                                    <option value="marketingproductlist?${historyKey}${historyValue}${historyType}${historyStatus}" ${categoryId == 0 ? "Selected" : ""}>
                                         Tất Cả
                                     </option>
                                     <c:forEach items="${sessionScope.listCategories}" var="c">
-                                        <option value="marketingproductlist?${historyKey}&categoryId=${c.id}${historyValue}${historyType}" ${categoryId == c.id ? "Selected" : ""}>
+                                        <option value="marketingproductlist?${historyKey}&categoryId=${c.id}${historyValue}${historyType}${historyStatus}" ${categoryId == c.id ? "Selected" : ""}>
                                             ${c.name}
                                         </option>
                                     </c:forEach>
@@ -255,16 +256,16 @@
                             </div>     
                             <div class="col-md-2">
                                 <select class="dropdown-font-new" aria-label="Default select example" onchange="location = this.value;">
-                                    <option value="marketingproductlist?${historyKey}${historyCategoryId}&type=desc" ${type eq "desc" ? "Selected" : ""}>
+                                    <option value="marketingproductlist?${historyKey}${historyCategoryId}${historyStatus}&type=desc" ${type eq "desc" ? "Selected" : ""}>
                                         Mới Nhất
                                     </option>
-                                    <option value="marketingproductlist?${historyKey}${historyCategoryId}" ${type == null ? "Selected" : ""}>
+                                    <option value="marketingproductlist?${historyKey}${historyCategoryId}${historyStatus}" ${type == null ? "Selected" : ""}>
                                         Cũ Nhất
                                     </option> 
-                                    <option value="marketingproductlist?${historyKey}${historyCategoryId}&value=original_prices" ${value eq "original_prices" ? "Selected" : ""}>
+                                    <option value="marketingproductlist?${historyKey}${historyCategoryId}${historyStatus}&value=original_prices" ${value eq "original_prices" ? "Selected" : ""}>
                                         Giá tăng dần
                                     </option>
-                                    <option value="marketingproductlist?${historyKey}${historyCategoryId}&value=original_prices&type=desc" ${value eq "original_prices" && type eq "desc" ? "Selected" : ""}>
+                                    <option value="marketingproductlist?${historyKey}${historyCategoryId}${historyStatus}&value=original_prices&type=desc" ${value eq "original_prices" && type eq "desc" ? "Selected" : ""}>
                                         Giá giảm dần
                                     </option> 
                                 </select>
@@ -317,19 +318,19 @@
                         <ul class="pagination">
                             <li class="page-item">
                                 <a <c:if test="${page!=1}">                         
-                                        href="marketingproductlist?page=${page-1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
+                                        href="marketingproductlist?page=${page-1}${historyKey}${historyCategoryId}${historyValue}${historyType}${historyStatus}"
                                     </c:if> class="page-link" aria-label="Previous">
                                     <span  aria-hidden="true">«</span>
                                 </a>
                             </li>
 
                             <c:forEach begin="1" end="${totalPage}" var="i">
-                                <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="marketingproductlist?page=${i}${historyKey}${historyCategoryId}${historyValue}${historyType}">${i}</a></li>
+                                <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="marketingproductlist?page=${i}${historyStatus}${historyKey}${historyCategoryId}${historyValue}${historyType}">${i}</a></li>
                                 </c:forEach>
 
                             <li class="page-item">
                                 <a <c:if test="${page!=totalPage}">
-                                        href="marketingproductlist?page=${page+1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
+                                        href="marketingproductlist?page=${page+1}${historyKey}${historyCategoryId}${historyValue}${historyType}${historyStatus}"
                                     </c:if> class="page-link" aria-label="Next">
                                     <span aria-hidden="true">»</span>
                                 </a>
