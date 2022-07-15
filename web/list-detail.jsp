@@ -23,6 +23,104 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="do/css/styles.css" rel="stylesheet" />
         <style>
+            [type="checkbox"]:checked,
+            [type="checkbox"]:not(:checked),
+            [type="radio"]:checked,
+            [type="radio"]:not(:checked){
+                position: absolute;
+                left: -9999px;
+                width: 0;
+                height: 0;
+                visibility: hidden;
+            }
+
+
+
+            .checkbox-size:checked + label,
+            .checkbox-size:not(:checked) + label{
+                position: relative;
+                display: inline-block;
+                padding: 1%;
+                width: 10%;
+                font-size: 14px;
+                margin-left: 5px;
+                margin-right: 5px;
+                margin-bottom: 10px;
+                text-align: center;
+                border-radius: 4px;
+                cursor: pointer;
+                color: white;
+                -webkit-transition: all 300ms linear;
+                transition: all 300ms linear; 
+            }
+            .checkbox-size:not(:checked) + label{
+                background-color: white;
+                border: 1px solid black;
+                color: black;
+            }
+
+            .checkbox-size:not(:checked) + label:hover{
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            }
+            .checkbox-size:checked + label::before,
+            .checkbox-size:not(:checked) + label::before{
+                position: absolute;
+                content: '';
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 4px;
+                background-color: black;
+                z-index: -1;
+            }
+            
+            [type="checkbox"]:checked,
+            [type="checkbox"]:not(:checked),
+            [type="radio"]:checked,
+            [type="radio"]:not(:checked){
+                position: absolute;
+                left: -9999px;
+                width: 0;
+                height: 0;
+                visibility: hidden;
+            }
+            .checkbox-color:checked + label,
+            .checkbox-color:not(:checked) + label{
+                position: relative;
+                display: inline-block;
+                padding: 4%;
+                width: 4%;
+                font-size: 14px;
+                text-align: center;
+                border-radius: 50%;
+                cursor: pointer;
+                color: black;
+                border: 3px solid black;
+                -webkit-transition: all 300ms linear;
+                transition: all 300ms linear; 
+            }
+            .checkbox-color:not(:checked) + label{
+                border: 3px solid white;
+                border-radius: 50%;
+            }
+
+            .checkbox-color:not(:checked) + label:hover{
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            }
+            .checkbox-color:checked + label::before,
+            .checkbox-color:not(:checked) + label::before{
+                position: absolute;
+                content: '';
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                background-color: black;
+                z-index: -1;
+            }
+
             .marketing_feedback_margin{
                 margin-left: 5%;
                 margin-right: 5%
@@ -39,6 +137,40 @@
                 margin-top: 6px;
                 margin-bottom: 16px;
                 resize: vertical;
+            }
+
+
+            .countProduct{
+                position: absolute;
+                display: flex;
+                border: 1px solid black;
+                border-radius: 45px;
+            }
+            input[type="number"]{
+                text-align: center;
+                font-size: 20px;
+                border: none;
+                color: #202030;
+            }
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button{
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            button{
+                color: black;
+                background-color: #ffffff;
+                border: none;
+                font-size: 20px;
+                cursor: pointer;
+            }
+            #decrement{
+                padding: 5px 0px 5px 15px;
+                border-radius: 45px 0 0 45px;
+            }
+            #increment{
+                padding: 5px 15px 5px 0px;
+                border-radius: 0 45px 45px 0;
             }
         </style>
         <%@include file="components/javascript.jsp" %>
@@ -65,74 +197,89 @@
 
                         <div class="fs-5 mb-4">
                             <c:if test="${product.sale_price == 0 || product.sale_price == null}">
-                            <div style="margin-bottom: 1.7%">
-                                Giá gốc: 
-                                <span >${product.original_price}đ</span>
-                            </div>
+                                <div style="margin-bottom: 1.7%">
+                                    Giá gốc: 
+                                    <span >${product.original_price}đ</span>
+                                </div>
                             </c:if>
                             <c:if test="${product.sale_price != 0}">
-                            <div style="margin-bottom: 1.7%">
-                                Giá gốc: 
-                                <span class="text-decoration-line-through">${product.original_price}đ</span>
-                            </div>
-                            <div>
-                                Giảm giá:
-                                <span>${product.sale_price}đ</span>
-                            </div>
+                                <div style="margin-bottom: 1.7%">
+                                    Giá gốc: 
+                                    <span class="text-decoration-line-through">${product.original_price}đ</span>
+                                </div>
+                                <div>
+                                    Giảm giá:
+                                    <span>${product.sale_price}đ</span>
+                                </div>
                             </c:if>
                         </div>
-                        <p class="lead">${product.brief_infor}</p>
-                        <p class="lead">${product.desciption}</p>
+                        <div class="pd-color">
+                            <h6>Màu sắc: </h6>
+                            <div class="row">
+                                <div class="col-12 pb-5">
+                                    <input class="checkbox-color" type="radio" name="color" id="color-1" >
+                                    <label class="for-checkbox-color" for="color-1" style="background-color: black"></label>
+                                    
+                                    <input class="checkbox-color" type="radio" name="color" id="color-2">
+                                    <label class="for-checkbox-color" for="color-2" style="background-color: blue"></label>
+                                    
+                                    <input class="checkbox-color" type="radio" name="color" id="color-3">
+                                    <label class="for-checkbox-color" for="color-3" style="background-color: red"></label>
+                                    
+                                    <input class="checkbox-color" type="radio" name="color" id="color-4">
+                                    <label class="for-checkbox-color" for="color-4" style="background-color: yellow"></label>
+                                    
+                                    <input class="checkbox-color" type="radio" name="color" id="color-5">
+                                    <label class="for-checkbox-color" for="color-5" style="background-color: green"></label>
+                                    
+                                    <input class="checkbox-color" type="radio" name="color" id="color-6">
+                                    <label class="for-checkbox-color" for="color-6" style="background-color: purple"></label>
+                                    
+                                </div>
+                            </div>
+                        </div>
 
-                         Colder Product Detail
-                                                <div class="pd-color">
-                                                    <h6>Color</h6>
-                                                    <div class="pd-color-choose">
-                                                        <div class="cc-item">
-                                                            <input type="radio" id="cc-black">
-                                                            <label for="cc-black"></label>
-                                                        </div>
-                                                        <div class="cc-item">
-                                                            <input type="radio" id="cc-yellow">
-                                                            <label for="cc-yellow" class="cc-yellow"></label>
-                                                        </div>
-                                                        <div class="cc-item">
-                                                            <input type="radio" id="cc-violet">
-                                                            <label for="cc-violet" class="cc-violet"></label>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                        <h6>Kích thước Áo/Quần....:  </h6>
+                        <div class="row">
+                            <div class="col-12 pb-5">
+                                <input class="checkbox-size" type="radio" name="size" id="size-1">
+                                <label class="for-checkbox-size" for="size-1">S</label>
+                                
+                                <input class="checkbox-size" type="radio" name="size" id="size-2">
+                                <label class="for-checkbox-size" for="size-2">M</label>
+                                
+                                <input class="checkbox-size" type="radio" name="size" id="size-3">
+                                <label class="for-checkbox-size" for="size-3">L</label>
+                                
+                                <input class="checkbox-size" type="radio" name="size" id="size-4">
+                                <label class="for-checkbox-size" for="size-4">XL</label>
+                                
+                                <input class="checkbox-size" type="radio" name="size" id="size-5">
+                                <label class="for-checkbox-size" for="size-5">2XL</label>
+                                
+                                <input class="checkbox-size" type="radio" name="size" id="tsize-6">
+                                <label class="for-checkbox-size" for="size-6">3XL</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" value="1" max="484" min="1" style="max-width: 5rem" />
+                            <div class="countProduct col-lg-3" style="margin-left: 3%">
+                                <button id="decrement" onclick="stepper(this)"><b>-</b></button>
+                                <input type="number" min="1" max="100" step="1" value="1" id="my-input" readonly>
+                                <button id="increment" onclick="stepper(this)"><b>+</b></button>
+                            </div>
+                            <div class="col-lg-6">
+                                <a class="btn btn-outline-dark" type="button" style="font-size: 20px" href="cart?productId=${product.id}">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Thêm vào giỏ hàng
+                                </a></div>
 
-                         Size Product Detail
-                                                <div class="pd-size-choose">
-                                                            <div class="sc-item">
-                                                                <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="S">
-                                                                <label for="sm-size">s</label>
-                                                            </div>
-                                                            <div class="sc-item">
-                                                                <input type="radio" id="md-size">
-                                                                <label for="md-size">m</label>
-                                                            </div>
-                                                            <div class="sc-item">
-                                                                <input type="radio" id="lg-size">
-                                                                <label for="lg-size">l</label>
-                                                            </div>
-                                                            <div class="sc-item">
-                                                                <input type="radio" id="xl-size">
-                                                                <label for="xl-size">xs</label>
-                                                            </div>
-                                                        </div>
-
-
-
-                        <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <a class="btn btn-outline-dark flex-shrink-0" type="button" href="cart?productId=${product.id}">
-                                <i class="bi-cart-fill me-1"></i>
-                                Thêm vào giỏ hàng
-                            </a>
                         </div>
                     </div>
+                </div>
+                <div class="row gx-4 gx-lg-5 align-items-center" style="padding-top: 10%">
+                    <p class="lead">${product.brief_infor}</p>
+                    <p class="lead">${product.desciption}</p>
                 </div>
             </div>
         </section>
@@ -275,5 +422,21 @@
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
             <!-- Core theme JS-->
             <script src="do/js/scripts.js"></script>
+            <script>
+                                    const myInput = document.getElementById("my-input");
+                                    function stepper(btn) {
+                                        let id = btn.getAttribute("id");
+                                        let min = myInput.getAttribute("min");
+                                        let max = myInput.getAttribute("max");
+                                        let step = myInput.getAttribute("step");
+                                        let val = myInput.getAttribute("value");
+                                        let calcStep = (id == "increment") ? (step * 1) : (step * -1);
+                                        let newValue = parseInt(val) + calcStep;
+
+                                        if (newValue >= min && newValue <= max) {
+                                            myInput.setAttribute("value", newValue);
+                                        }
+                                    }
+            </script>
     </body>
 </html>
