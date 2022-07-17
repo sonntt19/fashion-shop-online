@@ -102,7 +102,6 @@
                                     <input class="" type="date" id="start" name="start" value="${start}">
                                     Đến: 
                                     <input type="date" id="end" name="end" value="${end}">
-                                    <input type="hidden" name="salerId" value="${salerId}"/>
                                     <input class="ml-4 btn btn-danger" type="submit" value="Thống kê"/>
                                 </form>
                             </div>
