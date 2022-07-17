@@ -30,8 +30,6 @@
         <%@include file="components/account.jsp" %>
         <!-- Page header with logo and tagline-->
         <!--Slider-->
-
-
         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" >
                 <div class="carousel-indicators">
@@ -121,10 +119,10 @@
                 <nav aria-label="..." class="pagination">
                     <ul class="pagination">
                         <li class="page-item">
-                            <a <c:if test="${page!=1}">                         
+                            <a <c:if  test="${page!=1}">                         
                                     href="blog?page=${page-1}${historyKey}${historyCategoryId}${historyValue}${historyType}"
                                 </c:if> class="page-link" aria-label="Previous">
-                                <span  aria-hidden="true">«</span>
+                                <span  aria-hidden="true" >«</span>
                             </a>
                         </li>
 
