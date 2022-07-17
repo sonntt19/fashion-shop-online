@@ -47,15 +47,19 @@ public class FeedbackController extends HttpServlet {
             User u = (User) session.getAttribute("us");
             int product_id = Integer.parseInt(request.getParameter("productId"));
             String subject = request.getParameter("subject");
-            String image = "images/feedback/"+request.getParameter("imageurl");
-            int star = Integer.parseInt(request.getParameter("star"));
-
-            FeedbackDAO fed = new FeedbackDAO();
-
-            fed.addNewFeedback(u.getFull_Name(), star, subject, image, 1, product_id, u.getUser_Id());
+            String image = "images/feedback/" + request.getParameter("imageurl");
+            String star = request.getParameter("star");
             String historyUrl = (String) session.getAttribute("historyUrl");
+            if (subject.equalsIgnoreCase("") ||subject == null || star == null || star.equalsIgnoreCase("")) {
+                request.setAttribute("notification", "KingsMan cần nhận xét và đánh giá của bạn");
+                 response.sendRedirect(historyUrl);
+            } else {
+                FeedbackDAO fed = new FeedbackDAO();
 
-            response.sendRedirect(historyUrl);
+                fed.addNewFeedback(u.getFull_Name(), Integer.parseInt(star), subject, image, 1, product_id, u.getUser_Id());
+                
+                response.sendRedirect(historyUrl);
+            }
 
         }
     }
