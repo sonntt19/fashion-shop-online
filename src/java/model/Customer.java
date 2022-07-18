@@ -25,4 +25,5 @@ public class Customer {
     private String customer_email;
     private String customer_mobile;
     private Date updated_date;
+    private boolean status;
 }

@@ -5,22 +5,30 @@
  */
 package Controlller.Marketing;
 
-import dal.CategoryDAO;
 import dal.ProductDAO;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Category;
-import model.Product;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 /**
  *
- * @author GanKPoet
+ * @author son22
  */
 public class UpdateProductController extends HttpServlet {
 
@@ -35,21 +43,6 @@ public class UpdateProductController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String id = request.getParameter("product_id");
-            CategoryDAO c = new CategoryDAO();
-            ProductDAO pd = new ProductDAO();
-            HttpSession session = request.getSession();
-            Product p = pd.getProductById(Integer.parseInt(id));
-            List<Category> l = c.getAllCategory();
-            session.setAttribute("listCategories", l);
-            request.setAttribute("product", p);
-           request.getRequestDispatcher("update_product.jsp").forward(request, response);
-            
-        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -81,34 +74,71 @@ public class UpdateProductController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        ProductDAO p = new ProductDAO();
-        HttpSession session = request.getSession();
+        
+        ProductDAO pd = new ProductDAO();
+           
+        String url_thumbnail = "images/product/";
 
-        int id = Integer.parseInt(request.getParameter("id"));
-        Product pd = p.getProductById(id);
+        // Create a factory for disk-based file items
+        DiskFileItemFactory factory = new DiskFileItemFactory();
 
-        String name = request.getParameter("name");
-        String desciption = request.getParameter("desciption");
-        String brief_infor = request.getParameter("brief_infor");
-        boolean status = Boolean.parseBoolean(request.getParameter("status"));
-        int quantity = Integer.parseInt(request.getParameter("quantity"));
-        int original_price = Integer.parseInt(request.getParameter("original_price"));
-        int sale_price = Integer.parseInt(request.getParameter("sale_price"));
-        String image_raw = request.getParameter("image");
-        String imageUrl;
-        if (image_raw != null && !image_raw.equalsIgnoreCase("")) {
-            imageUrl = "images/product/" + image_raw;
-        } else {
-            imageUrl = pd.getImage();
+// Configure a repository (to ensure a secure temp location is used)
+        ServletContext servletContext = this.getServletConfig().getServletContext();
+        File repository = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+        factory.setRepository(repository);
+
+// Create a new file upload handler
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        upload.setHeaderEncoding("UTF-8");
+
+        try {
+            // Parse the request
+            List<FileItem> items = upload.parseRequest(request);
+            // Process the uploaded items
+            Iterator<FileItem> iter = items.iterator();
+            HashMap<String, String> fields = new HashMap<>();
+            while (iter.hasNext()) {
+                FileItem item = iter.next();
+
+                if (item.isFormField()) {
+                    fields.put(item.getFieldName(), item.getString("UTF-8"));
+
+                } else {
+                    String filename = item.getName();
+                    if (filename == null || filename.equals("")) {
+                        String url_old = pd.getUrlImageById(Integer.parseInt(fields.get("productId")));
+                        url_thumbnail = url_old;
+                        break;
+                    } else {
+                        Path path = Paths.get(filename);
+                        String storePath = servletContext.getRealPath("../../web/images/product");
+                        File uploadFile = new File(storePath + "/" + path.getFileName());
+                        item.write(uploadFile);
+                        url_thumbnail += filename;
+                    }
+
+                }
+            }
+            
+            int product_id = Integer.parseInt(fields.get("productId"));
+            String name = fields.get("name");
+            String brief_infor = fields.get("brief_infor");
+            String desciption = fields.get("desciption");
+            int original_price = Integer.parseInt(fields.get("original_price"));
+            int sale_price = Integer.parseInt(fields.get("sale_price"));
+            int quantity = Integer.parseInt(fields.get("quantity"));
+            int categoryId = Integer.parseInt(fields.get("categoryId"));
+            int status = Integer.parseInt(fields.get("status"));
+
+            
+            pd.UpdateProduct(product_id, name, desciption, brief_infor, quantity, status, original_price, sale_price, categoryId,url_thumbnail);
+            TimeUnit.SECONDS.sleep(1);
+            response.sendRedirect("product-detail?product_id="+product_id);
+        } catch (FileUploadException ex) {
+
+        } catch (Exception ex) {
+
         }
-
-        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-
-        p.UpdateProduct(id, name, desciption, brief_infor, quantity, status, original_price, sale_price, categoryId);
-        p.UpdateImageProduct(id, imageUrl);
-        pd = p.getProductById(id);
-        request.setAttribute("product", pd);
-        request.getRequestDispatcher("update_product.jsp").forward(request, response);
     }
 
     /**

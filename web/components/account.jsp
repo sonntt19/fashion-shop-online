@@ -111,7 +111,7 @@
                             <c:if test="${sessionScope.us.avatar != null && sessionScope.us.avatar ne ''}">
                                 <div class="col-md-4">
                                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                                        <img class="rounded-circle mt-5" width="150px" src="${sessionScope.us.avatar}">
+                                        <img class="rounded-circle mt-5" width="150px" height="150px" src="${sessionScope.us.avatar}">
                                         <span class="font-weight-bold">${sessionScope.us.full_Name}</span><span class="text-black-50">${sessionScope.us.email}</span>
                                     </div>
                                 </div>
@@ -127,20 +127,21 @@
 
                             <div class="col-md-8">
                                 <div class="p-3 py-5">
-                                    <form action="edit" method="POST">
+                                    <form action="edit"  method="post" enctype="multipart/form-data">
                                         <div class="row mt-4">
                                             <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Họ và tên</label><input type="text" class="form-control" name="fullName" placeholder="Họ và tên" value="${sessionScope.us.full_Name}"></div>&nbsp;
                                             <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Số điện thoại</label><input type="text" class="form-control" name="mobile" placeholder="Mobile" value="${sessionScope.us.mobile}"></div>&nbsp;
                                             <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Địa chỉ</label><input type="text" class="form-control" name="address" placeholder="Địa chỉ" value="${sessionScope.us.address}"></div>&nbsp;
                                             <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Email</label><input type="text" class="form-control" name="email" placeholder="Email" value="${sessionScope.us.email}" readonly></div>&nbsp;
-                                            <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Ảnh đại diện</label><input type="text" class="form-control" name="avatar" placeholder="Ảnh đại diện" value="${sessionScope.us.avatar}"></div>&nbsp;
+                                            <div class="row mt-4 col-md-6"><label class="labels" style="font-size: 10px;">Ảnh đại diện</label><input type="file" class="form-control" name="avatar" placeholder="Ảnh đại diện" value="${sessionScope.us.avatar}"></div>&nbsp;
                                             <div class="row mt-4 col-md-3"><label class="labels" style="font-size: 10px;" name="gender" value="${sessionScope.us.gender}">Giới tính</label>
-                                                <div><input name="gender" type="radio" value="True" />
+                                                <div><input name="gender" type="radio" value="1" ${sessionScope.us.gender == true ? 'checked' : ''}/>
                                                     Nam
                                                 </div>
-                                                <div><input name="gender" type="radio" value="False" />
+                                                <div><input name="gender" type="radio" value="0" ${sessionScope.us.gender == false ? 'checked' : ''}/>
                                                     Nữ
                                                 </div>
+                                                    <input type="hidden" name="userId" value="${sessionScope.us.user_Id}"/>
                                             </div>
                                             <div class="row mt-4 col-md-6" hidden><label class="labels" style="font-size: 10px;">ID</label><input type="text" class="form-control" name="userId" placeholder="ID" value="${sessionScope.us.user_Id}"></div>&nbsp;
                                             <div class="row mt-4 col-md-3"><label class="labels" style="font-size: 10px;">Mật khẩu</label><a href="#" style="text-decoration: none;"><button type="button" data-toggle="modal" data-dismiss="modal" data-target="#ChangePasswordModal"  class="btn btn-dark" value="">Đổi mật khẩu</button></a></div>

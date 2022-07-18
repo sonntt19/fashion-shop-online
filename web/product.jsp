@@ -183,8 +183,12 @@
                                     <a href="list-detail?productId=${p.id}&categoryId=${p.category_id}" class="product-thumb">
                                         <img src="${p.image}"alt="">
                                     </a>
-                                    <a href="addcart?productId=${p.id}" class="buy-now" >Mua ngay</a>
-
+                                    <c:if test="${sessionScope.us == null}" >
+                                        <a class="buy-now" data-toggle="modal"  data-target="#loginModal" style="color: white">Mua ngay</a>
+                                    </c:if>
+                                    <c:if test="${sessionScope.us != null}" >
+                                        <a href="addcart?productId=${p.id}" class="buy-now" >Mua ngay</a>
+                                    </c:if>
                                 </div>
                                 <div class="product-infor">
                                     <a href="" class="product-name">${p.name}</a>

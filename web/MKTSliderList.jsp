@@ -34,9 +34,11 @@
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <script src="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></script>
+
         <style>
             .payment-method__item-name {
                 font-size: 20px;
@@ -87,64 +89,7 @@
     </head>
     <body  class="sb-nav-fixed">
         <%@include file="components/account.jsp" %>
-        <nav class="sb-topnav navbar navbar-expand navbar-light bg-light    ">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand me-5 ti-joomla" href="home" style="padding-left: 2%">KingsMan</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item me-4">
-                        <a class="nav-link active" aria-current="page" href="home">Trang chủ</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link" href="list">Sản Phẩm</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link" href="blog">Blog</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-
-
-                </ul>
-                <!-- Navbar-->
-                <form class="d-flex me-5" action="list">
-                    <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
-
-                    <button class="btn btn-outline-danger" type="submit">Tìm</button>
-                </form>
-
-
-
-
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <c:if test="${sessionScope.us != null}">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-outline-dark dropdown-toggle py-2 px-4" data-bs-toggle="dropdown" aria-expanded="false">
-                                Hello ${sessionScope.us.full_Name}
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" type="button" data-toggle="modal"  data-target="#userProfileModal">Thông tin cá nhân</a></li>
-                                <li><a class="dropdown-item" href="#">Danh sách đơn hàng</a></li>
-                                <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                    </c:if>
-                    <c:if test="${sessionScope.us == null}">
-                        <li class="nav-item">
-                            <a><i type="button" class="ti-user btn btn-icon py-2 px-4" data-toggle="modal"  data-target="#loginModal"></i></a>
-                        </li>
-                    </c:if>
-                    <!-- begin icon header -->
-
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-icon py-2 px-4" href="carts" tabindex="-1" aria-disabled="true"><i class="ti-shopping-cart"></i></a>
-                    </li>
-                </ul>
-        </nav>
+        <%@include file="components/manager-header.jsp" %>
         <div id="layoutSidenav">
             <div class="groundy" id="layoutSidenav_content">
                 <%@include file="components/MKT-left-board.jsp" %>
@@ -198,6 +143,7 @@
                 <div class="mtop"></div>
             </div>
         </div>
+
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
@@ -238,6 +184,7 @@
                 });
             });
         </script>
+
     </body>
 </html>
 

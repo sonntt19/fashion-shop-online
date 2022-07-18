@@ -40,7 +40,8 @@
             <link rel="stylesheet" href="do1/css/jquery-ui.min.css" type="text/css">
             <link rel="stylesheet" href="do1/css/slicknav.min.css" type="text/css">
             <link rel="stylesheet" href="do1/css/style.css" type="text/css">
-
+            <!-- Core theme CSS (includes Bootstrap)-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
             <%@include file="components/javascript.jsp" %>
         </head>
 
@@ -75,9 +76,10 @@
                                                 <td class="p-price first-row">${c.product_price}đ</td>
                                                 <td class="qua-col first-row">
                                                     <div class="quantity">                                                
-                                                        <form action="addcart">
+                                                        <form action="update-cart">
                                                             <input class="form-control form-control-sm" onchange="this.form.submit()" type="number" name="quantity" value="${c.quantity}">
                                                             <input type="hidden" name="productId" value="${c.product_id}"/>
+                                                            <input type="hidden" name="cartId" value="${c.cart_id}"/>
                                                         </form>
                                                     </div>
                                                 </td>
@@ -109,7 +111,7 @@
                                             <li class="cart-total">Tổng tiền các sản phẩm <span>${sum}đ</span></li>
                                         </ul>
                                         <div class="proceed-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                                            <a href="cart-contact" style="color: white">Submit</a>
+                                            <a href="cart-contact" style="color: white">Gửi</a>
                                         </div>
 
                                     </div>

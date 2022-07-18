@@ -46,6 +46,10 @@ public class AddToCartController extends HttpServlet {
         CartDAO cd = new CartDAO();
         Cart c = cd.checkCart(user_id, product_id);
         int quantity = 1;
+        String quantity_raw = request.getParameter("quantity");
+        if(quantity_raw != null){
+            quantity = Integer.parseInt(quantity_raw);
+        }
         int total_cost;
         if (c == null) {
             ProductDAO pd = new ProductDAO();
@@ -57,12 +61,7 @@ public class AddToCartController extends HttpServlet {
             total_cost = quantity * price;
             cd.addToCart(product_id, p.getName(), price, quantity, total_cost, user_id);
         } else {
-            String quantity_raw = request.getParameter("quantity");
-            if (quantity_raw != null) {
-                quantity = Integer.parseInt(quantity_raw);
-            } else {
-                quantity = c.getQuantity() + 1;
-            }
+                quantity += c.getQuantity();
             total_cost = quantity * c.getProduct_price();
             cd.addQuantityCartProduct(product_id, quantity, total_cost, user_id);
         }
