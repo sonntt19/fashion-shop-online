@@ -265,7 +265,7 @@
                         <div class="col text-right">${sum}đ</div>
                         <input type="hidden" name="sum" value="${sum}">
                     </div>
-                    <button type="submit" class="btn" style="font-size: 12px;">THANH TOÁN</button>
+                    <button type="submit" class="btn" style="font-size: 12px;">Gửi thông tin</button>
                     </form>
                 </div>
             </div>
