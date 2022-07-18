@@ -125,11 +125,11 @@ public class OrderDao extends DBContext {
 
         return list;
     }
-    
+
     public List<Order> getAllOrder() {
         List<Order> list = new ArrayList<>();
-        String sql = "select * from [Order] join Status_Order\n" +
-"                on [Order].status_order= Status_Order.status_order_id";
+        String sql = "select * from [Order] join Status_Order\n"
+                + "                on [Order].status_order= Status_Order.status_order_id";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -211,6 +211,7 @@ public class OrderDao extends DBContext {
                         .mobile(rs.getString(5))
                         .address(rs.getString(6))
                         .status_order(rs.getInt(7))
+                        .saler_id(rs.getInt(9))
                         .status_order_name(rs.getString(12))
                         .build();
 
@@ -367,8 +368,7 @@ public class OrderDao extends DBContext {
         return 0;
     }
 
-
-    public List<Chart> getChartOrderBar(String salerId,String start, int day) {
+    public List<Chart> getChartOrderBar(String salerId, String start, int day) {
         List<Chart> list = new ArrayList<>();
         for (int i = 0; i < day; i++) {
             int value = 0;
@@ -398,10 +398,10 @@ public class OrderDao extends DBContext {
                 System.out.println(e);
             }
         }
-         return list;
+        return list;
     }
 
-    public List<Chart> getChartRevenueBar(String salerId,String start, int day) {
+    public List<Chart> getChartRevenueBar(String salerId, String start, int day) {
         List<Chart> list = new ArrayList<>();
         for (int i = 0; i < day; i++) {
             int value = 0;
@@ -431,10 +431,10 @@ public class OrderDao extends DBContext {
                 System.out.println(e);
             }
         }
-         return list;
+        return list;
     }
 
-    public List<Chart> getChartRevenueArea(String salerId,String start, int day) {
+    public List<Chart> getChartRevenueArea(String salerId, String start, int day) {
         List<Chart> list = new ArrayList<>();
         for (int i = 0; i < day; i++) {
             int value = 0;
@@ -465,7 +465,22 @@ public class OrderDao extends DBContext {
                 System.out.println(e);
             }
         }
-         return list;
+        return list;
+    }
+
+    public void updateOrder(int orderId, int status, int salerId) {
+        String sql = "UPDATE [dbo].[Order]\n"
+                + "   SET [status_order] = ? \n"
+                + "	   ,[saler_id] = ? \n"
+                + " WHERE order_id = ? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, status);
+            st.setInt(2, salerId);
+            st.setInt(3, orderId);
+            st.executeUpdate();
+        } catch (Exception e) {
+        }
     }
 
 }

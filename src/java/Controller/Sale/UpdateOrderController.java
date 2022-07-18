@@ -6,25 +6,18 @@
 package Controller.Sale;
 
 import dal.OrderDao;
-import dal.OrderDetailDAO;
-import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Order;
-import model.OrderDetail;
-import model.User;
 
 /**
  *
- * @author Admin
+ * @author son22
  */
-public class OrderDetailSale extends HttpServlet {
+public class UpdateOrderController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,22 +31,17 @@ public class OrderDetailSale extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        String orderId_raw = request.getParameter("orderId");
-        int orderId = Integer.parseInt(orderId_raw);
-
-        List<OrderDetail> Order_Detail = new OrderDetailDAO().getDetailAllOrder(orderId);
-        request.setAttribute("Order_Detail", Order_Detail);
-
-        List<Order> listMyOrderinDetail = new OrderDao().getAllOrderInDetail(orderId);
-        request.setAttribute("listMyOrderinDetail", listMyOrderinDetail);
-        
-        List<User> listSaler = new UserDAO().getAllSaler();
-        request.setAttribute("listSaler", listSaler);
-
-
-        session.setAttribute("historyUrl", "order-detail?orderId=" + orderId_raw);
-        request.getRequestDispatcher("SaleOrderDetail.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            String status_raw = request.getParameter("status");
+            int status = Integer.parseInt(status_raw);
+            String salerId_raw = request.getParameter("salerId");
+            int salerId = Integer.parseInt(salerId_raw);
+            String orderId_raw = request.getParameter("orderId");
+            int orderId = Integer.parseInt(orderId_raw);
+            OrderDao od = new OrderDao();
+            od.updateOrder(orderId, status, salerId);
+            response.sendRedirect("order-detail-sale?orderId="+orderId);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
