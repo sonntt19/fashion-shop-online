@@ -188,6 +188,26 @@
         <servlet-name>UpdateOrderController</servlet-name>
         <servlet-class>Controller.Sale.UpdateOrderController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeStatusCustomerController</servlet-name>
+        <servlet-class>Controlller.Marketing.ChangeStatusCustomerController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SettingListController</servlet-name>
+        <servlet-class>Controller.Admin.SettingListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SettingDetailsController</servlet-name>
+        <servlet-class>Controller.Admin.SettingDetailsController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSettingController</servlet-name>
+        <servlet-class>Controller.Admin.UpdateSettingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddSettingController</servlet-name>
+        <servlet-class>Controller.Admin.AddSettingController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -375,6 +395,26 @@
     <servlet-mapping>
         <servlet-name>UpdateOrderController</servlet-name>
         <url-pattern>/update-order</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeStatusCustomerController</servlet-name>
+        <url-pattern>/change-status-customer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SettingListController</servlet-name>
+        <url-pattern>/setting-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SettingDetailsController</servlet-name>
+        <url-pattern>/setting-details</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSettingController</servlet-name>
+        <url-pattern>/update-setting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddSettingController</servlet-name>
+        <url-pattern>/add-setting</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

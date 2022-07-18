@@ -5,7 +5,6 @@
  */
 package model;
 
-import java.sql.Date;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,11 +18,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Customer {
-    private int customer_id;
-    private String customer_name;
-    private String customer_email;
-    private String customer_mobile;
-    private Date updated_date;
+public class Setting {
+    private int setting_id;
+    private int type;
+    private int order;
+    private String value;
+    private String description;
     private boolean status;
+    private String type_String;
 }

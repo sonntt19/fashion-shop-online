@@ -6,27 +6,19 @@
 package Controlller.Marketing;
 
 import dal.CustomerDAO;
-import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Customer;
-import model.UpdateCustomer;
-import model.User;
 
 /**
  *
- * @author Veetu
+ * @author son22
  */
-@WebServlet(name = "CustomerDetailController", urlPatterns = {"/customer-detail"})
-public class CustomerDetailController extends HttpServlet {
+public class ChangeStatusCustomerController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,21 +32,15 @@ public class CustomerDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        
-        int customer_id = Integer.parseInt(request.getParameter("cid"));
-        CustomerDAO cus = new CustomerDAO();
-        UserDAO ud = new UserDAO();
-        
-        Customer c = cus.getCustomerById(customer_id);
-        List<UpdateCustomer> listUpdate = cus.getAllUpdateCustomerById(customer_id);
-        
-        request.setAttribute("customerDetail", c);
-        request.setAttribute("listUpdate", listUpdate);
-        request.getRequestDispatcher("CustomerDetail.jsp").forward(request, response);
-        
-        
+        try (PrintWriter out = response.getWriter()) {
+            HttpSession session = request.getSession();
+            int customerId = Integer.parseInt(request.getParameter("customerId"));
+            int status = Integer.parseInt(request.getParameter("status"));
+            CustomerDAO cd = new CustomerDAO();
+            cd.changeStatusById(customerId, status);
+            String historyUrl = (String)session.getAttribute("historyUrl");
+            response.sendRedirect(historyUrl);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

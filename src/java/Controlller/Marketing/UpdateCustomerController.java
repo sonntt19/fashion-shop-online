@@ -9,7 +9,6 @@ import dal.CustomerDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,8 +24,8 @@ import model.User;
  *
  * @author Veetu
  */
-@WebServlet(name = "CustomerDetailController", urlPatterns = {"/customer-detail"})
-public class CustomerDetailController extends HttpServlet {
+@WebServlet(name = "UpdateCustomerController", urlPatterns = {"/update-customer"})
+public class UpdateCustomerController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,23 +40,31 @@ public class CustomerDetailController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        
-        int customer_id = Integer.parseInt(request.getParameter("cid"));
+        int cid = Integer.parseInt(request.getParameter("customer_id"));
+        String cname = request.getParameter("customer_name");
+        String cemail = request.getParameter("customer_email");
+        String cmobile = request.getParameter("customer_mobile");
+
         CustomerDAO cus = new CustomerDAO();
         UserDAO ud = new UserDAO();
-        
-        Customer c = cus.getCustomerById(customer_id);
-        List<UpdateCustomer> listUpdate = cus.getAllUpdateCustomerById(customer_id);
-        
-        request.setAttribute("customerDetail", c);
-        request.setAttribute("listUpdate", listUpdate);
-        request.getRequestDispatcher("CustomerDetail.jsp").forward(request, response);
-        
-        
+
+        //sua thanh cong
+        Customer c = cus.checkCustomer(cemail, cmobile, cid);
+        if (c != null) {
+            request.setAttribute("notification", "Khách hàng đã tồn tại");
+            request.getRequestDispatcher("customer-detail?cid=" + cid).forward(request, response);
+        } else {
+            HttpSession session = request.getSession();
+            User u = (User) session.getAttribute("us");
+            cus.updateCustomer(cname, cemail, cmobile, cid);
+            cus.updateHistory(cid, cemail, cname, cmobile, u.getUser_Id());
+
+            response.sendRedirect("customer-detail?cid=" + cid);
+        }
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

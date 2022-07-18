@@ -68,21 +68,21 @@
         <%@include file="components/account.jsp" %>
         <%@include file="components/manager-header.jsp" %>
         <div id="layoutSidenav">
-            <%@include file="components/MKT-left-board.jsp" %>
+            <%@include file="components/admin-left-dashboard.jsp" %>
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid rounded row" style="margin-top: 1% !important; margin-bottom: 1% !important">
                         <div class="col-md-1">
-                            <a href="AddBlog.jsp"><button type="button" class="btn btn-danger " style="">Thêm</button></a>
+                            <a href="AddSetting.jsp"><button type="button" class="btn btn-danger " style="">Thêm</button></a>
                         </div>
                         <div class="col-md-2">
                             <select class="dropdown-font-new" style="width: 100%" aria-label="Default select example" onchange="location = this.value;">
-                                <option value="posts-list?${historyKey}${historyValue}${historyType}${historyStatus}${historyAuthor}" ${categoryId == null ? "Selected" : ""}>
-                                    Danh Mục
+                                <option value="setting-list?${historyKey}${historyValue}${historyType}${historyStatus}" ${typeId == null ? "Selected" : ""}>
+                                    Phân loại
                                 </option>
-                                <c:forEach items="${sessionScope.listCategoryBlog}" var="c">
-                                    <option value="posts-list?${historyKey}${historyValue}${historyType}${historyStatus}${historyAuthor}&categoryId=${c.categoryBlog_id}" ${categoryId == c.categoryBlog_id ? "Selected" : ""}>
-                                        ${c.categoryBlog_name}
+                                <c:forEach items="${sessionScope.listTypeSetting}" var="c">
+                                    <option value="setting-list?${historyKey}${historyValue}${historyType}${historyStatus}&typeId=${c.id}" ${typeId == c.id ? "Selected" : ""}>
+                                        ${c.name}
                                     </option>
                                 </c:forEach>
 
@@ -90,45 +90,47 @@
                         </div>
                         <div class="col-md-2">
                             <select class="dropdown-font-new float-left" style="width: 100%" aria-label="Default select example" onchange="location = this.value;"> Sắp xếp
-                                <option value="posts-list?${historyKey}${historyStatus}${historyAuthor}${historyCategoryId}&type=desc" ${type == "desc" ? "Selected" : ""}>
-                                    Mới Nhất
+                                <option value="setting-list?${historyKey}${historyStatus}${historyTypeId}&type=desc&value=setting_id" ${type == "desc" && value == "setting_id" ? "Selected" : ""}>
+                                    ID giảm dần
                                 </option>
-                                <option value="posts-list?${historyKey}${historyStatus}${historyAuthor}${historyCategoryId}" ${type == null ? "Selected" : ""}>
-                                    Cũ Nhất
+                                <option value="setting-list?${historyKey}${historyStatus}${historyTypeId}&value=setting_id" ${type == null && value == "setting_id" ? "Selected" : ""}>
+                                    ID tăng dần
                                 </option>
+                                <option value="setting-list?${historyKey}${historyStatus}${historyTypeId}&type=desc&value=value" ${type == "desc" && value == "value" ? "Selected" : ""}>
+                                    Giá trị giảm dần
+                                </option>
+                                <option value="setting-list?${historyKey}${historyStatus}${historyTypeId}&value=value" ${type == null && value == "value" ? "Selected" : ""}>
+                                    Giá trị tăng dần
+                                </option>
+                                <option value="setting-list?${historyKey}${historyStatus}${historyTypeId}&type=desc" ${type == "desc" && value == null ? "Selected" : ""}>
+                                    Loại giảm dần
+                                </option>
+                                <option value="setting-list?${historyKey}${historyStatus}${historyTypeId}" ${type == null && value == null ? "Selected" : ""}>
+                                    Loại tăng dần
+                                </option>
+                                
 
                             </select>
                         </div>
                         <div class="col-md-2">
-                            <select class="dropdown-font-new" style="width: 113%" aria-label="Default select example" onchange="location = this.value;">
-                                <option value="posts-list?${historyKey}${historyValue}${historyStatus}${historyCategoryId}" ${authorId == null ? "Selected" : ""}>
-                                    Tác giả
-                                </option>
-                                <c:forEach items="${sessionScope.listAuthor}" var="a">
-                                    <option value="posts-list?${historyKey}${historyValue}${historyType}${historyStatus}${historyCategoryId}&authorId=${a.user_Id}" ${authorId == a.user_Id ? "Selected" : ""}>
-                                        ${a.full_Name}
-                                    </option>
-                                </c:forEach>
-
-                            </select>
                         </div>
                         <div class="col-md-2">
                             <select class="dropdown-font-new float-right" aria-label="Default select example" onchange="location = this.value;"> Trạng thái
-                                <option value="posts-list?${historyKey}${historyValue}${historyAuthor}${historyCategoryId}" ${status == null ? "Selected" : ""}>
+                                <option value="setting-list?${historyKey}${historyValue}${historyTypeId}" ${status == null ? "Selected" : ""}>
                                     Trạng thái
                                 </option>
-                                <option value="posts-list?${historyKey}${historyValue}${historyAuthor}${historyCategoryId}&status=1" ${status == 1 ? "Selected" : ""}>
+                                <option value="setting-list?${historyKey}${historyValue}${historyTypeId}&status=1" ${status == 1 ? "Selected" : ""}>
                                     Hiện
                                 </option>
-                                <option value="posts-list?${historyKey}${historyValue}${historyAuthor}${historyCategoryId}&status=0" ${status == 0 ? "Selected" : ""}>
+                                <option value="setting-list?${historyKey}${historyValue}${historyTypeId}&status=0" ${status == 0 ? "Selected" : ""}>
                                     Ẩn
                                 </option>
 
                             </select>
                         </div>
                         <div class="col-md-2 text-center">
-                            <form action="posts-list">
-                                <input type="text" name="key" value="${key}" placeholder="Tìm kiếm blog" class="filter-search__control" >
+                            <form action="setting-list">
+                                <input type="text" name="key" value="${key}" placeholder="Tìm kiếm giá trị" class="filter-search__control" >
                                 <button type="submit" class="btn btn-outline-danger" href="#" role="button">
                                     <i style='font-size:15px' class='fas'>&#xf002;</i>
                                 </button>
@@ -139,51 +141,35 @@
                         <table class="table"  style="margin-top: 4%">
                             <thead  class="text-center">
                             <th>ID</th>
-                            <th>Hình&nbsp;thu&nbsp;nhỏ</th>
-                            <th>Tiêu&nbsp;đề</th>
-                            <th>Danh&nbsp;mục</th>
-                            <th>Tác&nbsp;giả</th>
-                            <th>Ngày&nbsp;cập&nbsp;nhật</th>
+                            <th>Loại</th>
+                            <th>Thứ tự</th>
+                            <th>Giá trị</th>
                             <th>Trạng&nbsp;thái</th>
                             <th style="width: 12%">Tùy&nbsp;chọn&nbsp;</th>
                             </thead>
                             <tbody>
-                                <c:forEach items="${listBlogList}" var="b">
+                                <c:forEach items="${listSetting}" var="s">
                                     <tr class="text-center">
-                                        <th scope="row">${b.blog_id}</th>
-                                        <td><img src="${b.thumbnail}" height="100px" width="100px"/></td>
-                                        <td>${b.title}</td>
+                                        <td scope="row">${s.setting_id}</td>
+                                        
                                         <td>
-                                            <c:forEach items="${sessionScope.listCategoryBlog}" var="c">
-                                                ${b.categoryBlog_id == c.categoryBlog_id ? c.categoryBlog_name:""}
+                                            <c:forEach items="${sessionScope.listTypeSetting}" var="c">
+                                                ${s.type == c.id ? c.name : ""}
                                             </c:forEach>
                                         </td>
-                                        <td>
-                                            <c:forEach items="${sessionScope.listAuthor}" var="a">
-                                                ${b.author_id == a.user_Id ? a.full_Name:""}
-                                            </c:forEach>
-                                        </td>
-                                        <td >${b.updated_date}</td>
-                                        <c:if test="${b.status == true}">
+                                        <td>${s.order}</td>
+                                        <td >${s.value}</td>
+                                        <c:if test="${s.status == true}">
                                             <td><img class="circle" src="images/active.png"></td>
                                             </c:if>
-                                            <c:if test="${b.status != true}">
+                                            <c:if test="${s.status != true}">
                                             <td><img class="circle" src="images/inactive.png"></td>
                                         </c:if>
                                         <td style="width: 125px">
-                                            <a class="btn btn-danger" href="post-details?blog_id=${b.blog_id}" role="button" style='font-size:10px'>
+                                            <a class="btn btn-danger" href="setting-details?setting_id=${s.setting_id}" role="button" style='font-size:10px'>
                                                 <i style='font-size:10px' class='fas'>&#xf044;</i>
                                             </a>
-                                            <c:if test="${b.status == true}">
-                                                <a class="btn btn-dark" href="change-status?status=0&blogId=${b.blog_id}" role="button" style='font-size:10px'>
-                                                    <i style='font-size:10px' class='fas far fa-eye-slash'>&#xf070;</i>
-                                                </a>
-                                            </c:if>
-                                            <c:if test="${b.status != true}">
-                                                <a class="btn btn-dark" href="change-status?status=1&blogId=${b.blog_id}" role="button" style='font-size:10px'>
-                                                    <i style='font-size:10px' class='fas'>&#xf06e;</i>
-                                                </a>
-                                            </c:if>
+                                           
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -194,19 +180,19 @@
                         <ul class="pagination">
                             <li class="page-item">
                                 <a <c:if test="${page!=1}">                         
-                                        href="posts-list?page=${page-1}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}"
+                                        href="setting-list?page=${page-1}${historyKey}${historyValue}${historyType}${historyTypeId}${historyStatus}"
                                     </c:if> class="page-link" aria-label="Previous">
                                     <span  aria-hidden="true">«</span>
                                 </a>
                             </li>
 
                             <c:forEach begin="1" end="${totalPage}" var="i">
-                                <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="posts-list?page=${i}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}">${i}</a></li>
+                                <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="setting-list?page=${i}${historyKey}${historyValue}${historyType}${historyTypeId}${historyStatus}">${i}</a></li>
                                 </c:forEach>
 
                             <li class="page-item">
                                 <a <c:if test="${page!=totalPage}">
-                                        href="posts-list?page=${page+1}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}"
+                                        href="setting-list?page=${page+1}${historyKey}${historyValue}${historyType}${historyTypeId}${historyStatus}"
                                     </c:if> class="page-link" aria-label="Next">
                                     <span aria-hidden="true">»</span>
                                 </a>

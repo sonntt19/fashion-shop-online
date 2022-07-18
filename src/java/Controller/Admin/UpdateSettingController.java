@@ -3,27 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controlller.Marketing;
+package Controller.Admin;
 
-import dal.CustomerDAO;
+import dal.SettingDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Customer;
-import model.User;
 
 /**
  *
- * @author Veetu
+ * @author son22
  */
-@WebServlet(name = "LoadCustomerDetailController", urlPatterns = {"/load-customer"})
-public class LoadCustomerDetailController extends HttpServlet {
+public class UpdateSettingController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,14 +33,29 @@ public class LoadCustomerDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        
-        String customer_id = request.getParameter("cid");
-        CustomerDAO cus = new CustomerDAO();
-        Customer c = cus.getCustomerById(customer_id);
-        
-        session.setAttribute("customerDetail", c);
-        request.getRequestDispatcher("CustomerDetail.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            
+            int settingId = Integer.parseInt(request.getParameter("settingId"));
+            int type = Integer.parseInt(request.getParameter("type"));
+            int order = Integer.parseInt(request.getParameter("order"));
+            String value = request.getParameter("value");
+            String description = request.getParameter("description");
+            int status = Integer.parseInt(request.getParameter("status"));
+            
+            SettingDAO sd = new SettingDAO();
+            sd.updateSettingById(settingId, value, description, status);
+            if(type == 1){
+                sd.updateCategory(order, value, status);
+            }else if(type == 2){
+                sd.updateCategoryBlog(order, value, status);
+            }else if(type == 3){
+                sd.updateOrderStatus(order, value, status);
+            }else{
+                sd.updateRole(order, value, status);
+            }
+            response.sendRedirect("setting-details?setting_id="+settingId);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

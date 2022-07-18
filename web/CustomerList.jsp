@@ -100,57 +100,65 @@
         <div id="layoutSidenav">
             <%@include file="components/MKT-left-board.jsp" %>
             <div class="groundy" id="layoutSidenav_content">
-                <!-- Add Customer -->
 
-                <div class="modal fade col-md-12" role="dialog" id="addCustomerModal" style="padding-right: 18px" >
-                    <div class="modal-dialog">
-                        <div class="modal-content" style="border-radius: 10px; margin-top: 180px;">
-                            <div class="modal-header">
-                                <h2 class="" id="registerModal" style="text-align:center; font-family: Arial"><b style="padding-left: 100px;">Thêm khách hàng</b></h2><br>
-                            </div>
 
-                            <div class="modal-body">
-                                <section>
-                                    <div class="container">
-                                        <form action="add-customer" method="POST">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="name" placeholder="Họ và tên" name="fullName" style="border-radius: 100px; margin-bottom: 1rem;" required>
-                                                    </div></div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <input type="email" class="form-control" id="email" placeholder="Email" name="email" style="border-radius: 100px; margin-bottom: 1rem;" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <input type="text" class="form-control" id="name" placeholder="Số điện thoại" name="mobile" style="border-radius: 100px; margin-bottom: 1rem;" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <input type="date" class="form-control" id="name" placeholder="Ngày mua hàng" name="updated_date" style="border-radius: 100px; margin-bottom: 1rem;" required>
-                                                    </div>
-                                                </div>
-                                                <br><br><center><button type="submit" class="btn btn-dark" style="padding-right: 180px;padding-left: 180px; border-radius: 100px;">Thêm</button></center><br><br>
-                                            </div>
-                                        </form>
-                                    </div>    
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                </div> 
                 <main>
-                    <div class="container rounded row" style="margin-top: 1% !important; margin-bottom: 1% !important">
-                        <div class="col-md-4 text-center">
-                            <a type="button" data-toggle="modal" data-dismiss="modal" data-target="#addCustomerModal"><button type="button" class="btn btn-dark " style="">Thêm</button></a>
+                    <div class="container-fluid rounded row" style="margin-top: 1% !important; margin-bottom: 1% !important">
+                        <div class="col-md-1">
                         </div>
-                        <div class="col-md-5">
-                            <div>
-                                <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Tìm kiếm khách hàng" class="filter-search__control" >
-                            </div>
+                        <div class="col-md-2">
+                            <select class="dropdown-font-new float-left" style="width: 100%" aria-label="Default select example" onchange="location = this.value;"> Sắp xếp
+                                <option value="customer-list?${historyKey}${historyStatus}&type=desc" ${type == "desc" ? "Selected" : ""}>
+                                    Mới Nhất
+                                </option>
+                                <option value="customer-list?${historyKey}${historyStatus}" ${type == null ? "Selected" : ""}>
+                                    Cũ Nhất
+                                </option>
+                                <option value="customer-list?${historyKey}${historyStatus}&type=desc&value=customer_name" ${type == "desc" && value == "customer_name" ? "Selected" : ""}>
+                                    Họ tên giảm dần
+                                </option>
+                                <option value="customer-list?${historyKey}${historyStatus}&value=customer_name" ${type == null && value == "customer_name" ? "Selected" : ""}>
+                                    Họ tên tăng dần
+                                </option>
+                                <option value="customer-list?${historyKey}${historyStatus}&type=desc&value=customer_email" ${type == "desc" && value == "customer_email" ? "Selected" : ""}>
+                                    Email giảm dần
+                                </option>
+                                <option value="customer-list?${historyKey}${historyStatus}&value=customer_email" ${type == null && value == "customer_email" ? "Selected" : ""}>
+                                    Email tăng dần
+                                </option>
+                                <option value="customer-list?${historyKey}${historyStatus}&type=desc&value=customer_mobile" ${type == "desc" && value == "customer_mobile" ? "Selected" : ""}>
+                                    SĐT giảm dần
+                                </option>
+                                <option value="customer-list?${historyKey}${historyStatus}&value=customer_mobile" ${type == null && value == "customer_mobile" ? "Selected" : ""}>
+                                    SĐT tăng dần
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-2">
+                            <select class="dropdown-font-new float-right" aria-label="Default select example" onchange="location = this.value;"> Trạng thái
+                                <option value="customer-list?${historyKey}${historyValue}" ${status == null ? "Selected" : ""}>
+                                    Trạng thái
+                                </option>
+                                <option value="customer-list?${historyKey}${historyValue}&status=1" ${status == 1 ? "Selected" : ""}>
+                                    Hiện
+                                </option>
+                                <option value="customer-list?${historyKey}${historyValue}&status=0" ${status == 0 ? "Selected" : ""}>
+                                    Ẩn
+                                </option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <form action="customer-list">
+                                <input type="text" name="key" value="${key}" placeholder="Tìm kiếm khách hàng" class="filter-search__control" >
+                                <button type="submit" class="btn btn-outline-danger" href="#" role="button">
+                                    <i style='font-size:15px' class='fas'>&#xf002;</i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                     <div class="container rounded bg-white mt-5 mb-5">
@@ -161,36 +169,65 @@
                                     <th scope="col">Họ và tên</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Số điện thoại</th>
-                                    <th scope="col">Ngày mua hàng</th>
+                                    <th scope="col">Trạng thái</th>
                                     <th scope="col">Tùy Chọn</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <c:forEach items="${listCustomer}" var="o">
+                                <c:forEach items="${listCustomer}" var="c">
                                     <tr  class="text-center">
-                                        <th scope="row">${o.customer_id}</th>
-                                        <td>${o.customer_name}</td>
-                                        <td>${o.customer_email}</td>
-                                        <td>${o.customer_mobile}</td>
-                                        <td>${o.updated_date}</td>
-                                        <td>
-                                            <a class="btn btn-dark" href="load-customer?cid=${o.customer_id}" role="button"><i class="fa-solid fa-pen-to-square">&#xf070;</i></a>
+                                        <th scope="row">${c.customer_id}</th>
+                                        <td>${c.customer_name}</td>
+                                        <td>${c.customer_email}</td>
+                                        <td>${c.customer_mobile}</td>
+                                        <c:if test="${c.status == true}">
+                                            <td><img class="circle" src="images/active.png"></td>
+                                            </c:if>
+                                            <c:if test="${c.status != true}">
+                                            <td><img class="circle" src="images/inactive.png"></td>
+                                            </c:if>
+
+                                        <td style="width: 125px">
+                                            <a class="btn btn-danger" href="customer-detail?cid=${c.customer_id}" role="button" style='font-size:10px'>
+                                                <i style='font-size:10px' class='fas'>&#xf044;</i>
+                                            </a>
+                                            <c:if test="${c.status == true}">
+                                                <a class="btn btn-dark" href="change-status-customer?status=0&customerId=${c.customer_id}" role="button" style='font-size:10px'>
+                                                    <i style='font-size:10px' class='fas far fa-eye-slash'>&#xf070;</i>
+                                                </a>
+                                            </c:if>
+                                            <c:if test="${c.status != true}">
+                                                <a class="btn btn-dark" href="change-status-customer?status=1&customerId=${c.customer_id}" role="button" style='font-size:10px'>
+                                                    <i style='font-size:10px' class='fas'>&#xf06e;</i>
+                                                </a>
+                                            </c:if>
                                         </td>
+
                                     </tr>
                                 </c:forEach>
                             </tbody>
                         </table>
                     </div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Trước</a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <nav aria-label="..." class="pagination">
+                        <ul class="pagination">
                             <li class="page-item">
-                                <a class="page-link" href="#">Sau</a>
+                                <a <c:if test="${page!=1}">                         
+                                        href="customer-list?page=${page-1}${historyKey}${historyValue}${historyType}${historyStatus}"
+                                    </c:if> class="page-link" aria-label="Previous">
+                                    <span  aria-hidden="true">«</span>
+                                </a>
+                            </li>
+
+                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                <li class="page-item ${i==page ?"active" : ""}"><a class="page-link" href="customer-list?page=${i}${historyKey}${historyValue}${historyType}${historyStatus}">${i}</a></li>
+                                </c:forEach>
+
+                            <li class="page-item">
+                                <a <c:if test="${page!=totalPage}">
+                                        href="customer-list?page=${page+1}${historyKey}${historyValue}${historyType}${historyStatus}"
+                                    </c:if> class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">»</span>
+                                </a>
                             </li>
                         </ul>
                     </nav>
@@ -199,13 +236,9 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
-        <script src="js/tablesort.js"></script>
         <script src="js/customer-search.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>
 
