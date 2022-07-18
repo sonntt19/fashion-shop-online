@@ -40,7 +40,8 @@
             <link rel="stylesheet" href="do1/css/jquery-ui.min.css" type="text/css">
             <link rel="stylesheet" href="do1/css/slicknav.min.css" type="text/css">
             <link rel="stylesheet" href="do1/css/style.css" type="text/css">
-
+            <!-- Core theme CSS (includes Bootstrap)-->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
             <%@include file="components/javascript.jsp" %>
         </head>
 
