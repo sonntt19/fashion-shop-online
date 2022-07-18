@@ -75,9 +75,10 @@
                                                 <td class="p-price first-row">${c.product_price}đ</td>
                                                 <td class="qua-col first-row">
                                                     <div class="quantity">                                                
-                                                        <form action="addcart">
+                                                        <form action="update-cart">
                                                             <input class="form-control form-control-sm" onchange="this.form.submit()" type="number" name="quantity" value="${c.quantity}">
                                                             <input type="hidden" name="productId" value="${c.product_id}"/>
+                                                            <input type="hidden" name="cartId" value="${c.cart_id}"/>
                                                         </form>
                                                     </div>
                                                 </td>

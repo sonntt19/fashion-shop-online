@@ -471,7 +471,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 .product-top:hover a.buy-now{
     bottom: 0px;
-
+    color: white;
 }
 
 .product-top:hover a img{

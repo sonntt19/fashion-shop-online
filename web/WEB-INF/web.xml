@@ -145,7 +145,6 @@
         <servlet-class>Controlller.Marketing.SliderDetailController</servlet-class>
     </servlet>
     <servlet>
-
         <servlet-name>UpdateFalseSlider</servlet-name>
         <servlet-class>Controlller.Marketing.UpdateFalseSlider</servlet-class>
     </servlet>
@@ -172,6 +171,14 @@
     <servlet>
         <servlet-name>FeedbackDetailController</servlet-name>
         <servlet-class>Controlller.Marketing.FeedbackDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCart</servlet-name>
+        <servlet-class>Controller.Public.UpdateCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductDetailController</servlet-name>
+        <servlet-class>Controlller.Marketing.ProductDetailController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -318,7 +325,6 @@
         <url-pattern>/slider-detail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-
         <servlet-name>UpdateFalseSlider</servlet-name>
         <url-pattern>/update-false-slider</url-pattern>
     </servlet-mapping>
@@ -345,6 +351,14 @@
     <servlet-mapping>
         <servlet-name>FeedbackDetailController</servlet-name>
         <url-pattern>/feedback-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCart</servlet-name>
+        <url-pattern>/update-cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductDetailController</servlet-name>
+        <url-pattern>/product-detail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -130,19 +130,19 @@
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container rounded bg-white mt-5 mb-5">
-                        <form action="add_product" method="post" enctype="multipart/form-data">
+                        <form action="update_product" method="post" enctype="multipart/form-data">
                             <div class="row"  style="margin-top: 8%;">
                                 <div class="p-4">
 
-                                    <h4 class="text-center">Thêm sản phẩm</h4>
+                                    <h4 class="text-center">Chỉnh sửa sản phẩm</h4>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="p-3 py-5">
-                                        <div class="col-md-12">Tên sản phẩm<input type="text" class="form-control"  name="name"></div>
-                                        <div class="col-md-12">Thông tin rút gọn<textarea class="form-control" name="brief_infor"  rows="2" ></textarea></div>
+                                        <div class="col-md-12">Tên sản phẩm<input type="text" class="form-control"  name="name" value="${product.name}"></div>
+                                        <div class="col-md-12">Thông tin rút gọn<textarea class="form-control" name="brief_infor"  rows="2" >${product.brief_infor}</textarea></div>
                                         <div class="col-md-12">Nội dung
 
-                                            <textarea cols="20" rows="40" id="editor" name="desciption"></textarea>
+                                            <textarea cols="20" rows="40" id="editor" name="desciption">${product.desciption}</textarea>
 
 
                                             <script>
@@ -155,9 +155,11 @@
                                 <div class="col-md-4">
                                     <div class="p-3 py-5">
                                         <div class="row mt-16">
-                                            <div class="col-md-12">Giá gốc<input name="original_price" type="number" class="form-control" /></div>                                        
-                                            <div class="col-md-12">Giá khuyến mãi<input name="sale_price" type="number" class="form-control" /></div>                                        
-                                            <div class="col-md-12">Số lượng<input name="quantity" type="number" class="form-control" /></div>                                        
+                                            <div class="col-md-12">ID<input type="number" name="productId" class="form-control"  value="${product.id}" readonly ></div>
+                                            <div class="col-md-12">Ngày cập nhật<input type="date" class="form-control" value="${product.update_date}"  readonly=""></div>
+                                            <div class="col-md-12">Giá gốc<input name="original_price" type="number" class="form-control" value="${product.original_price}"/></div>                                        
+                                            <div class="col-md-12">Giá khuyến mãi<input name="sale_price" type="number" class="form-control" value="${product.sale_price}"/></div>                                        
+                                            <div class="col-md-12">Số lượng<input name="quantity" type="number" class="form-control" value="${product.quantity}"/></div>                                        
                                             <div class="col-md-12">Danh mục 
                                                 <select class="form-control"  name="categoryId" aria-label="Default select example" >
                                                     <c:forEach items="${sessionScope.listCategories}" var="list">
@@ -169,10 +171,11 @@
                                             </div>
                                             <div class="col-md-12">Trạng thái
                                                 <br/>
-                                                <input name="status" type="radio" value="1" checked="" />&nbsp;Hiện
-                                                <input name="status" type="radio" value="0"  />&nbsp;Ẩn
+                                                <input name="status" type="radio" value="1" ${product.status == true ? 'checked' : ''} />&nbsp;Hiện
+                                                <input name="status" type="radio" value="0" ${product.status == false ? 'checked' : ''} />&nbsp;Ẩn
                                             </div>
                                             <div class="col-md-12">Hình thu nhỏ<input type="file" name="thumbnail" class="form-control" placeholder="Thumbnail" value=""></div>
+                                            <img class="mt-5"  src="${product.image}"/>
                                         </div>
 
                                     </div>

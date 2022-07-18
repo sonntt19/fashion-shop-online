@@ -21,6 +21,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/ckeditor/ckeditor.js"></script>
+        <script type="text/javascript" src="<%=request.getContextPath()%>/ckfinder/ckfinder.js"></script>
         <style>
             .center form table tr td {
                 font-size: 100%;
@@ -44,7 +46,7 @@
         <div style="margin: 2% 2% 2% 2%;">
             <h2 style="text-align: center">Cập nhật sản phẩm</h2>
             <div class="center">
-                <form action="update_product" method="post">
+                <form action="update_product" method="post" enctype="multipart/form-data" >
                     <input type="hidden"  name="id" value="${product.id}"/><br/>
                     <table style="background-color: window ; width: 60% ; border-radius: 10px">
                         <tr>
@@ -53,7 +55,7 @@
                         </tr>
                         <tr>
                             <td>Ảnh sản phẩm:</td>
-                            <td><input style="padding-left:8px" type="file" id="avatar" name="image"/><img  src="${product.image}" height="50px" width="50px" alt=""><br/></td>
+                            <td><input style="padding-left:8px" type="file" placeholder="Thumbnail" name="image" value="" /><img  src="${product.image}" height="50px" width="50px" alt=""><br/></td>
                         </tr>
                         <tr>
                             <td>Giá gốc:</td>
@@ -70,14 +72,18 @@
                         <tr>
                             <td>Miêu tả :</td>
                             <td>
-                                <textarea rows="3" cols="80" name="desciption">${product.desciption}</textarea>
+                                <textarea cols="20" rows="40" id="editor" name="desciption" class="mr-5">${product.desciption}</textarea>
+                                <script>
+                                    var editor = CKEDITOR.replace('editor');
+                                    CKFinder.setupCKEditor(editor, '<%=request.getContextPath()%>/ckfinder/');
+                                </script>
                             </td>
                         </tr>
                         <tr>
                             <td>Trạng thái:</td>
                             <td>
-                                <input type="radio" name="status" value="True"  ${product.status == true ? "checked" : ""} />Hiện &nbsp;&nbsp;
-                                <input type="radio" name="status" value="False"  ${product.status != true ? "checked" : ""} />Ẩn
+                                <input type="radio" name="status" value="1"  ${product.status == true ? "checked" : ""} />Hiện &nbsp;&nbsp;
+                                <input type="radio" name="status" value="0"  ${product.status != true ? "checked" : ""} />Ẩn
                             </td>
                         </tr>
                         <tr>

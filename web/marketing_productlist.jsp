@@ -294,7 +294,7 @@
                                                 <td>Ẩn</td>
                                             </c:if>
                                             <td>
-                                                <a href="update_product?product_id=${p.id}">
+                                                <a href="product-detail?product_id=${p.id}">
                                                     <img  src="${p.image}" height="50px" width="50px" alt="">
                                                 </a>
                                             </td>

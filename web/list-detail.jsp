@@ -74,7 +74,7 @@
                 background-color: black;
                 z-index: -1;
             }
-            
+
             [type="checkbox"]:checked,
             [type="checkbox"]:not(:checked),
             [type="radio"]:checked,
@@ -167,10 +167,14 @@
             #decrement{
                 padding: 5px 0px 5px 15px;
                 border-radius: 45px 0 0 45px;
+                cursor: pointer;
+                font-size: 20px;
             }
             #increment{
                 padding: 5px 15px 5px 0px;
                 border-radius: 0 45px 45px 0;
+                cursor: pointer;
+                font-size: 20px;
             }
         </style>
         <%@include file="components/javascript.jsp" %>
@@ -186,95 +190,109 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-5"><img class="card-img-top mb-5 mb-md-0" style="max-width: 450px" src="${product.image}" alt="..." /></div>
                     <div class="col-md-7">
-                        <h1 class="">${product.name}</h1>
-                        <div class="d-flex  small text-warning mb-2">
-                            <div class="bi-star-fill " style="margin-right: 1%; size: 10px"></div>
-                            <div class="bi-star-fill " style="margin-right: 1%"></div>
-                            <div class="bi-star-fill " style="margin-right: 1%"></div>
-                            <div class="bi-star-fill " style="margin-right: 1%"></div>
-                            <div class="bi-star-fill " style="margin-right: 1%"></div>
-                        </div>
+                        <form action="addcart" id="addcart" method="GET">
 
-                        <div class="fs-5 mb-4">
-                            <c:if test="${product.sale_price == 0 || product.sale_price == null}">
-                                <div style="margin-bottom: 1.7%">
-                                    Giá gốc: 
-                                    <span >${product.original_price}đ</span>
+
+                            <h1 class="">${product.name}</h1>
+                            <div class="d-flex  small text-warning mb-2">
+
+
+                                <c:forEach var="i" begin="0" end="4">
+                                    <c:if test="${(product.rated_star - i) >= 1}">
+                                        <div class="reviews-rating__star is-active"></div> 
+                                    </c:if>
+                                    <c:if test="${(product.rated_star - i) < 1 && (product.rated_star - i) > 0}">
+                                        <div class="reviews-rating__star is-active is-half"></div> 
+                                    </c:if>
+                                    <c:if test="${(product.rated_star - i) <= 0}">
+                                        <div class="reviews-rating__star"></div> 
+                                    </c:if>
+
+                                </c:forEach>
+
+
+                            </div>
+
+                            <div class="fs-5 mb-4">
+                                <c:if test="${product.sale_price == 0 || product.sale_price == null}">
+                                    <div style="margin-bottom: 1.7%">
+                                        Giá gốc: 
+                                        <span >${product.original_price}đ</span>
+                                    </div>
+                                </c:if>
+                                <c:if test="${product.sale_price != 0}">
+                                    <div style="margin-bottom: 1.7%">
+                                        Giá gốc: 
+                                        <span class="text-decoration-line-through">${product.original_price}đ</span>
+                                    </div>
+                                    <div>
+                                        Giảm giá:
+                                        <span>${product.sale_price}đ</span>
+                                    </div>
+                                </c:if>
+                            </div>
+                            <h6>Miêu tả ngắn gọn: </h6>
+                            <div class="mb-5">${product.brief_infor}</div>
+<!--                            <div class="pd-color">
+                                <h6>Màu sắc: </h6>
+                                <div class="row">
+                                    <div class="col-12 pb-5">
+                                        <input class="checkbox-color" type="radio" name="color" id="color-1" value="1" checked="">
+                                        <label class="for-checkbox-color" for="color-1" style="background-color: black"></label>
+
+                                        <input class="checkbox-color" type="radio" name="color" id="color-2" value="2">
+                                        <label class="for-checkbox-color" for="color-2" style="background-color: blue"></label>
+
+                                        <input class="checkbox-color" type="radio" name="color" id="color-3" value="3">
+                                        <label class="for-checkbox-color" for="color-3" style="background-color: red"></label>
+
+                                        <input class="checkbox-color" type="radio" name="color" id="color-4" value="4">
+                                        <label class="for-checkbox-color" for="color-4" style="background-color: yellow"></label>
+
+                                        <input class="checkbox-color" type="radio" name="color" id="color-5" value="5">
+                                        <label class="for-checkbox-color" for="color-5" style="background-color: green"></label>
+
+                                        <input class="checkbox-color" type="radio" name="color" id="color-6" value="6">
+                                        <label class="for-checkbox-color" for="color-6" style="background-color: purple"></label>
+
+                                    </div>
                                 </div>
-                            </c:if>
-                            <c:if test="${product.sale_price != 0}">
-                                <div style="margin-bottom: 1.7%">
-                                    Giá gốc: 
-                                    <span class="text-decoration-line-through">${product.original_price}đ</span>
-                                </div>
-                                <div>
-                                    Giảm giá:
-                                    <span>${product.sale_price}đ</span>
-                                </div>
-                            </c:if>
-                        </div>
-                        <div class="pd-color">
-                            <h6>Màu sắc: </h6>
+                            </div>
+
+                            <h6>Kích thước Áo/Quần....:  </h6>
                             <div class="row">
                                 <div class="col-12 pb-5">
-                                    <input class="checkbox-color" type="radio" name="color" id="color-1" >
-                                    <label class="for-checkbox-color" for="color-1" style="background-color: black"></label>
-                                    
-                                    <input class="checkbox-color" type="radio" name="color" id="color-2">
-                                    <label class="for-checkbox-color" for="color-2" style="background-color: blue"></label>
-                                    
-                                    <input class="checkbox-color" type="radio" name="color" id="color-3">
-                                    <label class="for-checkbox-color" for="color-3" style="background-color: red"></label>
-                                    
-                                    <input class="checkbox-color" type="radio" name="color" id="color-4">
-                                    <label class="for-checkbox-color" for="color-4" style="background-color: yellow"></label>
-                                    
-                                    <input class="checkbox-color" type="radio" name="color" id="color-5">
-                                    <label class="for-checkbox-color" for="color-5" style="background-color: green"></label>
-                                    
-                                    <input class="checkbox-color" type="radio" name="color" id="color-6">
-                                    <label class="for-checkbox-color" for="color-6" style="background-color: purple"></label>
-                                    
+                                    <input class="checkbox-size" type="radio" name="size" id="size-1" checked="" value="1">
+                                    <label class="for-checkbox-size" for="size-1">S</label>
+
+                                    <input class="checkbox-size" type="radio" name="size" id="size-2">
+                                    <label class="for-checkbox-size" for="size-2">M</label>
+
+                                    <input class="checkbox-size" type="radio" name="size" id="size-3">
+                                    <label class="for-checkbox-size" for="size-3">L</label>
+
+                                    <input class="checkbox-size" type="radio" name="size" id="size-4">
+                                    <label class="for-checkbox-size" for="size-4">XL</label>
+
+                                    <input class="checkbox-size" type="radio" name="size" id="size-5">
+                                    <label class="for-checkbox-size" for="size-5">2XL</label>
+
+                                    <input class="checkbox-size" type="radio" name="size" id="tsize-6">
+                                    <label class="for-checkbox-size" for="size-6">3XL</label>
+                                </div>
+                            </div>-->
+                            <div class="row">
+                                <div class="countProduct col-lg-3" style="margin-left: 3%">
+                                    <div id="decrement" onclick="stepper(this)"><b>-</b></div>
+                                    <input type="number" name="quantity" min="1" max="100" step="1" value="1" id="my-input" readonly>
+                                    <input type="hidden" name="productId" value="${product.id}" />
+                                    <div id="increment" onclick="stepper(this)"><b>+</b></div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <input class="btn btn-outline-dark" type="submit" style="font-size: 20px" value="Thêm vào giỏ hàng">                                     
                                 </div>
                             </div>
-                        </div>
-
-                        <h6>Kích thước Áo/Quần....:  </h6>
-                        <div class="row">
-                            <div class="col-12 pb-5">
-                                <input class="checkbox-size" type="radio" name="size" id="size-1">
-                                <label class="for-checkbox-size" for="size-1">S</label>
-                                
-                                <input class="checkbox-size" type="radio" name="size" id="size-2">
-                                <label class="for-checkbox-size" for="size-2">M</label>
-                                
-                                <input class="checkbox-size" type="radio" name="size" id="size-3">
-                                <label class="for-checkbox-size" for="size-3">L</label>
-                                
-                                <input class="checkbox-size" type="radio" name="size" id="size-4">
-                                <label class="for-checkbox-size" for="size-4">XL</label>
-                                
-                                <input class="checkbox-size" type="radio" name="size" id="size-5">
-                                <label class="for-checkbox-size" for="size-5">2XL</label>
-                                
-                                <input class="checkbox-size" type="radio" name="size" id="tsize-6">
-                                <label class="for-checkbox-size" for="size-6">3XL</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="number" value="1" value="1" max="484" min="1" style="max-width: 5rem" />
-                            <div class="countProduct col-lg-3" style="margin-left: 3%">
-                                <button id="decrement" onclick="stepper(this)"><b>-</b></button>
-                                <input type="number" min="1" max="100" step="1" value="1" id="my-input" readonly>
-                                <button id="increment" onclick="stepper(this)"><b>+</b></button>
-                            </div>
-                            <div class="col-lg-6">
-                                <a class="btn btn-outline-dark" type="button" style="font-size: 20px" href="cart?productId=${product.id}">
-                                    <i class="bi-cart-fill me-1"></i>
-                                    Thêm vào giỏ hàng
-                                </a></div>
-
-                        </div>
+                        </form>
                     </div>
                 </div>
                 <div class="row gx-4 gx-lg-5 align-items-center" style="padding-top: 10%">
@@ -312,7 +330,7 @@
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Xem chi tiết</a></div>
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="list-detail?productId=${p.id}&categoryId=${p.category_id}">Xem chi tiết</a></div>
                                 </div>
                             </div>
 
@@ -423,20 +441,20 @@
             <!-- Core theme JS-->
             <script src="do/js/scripts.js"></script>
             <script>
-                                    const myInput = document.getElementById("my-input");
-                                    function stepper(btn) {
-                                        let id = btn.getAttribute("id");
-                                        let min = myInput.getAttribute("min");
-                                        let max = myInput.getAttribute("max");
-                                        let step = myInput.getAttribute("step");
-                                        let val = myInput.getAttribute("value");
-                                        let calcStep = (id == "increment") ? (step * 1) : (step * -1);
-                                        let newValue = parseInt(val) + calcStep;
+                                        const myInput = document.getElementById("my-input");
+                                        function stepper(btn) {
+                                            let id = btn.getAttribute("id");
+                                            let min = myInput.getAttribute("min");
+                                            let max = myInput.getAttribute("max");
+                                            let step = myInput.getAttribute("step");
+                                            let val = myInput.getAttribute("value");
+                                            let calcStep = (id == "increment") ? (step * 1) : (step * -1);
+                                            let newValue = parseInt(val) + calcStep;
 
-                                        if (newValue >= min && newValue <= max) {
-                                            myInput.setAttribute("value", newValue);
+                                            if (newValue >= min && newValue <= max) {
+                                                myInput.setAttribute("value", newValue);
+                                            }
                                         }
-                                    }
             </script>
     </body>
 </html>
