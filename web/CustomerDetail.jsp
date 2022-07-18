@@ -150,14 +150,11 @@
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container rounded bg-white mt-5 mb-5">
-                        <form action="customer-detail" method="post">
-                            <div class="row ">
-                                <div class="p-4">
-                                    <h4 class="text-center">Chỉnh sửa khách hàng</h4>
-                                </div>
-                                <div class="col-md-2">
-                                </div>
-                                <div class="col-md-8">
+
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <form action="customer-detail" method="post">
+                                    <h4 class="text-center font-weight-bold" style="margin-top: 4%">Chỉnh sửa khách hàng</h4>
                                     <div class="p-3 py-5">
                                         <div class="row mt-16">
                                             <div class="col-md-6">ID<input name="customer_id" type="text" class="form-control" placeholder="ID" value="${sessionScope.customerDetail.customer_id}" style="margin-bottom: 1rem;" readonly=""></div>
@@ -166,15 +163,35 @@
                                             <div class="col-md-6">Số điện thoại<input name="customer_mobile" type="text" class="form-control" placeholder="Số điện thoại" value="${sessionScope.customerDetail.customer_mobile}" style="margin-bottom: 1rem;" required=""></div>
                                             <div class="col-md-6">Ngày mua hàng<input name="updated_date" type="date" class="form-control" placeholder="Ngày mua hàng" value="${sessionScope.customerDetail.updated_date}" style="margin-bottom: 1rem;" required=""></div>
                                         </div>
-                                        
-                                        </div>
+                                        <div class="mt-5 p-4 text-center"><button class="btn btn-dark" type="submit">Lưu</button></div>
                                     </div>
-                                    <div class="col-md-2">
-                                    </div>
-                                    <div class="mt-5 p-4 text-center"><button class="btn btn-dark" type="submit">Lưu</button></div>
-
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="text-center font-weight-bold" style="margin-top: 4%">Lịch sử chỉnh sửa</h4>
+                                <div class="p-3 py-5">
+                                    <table class="table text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Ngày cập nhật</th>
+                                                <th>Họ và tên</th>
+                                                <th>Enail</th>
+                                                <th>Số điện thoại</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                    <td style="text-align: center">22-2-2022</td>
+                                                    <td style="text-align: center">Sơn gánh team</td>
+                                                    <td style="text-align: center">songankteam@gmail.com</td>
+                                                    <td style="text-align: center">09812381293</td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
-                        </form>
+                            </div>
+                        </div>
+
                     </div>
                 </main>
                 <!-- Footer-->
