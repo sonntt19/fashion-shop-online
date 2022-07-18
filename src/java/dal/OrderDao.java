@@ -143,8 +143,10 @@ public class OrderDao extends DBContext {
                         .fullName(rs.getString(4))
                         .mobile(rs.getString(5))
                         .address(rs.getString(6))
-                        .saler_id(rs.getInt(9))
+                        
                         .status_order(rs.getInt(7))
+                        .UserId(rs.getInt(8))
+                        .saler_id(rs.getInt(9))
                         .status_order_name(rs.getString(12))
                         .build();
 
