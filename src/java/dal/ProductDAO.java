@@ -469,4 +469,19 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
+    public void changeStatusById(int product_id, int status) {
+        try {
+            String sql = "UPDATE [dbo].[Product]\n"
+                    + "   SET [status] = ?\n"
+                    + " WHERE product_id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, status);
+            st.setInt(2, product_id);
+
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
+
 }

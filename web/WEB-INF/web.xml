@@ -180,6 +180,10 @@
         <servlet-name>ProductDetailController</servlet-name>
         <servlet-class>Controlller.Marketing.ProductDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeStatusProductController</servlet-name>
+        <servlet-class>Controlller.Marketing.ChangeStatusProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -359,6 +363,10 @@
     <servlet-mapping>
         <servlet-name>ProductDetailController</servlet-name>
         <url-pattern>/product-detail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeStatusProductController</servlet-name>
+        <url-pattern>/change-status-product</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

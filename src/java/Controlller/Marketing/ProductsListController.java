@@ -101,29 +101,35 @@ public class ProductsListController extends HttpServlet {
             // Set param request to jsp page
             session.setAttribute("listCategories", l);
             session.setAttribute("listProduct", listProduct);
-            session.setAttribute("historyUrl", "list");
+            String history = "marketingproductlist?page=" + page;
             if (strSearchKey != null) {
+                history = history + "&key=" + strSearchKey;
                 request.setAttribute("historyKey", "&key=" + strSearchKey);
                 request.setAttribute("key", strSearchKey);
             }
             if (strCategoryId != null) {
+                history = history + "&categoryId=" + strCategoryId;
                 request.setAttribute("historyCategoryId", "&categoryId=" + strCategoryId);
                 request.setAttribute("categoryId", strCategoryId);
             }
             if (strValue != null) {
+                 history = history + "&value=" + strValue;
                 request.setAttribute("historyValue", "&value=" + strValue);
                 request.setAttribute("value", strValue);
             }
             if (strType != null) {
+                 history = history + "&type=" + strType;
                 request.setAttribute("historyType", "&type=" + strType);
                 request.setAttribute("type", strType);
             }    
             if (status_raw != null) {
+                 history = history + "&status=" + status_raw;
                 request.setAttribute("historyStatus", "&status=" + status_raw);
                 request.setAttribute("status", status_raw);
             }
             request.setAttribute("page", page);
             request.setAttribute("totalPage", totalPage);
+            session.setAttribute("historyUrl", history);
             
             // Request
             request.setAttribute("total", Total);
