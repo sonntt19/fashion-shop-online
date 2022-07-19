@@ -242,7 +242,7 @@ public class ProductDAO extends DBContext {
             st.setString(1, name);
             st.setInt(2, original_price);
             st.setInt(3, sale_price);
-            st.setString(4, brief_infor);
+            st.setString(4, desciption);
             st.setString(5, brief_infor);
             st.setInt(6, status);
             st.setInt(7, quantity);

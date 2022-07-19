@@ -187,7 +187,7 @@
                                         <hr class="my-3 ">
                                         <div class="row">
                                             <div>
-                                                <a href="#" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="width: 49%">Đánh giá</a>
+                                                <a href="list-detail?productId=${s.product_id}&categoryId=${s.category_id}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true" style="width: 49%">Đánh giá</a>
                                                 <a href="addcart?productId=${s.product_id}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="width: 49%">Mua lại</a>
                                             </div>
 

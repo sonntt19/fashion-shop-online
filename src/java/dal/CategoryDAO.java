@@ -22,7 +22,7 @@ public class CategoryDAO extends DBContext{
 
     public List<Category> getAllCategory() {
         List<Category> list = new ArrayList<>();
-        String sql = "Select * from Category and status = 1";
+        String sql = "Select * from Category where status = 1";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -43,7 +43,7 @@ public class CategoryDAO extends DBContext{
     
     public List<CategoryBlog> getAllCategoryBlog() {
         List<CategoryBlog> list = new ArrayList<>();
-        String sql = "Select * from Category_Blog and status = 1";
+        String sql = "Select * from Category_Blog where status = 1";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
