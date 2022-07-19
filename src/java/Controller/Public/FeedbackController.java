@@ -48,19 +48,15 @@ public class FeedbackController extends HttpServlet {
             int product_id = Integer.parseInt(request.getParameter("productId"));
             String subject = request.getParameter("subject");
             String image = "images/feedback/" + request.getParameter("imageurl");
-            String star = request.getParameter("star");
-            
-            
-                FeedbackDAO fed = new FeedbackDAO();
+            int star = Integer.parseInt(request.getParameter("star"));
 
-                fed.addNewFeedback(u.getFull_Name(), Integer.parseInt(star), subject, image, 1, product_id, u.getUser_Id());
-                String historyUrl = (String) session.getAttribute("historyUrl");
-                response.sendRedirect(historyUrl);
-            
+            FeedbackDAO fed = new FeedbackDAO();
 
+            fed.addNewFeedback(u.getFull_Name(), star, subject, image, 1, product_id, u.getUser_Id());
+            String historyUrl = (String) session.getAttribute("historyUrl");
+            response.sendRedirect(historyUrl);   
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

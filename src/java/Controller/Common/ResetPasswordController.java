@@ -81,7 +81,7 @@ public class ResetPasswordController extends HttpServlet {
         User user = new UserDAO().getUserByEmail(email);
 
         if (user == null) {
-            request.setAttribute("notification", "Email wrong");
+            request.setAttribute("notification", "Email không tồn tại");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
             try {

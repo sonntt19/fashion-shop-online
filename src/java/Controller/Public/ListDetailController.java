@@ -56,6 +56,7 @@ public class ListDetailController extends HttpServlet {
             }
 
             List<Feedback> listfeedbackbyproduct = fed.getAllFeedbackByProductId(productId);
+            
             List<Product> listProduct = new ProductDAO().getProductTop4Category(productId, categoryId);
             double avg = new ProductDAO().getRatedProduct(productId);
 

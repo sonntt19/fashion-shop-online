@@ -76,7 +76,7 @@ public class LoginController extends HttpServlet {
         } else {
 
             session.setAttribute("us", u);
-            response.sendRedirect("home");
+            response.sendRedirect(historyUrl);
         }
     }
 

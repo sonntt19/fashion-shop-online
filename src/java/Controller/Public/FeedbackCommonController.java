@@ -3,26 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.Public;
 
-import dal.BlogDAO;
+import dal.FeedbackDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Blog;
+import model.User;
 
 /**
  *
- * @author Veetu
+ * @author son22
  */
-@WebServlet(name = "CategoryBlogController", urlPatterns = {"/categoryBlog"})
-public class CategoryBlogController extends HttpServlet {
+public class FeedbackCommonController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,14 +33,29 @@ public class CategoryBlogController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        
-        int categoryBlog_id = Integer.parseInt(request.getParameter("categoryBlog_id"));
-        
-        List<Blog> listBlogByCategoryId_BlogList = new BlogDAO().getBlogByCategoryBlogId(categoryBlog_id);
-        session.setAttribute("listBlogList", listBlogByCategoryId_BlogList);
-        session.setAttribute("tag", categoryBlog_id);
-        request.getRequestDispatcher("BlogList.jsp").forward(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+
+            HttpSession session = request.getSession();
+
+            User u = (User) session.getAttribute("us");
+            if (u == null) {
+                request.setAttribute("notification", "Bạn cần đăng nhập để gửi phản hồi cho KingsMan");
+                request.getRequestDispatcher("index.jsp").forward(request, response);
+            } else {
+                int product_id = -1;
+                String subject = request.getParameter("subject");
+                String image = "images/feedback/" + request.getParameter("imageurl");
+                int star = Integer.parseInt(request.getParameter("star"));
+
+                FeedbackDAO fed = new FeedbackDAO();
+                
+                fed.addNewFeedback(u.getFull_Name(), star, subject, image, 1, product_id, u.getUser_Id());
+                response.sendRedirect("home");
+            }
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,7 +84,6 @@ public class CategoryBlogController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         processRequest(request, response);
     }
 

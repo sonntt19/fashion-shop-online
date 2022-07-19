@@ -3,25 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller.Admin;
+package Controller.Public;
 
-import dal.RoleDAO;
+import dal.BlogDAO;
+import dal.CategoryDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Role;
-import model.User;
+import javax.servlet.http.HttpSession;
+import model.Blog;
+import model.CategoryBlog;
 
 /**
  *
- * @author dongh
+ * @author Veetu
  */
-public class ListUserController extends HttpServlet {
+@WebServlet(name = "BlogDetailController", urlPatterns = {"/blogDetail"})
+public class BlogDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,21 +38,23 @@ public class ListUserController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         
+        int blog_id = Integer.parseInt(request.getParameter("blog_id"));
         
-        List<User> listUsers = new UserDAO().getAllUsers();
-        List<Role> listRole = new RoleDAO().getAllRole();
-
-        request.setAttribute("listUsers", listUsers);
-        request.setAttribute("listRole", listRole);
-
-        request.getRequestDispatcher("AdminUserList.jsp").forward(request, response);
+        BlogDAO dao = new BlogDAO();
+        Blog listBlogDetail_BlogDetail = dao.getBlogByBlogId(blog_id);
+        request.setAttribute("listBlogById", listBlogDetail_BlogDetail);
+        
+        UserDAO ud = new UserDAO();
+        String author = ud.getAuthorById(listBlogDetail_BlogDetail.getAuthor_id());
+        request.setAttribute("author", author);
+             
+        List<CategoryBlog> listCategoryBlog_BlogList = new CategoryDAO().getAllCategoryBlog();
+        session.setAttribute("listCategoryBlog", listCategoryBlog_BlogList);
+        
+        request.getRequestDispatcher("BlogDetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
