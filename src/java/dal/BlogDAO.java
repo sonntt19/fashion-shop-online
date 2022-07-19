@@ -25,7 +25,7 @@ public class BlogDAO extends DBContext {
 
     public List<Blog> getAllBlog() {
         List<Blog> list = new ArrayList<>();
-        String sql = "Select * from Blog";
+        String sql = "Select top 2 * from Blog order by newid()";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();

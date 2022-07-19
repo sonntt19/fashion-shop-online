@@ -34,8 +34,11 @@
         <link rel="stylesheet" href="./assets/css/style.css">
         <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script src="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></script>
+
         <style>
             .payment-method__item-name {
                 font-size: 20px;
@@ -141,16 +144,47 @@
             </div>
         </div>
 
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
         <script src="assets/demo/chart-area-demo.js"></script>
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+        <script src="js/datatables-simple-demo.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        
         <script>
-            $('#sortTable').DataTable();
+            $(document).ready(function () {
+                $('#sortTable').DataTable({
+                    "language": {
+                        "decimal": "",
+                        "emptyTable": "No data available in table",
+                        "info": " _START_ đến _END_ của _TOTAL_ bản ghi",
+                        "infoEmpty": "HIển thị 0 to 0 of 0 bản ghi",
+                        "infoFiltered": "(kết quả từ _MAX_ tổng số bản ghi)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Hiển thị _MENU_ bản ghi",
+                        "loadingRecords": "Loading...",
+                        "processing": "",
+                        "search": "Tìm kiếm:",
+                        "zeroRecords": "Không tìm thấy kết quả nào",
+                        "paginate": {
+                            "first": "F",
+                            "last": "L",
+                            "next": "Sau",
+                            "previous": "Trước"
+                        },
+                        "aria": {
+                            "sortAscending": ": activate to sort column ascending",
+                            "sortDescending": ": activate to sort column descending"
+                        }
+                    }
+                });
+            });
         </script>
+
     </body>
 </html>
 
