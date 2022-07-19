@@ -3,11 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.Public;
 
 import dal.BlogDAO;
-import dal.CategoryDAO;
-import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -18,14 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Blog;
-import model.CategoryBlog;
 
 /**
  *
  * @author Veetu
  */
-@WebServlet(name = "BlogDetailController", urlPatterns = {"/blogDetail"})
-public class BlogDetailController extends HttpServlet {
+@WebServlet(name = "CategoryBlogController", urlPatterns = {"/categoryBlog"})
+public class CategoryBlogController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,20 +38,12 @@ public class BlogDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         
-        int blog_id = Integer.parseInt(request.getParameter("blog_id"));
+        int categoryBlog_id = Integer.parseInt(request.getParameter("categoryBlog_id"));
         
-        BlogDAO dao = new BlogDAO();
-        Blog listBlogDetail_BlogDetail = dao.getBlogByBlogId(blog_id);
-        request.setAttribute("listBlogById", listBlogDetail_BlogDetail);
-        
-        UserDAO ud = new UserDAO();
-        String author = ud.getAuthorById(listBlogDetail_BlogDetail.getAuthor_id());
-        request.setAttribute("author", author);
-             
-        List<CategoryBlog> listCategoryBlog_BlogList = new CategoryDAO().getAllCategoryBlog();
-        session.setAttribute("listCategoryBlog", listCategoryBlog_BlogList);
-        
-        request.getRequestDispatcher("BlogDetail.jsp").forward(request, response);
+        List<Blog> listBlogByCategoryId_BlogList = new BlogDAO().getBlogByCategoryBlogId(categoryBlog_id);
+        session.setAttribute("listBlogList", listBlogByCategoryId_BlogList);
+        session.setAttribute("tag", categoryBlog_id);
+        request.getRequestDispatcher("BlogList.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -83,6 +72,7 @@ public class BlogDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         processRequest(request, response);
     }
 

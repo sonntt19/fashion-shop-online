@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.Public;
 
 import dal.BlogDAO;
 import dal.CategoryDAO;
@@ -24,7 +24,7 @@ import model.CategoryBlog;
  * @author Veetu
  */
 @WebServlet(name = "BlogController", urlPatterns = {"/blog"})
-public class BlogController extends HttpServlet {
+public class BlogController1 extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
