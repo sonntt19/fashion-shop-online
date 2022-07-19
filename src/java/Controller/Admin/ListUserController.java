@@ -48,7 +48,7 @@ public class ListUserController extends HttpServlet {
         request.setAttribute("listUsers", listUsers);
         request.setAttribute("listRole", listRole);
 
-        request.getRequestDispatcher("user-list.jsp").forward(request, response);
+        request.getRequestDispatcher("AdminUserList.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
