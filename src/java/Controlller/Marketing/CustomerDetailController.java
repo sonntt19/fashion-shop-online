@@ -10,6 +10,7 @@ import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Customer;
+import model.UpdateCustomer;
 import model.User;
 
 /**
@@ -39,28 +41,20 @@ public class CustomerDetailController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
-        String cid = request.getParameter("customer_id");
-        String cname = request.getParameter("customer_name");
-        String cemail = request.getParameter("customer_email");
-        String cmobile = request.getParameter("customer_mobile");
-        String cdate = request.getParameter("updated_date");
-        int userId = Integer.parseInt(cid);
-
-        CustomerDAO dao = new CustomerDAO();
-        if (!cmobile.matches("[0-9]*")) {
-            request.setAttribute("notification", "Số điện thoại không hợp lệ");
-            request.getRequestDispatcher("customer-list").forward(request, response);
-        } else {
-            //sua thanh cong
-            dao.editCustomerProfile(cname, cemail, cmobile, userId, cdate);
-            request.setAttribute("notification", "Chỉnh sửa thành công");
-            request.getRequestDispatcher("customer-list").forward(request, response);
-        }
-
-        Customer u = dao.getCustomerById(cid);
-        HttpSession session = request.getSession();
-        session.setAttribute("customerDetail", u);
-        response.sendRedirect("customer-list");
+        response.setCharacterEncoding("UTF-8");
+        
+        int customer_id = Integer.parseInt(request.getParameter("cid"));
+        CustomerDAO cus = new CustomerDAO();
+        UserDAO ud = new UserDAO();
+        
+        Customer c = cus.getCustomerById(customer_id);
+        List<UpdateCustomer> listUpdate = cus.getAllUpdateCustomerById(customer_id);
+        
+        request.setAttribute("customerDetail", c);
+        request.setAttribute("listUpdate", listUpdate);
+        request.getRequestDispatcher("CustomerDetail.jsp").forward(request, response);
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

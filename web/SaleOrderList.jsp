@@ -16,7 +16,7 @@
         <title>OrderList_Sale</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="./assets/css/styles.css">
@@ -30,9 +30,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
-        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+
+        <script src="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></script>
         <style>
 
             .payment-method__item-name {
@@ -92,63 +91,7 @@
     </head>
     <body>
         <%@include file="components/account.jsp" %>
-        <nav class="sb-topnav navbar navbar-expand navbar-light bg-light">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand me-5 ti-joomla" href="home" style="padding-left: 2%">KingsMan</a>
-            <!-- Sidebar Toggle-->
-            <!-- Navbar Search-->
-            <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item me-4">
-                        <a class="nav-link active" aria-current="page" href="home">Trang chủ</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link" href="list">Sản Phẩm</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link" href="blog">Blog</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-
-
-                </ul>
-                <!-- Navbar-->
-                <form class="d-flex me-5" action="list">
-                    <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
-
-                    <button class="btn btn-outline-danger" type="submit">Tìm</button>
-                </form>
-
-
-
-
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <c:if test="${sessionScope.us != null}">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-outline-dark dropdown-toggle py-2 px-4" data-bs-toggle="dropdown" aria-expanded="false">
-                                Hello ${sessionScope.us.full_Name}
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" type="button" data-toggle="modal"  data-target="#userProfileModal">Thông tin cá nhân</a></li>
-                                <li><a class="dropdown-item" href="#">Danh sách đơn hàng</a></li>
-                                <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                    </c:if>
-                    <c:if test="${sessionScope.us == null}">
-                        <li class="nav-item">
-                            <a><i type="button" class="ti-user btn btn-icon py-2 px-4" data-toggle="modal"  data-target="#loginModal"></i></a>
-                        </li>
-                    </c:if>
-                    <!-- begin icon header -->
-
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-icon py-2 px-4" href="carts" tabindex="-1" aria-disabled="true"><i class="ti-shopping-cart"></i></a>
-                    </li>
-                </ul>
-        </nav>
+        <%@include file="components/manager-header.jsp" %>
 
         <div id="layoutSidenav">
             <%@include file="components/sale-left-dashboard.jsp" %>
@@ -160,9 +103,10 @@
                         <thead>
                             <tr>
                                 <th>OrderID</th>
-                                <th>Ngày&nbspmua&nbsp hàng</th>
+                                <th>Ngày&nbspmua&nbsphàng</th>
                                 <th>Sản&nbspphẩm</th>
                                 <th>Tổng&nbspchi&nbspphí</th>
+                                <th>ID&nbsptài&nbspkhoản</th>
                                 <th>Nhân&nbspviên&nbspsale</th>
                                 <th>Tình&nbsptrạng</th>
                                 <th></th>
@@ -181,15 +125,28 @@
                                         <td>${c.fullNameFirstProduct}</td>
                                     </c:if>
                                     <td>${c.total_cost}</td>
+                                    <td>${c.userId}</td>
                                     <td>${c.saler_id}</td>
-                                    <td>${c.status_order_name}</td>
+
+                                    <td>
+                                        ${c.status_order_name}
+                                    </td>
+
+
+
+
+
+
+
                                     <td>
                                         <c:if test="${c.status_order == 1}">
                                             <div class="row">
                                                 <a href="update-successfull-order?order_id=${c.orderID}" class="btn btn-danger btn-lg active" role="button" aria-pressed="true" style="font-size: 12px">Giao Hàng thành công</a>
                                             </div>
 
-                                        </c:if></td>
+                                        </c:if>
+                                    </td>
+
                                 </tr>
 
                             </c:forEach>
@@ -199,17 +156,44 @@
                 </div>
             </div>
         </div>
-        <div class = "mtop"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/chart-area-demo.js"></script>
         <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        
         <script>
-            $('#sortTable').DataTable();
+            $(document).ready(function () {
+                $('#sortTable').DataTable({
+                    "language": {
+                        "decimal": "",
+                        "emptyTable": "No data available in table",
+                        "info": " _START_ đến _END_ của _TOTAL_ bản ghi",
+                        "infoEmpty": "HIển thị 0 to 0 of 0 bản ghi",
+                        "infoFiltered": "(kết quả từ _MAX_ tổng số bản ghi)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Hiển thị _MENU_ bản ghi",
+                        "loadingRecords": "Loading...",
+                        "processing": "",
+                        "search": "Tìm kiếm:",
+                        "zeroRecords": "Không tìm thấy kết quả nào",
+                        "paginate": {
+                            "first": "F",
+                            "last": "L",
+                            "next": "Sau",
+                            "previous": "Trước"
+                        },
+                        "aria": {
+                            "sortAscending": ": activate to sort column ascending",
+                            "sortDescending": ": activate to sort column descending"
+                        }
+                    }
+                });
+            });
         </script>
+        
     </body>
 </html>
 

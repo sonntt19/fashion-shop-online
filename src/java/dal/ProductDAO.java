@@ -22,9 +22,9 @@ import model.Product;
  */
 public class ProductDAO extends DBContext {
 
-    public int getTotalProduct(String searchKey, String categoryId) {
+    public int getTotalProduct(String searchKey, String categoryId, String status) {
         String sql = "Select count(product_id) from Product "
-                + "where category_id " + categoryId + " and product_name like N'%" + searchKey + "%'\n";
+                + "where category_id " + categoryId + " and status " + status + " and product_name like N'%" + searchKey + "%'\n";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -225,7 +225,7 @@ public class ProductDAO extends DBContext {
         return list;
     }
 
-    public void UpdateProduct(int id, String name, String desciption, String brief_infor, int quantity, boolean status, int original_price, int sale_price, int categoryId) {
+    public void UpdateProduct(int id, String name, String desciption, String brief_infor, int quantity, int status, int original_price, int sale_price, int categoryId, String url) {
         try {
             String sql = "UPDATE [dbo].[Product]\n"
                     + "   SET [product_name] = ?\n"
@@ -236,7 +236,7 @@ public class ProductDAO extends DBContext {
                     + "      ,[status] = ?\n"
                     + "      ,[quantity] = ?\n"
                     + "      ,[category_id] = ?\n"
-                    + "\n"
+                    + "      ,[update_date] = GETDATE()\n"
                     + " WHERE product_id = ?";
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, name);
@@ -244,24 +244,16 @@ public class ProductDAO extends DBContext {
             st.setInt(3, sale_price);
             st.setString(4, desciption);
             st.setString(5, brief_infor);
-            st.setBoolean(6, status);
+            st.setInt(6, status);
             st.setInt(7, quantity);
             st.setInt(8, categoryId);
             st.setInt(9, id);
             st.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.println(ex);
-        }
-    }
-
-    public void UpdateImageProduct(int id, String imageUrl) {
-        try {
-            String sql = "UPDATE [dbo].[Products_Images]\n"
-                    + "   SET\n"
-                    + "      [images] = ?\n"
+            sql = "UPDATE [dbo].[Products_Images]\n"
+                    + "   SET   [images] = ?\n"
                     + " WHERE product_id = ?";
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setString(1, imageUrl);
+            st = connection.prepareStatement(sql);
+            st.setString(1, url);
             st.setInt(2, id);
             st.executeUpdate();
         } catch (SQLException ex) {
@@ -462,6 +454,34 @@ public class ProductDAO extends DBContext {
         return list;
     }
 
-    
+    public String getUrlImageById(int id) {
+        String sql = "SELECT images FROM [Products_Images] where product_id = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public void changeStatusById(int product_id, int status) {
+        try {
+            String sql = "UPDATE [dbo].[Product]\n"
+                    + "   SET [status] = ?\n"
+                    + " WHERE product_id = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, status);
+            st.setInt(2, product_id);
+
+            st.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
 
 }

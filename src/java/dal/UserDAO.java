@@ -348,4 +348,20 @@ public class UserDAO extends DBContext {
         return list;
     }
 
+    public String getUrlImageById(int id) {
+        String sql = "SELECT [avatar]\n"
+                + "  FROM [Fashion_Shop_Online].[dbo].[User]\n"
+                + "  Where userId = 7";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setInt(1, id);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
 }

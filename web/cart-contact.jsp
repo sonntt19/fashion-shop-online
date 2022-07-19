@@ -238,7 +238,7 @@
                     </div>
                     </c:forEach>
 
-                    <div class="back-to-shop text-muted"><a href="carts">&leftarrow; Back to shop</a></div>
+                    <div class="back-to-shop text-muted"><a href="carts">&leftarrow; Trở lại cửa hàng</a></div>
                 </div>
                 <div class="style-btn col-md-5 summary">
                     <div class="row">
@@ -265,7 +265,7 @@
                         <div class="col text-right">${sum}đ</div>
                         <input type="hidden" name="sum" value="${sum}">
                     </div>
-                    <button type="submit" class="btn" style="font-size: 12px;">THANH TOÁN</button>
+                    <button type="submit" class="btn" style="font-size: 12px;">Gửi thông tin</button>
                     </form>
                 </div>
             </div>

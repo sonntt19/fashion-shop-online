@@ -324,7 +324,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 
 .blog-heading {
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 600;
 }
 
@@ -471,7 +471,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 }
 .product-top:hover a.buy-now{
     bottom: 0px;
-
+    color: white;
 }
 
 .product-top:hover a img{

@@ -5,25 +5,24 @@
  */
 package Controlller.Marketing;
 
-import dal.CustomerDAO;
+import dal.CategoryDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Customer;
-import model.User;
+import model.Category;
+import model.Product;
 
 /**
  *
- * @author Veetu
+ * @author son22
  */
-@WebServlet(name = "LoadCustomerDetailController", urlPatterns = {"/load-customer"})
-public class LoadCustomerDetailController extends HttpServlet {
+public class ProductDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,14 +38,18 @@ public class LoadCustomerDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        HttpSession session = request.getSession();
-        
-        String customer_id = request.getParameter("cid");
-        CustomerDAO cus = new CustomerDAO();
-        Customer c = cus.getCustomerById(customer_id);
-        
-        session.setAttribute("customerDetail", c);
-        request.getRequestDispatcher("CustomerDetail.jsp").forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            String id = request.getParameter("product_id");
+            CategoryDAO c = new CategoryDAO();
+            ProductDAO pd = new ProductDAO();
+            HttpSession session = request.getSession();
+            Product p = pd.getProductById(Integer.parseInt(id));
+            List<Category> l = c.getAllCategory();
+            session.setAttribute("listCategories", l);
+            request.setAttribute("product", p);
+            request.getRequestDispatcher("update_product_new.jsp").forward(request, response);
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

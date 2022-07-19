@@ -10,6 +10,7 @@ import dal.ProductDAO;
 import dal.SliderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.InetAddress;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -56,6 +57,7 @@ public class HomeController extends HttpServlet {
         session.setAttribute("list4product", list4product);
         
         session.setAttribute("historyUrl", "home");
+        
         
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }

@@ -33,7 +33,8 @@
 
                         <c:forEach items="${sessionScope.listSlider_HomePageAll}" var="s" >
                             <div class="carousel-item ${s.id == sessionScope.sliderFirst.id ? "active" : ""}">
-                                <a href="${s.backlink}"><img src="${s.slider_image}" class="d-block w-100" alt="..."></a>
+                                    <a href="${s.backlink}"><img src="${s.slider_image}" class="d-block w-100" alt="..."></a>
+                                
                             </div> 
 
                         </c:forEach>
@@ -117,25 +118,25 @@
                     <!-- Product list -->
                     <h2 class="section-heading">Những sản phẩm đa dạng</h2>
                     <div class="category-list">
-                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg1.jpg') 
+                        <a href="list?&categoryId=3"><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg1.jpg') 
                                         top center / cover no-repeat">
                                 <div class="category-content">Đồ mặc trong</div>
                             </div></a>
 
-                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg2.jpg') 
+                        <a href="list?&categoryId=1"><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg2.jpg') 
                                         top center / cover no-repeat">
                                 <div class="category-content">Đồ mặc ngoài</div>
                             </div></a>
 
-                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg3.jpg') 
+                        <a href="list?&categoryId=4"><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg3.jpg') 
                                         top center / cover no-repeat">
-                                <div class="category-content">Đồ thể thao</div>
+                                <div class="category-content">Phụ kiện</div>
                             </div></a>
 
 
-                        <a href=""><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg4.jpg') 
+                        <a href="list?&categoryId=2"><div class="category-item category-img" style="background: url('./assets/img/categoryImg/categoryImg4.jpg') 
                                         top center / cover no-repeat">
-                                <div class="category-content">Tất cả</div>
+                                <div class="category-content">Quần</div>
                             </div></a>
 
 
@@ -156,12 +157,12 @@
                         <!-- blog list hot -->
                         <div class="blog-list">
 
-                            <c:forEach items="${sessionScope.listBlog_HomePage}" var="C">
+                            <c:forEach items="${sessionScope.listBlog_HomePage}" var="c">
                                 <div class="blog-item">
-                                    <img src="${C.thumbnail}" alt="" class="blog-img">
-                                    <div class="blog-body">
-                                        <h3 class="blog-heading">${C.title}</h3>
-                                        <p class="blog-desc">${C.brief_info}</p>
+                                    <img src="${c.thumbnail}" alt="" class="blog-img" style="width: 592px; height: 450px">
+                                    <div class="blog-body" style="min-height: 340px">
+                                        <h3 class="blog-heading" style="font-size: 40px">${c.title}</h3>
+                                        <p class="blog-desc">${c.brief_infor}</p>
                                         <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
                                     </div>
                                 </div>
@@ -171,13 +172,9 @@
                         </div> 
                     </div>
 
+                </div>
 
-
-                    <!-- End Contact -->
-
-
-
-                    <!-- End Contact --></div>
-                <%@include file="components/footer.jsp" %></div>
+                    
+                <%@include file="components/footer.jsp" %>
     </body>
 </html>

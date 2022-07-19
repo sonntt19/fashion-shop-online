@@ -25,6 +25,17 @@
                         <a class="nav-link" href="list-user">Danh sách người dùng</a>
                     </nav>
                 </div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapseLayouts">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Quản lý cài đặt
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapse2" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <a class="nav-link" href="setting-list">Danh sách cài đặt</a>
+                        <a class="nav-link" href="list-user">Thêm mới cài đặt</a>
+                    </nav>
+                </div>
         </div>
         <div class="sb-sidenav-footer">
             <div class="small">Đăng nhập bởi:</div>

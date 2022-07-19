@@ -46,6 +46,7 @@ public class ProductListController extends HttpServlet {
             HttpSession session = request.getSession();
             CategoryDAO c = new CategoryDAO();
             ProductDAO p = new ProductDAO();
+            String status = "!= -1";
 
             // Set page
             int page = 1;
@@ -82,7 +83,7 @@ public class ProductListController extends HttpServlet {
             }
             
             // Set total page 
-            int totalProduct = p.getTotalProduct(searchKey, categoryId);
+            int totalProduct = p.getTotalProduct(searchKey, categoryId, status);
             int totalPage = totalProduct / PAGE_SIZE;
             if (totalProduct % PAGE_SIZE != 0) {
                 totalPage += 1;

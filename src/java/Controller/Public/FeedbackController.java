@@ -47,15 +47,16 @@ public class FeedbackController extends HttpServlet {
             User u = (User) session.getAttribute("us");
             int product_id = Integer.parseInt(request.getParameter("productId"));
             String subject = request.getParameter("subject");
-            String image = "images/feedback/"+request.getParameter("imageurl");
-            int star = Integer.parseInt(request.getParameter("star"));
+            String image = "images/feedback/" + request.getParameter("imageurl");
+            String star = request.getParameter("star");
+            
+            
+                FeedbackDAO fed = new FeedbackDAO();
 
-            FeedbackDAO fed = new FeedbackDAO();
-
-            fed.addNewFeedback(u.getFull_Name(), star, subject, image, 1, product_id, u.getUser_Id());
-            String historyUrl = (String) session.getAttribute("historyUrl");
-
-            response.sendRedirect(historyUrl);
+                fed.addNewFeedback(u.getFull_Name(), Integer.parseInt(star), subject, image, 1, product_id, u.getUser_Id());
+                String historyUrl = (String) session.getAttribute("historyUrl");
+                response.sendRedirect(historyUrl);
+            
 
         }
     }

@@ -66,175 +66,59 @@
     </head>
     <body class="sb-nav-fixed">
         <%@include file="components/account.jsp" %>
-        <nav class="sb-topnav navbar navbar-expand navbar-light bg-light    ">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand me-5 ti-joomla" href="home" style="padding-left: 2%">KingsMan</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item me-4">
-                        <a class="nav-link active" aria-current="page" href="home">Trang chủ</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link" href="list">Sản Phẩm</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link" href="blog">Blog</a>
-                    </li>
-                    <li class="nav-item me-4">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-
-
-                </ul>
-                <!-- Navbar-->
-                <form class="d-flex me-5" action="list">
-                    <input class="form-control me-2" type="text" name ="key" placeholder="Tìm kiếm sản phẩm..." aria-label="Search" value="${key}" id="" required class="form-control">
-                    <button class="btn btn-outline-danger" type="submit">Tìm</button>
-                </form>
-
-
-
-
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <c:if test="${sessionScope.us != null}">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-outline-dark dropdown-toggle py-2 px-4" data-bs-toggle="dropdown" aria-expanded="false">
-                                Hello ${sessionScope.us.full_Name}
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" type="button" data-toggle="modal"  data-target="#userProfileModal">Thông tin cá nhân</a></li>
-                                <li><a class="dropdown-item" href="#">Danh sách đơn hàng</a></li>
-                                <li><a class="dropdown-item" href="logout">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                    </c:if>
-                    <c:if test="${sessionScope.us == null}">
-                        <li class="nav-item">
-                            <a><i type="button" class="ti-user btn btn-icon py-2 px-4" data-toggle="modal"  data-target="#loginModal"></i></a>
-                        </li>
-                    </c:if>
-                    <!-- begin icon header -->
-
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-icon py-2 px-4" href="carts" tabindex="-1" aria-disabled="true"><i class="ti-shopping-cart"></i></a>
-                    </li>
-                </ul>
-        </nav>
+        <%@include file="components/manager-header.jsp" %>
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Bảng điểu khiển</div>
-                            <a class="nav-link" href="AdminDashboard.jsp">        
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Bảng điều khiển quản trị viên
-                            </a>
-                            <a class="nav-link" href="MKTDashboard.jsp">        
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Bảng điều khiển tiếp thị
-                            </a>
-                            <a class="nav-link" href="SaleDashboard.jsp">        
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Bảng điều khiển bán hàng
-                            </a>
-                            <div class="sb-sidenav-menu-heading">Giao diện</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Cài đặt blog
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="MKTPostList.jsp">Danh sách blog</a>
-                                    <a class="nav-link" href="MKTPostDetail.jsp">Chi tiết thông tin blog</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCustomer" aria-expanded="false" aria-controls="collapseCustomer">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Cài đặt khách hàng
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseCustomer" aria-labelledby="headingOne" data-bs-parent="#cutomerSetting">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="CustomerList.jsp">Danh sách khách hàng</a>
-                                    <a class="nav-link" href="CustomerDetail.jsp">Chi tiết thông tin khách hàng</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                            <a class="nav-link" href="password.html">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Đăng nhập bởi:</div>
-                        ${sessionScope.us.full_Name}
-                    </div>
-                </nav>
-            </div>
+            <%@include file="components/MKT-left-board.jsp" %>
             <div class="groundy" id="layoutSidenav_content">
                 <main>
                     <div class="container rounded bg-white mt-5 mb-5">
-                        <form action="customer-detail" method="post">
-                            <div class="row ">
-                                <div class="p-4">
-                                    <h4 class="text-center">Chỉnh sửa khách hàng</h4>
-                                </div>
-                                <div class="col-md-2">
-                                </div>
-                                <div class="col-md-8">
+
+                        <div class="row ">
+                            <div class="col-md-5">
+                                <form action="update-customer">
+                                    <h4 class="text-center font-weight-bold" style="margin-top: 4%">Chỉnh sửa khách hàng</h4>
                                     <div class="p-3 py-5">
                                         <div class="row mt-16">
-                                            <div class="col-md-6">ID<input name="customer_id" type="text" class="form-control" placeholder="ID" value="${sessionScope.customerDetail.customer_id}" style="margin-bottom: 1rem;" readonly=""></div>
-                                            <div class="col-md-6">Họ và tên<input name="customer_name" type="text" class="form-control" placeholder="Họ và tên" value="${sessionScope.customerDetail.customer_name}" style="margin-bottom: 1rem;" required=""></div>
-                                            <div class="col-md-6">Email<input name="customer_email" type="text" class="form-control" placeholder="Email" value="${sessionScope.customerDetail.customer_email}" style="margin-bottom: 1rem; "required=""></div>
-                                            <div class="col-md-6">Số điện thoại<input name="customer_mobile" type="text" class="form-control" placeholder="Số điện thoại" value="${sessionScope.customerDetail.customer_mobile}" style="margin-bottom: 1rem;" required=""></div>
-                                            <div class="col-md-6">Ngày mua hàng<input name="updated_date" type="date" class="form-control" placeholder="Ngày mua hàng" value="${sessionScope.customerDetail.updated_date}" style="margin-bottom: 1rem;" required=""></div>
+                                            <div class="col-md-6">ID<input name="customer_id" type="text" class="form-control" placeholder="ID" value="${customerDetail.customer_id}" style="margin-bottom: 1rem;" readonly=""></div>
+                                            <div class="col-md-6">Họ và tên<input name="customer_name" type="text" class="form-control" placeholder="Họ và tên" value="${customerDetail.customer_name}" style="margin-bottom: 1rem;" required=""></div>
+                                            <div class="col-md-6">Email<input name="customer_email" type="text" class="form-control" placeholder="Email" value="${customerDetail.customer_email}" style="margin-bottom: 1rem; "required=""></div>
+                                            <div class="col-md-6">Số điện thoại<input name="customer_mobile" type="text" class="form-control" placeholder="Số điện thoại" value="${customerDetail.customer_mobile}" style="margin-bottom: 1rem;" required=""></div>
                                         </div>
-                                        
-                                        </div>
+                                        <div class="mt-5 p-4 text-center"><button class="btn btn-dark" type="submit">Lưu</button></div>
                                     </div>
-                                    <div class="col-md-2">
-                                    </div>
-                                    <div class="mt-5 p-4 text-center"><button class="btn btn-dark" type="submit">Lưu</button></div>
-
+                                </form>
+                            </div>
+                            <div class="col-md-7">
+                                <h4 class="text-center font-weight-bold" style="margin-top: 4%">Lịch sử chỉnh sửa</h4>
+                                <div class="p-3 py-5">
+                                    <table class="table text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>Ngày cập nhật</th>
+                                                <th>Người cập nhật</th>
+                                                <th>Họ và tên</th>
+                                                <th>Enail</th>
+                                                <th>Số điện thoại</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${listUpdate}" var="lu">
+                                                <tr>
+                                                    <td style="text-align: center">${lu.update_date}</td>
+                                                    <td style="text-align: center">${lu.update_by}</td>
+                                                    <td style="text-align: center">${lu.customer_name}</td>
+                                                    <td style="text-align: center">${lu.customer_email}</td>
+                                                    <td style="text-align: center">${lu.customer_mobile}</td>
+                                                </tr>
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
                                 </div>
-                        </form>
+                            </div>
+                        </div>
+
                     </div>
                 </main>
-                <!-- Footer-->
-                <%@include file="components/footer.jsp" %>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

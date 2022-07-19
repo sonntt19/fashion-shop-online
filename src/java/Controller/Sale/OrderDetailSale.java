@@ -7,6 +7,7 @@ package Controller.Sale;
 
 import dal.OrderDao;
 import dal.OrderDetailDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Order;
 import model.OrderDetail;
+import model.User;
 
 /**
  *
@@ -45,6 +47,10 @@ public class OrderDetailSale extends HttpServlet {
 
         List<Order> listMyOrderinDetail = new OrderDao().getAllOrderInDetail(orderId);
         request.setAttribute("listMyOrderinDetail", listMyOrderinDetail);
+        
+        List<User> listSaler = new UserDAO().getAllSaler();
+        request.setAttribute("listSaler", listSaler);
+
 
         session.setAttribute("historyUrl", "order-detail?orderId=" + orderId_raw);
         request.getRequestDispatcher("SaleOrderDetail.jsp").forward(request, response);
