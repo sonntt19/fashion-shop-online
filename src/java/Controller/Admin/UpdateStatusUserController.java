@@ -36,8 +36,8 @@ public class UpdateStatusUserController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            int user_Id = Integer.parseInt(request.getParameter("user_Id"));
-            int status = 0;
+            int user_Id = Integer.parseInt(request.getParameter("userId"));
+            int status = Integer.parseInt(request.getParameter("status"));
             new UserDAO().UpdateStatusUser(status, user_Id);
             
             response.sendRedirect("list-user");

@@ -10,6 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>JSP Page</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
@@ -22,8 +23,17 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel="stylesheet" href="./assets/css/styles.css">
         <link rel="stylesheet" href="./assets/css/style.css">
-        <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./assets/fonts/themify-icons/themify-icons.css">
+        <%@include file="components/javascript.jsp" %>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+        <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
         <style>
             .payment-method__item-name {
                 font-size: 20px;
@@ -128,72 +138,8 @@
             <%@include file="components/MKT-left-board.jsp" %>
             <div class="groundy" id="layoutSidenav_content">
                 <main>
-                    <div class="container-fluid rounded row" style="margin-top: 1% !important; margin-bottom: 1% !important">
-                        <div class="col-md-1">
-                            <a href="#"><button type="button" class="btn btn-danger " style="">---------</button></a>
-                        </div>
-                        <div class="col-md-2">
-                            <select class="dropdown-font-new" style="width: 100%" aria-label="Default select example" onchange="location = this.value;">
-                                <option value="posts-list?${historyKey}${historyValue}${historyType}${historyStatus}${historyAuthor}" ${categoryId == null ? "Selected" : ""}>
-                                    Danh Mục
-                                </option>
-                                <c:forEach items="${sessionScope.listCategoryBlog}" var="c">
-                                    <option value="posts-list?${historyKey}${historyValue}${historyType}${historyStatus}${historyAuthor}&categoryId=${c.categoryBlog_id}" ${categoryId == c.categoryBlog_id ? "Selected" : ""}>
-                                        ${c.categoryBlog_name}
-                                    </option>
-                                </c:forEach>
-
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <select class="dropdown-font-new float-left" style="width: 100%" aria-label="Default select example" onchange="location = this.value;"> Sắp xếp
-                                <option value="posts-list?${historyKey}${historyValue}${historyStatus}${historyAuthor}${historyCategoryId}&type=desc" ${type == "desc" ? "Selected" : ""}>
-                                    Mới Nhất
-                                </option>
-                                <option value="posts-list?${historyKey}${historyValue}${historyStatus}${historyAuthor}${historyCategoryId}" ${type == null ? "Selected" : ""}>
-                                    Cũ Nhất
-                                </option>
-
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <select class="dropdown-font-new" style="width: 113%" aria-label="Default select example" onchange="location = this.value;">
-                                <option value="posts-list?${historyKey}${historyValue}${historyStatus}${historyCategoryId}" ${authorId == null ? "Selected" : ""}>
-                                    Tác giả
-                                </option>
-                                <c:forEach items="${sessionScope.listAuthor}" var="a">
-                                    <option value="posts-list?${historyKey}${historyValue}${historyType}${historyStatus}${historyCategoryId}&authorId=${a.user_Id}" ${authorId == a.user_Id ? "Selected" : ""}>
-                                        ${a.full_Name}
-                                    </option>
-                                </c:forEach>
-
-                            </select>
-                        </div>
-                        <div class="col-md-2">
-                            <select class="dropdown-font-new float-right" aria-label="Default select example" onchange="location = this.value;"> Trạng thái
-                                <option value="posts-list?${historyKey}${historyValue}${historyAuthor}${historyCategoryId}" ${status == null ? "Selected" : ""}>
-                                    Trạng thái
-                                </option>
-                                <option value="posts-list?${historyKey}${historyValue}${historyAuthor}${historyCategoryId}&status=1" ${status == 1 ? "Selected" : ""}>
-                                    Hiện
-                                </option>
-                                <option value="posts-list?${historyKey}${historyValue}${historyAuthor}${historyCategoryId}&status=0" ${status == 0 ? "Selected" : ""}>
-                                    Ẩn
-                                </option>
-
-                            </select>
-                        </div>
-                        <div class="col-md-2 text-center">
-                            <form action="feedback-list">
-                                <input type="text" name="key" value="${key}" placeholder="Tìm kiếm" class="filter-search__control" >
-                                <button type="submit" class="btn btn-outline-danger" href="#" role="button">
-                                    <i style='font-size:15px' class='fas'>&#xf002;</i>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="container rounded bg-white mt-5 mb-5" >
-                        <table class="table"  style="margin-top: 4%">
+                    <div class="container-fluid rounded row" style="margin-top: 3% !important; margin-bottom: 1% !important">
+                        <table class="table table-striped table-bordered" id="sortTable"  style="margin-top: 4%; background: #FFFFE0; ">
                             <thead  class="text-center">
                             <th>ID</th>
                             <th>Ảnh đánh giá</th>
@@ -249,39 +195,46 @@
                             </tbody>
                         </table>
                     </div>
-                    <nav aria-label="..." class="pagination">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a <c:if test="${page!=1}">                         
-                                        href="feedback-list?page=${page-1}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}"
-                                    </c:if> class="page-link" aria-label="Previous">
-                                    <span  aria-hidden="true">«</span>
-                                </a>
-                            </li>
 
-                            <c:forEach begin="1" end="${totalPage}" var="i">
-                                <li class="page-item ${i==page ?"active" : ""}">
-                                    <a class="page-link" href="feedback-list?page=${i}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}">${i}</a>
-                                </li>
-                                </c:forEach>
-
-                            <li class="page-item">
-                                <a <c:if test="${page!=totalPage}">
-                                        href="feedback-list?page=${page+1}${historyKey}${historyValue}${historyType}${historyAuthor}${historyCategoryId}${historyStatus}"
-                                    </c:if> class="page-link" aria-label="Next">
-                                    <span aria-hidden="true">»</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
                 </main>
                 <!-- Footer-->
+
             </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+            <script>
+                $(document).ready(function () {
+                    $('#sortTable').DataTable({
+                        "language": {
+                            "decimal": "",
+                            "emptyTable": "Không có dữ liệu trong bản ghi",
+                            "info": " Hiển thị <_START_> đến <_END_> trong _TOTAL_ đánh giá",
+                            "infoEmpty": "HIển thị 0 to 0 of 0 bản ghi",
+                            "infoFiltered": "(kết quả từ _MAX_ tổng số bản ghi)",
+                            "infoPostFix": "",
+                            "thousands": ",",
+                            "lengthMenu": "Hiển thị _MENU_ đánh giá",
+                            "loadingRecords": "Loading...",
+                            "processing": "",
+                            "search": "Tìm kiếm:",
+                            "zeroRecords": "Không tìm thấy kết quả nào",
+                            "paginate": {
+                                "first": "F",
+                                "last": "L",
+                                "next": "Sau",
+                                "previous": "Trước"
+                            },
+                            "aria": {
+                                "sortAscending": ": activate to sort column ascending",
+                                "sortDescending": ": activate to sort column descending"
+                            }
+                        }
+                    });
+                });
+            </script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="js/scripts.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
+            <script src="js/datatables-simple-demo.js"></script>
+
     </body>
 </html>
 
