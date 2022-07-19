@@ -163,7 +163,7 @@
                                     <div class="blog-body" style="min-height: 340px">
                                         <h3 class="blog-heading" style="font-size: 40px">${c.title}</h3>
                                         <p class="blog-desc">${c.brief_infor}</p>
-                                        <a href="#" class="place-buy-btn">Tìm hiểu thêm</a>
+                                        <a href="blogDetail?blog_id=${c.blog_id}&categoryBlog_id=${c.categoryBlog_id}" class="place-buy-btn">Tìm hiểu thêm</a>
                                     </div>
                                 </div>
                             </c:forEach>
