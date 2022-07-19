@@ -193,7 +193,7 @@ public class ProductDAO extends DBContext {
 
     }
 
-    public List<Product> getProductTop4Category(int categoryId, int productId) {
+    public List<Product> getProductTop4Category(int productId, int categoryId) {
         List<Product> list = new ArrayList<>();
         String sql = "SELECT TOP 4 * FROM Product where category_id = ? and product_id != ? ORDER BY NEWID()";
         try {
