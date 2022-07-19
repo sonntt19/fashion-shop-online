@@ -83,7 +83,7 @@ public class ProductListController extends HttpServlet {
             }
             
             // Set total page 
-            int totalProduct = p.getTotalProduct(searchKey, categoryId, status);
+            int totalProduct = p.getTotalProduct(searchKey, categoryId, "=1");
             int totalPage = totalProduct / PAGE_SIZE;
             if (totalProduct % PAGE_SIZE != 0) {
                 totalPage += 1;
