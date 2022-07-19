@@ -81,20 +81,20 @@ public class ChangePasswordController extends HttpServlet {
         User user = new UserDAO().getUser(userId, old_pass);
 
         if (user == null) {
-            request.setAttribute("notification", "Old Password Wrong");
+            request.setAttribute("notification", "Mật khẩu cũ sai");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else if (!new_pass1.equals(new_pass2)) {
-            request.setAttribute("notification", "Your New Password Does Not Match ");
+            request.setAttribute("notification", "Mật khẩu mới hai lần nhập không giống nhau");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else if (new_pass1.length() <= 8 || new_pass1.length() >32) {
-            request.setAttribute("notification", "Your New Password less than 8 character or long than 32 characters");
+            request.setAttribute("notification", "Mật khẩu của bạn cần từ 8 đến 31 kí tự");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else if (new_pass1.equals(old_pass)) {
-            request.setAttribute("notification", "Your New Password and Oll Password are the same");
+            request.setAttribute("notification", "Mật khẩu cũ và mới của bạn giống nhau");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
             new UserDAO().changePassword(userId, new_pass1);
-            request.setAttribute("notification", "Successful Change Password");
+            request.setAttribute("notification", "Thay đổi mật khẩu thành công");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }

@@ -69,6 +69,10 @@
         <servlet-class>Controller.Public.DeleteFeedbackController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>FeedbackController</servlet-name>
+        <servlet-class>Controller.Public.FeedbackController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddProductController</servlet-name>
         <servlet-class>Controlller.Marketing.AddProductController</servlet-class>
     </servlet>
@@ -208,6 +212,10 @@
         <servlet-name>AddSettingController</servlet-name>
         <servlet-class>Controller.Admin.AddSettingController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FeedbackCommonController</servlet-name>
+        <servlet-class>Controller.Public.FeedbackCommonController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -275,6 +283,10 @@
     <servlet-mapping>
         <servlet-name>DeleteFeedbackController</servlet-name>
         <url-pattern>/delete-feedback</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackController</servlet-name>
+        <url-pattern>/feedback</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddProductController</servlet-name>
@@ -415,6 +427,10 @@
     <servlet-mapping>
         <servlet-name>AddSettingController</servlet-name>
         <url-pattern>/add-setting</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FeedbackCommonController</servlet-name>
+        <url-pattern>/feedback_common</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

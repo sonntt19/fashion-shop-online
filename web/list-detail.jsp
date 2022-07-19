@@ -388,7 +388,7 @@
         <div style="background-color:#f8f9fa;">
             <hr class="marketing_feedback_margin">
             <span><h2 class="marketing_feedback_margin marketing_feedbac_displayinline">${total} Đánh giá</h2></span>
-            <span><h2 class="marketing_feedback_margin marketing_feedbac_displayinline">${avg}/5 <img style="height: 40px; width: 40px" src="images/images.png"></h2></span>
+            <span><h2 class="marketing_feedback_margin marketing_feedbac_displayinline">${Math.round(avg * 1000) / 1000}/5 <img style="height: 40px; width: 40px" src="images/images.png"></h2></span>
                     <c:if test="${accept.orderID != null}">
                 <a data-toggle="modal" data-dismiss="modal" data-target="#feedback">
                     <h2 class="marketing_feedback_margin marketing_feedbac_displayinline" style="color: blue">
