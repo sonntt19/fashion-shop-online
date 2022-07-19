@@ -240,84 +240,86 @@
                                     </div>
                                 </div>
                             </c:forEach>
+                            <div id="layoutSidenav">
+                                <%@include file="components/sale-left-dashboard.jsp" %>
+                                <c:forEach items="${listMyOrderinDetail}" var="k">
+                                    <form action="update-order">
 
-                            <c:forEach items="${listMyOrderinDetail}" var="k">
-                                <form action="update-order">
+                                        <div class="row mt-4">
+                                            <div class="col">
 
-                                    <div class="row mt-4">
-                                        <div class="col">
-
-                                            <div class="row justify-content-between">
-                                                <div class="col-auto"><p class="mb-1 text-dark cus-fontsize"><b>Order Details</b></p></div>
-                                                <div class="col-auto">
-                                                    Trạng thái
-                                                    <select class="form-control"  name="status" aria-label="Default select example" > Trạng thái
-                                                        <option value="1" ${1 == k.status_order ? "Selected" : ""}>
-                                                            Đang gửi
-                                                        </option>
-                                                        <option value="2" ${2 == k.status_order ? "Selected" : ""}>
-                                                            Thành công
-                                                        </option>
-                                                        <option value="3" ${3 == k.status_order ? "Selected" : ""}>
-                                                            Đã hủy
-                                                        </option>
-
-                                                    </select>
-                                                </div>
-                                                <c:if test="${sessionScope.us.role_Id == 4}">
+                                                <div class="row justify-content-between">
+                                                    <div class="col-auto"><p class="mb-1 text-dark cus-fontsize"><b>Order Details</b></p></div>
                                                     <div class="col-auto">
-                                                        Người bán hàng
-                                                        <select class="form-control"  name="salerId" aria-label="Default select example" >
-                                                            <c:forEach items="${listSaler}" var="a">
-                                                                <option value="${a.user_Id}" ${a.user_Id == k.saler_id ? "Selected" : ""}>
-                                                                    ${a.full_Name}
-                                                                </option>
-                                                            </c:forEach>
+                                                        Trạng thái
+                                                        <select class="form-control"  name="status" aria-label="Default select example" > Trạng thái
+                                                            <option value="1" ${1 == k.status_order ? "Selected" : ""}>
+                                                                Đang gửi
+                                                            </option>
+                                                            <option value="2" ${2 == k.status_order ? "Selected" : ""}>
+                                                                Thành công
+                                                            </option>
+                                                            <option value="3" ${3 == k.status_order ? "Selected" : ""}>
+                                                                Đã hủy
+                                                            </option>
 
                                                         </select>
                                                     </div>
-                                                </c:if>
-                                                <div class="flex-sm-col text-right col cus"> <p class="mb-1 cus-fontsize me-2"><b>Họ tên</b></p> </div>
-                                                <div class="flex-sm-col col-auto"> <p class="mb-1 cus-fontsize">${k.fullName}</p> </div>
-                                            </div>
-                                            <div class="row justify-content-between">
-                                                <div class="flex-sm-col text-right col"><p class="mb-1 cus-fontsize"> <b>Số điện thoại</b></p> </div>
-                                                <div class="flex-sm-col col-auto"><p class="mb-1 cus-fontsize">${k.mobile}</p></div>
+                                                    <c:if test="${sessionScope.us.role_Id == 4}">
+                                                        <div class="col-auto">
+                                                            Người bán hàng
+                                                            <select class="form-control"  name="salerId" aria-label="Default select example" >
+                                                                <c:forEach items="${listSaler}" var="a">
+                                                                    <option value="${a.user_Id}" ${a.user_Id == k.saler_id ? "Selected" : ""}>
+                                                                        ${a.full_Name}
+                                                                    </option>
+                                                                </c:forEach>
+
+                                                            </select>
+                                                        </div>
+                                                    </c:if>
+                                                    <div class="flex-sm-col text-right col cus"> <p class="mb-1 cus-fontsize me-2"><b>Họ tên</b></p> </div>
+                                                    <div class="flex-sm-col col-auto"> <p class="mb-1 cus-fontsize">${k.fullName}</p> </div>
+                                                </div>
+                                                <div class="row justify-content-between">
+                                                    <div class="flex-sm-col text-right col"><p class="mb-1 cus-fontsize"> <b>Số điện thoại</b></p> </div>
+                                                    <div class="flex-sm-col col-auto"><p class="mb-1 cus-fontsize">${k.mobile}</p></div>
+
+                                                </div>
+
+
+                                                <div class="row justify-content-between">
+                                                    <div class="flex-sm-col text-right col"><p class="mb-1 cus-fontsize me-5"><b>Địa chỉ</b></p></div>
+                                                    <div class="flex-sm-col col-auto"><p class="mb-1 cus-fontsize">${k.address}</p></div>
+                                                </div>
 
                                             </div>
-
-
-                                            <div class="row justify-content-between">
-                                                <div class="flex-sm-col text-right col"><p class="mb-1 cus-fontsize me-5"><b>Địa chỉ</b></p></div>
-                                                <div class="flex-sm-col col-auto"><p class="mb-1 cus-fontsize">${k.address}</p></div>
-                                            </div>
-
+                                        </div>
+                                        <div class="row invoice ">
+                                            <div class="col"><p class="mb-1 cus-fontsize"> OrderId: ${k.orderID}</p><p class="mb-1 cus-fontsize">Ngày mua hàng : ${k.date}</p></div>
+                                        </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="jumbotron-fluid">
+                                        <div class="row justify-content-between ">
+                                            <div class="col-sm-auto col-auto my-auto"><img class="img-fluid my-auto align-self-center " src="https://salt.tikicdn.com/ts/product%2F73%2F31%2F8f%2F0d2df2f2799036d45c6ed06b946d361e.png" width="115" height="115"></div>
+                                            <div class="col-auto my-auto "><h2 class="mb-0 font-weight-bold">TOTAL PAID</h2></div>
+                                            <div class="col-auto my-auto ml-auto"><h1 class="display-3 ">${k.total_cost}đ</h1></div>
+                                        </div>
+                                        <div class="row mb-3 mt-3 mt-md-0">
+                                            <div class="col-auto border-line"> <small class="text-white">Cảm ơn vì</small></div>
+                                            <div class="col-auto border-line"> <small class="text-white">đã ủng hộ</small></div>
+                                            <div class="col-auto "><small class="text-white">Chúng tôi<3 </small> </div>
                                         </div>
                                     </div>
-                                    <div class="row invoice ">
-                                        <div class="col"><p class="mb-1 cus-fontsize"> OrderId: ${k.orderID}</p><p class="mb-1 cus-fontsize">Ngày mua hàng : ${k.date}</p></div>
-                                    </div>
-                            </div>
-                            <div class="card-footer">
-                                <div class="jumbotron-fluid">
-                                    <div class="row justify-content-between ">
-                                        <div class="col-sm-auto col-auto my-auto"><img class="img-fluid my-auto align-self-center " src="https://salt.tikicdn.com/ts/product%2F73%2F31%2F8f%2F0d2df2f2799036d45c6ed06b946d361e.png" width="115" height="115"></div>
-                                        <div class="col-auto my-auto "><h2 class="mb-0 font-weight-bold">TOTAL PAID</h2></div>
-                                        <div class="col-auto my-auto ml-auto"><h1 class="display-3 ">${k.total_cost}đ</h1></div>
-                                    </div>
-                                    <div class="row mb-3 mt-3 mt-md-0">
-                                        <div class="col-auto border-line"> <small class="text-white">Cảm ơn vì</small></div>
-                                        <div class="col-auto border-line"> <small class="text-white">đã ủng hộ</small></div>
-                                        <div class="col-auto "><small class="text-white">Chúng tôi<3 </small> </div>
-                                    </div>
                                 </div>
-                            </div>
-                            <input type="hidden" name="orderId" value="${k.orderID}"/>
-                            <input class="btn btn-dark" type="submit" value="Lưu">
+                                <input type="hidden" name="orderId" value="${k.orderID}"/>
+                                <input class="btn btn-dark" type="submit" value="Lưu">
 
-                        </div>
-                        </form>
-                    </c:forEach>
+                            </div>
+                            </form>
+                        </c:forEach>
+                    </div>
 
 
                 </div>
