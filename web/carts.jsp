@@ -111,11 +111,8 @@
                                             <li class="cart-total">Tổng tiền các sản phẩm <span>${sum}đ</span></li>
                                         </ul>
                                         <div class="proceed-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-<<<<<<< HEAD
                                             <a href="cart-contact" style="color: white">Mua hàng</a>
-=======
-                                            <a href="cart-contact" style="color: white">Gửi</a>
->>>>>>> 15e788606a05e1a27a086fb8d5e5efa9ddb03e2b
+
                                         </div>
 
                                     </div>
