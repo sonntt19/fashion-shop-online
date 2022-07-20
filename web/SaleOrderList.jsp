@@ -126,7 +126,7 @@
                                     </c:if>
                                     <td>${c.total_cost}</td>
                                     <td>${c.userId}</td>
-                                    <td>${c.saler_id}</td>
+                                    <td>${c.fullNameSaler}</td>
 
                                     <td>
                                         ${c.status_order_name}

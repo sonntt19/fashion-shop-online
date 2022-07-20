@@ -128,8 +128,9 @@ public class OrderDao extends DBContext {
 
     public List<Order> getAllOrder() {
         List<Order> list = new ArrayList<>();
-        String sql = "select * from [Order] join Status_Order\n"
-                + "                on [Order].status_order= Status_Order.status_order_id";
+        String sql = "select * from [Order] \n"
+                + "join Status_Order on [Order].status_order= Status_Order.status_order_id\n"
+                + "join [User] on [User].userId = [Order].saler_id";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
@@ -143,11 +144,11 @@ public class OrderDao extends DBContext {
                         .fullName(rs.getString(4))
                         .mobile(rs.getString(5))
                         .address(rs.getString(6))
-                        
                         .status_order(rs.getInt(7))
                         .UserId(rs.getInt(8))
                         .saler_id(rs.getInt(9))
                         .status_order_name(rs.getString(12))
+                        .fullNameSaler(rs.getString(15))
                         .build();
 
                 list.add(c);

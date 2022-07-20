@@ -33,4 +33,5 @@ public class Order {
     int countProduct;
     String fullNameFirstProduct;
     String status_order_name;
+    String fullNameSaler;
 }
