@@ -23,17 +23,12 @@ import model.User;
 
 /**
  *
- * @author Veetu
+ * @author son22
  */
-@WebFilter(filterName = "AdminAuthorization", urlPatterns = {"/create-user", "/delete-user", "/list-user", "/update-status-user","/update-setting","/admin-dashboard","/add-setting","/setting-details","/setting-list"})
-public class AdminAuthorization implements Filter {
+@WebFilter(filterName = "SaleAuthorization", urlPatterns = {"/blog","/blogDetail","/categoryBlog"})
+public class SaleAuthorization implements Filter {
     
-
-    // The filter configuration object we are associated with.  If
-    // this value is null, this filter instance is not currently
-    // configured. 
-    
-    @Override
+   @Override
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
@@ -44,7 +39,7 @@ public class AdminAuthorization implements Filter {
 
         User user = (User) session.getAttribute("us");
 
-        if (user != null && user.getRole_Id().equals("5")) {
+        if (user != null && user.getRole_Id().equals("3")|| user.getRole_Id().equals("4") && user != null) {
             chain.doFilter(request, response);
             return;
         }
@@ -83,7 +78,4 @@ public class AdminAuthorization implements Filter {
     /**
      * Return a String representation of this object.
      */
-    
-    
 }
-

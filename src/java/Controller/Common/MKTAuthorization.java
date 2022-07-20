@@ -25,7 +25,8 @@ import model.User;
  *
  * @author Veetu
  */
-@WebFilter(filterName = "MKTAuthorization", urlPatterns = {"/add-customer", "/add-post", "/add_product", "/add-slider", "/change-status","/change-status-customert", "/status-feedback", "/change-status-product", "/customer-detail", "/customer-list", "/feedback-detail","/feedback-list","/mkt-dashboard","/marketingproductlist"})
+@WebFilter(filterName = "MKTAuthorization", urlPatterns = {"/add-slider","/marketingproductlist", "/update_product", "/add_product", "/update-post", "/add-customer","/add-post", "/customer-detail", "/customer-list", "/load-customer", "/post-details", "/posts-list","/change-status","/change-status-customer","/status-feedback","/change-status-product","/feedback-detail","/feedback-list","/mkt-dashboard","/product-detail","/slider-detail","/slider-list","/update-customer","/update-false-slider","/update-slider","/update-true-slider"
+})
 public class MKTAuthorization implements Filter {
     
 
