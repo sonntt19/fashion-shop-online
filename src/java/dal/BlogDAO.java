@@ -109,7 +109,7 @@ public class BlogDAO extends DBContext {
 
     public Blog getBlogNew() {
         List<Blog> list = new ArrayList<>();
-        String sql = "select top 1 * from Blog\n"
+        String sql = "select top 1 * from Blog where status = 1\n"
                 + "order by updated_date desc";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
@@ -152,7 +152,7 @@ public class BlogDAO extends DBContext {
     public List<Blog> getBlogWithPaging(int page, int PAGE_SIZE, String searchKey, String categoryId, String type, String value) {
         List<Blog> list = new ArrayList<>();
         String sql = "select * from Blog\n"
-                + "where categoryBlog_id " + categoryId + " and status = 1 and title like N'%" + searchKey + "%'\n"
+                + "where categoryBlog_id " + categoryId + " and [status] = 1 and title like N'%" + searchKey + "%'\n"
                 + " order by " + value + " " + type + " offset (?-1)*? row fetch next ? row only";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
