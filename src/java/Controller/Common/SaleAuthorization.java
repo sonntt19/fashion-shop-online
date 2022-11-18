@@ -25,7 +25,7 @@ import model.User;
  *
  * @author son22
  */
-@WebFilter(filterName = "SaleAuthorization", urlPatterns = {"/blog","/blogDetail","/categoryBlog"})
+@WebFilter(filterName = "SaleAuthorization", urlPatterns = {"/categoryBlog"})
 public class SaleAuthorization implements Filter {
     
    @Override
